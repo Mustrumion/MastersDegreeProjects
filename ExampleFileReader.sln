@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleFileReader", "ExampleFileReader\ExampleFileReader.csproj", "{CE30FF74-7A54-43EC-9485-2BA365AAA3E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileReaderTests", "FileReaderTests\FileReaderTests.csproj", "{A9106B1F-5686-4947-A03E-B1BE9AB364AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CE30FF74-7A54-43EC-9485-2BA365AAA3E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE30FF74-7A54-43EC-9485-2BA365AAA3E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE30FF74-7A54-43EC-9485-2BA365AAA3E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9106B1F-5686-4947-A03E-B1BE9AB364AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9106B1F-5686-4947-A03E-B1BE9AB364AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9106B1F-5686-4947-A03E-B1BE9AB364AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9106B1F-5686-4947-A03E-B1BE9AB364AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

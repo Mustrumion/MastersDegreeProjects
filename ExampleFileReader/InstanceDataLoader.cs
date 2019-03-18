@@ -12,9 +12,15 @@ namespace ExampleFileReader
 {
     public class InstanceDataLoader
     {
+        /// <summary>
+        /// Path to the real data instance. Used only if Reader is not set.
+        /// </summary>
         public string Filepath { get; set; }
+        /// <summary>
+        /// Reader with real instance data.
+        /// </summary>
+        public TextReader Reader { get; set; }
 
-        private StreamReader reader;
         private Instance instance;
         private Channel currentChannel;
         private int lineNum;
@@ -27,7 +33,7 @@ namespace ExampleFileReader
         public Instance LoadInstanceFile()
         {
             instance = new Instance();
-            using (reader = new StreamReader(Filepath))
+            using (Reader ?? new StreamReader(Filepath))
             {
                 try
                 {
@@ -49,7 +55,7 @@ namespace ExampleFileReader
         private void ReadInstancesHeader()
         {
             lineNum += 1;
-            string channelLine = reader.ReadLine();
+            string channelLine = Reader.ReadLine();
             if (string.IsNullOrEmpty(channelLine))
             {
                 throw new IOException("There are no channels in the first line.");
@@ -63,13 +69,13 @@ namespace ExampleFileReader
                 });
             }
             lineNum += 1;
-            string start = reader.ReadLine();
+            string start = Reader.ReadLine();
             instance.StartTime = DateTime.ParseExact(start, DATETIME_FORMAT_HEADER, CultureInfo.InvariantCulture);
             lineNum += 1;
-            string end = reader.ReadLine();
+            string end = Reader.ReadLine();
             instance.EndTime = DateTime.ParseExact(end, DATETIME_FORMAT_HEADER, CultureInfo.InvariantCulture);
             lineNum += 1;
-            string intermissionLine = reader.ReadLine();
+            string intermissionLine = Reader.ReadLine();
             if (!intermissionLine.StartsWith("%"))
             {
                 throw new Exception($"Unexpected sequence encountered at the end of instance header - '{intermissionLine}'. Expected '%'.");
@@ -79,15 +85,15 @@ namespace ExampleFileReader
         private void ReadInstanceChecksums()
         {
             lineNum += 1;
-            string channelNumber = reader.ReadLine();
+            string channelNumber = Reader.ReadLine();
             instance.ChannelAmountChecksum = Convert.ToInt32(channelNumber);
             lineNum += 1;
-            string programNumber = reader.ReadLine();
+            string programNumber = Reader.ReadLine();
             instance.ProgramAmountChecksum = Convert.ToInt32(programNumber);
             lineNum += 1;
-            string adsNumber = reader.ReadLine();
+            string adsNumber = Reader.ReadLine();
             instance.AdsAmountChecksum = Convert.ToInt32(adsNumber);
-            string intermissionLine = reader.ReadLine();
+            string intermissionLine = Reader.ReadLine();
             if (!intermissionLine.StartsWith("%"))
             {
                 throw new Exception($"Unexpected sequence encountered at the end of instance checksums - '{intermissionLine}'. Expected '%'.");
@@ -97,14 +103,14 @@ namespace ExampleFileReader
         private void ReadChannelAssignment()
         {
             lineNum += 1;
-            string channelID = reader.ReadLine();
+            string channelID = Reader.ReadLine();
             currentChannel = instance.Channels[channelID];
             lineNum += 1;
-            string channelStart = reader.ReadLine();
+            string channelStart = Reader.ReadLine();
             currentChannel.StartTime = DateTime.ParseExact(channelStart, DATETIME_FORMAT_CHANNEL, CultureInfo.InvariantCulture);
             string line = null;
             lineNum += 1;
-            while (!(line = reader.ReadLine()).StartsWith("%"))
+            while (!(line = Reader.ReadLine()).StartsWith("%"))
             {
                 if (line.StartsWith("R"))
                 {
