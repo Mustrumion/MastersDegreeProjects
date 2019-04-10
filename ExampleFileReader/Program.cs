@@ -11,8 +11,8 @@ namespace ExampleFileReader
     {
         static void Main(string[] args)
         {
-            InstanceDataLoader loader = new InstanceDataLoader();
-            loader.Filepath = @"D:\praca inżynierska\generator_output.txt";
+            RealInstanceDataLoader loader = new RealInstanceDataLoader();
+            loader.Filepath = @"C:\Users\bartl\source\repos\MastersDegreeProjects\FileReaderTests\Resources\3_channel_week.txt";
             Instance instance = loader.LoadInstanceFile();
             Console.WriteLine("End.");
             Console.ReadKey();

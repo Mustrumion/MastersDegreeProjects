@@ -42,17 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InstanceDataLoader.cs" />
+    <Compile Include="RealInstanceDataLoader.cs" />
     <Compile Include="InstanceData\Activities\Advertisement.cs" />
     <Compile Include="InstanceData\Activities\Autopromotion.cs" />
     <Compile Include="InstanceData\Activities\BaseActivity.cs" />
     <Compile Include="InstanceData\Activities\TvProgram.cs" />
     <Compile Include="InstanceData\BlockOfAds.cs" />
+    <Compile Include="InstanceData\TvBreak.cs" />
     <Compile Include="InstanceData\Channel.cs" />
     <Compile Include="InstanceData\Instance.cs" />
     <Compile Include="InstanceData\TypeOfAd.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\SerializableDictionary.cs" />
+    <Compile Include="Serialization\Serializer.cs" />
+    <Compile Include="SolutionToProblemConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

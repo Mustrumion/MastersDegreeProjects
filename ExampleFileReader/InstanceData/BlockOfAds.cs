@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace ExampleFileReader.InstanceData
 {
+    [Serializable]
     public class BlockOfAds
     {
-        private HashSet<Advertisement> ads = new HashSet<Advertisement>();
+        public List<Advertisement> ads = new List<Advertisement>();
 
         public string ID { get; set; }
-
-        public List<Advertisement> GetAds()
-        {
-            return ads.ToList();
-        }
+       
 
         public void AddAdvertisement(Advertisement advertisement)
         {

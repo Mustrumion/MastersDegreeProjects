@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ExampleFileReader
 {
-    public class InstanceDataLoader
+    public class RealInstanceDataLoader
     {
         /// <summary>
         /// Path to the real data instance. Used only if Reader is not set.
@@ -33,7 +33,7 @@ namespace ExampleFileReader
         public Instance LoadInstanceFile()
         {
             instance = new Instance();
-            using (Reader ?? new StreamReader(Filepath))
+            using (Reader = Reader ?? new StreamReader(Filepath))
             {
                 try
                 {

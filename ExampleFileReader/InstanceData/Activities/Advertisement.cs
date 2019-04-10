@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ExampleFileReader.InstanceData.Activities
 {
@@ -12,6 +13,7 @@ namespace ExampleFileReader.InstanceData.Activities
         private TypeOfAd _type;
         private Channel _channel;
 
+        [XmlIgnore]
         public BlockOfAds Block
         {
             get => _block;
@@ -22,6 +24,24 @@ namespace ExampleFileReader.InstanceData.Activities
             }
         }
 
+        private string _blockID;
+        public string BlockID
+        {
+            get
+            {
+                if(Block != null)
+                {
+                    return Block.ID;
+                }
+                return _blockID;
+            }
+            set
+            {
+                _blockID = value;
+            }
+        }
+
+        [XmlIgnore]
         public TypeOfAd Type
         {
             get => _type;
@@ -32,6 +52,24 @@ namespace ExampleFileReader.InstanceData.Activities
             }
         }
 
+        private string _typeID;
+        public string TypeID
+        {
+            get
+            {
+                if (Type != null)
+                {
+                    return Type.ID;
+                }
+                return _typeID;
+            }
+            set
+            {
+                _typeID = value;
+            }
+        }
+
+        [XmlIgnore]
         public Channel Channel
         {
             get => _channel;
@@ -42,6 +80,5 @@ namespace ExampleFileReader.InstanceData.Activities
         }
 
         public decimal Cost { get; set; }
-
     }
 }

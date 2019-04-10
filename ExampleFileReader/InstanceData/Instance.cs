@@ -1,4 +1,5 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
+using ExampleFileReader.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,18 @@ namespace ExampleFileReader.InstanceData
 {
     public class Instance
     {
-        public Dictionary<string, Channel> Channels = new Dictionary<string, Channel>();
+        public SerializableDictionary<string, Channel> Channels = new SerializableDictionary<string, Channel>();
         public IEnumerable<Channel> GetChannelList()
         {
             return Channels.Values;
         }
 
-        public Dictionary<string, BlockOfAds> BlocksOfAds = new Dictionary<string, BlockOfAds>();
+        public SerializableDictionary<string, BlockOfAds> BlocksOfAds = new SerializableDictionary<string, BlockOfAds>();
         public IEnumerable<BlockOfAds> GetBlocksOfAdsList()
         {
             return BlocksOfAds.Values;
         }
+
         public BlockOfAds GetOrAddBlockOfAds(string blockId)
         {
             if (BlocksOfAds.ContainsKey(blockId))
@@ -34,11 +36,13 @@ namespace ExampleFileReader.InstanceData
             return block;
         }
 
-        public Dictionary<string, TypeOfAd> TypesOfAds = new Dictionary<string, TypeOfAd>();
+        public SerializableDictionary<string, TypeOfAd> TypesOfAds = new SerializableDictionary<string, TypeOfAd>();
+
         public IEnumerable<TypeOfAd> GetTypesOfAdsList()
         {
             return TypesOfAds.Values;
         }
+
         public TypeOfAd GetOrAddTypeOfAds(string blockId)
         {
             if (TypesOfAds.ContainsKey(blockId))
