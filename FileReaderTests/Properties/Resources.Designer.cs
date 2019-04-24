@@ -61,6 +61,69 @@ namespace FileReaderTests.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 94 16 4
+        ///1.4.2014 0:0:0
+        ///1.4.2014 23:23:59
+        ///%
+        ///3
+        ///837
+        ///1350
+        ///%
+        ///94
+        ///2014-03-31 23:16:33
+        ///P 953 bac 115115.84 73445 176220 23759.58 115115.84 73445 176220 23759.58
+        ///A 5
+        ///R 30 bac 8402 141200 7800 0 1725 379 97448.0 97448.0
+        ///R 15 bac 8402 060702 5460 0 1968 561 97448.0 97448.0
+        ///R 10 bac 8402 011002 4290 0 3994 494 97448.0 97448.0
+        ///R 30 bac 8402 161001 7800 0 3435 0 99311.33 99311.33
+        ///R 30 bac 8402 180300 7800 0 3187 1283 100243.0 100243.0
+        ///R 30 bac 8402 001500 7800 0 1566 1082 101174.67 101174.67
+        ///R 21 bac 84 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string day_3channels {
+            get {
+                return ResourceManager.GetString("day_3channels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;$id&quot;: &quot;1&quot;,
+        ///  &quot;StartTime&quot;: &quot;2014-04-01T00:00:00&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-04-01T23:23:59&quot;,
+        ///  &quot;ChannelAmountChecksum&quot;: 3,
+        ///  &quot;ProgramAmountChecksum&quot;: 837,
+        ///  &quot;AdsAmountChecksum&quot;: 1350,
+        ///  &quot;TypesOfAds&quot;: {
+        ///    &quot;$id&quot;: &quot;2&quot;,
+        ///    &quot;bac&quot;: {
+        ///      &quot;$id&quot;: &quot;3&quot;,
+        ///      &quot;ID&quot;: &quot;bac&quot;
+        ///    },
+        ///    &quot;bdd&quot;: {
+        ///      &quot;$id&quot;: &quot;4&quot;,
+        ///      &quot;ID&quot;: &quot;bdd&quot;
+        ///    },
+        ///    &quot;clb&quot;: {
+        ///      &quot;$id&quot;: &quot;5&quot;,
+        ///      &quot;ID&quot;: &quot;clb&quot;
+        ///    },
+        ///    &quot;dbb&quot;: {
+        ///      &quot;$id&quot;: &quot;6&quot;,
+        ///      &quot;ID&quot;: &quot;dbb&quot;
+        ///    },
+        ///    &quot;fdb&quot;: {
+        ///      &quot;$id&quot;: &quot;7&quot;,
+        ///      &quot;ID&quot;: &quot;fd [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string day_3channels_json {
+            get {
+                return ResourceManager.GetString("day_3channels_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 94 21
         ///1.1.2014 0:0:0
         ///7.1.2014 23:59:59
@@ -81,9 +144,45 @@ namespace FileReaderTests.Properties {
         ///R 15 dab 2 180101 18550 5 4176 1711 679854.0 566218.86
         ///R 15 dab 2 180105 18550 5 4178 1711  [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string _3_channel_week {
+        internal static string week_3channel {
             get {
-                return ResourceManager.GetString("_3_channel_week", resourceCulture);
+                return ResourceManager.GetString("week_3channel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;$id&quot;: &quot;1&quot;,
+        ///  &quot;StartTime&quot;: &quot;2014-01-01T00:00:00&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-01-07T23:59:59&quot;,
+        ///  &quot;ChannelAmountChecksum&quot;: 2,
+        ///  &quot;ProgramAmountChecksum&quot;: 2653,
+        ///  &quot;AdsAmountChecksum&quot;: 5581,
+        ///  &quot;TypesOfAds&quot;: {
+        ///    &quot;$id&quot;: &quot;2&quot;,
+        ///    &quot;dab&quot;: {
+        ///      &quot;$id&quot;: &quot;3&quot;,
+        ///      &quot;ID&quot;: &quot;dab&quot;
+        ///    },
+        ///    &quot;fdb&quot;: {
+        ///      &quot;$id&quot;: &quot;4&quot;,
+        ///      &quot;ID&quot;: &quot;fdb&quot;
+        ///    },
+        ///    &quot;bid&quot;: {
+        ///      &quot;$id&quot;: &quot;5&quot;,
+        ///      &quot;ID&quot;: &quot;bid&quot;
+        ///    },
+        ///    &quot;bad&quot;: {
+        ///      &quot;$id&quot;: &quot;6&quot;,
+        ///      &quot;ID&quot;: &quot;bad&quot;
+        ///    },
+        ///    &quot;bae&quot;: {
+        ///      &quot;$id&quot;: &quot;7&quot;,
+        ///      &quot;ID&quot;: &quot;b [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string week_3channels_json {
+            get {
+                return ResourceManager.GetString("week_3channels_json", resourceCulture);
             }
         }
     }

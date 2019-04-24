@@ -118,7 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_3_channel_week" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3_channel_week.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="day_3channels" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\day_3channels.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="day_3channels_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\day_3channels_json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="week_3channel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\week_3channel.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="week_3channels_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\week_3channels_json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

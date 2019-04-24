@@ -1,5 +1,6 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
 using ExampleFileReader.Serialization;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,15 @@ namespace ExampleFileReader.InstanceData
 {
     public class Instance
     {
-        public SerializableDictionary<string, Channel> Channels = new SerializableDictionary<string, Channel>();
+        [JsonProperty(Order = 3)]
+        public Dictionary<string, Channel> Channels { get; set; } = new SerializableDictionary<string, Channel>();
         public IEnumerable<Channel> GetChannelList()
         {
             return Channels.Values;
         }
 
-        public SerializableDictionary<string, BlockOfAds> BlocksOfAds = new SerializableDictionary<string, BlockOfAds>();
+        [JsonProperty(Order = 2)]
+        public Dictionary<string, BlockOfAds> BlocksOfAds { get; set; } = new SerializableDictionary<string, BlockOfAds>();
         public IEnumerable<BlockOfAds> GetBlocksOfAdsList()
         {
             return BlocksOfAds.Values;
@@ -36,7 +39,8 @@ namespace ExampleFileReader.InstanceData
             return block;
         }
 
-        public SerializableDictionary<string, TypeOfAd> TypesOfAds = new SerializableDictionary<string, TypeOfAd>();
+        [JsonProperty(Order = 1)]
+        public Dictionary<string, TypeOfAd> TypesOfAds { get; set; } = new SerializableDictionary<string, TypeOfAd>();
 
         public IEnumerable<TypeOfAd> GetTypesOfAdsList()
         {

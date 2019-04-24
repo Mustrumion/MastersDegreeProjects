@@ -1,4 +1,5 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,18 +16,14 @@ namespace ExampleFileReader.InstanceData
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-
-        [XmlIgnore]
+        
         public Instance Instance { get; set; }
-        [XmlIgnore]
-        public List<BaseActivity> Activities { get; set; } = new List<BaseActivity>();
-        [XmlIgnore]
         public List<Autopromotion> Autopromotions { get; set; } = new List<Autopromotion>();
-        [XmlIgnore]
         public List<TvProgram> Programs { get; set; } = new List<TvProgram>();
-        [XmlIgnore]
         public List<Advertisement> Advertisements { get; set; } = new List<Advertisement>();
         public List<TvBreak> Breaks { get; set; } = new List<TvBreak>();
+        [JsonProperty(Order = 1)]
+        public List<BaseActivity> Activities { get; set; } = new List<BaseActivity>();
 
         public void AddBreak(TvBreak @break)
         {

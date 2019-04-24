@@ -10,14 +10,14 @@ namespace ExampleFileReader.InstanceData
     [Serializable]
     public class BlockOfAds
     {
-        public List<Advertisement> ads = new List<Advertisement>();
+        public List<Advertisement> Advertisements { get; set; } = new List<Advertisement>();
 
         public string ID { get; set; }
        
 
         public void AddAdvertisement(Advertisement advertisement)
         {
-            ads.Add(advertisement);
+            Advertisements.Add(advertisement);
             if(advertisement.Block != this)
             {
                 advertisement.Block = this;

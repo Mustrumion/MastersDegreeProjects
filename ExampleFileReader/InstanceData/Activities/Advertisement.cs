@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,8 +41,7 @@ namespace ExampleFileReader.InstanceData.Activities
                 _blockID = value;
             }
         }
-
-        [XmlIgnore]
+        
         public TypeOfAd Type
         {
             get => _type;
@@ -69,7 +69,7 @@ namespace ExampleFileReader.InstanceData.Activities
             }
         }
 
-        [XmlIgnore]
+        [JsonIgnore]
         public Channel Channel
         {
             get => _channel;

@@ -13,9 +13,9 @@ namespace FileReaderTests
     public class SystemTests
     {
         [TestMethod]
-        public void ReaderReads3ChannelWeeklyFileTest()
+        public void ReaderReadsWeekly3ChannelFileTest()
         {
-            var file = Properties.Resources._3_channel_week;
+            var file = Properties.Resources.week_3channel;
             using (var reader = new StringReader(file))
             {
                 RealInstanceDataLoader loader = new RealInstanceDataLoader();
@@ -25,11 +25,21 @@ namespace FileReaderTests
             }
         }
 
+        [TestMethod]
+        public void DeserializeWeek3ChannelTest()
+        {
+            var file = Properties.Resources.week_3channels_json;
+            var reader = new InstanceJsonSerializer();
+            reader.Reader = new StringReader(file);
+            Instance instance = reader.Deserialize();
+            Assert.IsNotNull(instance);
+        }
+
 
         [TestMethod]
-        public void SerializeAnInstance()
+        public void SerializeDay3ChannelsInstance()
         {
-            var file = Properties.Resources._3_channel_week;
+            var file = Properties.Resources.day_3channels;
             Instance instance = null;
             using (var reader = new StringReader(file))
             {
@@ -43,8 +53,32 @@ namespace FileReaderTests
                 Instance = instance,
             };
             converter.CreateBreaks();
-            Serializer serializer = new Serializer();
-            serializer.Serialize(instance, @"C:\test\text.xml");
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer();
+            serializer.Path = @"C:\test\day_3channels_json.txt";
+            serializer.Serialize(instance);
+        }
+
+
+        [TestMethod]
+        public void SerializeWeek3ChannelsInstance()
+        {
+            var file = Properties.Resources.week_3channel;
+            Instance instance = null;
+            using (var reader = new StringReader(file))
+            {
+                RealInstanceDataLoader loader = new RealInstanceDataLoader();
+                loader.Reader = reader;
+                instance = loader.LoadInstanceFile();
+                Assert.IsNotNull(instance);
+            }
+            SolutionToProblemConverter converter = new SolutionToProblemConverter()
+            {
+                Instance = instance,
+            };
+            converter.CreateBreaks();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer();
+            serializer.Path = @"C:\test\week_3channels_json.txt";
+            serializer.Serialize(instance);
         }
     }
 }
