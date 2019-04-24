@@ -12,6 +12,7 @@ namespace ExampleFileReader.InstanceData.Activities
     {
         private AdvertisementOrder _adOrder;
         private TypeOfAd _type;
+        private OwnerOfAd _owner;
         private Channel _channel;
 
         [XmlIgnore]
@@ -41,7 +42,36 @@ namespace ExampleFileReader.InstanceData.Activities
                 _adOrderID = value;
             }
         }
-        
+
+        public OwnerOfAd Owner
+        {
+            get => _owner;
+            set
+            {
+                _owner = value;
+                _owner.AddAdvertisement(this);
+            }
+        }
+
+
+        private string _ownerID;
+        public string OwnerID
+        {
+            get
+            {
+                if (Owner != null)
+                {
+                    return Owner.ID;
+                }
+                return _ownerID;
+            }
+            set
+            {
+                _ownerID = value;
+            }
+        }
+
+
         public TypeOfAd Type
         {
             get => _type;

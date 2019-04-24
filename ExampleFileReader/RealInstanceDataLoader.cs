@@ -21,6 +21,7 @@ namespace ExampleFileReader
         /// </summary>
         public TextReader Reader { get; set; }
 
+
         private Instance instance;
         private Channel currentChannel;
         private int lineNum;
@@ -161,7 +162,9 @@ namespace ExampleFileReader
             {
                 Span = new TimeSpan(0, 0, Convert.ToInt32(fields[1])),
                 Type = instance.GetOrAddTypeOfAds(fields[4]),
+                Cost = Convert.ToDecimal(fields[5]),
                 AdvertisementOrder = instance.GetOrAddOrderOfAds(fields[7]),
+                Owner = instance.GetOrAddOwnerOfAds(fields[8]),
                 Channel = currentChannel,
                 Start = currentChannel.EndTime,
             };

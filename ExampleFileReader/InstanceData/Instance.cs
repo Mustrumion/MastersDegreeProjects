@@ -11,15 +11,15 @@ namespace ExampleFileReader.InstanceData
 {
     public class Instance
     {
-        [JsonProperty(Order = 3)]
-        public Dictionary<string, Channel> Channels { get; set; } = new SerializableDictionary<string, Channel>();
+        [JsonProperty(Order = 4)]
+        public Dictionary<string, Channel> Channels { get; set; } = new Dictionary<string, Channel>();
         public IEnumerable<Channel> GetChannelList()
         {
             return Channels.Values;
         }
 
-        [JsonProperty(Order = 2)]
-        public Dictionary<string, AdvertisementOrder> AdOrders { get; set; } = new SerializableDictionary<string, AdvertisementOrder>();
+        [JsonProperty(Order = 3)]
+        public Dictionary<string, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<string, AdvertisementOrder>();
         public IEnumerable<AdvertisementOrder> GetBlocksOfAdsList()
         {
             return AdOrders.Values;
@@ -40,7 +40,7 @@ namespace ExampleFileReader.InstanceData
         }
 
         [JsonProperty(Order = 1)]
-        public Dictionary<string, TypeOfAd> TypesOfAds { get; set; } = new SerializableDictionary<string, TypeOfAd>();
+        public Dictionary<string, TypeOfAd> TypesOfAds { get; set; } = new Dictionary<string, TypeOfAd>();
 
         public IEnumerable<TypeOfAd> GetTypesOfAdsList()
         {
@@ -59,6 +59,28 @@ namespace ExampleFileReader.InstanceData
             };
             TypesOfAds[blockId] = block;
             return block;
+        }
+
+        [JsonProperty(Order = 2)]
+        public Dictionary<string, OwnerOfAd> OwnerOfAds { get; set; } = new Dictionary<string, OwnerOfAd>();
+
+        public IEnumerable<OwnerOfAd> GetOwnersOfAdsList()
+        {
+            return OwnerOfAds.Values;
+        }
+
+        public OwnerOfAd GetOrAddOwnerOfAds(string ownerId)
+        {
+            if (OwnerOfAds.ContainsKey(ownerId))
+            {
+                return OwnerOfAds[ownerId];
+            }
+            OwnerOfAd owner = new OwnerOfAd()
+            {
+                ID = ownerId,
+            };
+            OwnerOfAds[ownerId] = owner;
+            return owner;
         }
 
 

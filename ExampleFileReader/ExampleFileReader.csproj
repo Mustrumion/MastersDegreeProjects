@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InstanceData\OwnerOfAd.cs" />
     <Compile Include="RealInstanceDataLoader.cs" />
     <Compile Include="InstanceData\Activities\AdvertisementInstance.cs" />
     <Compile Include="InstanceData\Activities\Autopromotion.cs" />
