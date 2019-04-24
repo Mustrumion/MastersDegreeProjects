@@ -19,24 +19,24 @@ namespace ExampleFileReader.InstanceData
         }
 
         [JsonProperty(Order = 2)]
-        public Dictionary<string, BlockOfAds> BlocksOfAds { get; set; } = new SerializableDictionary<string, BlockOfAds>();
-        public IEnumerable<BlockOfAds> GetBlocksOfAdsList()
+        public Dictionary<string, AdvertisementOrder> AdOrders { get; set; } = new SerializableDictionary<string, AdvertisementOrder>();
+        public IEnumerable<AdvertisementOrder> GetBlocksOfAdsList()
         {
-            return BlocksOfAds.Values;
+            return AdOrders.Values;
         }
 
-        public BlockOfAds GetOrAddBlockOfAds(string blockId)
+        public AdvertisementOrder GetOrAddOrderOfAds(string advertisementId)
         {
-            if (BlocksOfAds.ContainsKey(blockId))
+            if (AdOrders.ContainsKey(advertisementId))
             {
-                return BlocksOfAds[blockId];
+                return AdOrders[advertisementId];
             }
-            BlockOfAds block = new BlockOfAds()
+            AdvertisementOrder advert = new AdvertisementOrder()
             {
-                ID = blockId,
+                ID = advertisementId,
             };
-            BlocksOfAds[blockId] = block;
-            return block;
+            AdOrders[advertisementId] = advert;
+            return advert;
         }
 
         [JsonProperty(Order = 1)]

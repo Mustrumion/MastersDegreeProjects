@@ -11,16 +11,16 @@ namespace ExampleFileReader.InstanceData
     public class TypeOfAd
     {
         [JsonIgnore]
-        public List<Advertisement> Ads { get; set; } = new List<Advertisement>();
+        public List<AdvertisementInstance> Ads { get; set; } = new List<AdvertisementInstance>();
 
         public string ID { get; set; }
 
-        public List<Advertisement> GetAds()
+        public List<AdvertisementInstance> GetAds()
         {
             return Ads.ToList();
         }
 
-        public void AddAdvertisement(Advertisement advertisement)
+        public void AddAdvertisement(AdvertisementInstance advertisement)
         {
             Ads.Add(advertisement);
             if (advertisement.Type != this)

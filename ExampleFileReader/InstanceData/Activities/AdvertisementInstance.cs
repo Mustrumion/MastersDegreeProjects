@@ -8,37 +8,37 @@ using System.Xml.Serialization;
 
 namespace ExampleFileReader.InstanceData.Activities
 {
-    public class Advertisement : BaseActivity
+    public class AdvertisementInstance : BaseActivity
     {
-        private BlockOfAds _block;
+        private AdvertisementOrder _adOrder;
         private TypeOfAd _type;
         private Channel _channel;
 
         [XmlIgnore]
-        public BlockOfAds Block
+        public AdvertisementOrder AdvertisementOrder
         {
-            get => _block;
+            get => _adOrder;
             set
             {
-                _block = value;
-                _block.AddAdvertisement(this);
+                _adOrder = value;
+                _adOrder.AddAdvertisement(this);
             }
         }
 
-        private string _blockID;
-        public string BlockID
+        private string _adOrderID;
+        public string AdOrderID
         {
             get
             {
-                if(Block != null)
+                if(AdvertisementOrder != null)
                 {
-                    return Block.ID;
+                    return AdvertisementOrder.ID;
                 }
-                return _blockID;
+                return _adOrderID;
             }
             set
             {
-                _blockID = value;
+                _adOrderID = value;
             }
         }
         

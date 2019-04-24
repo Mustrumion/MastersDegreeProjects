@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace ExampleFileReader.InstanceData
 {
     [Serializable]
-    public class BlockOfAds
+    public class AdvertisementOrder
     {
-        public List<Advertisement> Advertisements { get; set; } = new List<Advertisement>();
+        public List<AdvertisementInstance> Advertisements { get; set; } = new List<AdvertisementInstance>();
 
         public string ID { get; set; }
        
 
-        public void AddAdvertisement(Advertisement advertisement)
+        public void AddAdvertisement(AdvertisementInstance advertisement)
         {
             Advertisements.Add(advertisement);
-            if(advertisement.Block != this)
+            if(advertisement.AdvertisementOrder != this)
             {
-                advertisement.Block = this;
+                advertisement.AdvertisementOrder = this;
             }
         }
     }

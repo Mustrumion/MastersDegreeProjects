@@ -20,7 +20,7 @@ namespace ExampleFileReader.InstanceData
         public Instance Instance { get; set; }
         public List<Autopromotion> Autopromotions { get; set; } = new List<Autopromotion>();
         public List<TvProgram> Programs { get; set; } = new List<TvProgram>();
-        public List<Advertisement> Advertisements { get; set; } = new List<Advertisement>();
+        public List<AdvertisementInstance> Advertisements { get; set; } = new List<AdvertisementInstance>();
         public List<TvBreak> Breaks { get; set; } = new List<TvBreak>();
         [JsonProperty(Order = 1)]
         public List<BaseActivity> Activities { get; set; } = new List<BaseActivity>();

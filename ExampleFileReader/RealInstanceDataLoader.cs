@@ -157,11 +157,11 @@ namespace ExampleFileReader
         private void AnalyzeAd(string line)
         {
             string[] fields = line.Split(' ');
-            Advertisement advertisement = new Advertisement()
+            AdvertisementInstance advertisement = new AdvertisementInstance()
             {
                 Span = new TimeSpan(0, 0, Convert.ToInt32(fields[1])),
-                Type = instance.GetOrAddTypeOfAds(fields[2]),
-                Block = instance.GetOrAddBlockOfAds(fields[3]),
+                Type = instance.GetOrAddTypeOfAds(fields[4]),
+                AdvertisementOrder = instance.GetOrAddOrderOfAds(fields[7]),
                 Channel = currentChannel,
                 Start = currentChannel.EndTime,
             };
