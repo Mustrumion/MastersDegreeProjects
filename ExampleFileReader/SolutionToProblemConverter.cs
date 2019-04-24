@@ -37,7 +37,7 @@ namespace ExampleFileReader
                         StartTime = program.End,
                     };
                 }
-                if (activity is Advertisement)
+                if (activity is AdvertisementInstance)
                 {
                     if (currentBreak == null)
                     {
@@ -46,7 +46,7 @@ namespace ExampleFileReader
                             StartTime = activity.Start,
                         };
                     }
-                    currentBreak.AddAdvertisement(activity as Advertisement);
+                    currentBreak.AddAdvertisement(activity as AdvertisementInstance);
                 }
             }
             if (currentBreak != null && currentBreak.Advertisements.Count > 0)

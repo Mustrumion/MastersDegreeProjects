@@ -13,9 +13,9 @@ namespace ExampleFileReader.InstanceData
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         
-        public List<Advertisement> Advertisements { get; set; } = new List<Advertisement>();
+        public List<AdvertisementInstance> Advertisements { get; set; } = new List<AdvertisementInstance>();
 
-        public void AddAdvertisement(Advertisement ad)
+        public void AddAdvertisement(AdvertisementInstance ad)
         {
             Advertisements.Add(ad);
         }

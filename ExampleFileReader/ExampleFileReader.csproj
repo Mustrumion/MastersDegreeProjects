@@ -46,11 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RealInstanceDataLoader.cs" />
-    <Compile Include="InstanceData\Activities\Advertisement.cs" />
+    <Compile Include="InstanceData\Activities\AdvertisementInstance.cs" />
     <Compile Include="InstanceData\Activities\Autopromotion.cs" />
     <Compile Include="InstanceData\Activities\BaseActivity.cs" />
     <Compile Include="InstanceData\Activities\TvProgram.cs" />
-    <Compile Include="InstanceData\BlockOfAds.cs" />
+    <Compile Include="InstanceData\AdvertisementOrder.cs" />
     <Compile Include="InstanceData\TvBreak.cs" />
     <Compile Include="InstanceData\Channel.cs" />
     <Compile Include="InstanceData\Instance.cs" />
