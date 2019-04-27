@@ -124,6 +124,12 @@
   <data name="day_3channels_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\day_3channels_json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="hour_3channels" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\hour_3channels.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="hour_3channels_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\hour_3channels_json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="week_3channel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\week_3channel.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>

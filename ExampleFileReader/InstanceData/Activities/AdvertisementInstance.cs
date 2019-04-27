@@ -109,6 +109,6 @@ namespace ExampleFileReader.InstanceData.Activities
             }
         }
 
-        public decimal Cost { get; set; }
+        public double Cost { get; set; }
     }
 }

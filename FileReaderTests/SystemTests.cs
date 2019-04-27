@@ -48,11 +48,12 @@ namespace FileReaderTests
                 instance = loader.LoadInstanceFile();
                 Assert.IsNotNull(instance);
             }
-            SolutionToProblemConverter converter = new SolutionToProblemConverter()
+            RealInstanceToProblemConverter converter = new RealInstanceToProblemConverter()
             {
                 Instance = instance,
+                TimeUnitInSeconds = 3.0,
             };
-            converter.CreateBreaks();
+            converter.ConvertToProblem();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer();
             serializer.Path = @"C:\test\day_3channels_json.txt";
             serializer.Serialize(instance);
@@ -71,13 +72,38 @@ namespace FileReaderTests
                 instance = loader.LoadInstanceFile();
                 Assert.IsNotNull(instance);
             }
-            SolutionToProblemConverter converter = new SolutionToProblemConverter()
+            RealInstanceToProblemConverter converter = new RealInstanceToProblemConverter()
             {
                 Instance = instance,
+                TimeUnitInSeconds = 3.0,
             };
-            converter.CreateBreaks();
+            converter.ConvertToProblem();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer();
             serializer.Path = @"C:\test\week_3channels_json.txt";
+            serializer.Serialize(instance);
+        }
+
+
+        [TestMethod]
+        public void SerializeHour3ChannelsInstance()
+        {
+            var file = Properties.Resources.hour_3channels;
+            Instance instance = null;
+            using (var reader = new StringReader(file))
+            {
+                RealInstanceDataLoader loader = new RealInstanceDataLoader();
+                loader.Reader = reader;
+                instance = loader.LoadInstanceFile();
+                Assert.IsNotNull(instance);
+            }
+            RealInstanceToProblemConverter converter = new RealInstanceToProblemConverter()
+            {
+                Instance = instance,
+                TimeUnitInSeconds = 3.0,
+            };
+            converter.ConvertToProblem();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer();
+            serializer.Path = @"C:\test\hour_3channels_json.txt";
             serializer.Serialize(instance);
         }
     }

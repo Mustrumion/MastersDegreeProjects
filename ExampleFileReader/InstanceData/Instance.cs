@@ -83,10 +83,12 @@ namespace ExampleFileReader.InstanceData
             return owner;
         }
 
-
-
+        
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public TimeSpan Span { get; set; }
+        public int SpanUnits { get; set; }
+        public double UnitSizeInSeconds { get; set; }
 
         public int ChannelAmountChecksum { get; set; }
         public int ProgramAmountChecksum { get; set; }

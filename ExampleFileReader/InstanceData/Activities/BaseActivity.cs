@@ -9,7 +9,8 @@ namespace ExampleFileReader.InstanceData.Activities
     public class BaseActivity
     {
         public TimeSpan Span { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public int SpanUnits { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }

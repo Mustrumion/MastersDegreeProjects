@@ -97,29 +97,95 @@ namespace FileReaderTests.Properties {
         ///  &quot;AdsAmountChecksum&quot;: 1350,
         ///  &quot;TypesOfAds&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;bac&quot;: {
+        ///    &quot;141200&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;bac&quot;
+        ///      &quot;ID&quot;: &quot;141200&quot;
         ///    },
-        ///    &quot;bdd&quot;: {
+        ///    &quot;060702&quot;: {
         ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;bdd&quot;
+        ///      &quot;ID&quot;: &quot;060702&quot;
         ///    },
-        ///    &quot;clb&quot;: {
+        ///    &quot;011002&quot;: {
         ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;clb&quot;
+        ///      &quot;ID&quot;: &quot;011002&quot;
         ///    },
-        ///    &quot;dbb&quot;: {
+        ///    &quot;161001&quot;: {
         ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;dbb&quot;
+        ///      &quot;ID&quot;: &quot;161001&quot;
         ///    },
-        ///    &quot;fdb&quot;: {
-        ///      &quot;$id&quot;: &quot;7&quot;,
-        ///      &quot;ID&quot;: &quot;fd [rest of string was truncated]&quot;;.
+        ///    &quot;180300&quot;: {
+        ///      &quot; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string day_3channels_json {
             get {
                 return ResourceManager.GetString("day_3channels_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7 51 53
+        ///5.3.2014 12:0:0
+        ///5.3.2014 13:0:1
+        ///%
+        ///3
+        ///35
+        ///79
+        ///%
+        ///7
+        ///2014-03-05 11:59:48
+        ///A 28
+        ///P 813 idd 0.0 0 0 0.0 0.0 0 0 0.0
+        ///A 45
+        ///R 45 idd 5176 190303 525 0 3886 575 0.0 0.0
+        ///R 30 idd 5176 161005 350 0 252 1269 0.0 0.0
+        ///R 30 idd 5176 090714 350 0 3904 1875 0.0 0.0
+        ///R 30 idd 5176 160300 350 0 3437 0 0.0 0.0
+        ///R 30 idd 5176 111301 350 0 2577 66 0.0 0.0
+        ///R 30 idd 5176 161504 350 0 4169 480 0.0 0.0
+        ///R 15 idd 5176 190900 245 0 3850 1566 0.0 0.0
+        ///A 40
+        ///P 431 idd 0.0 0 0 0.0 0.0 0 0 0.0
+        ///A 20
+        ///R 90 idd 5177 050104 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string hour_3channels {
+            get {
+                return ResourceManager.GetString("hour_3channels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;$id&quot;: &quot;1&quot;,
+        ///  &quot;StartTime&quot;: &quot;2014-03-05T12:00:00&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-03-05T13:00:01&quot;,
+        ///  &quot;ChannelAmountChecksum&quot;: 3,
+        ///  &quot;ProgramAmountChecksum&quot;: 35,
+        ///  &quot;AdsAmountChecksum&quot;: 79,
+        ///  &quot;TypesOfAds&quot;: {
+        ///    &quot;$id&quot;: &quot;2&quot;,
+        ///    &quot;190303&quot;: {
+        ///      &quot;$id&quot;: &quot;3&quot;,
+        ///      &quot;ID&quot;: &quot;190303&quot;
+        ///    },
+        ///    &quot;161005&quot;: {
+        ///      &quot;$id&quot;: &quot;4&quot;,
+        ///      &quot;ID&quot;: &quot;161005&quot;
+        ///    },
+        ///    &quot;090714&quot;: {
+        ///      &quot;$id&quot;: &quot;5&quot;,
+        ///      &quot;ID&quot;: &quot;090714&quot;
+        ///    },
+        ///    &quot;160300&quot;: {
+        ///      &quot;$id&quot;: &quot;6&quot;,
+        ///      &quot;ID&quot;: &quot;160300&quot;
+        ///    },
+        ///    &quot;111301&quot;: {
+        ///      &quot;$id [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string hour_3channels_json {
+            get {
+                return ResourceManager.GetString("hour_3channels_json", resourceCulture);
             }
         }
         
@@ -160,25 +226,24 @@ namespace FileReaderTests.Properties {
         ///  &quot;AdsAmountChecksum&quot;: 5581,
         ///  &quot;TypesOfAds&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;dab&quot;: {
+        ///    &quot;060300&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;dab&quot;
+        ///      &quot;ID&quot;: &quot;060300&quot;
         ///    },
-        ///    &quot;fdb&quot;: {
+        ///    &quot;020304&quot;: {
         ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;fdb&quot;
+        ///      &quot;ID&quot;: &quot;020304&quot;
         ///    },
-        ///    &quot;bid&quot;: {
+        ///    &quot;162006&quot;: {
         ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;bid&quot;
+        ///      &quot;ID&quot;: &quot;162006&quot;
         ///    },
-        ///    &quot;bad&quot;: {
+        ///    &quot;190804&quot;: {
         ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;bad&quot;
+        ///      &quot;ID&quot;: &quot;190804&quot;
         ///    },
-        ///    &quot;bae&quot;: {
-        ///      &quot;$id&quot;: &quot;7&quot;,
-        ///      &quot;ID&quot;: &quot;b [rest of string was truncated]&quot;;.
+        ///    &quot;180300&quot;: {
+        ///       [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string week_3channels_json {
             get {

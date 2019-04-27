@@ -1,0 +1,2692 @@
+{
+  "$id": "1",
+  "StartTime": "2014-03-05T12:00:00",
+  "EndTime": "2014-03-05T13:00:00",
+  "Span": "01:00:00",
+  "SpanUnits": 73,
+  "UnitSizeInSeconds": 3.0,
+  "ChannelAmountChecksum": 3,
+  "ProgramAmountChecksum": 35,
+  "AdsAmountChecksum": 79,
+  "TypesOfAds": {
+    "$id": "2",
+    "190303": {
+      "$id": "3",
+      "ID": "190303"
+    },
+    "161005": {
+      "$id": "4",
+      "ID": "161005"
+    },
+    "090714": {
+      "$id": "5",
+      "ID": "090714"
+    },
+    "160300": {
+      "$id": "6",
+      "ID": "160300"
+    },
+    "111301": {
+      "$id": "7",
+      "ID": "111301"
+    },
+    "161504": {
+      "$id": "8",
+      "ID": "161504"
+    },
+    "190900": {
+      "$id": "9",
+      "ID": "190900"
+    },
+    "050104": {
+      "$id": "10",
+      "ID": "050104"
+    },
+    "001300": {
+      "$id": "11",
+      "ID": "001300"
+    },
+    "001901": {
+      "$id": "12",
+      "ID": "001901"
+    },
+    "190601": {
+      "$id": "13",
+      "ID": "190601"
+    },
+    "180101": {
+      "$id": "14",
+      "ID": "180101"
+    },
+    "141801": {
+      "$id": "15",
+      "ID": "141801"
+    },
+    "190200": {
+      "$id": "16",
+      "ID": "190200"
+    },
+    "080100": {
+      "$id": "17",
+      "ID": "080100"
+    },
+    "050502": {
+      "$id": "18",
+      "ID": "050502"
+    },
+    "110100": {
+      "$id": "19",
+      "ID": "110100"
+    },
+    "050503": {
+      "$id": "20",
+      "ID": "050503"
+    },
+    "060900": {
+      "$id": "21",
+      "ID": "060900"
+    },
+    "161000": {
+      "$id": "22",
+      "ID": "161000"
+    },
+    "090708": {
+      "$id": "23",
+      "ID": "090708"
+    },
+    "000600": {
+      "$id": "24",
+      "ID": "000600"
+    },
+    "002301": {
+      "$id": "25",
+      "ID": "002301"
+    },
+    "000300": {
+      "$id": "26",
+      "ID": "000300"
+    },
+    "011002": {
+      "$id": "27",
+      "ID": "011002"
+    },
+    "010400": {
+      "$id": "28",
+      "ID": "010400"
+    },
+    "050505": {
+      "$id": "29",
+      "ID": "050505"
+    },
+    "190804": {
+      "$id": "30",
+      "ID": "190804"
+    },
+    "161804": {
+      "$id": "31",
+      "ID": "161804"
+    },
+    "162008": {
+      "$id": "32",
+      "ID": "162008"
+    },
+    "180105": {
+      "$id": "33",
+      "ID": "180105"
+    },
+    "090713": {
+      "$id": "34",
+      "ID": "090713"
+    },
+    "161501": {
+      "$id": "35",
+      "ID": "161501"
+    },
+    "190103": {
+      "$id": "36",
+      "ID": "190103"
+    },
+    "160303": {
+      "$id": "37",
+      "ID": "160303"
+    },
+    "180300": {
+      "$id": "38",
+      "ID": "180300"
+    },
+    "111303": {
+      "$id": "39",
+      "ID": "111303"
+    },
+    "001200": {
+      "$id": "40",
+      "ID": "001200"
+    },
+    "040700": {
+      "$id": "41",
+      "ID": "040700"
+    },
+    "000200": {
+      "$id": "42",
+      "ID": "000200"
+    },
+    "161010": {
+      "$id": "43",
+      "ID": "161010"
+    },
+    "180001": {
+      "$id": "44",
+      "ID": "180001"
+    },
+    "090710": {
+      "$id": "45",
+      "ID": "090710"
+    },
+    "162003": {
+      "$id": "46",
+      "ID": "162003"
+    },
+    "090707": {
+      "$id": "47",
+      "ID": "090707"
+    },
+    "002102": {
+      "$id": "48",
+      "ID": "002102"
+    }
+  },
+  "OwnerOfAds": {
+    "$id": "49",
+    "575": {
+      "$id": "50",
+      "ID": "575"
+    },
+    "1269": {
+      "$id": "51",
+      "ID": "1269"
+    },
+    "1875": {
+      "$id": "52",
+      "ID": "1875"
+    },
+    "0": {
+      "$id": "53",
+      "ID": "0"
+    },
+    "66": {
+      "$id": "54",
+      "ID": "66"
+    },
+    "480": {
+      "$id": "55",
+      "ID": "480"
+    },
+    "1566": {
+      "$id": "56",
+      "ID": "1566"
+    },
+    "1723": {
+      "$id": "57",
+      "ID": "1723"
+    },
+    "1471": {
+      "$id": "58",
+      "ID": "1471"
+    },
+    "1885": {
+      "$id": "59",
+      "ID": "1885"
+    },
+    "1283": {
+      "$id": "60",
+      "ID": "1283"
+    },
+    "1835": {
+      "$id": "61",
+      "ID": "1835"
+    },
+    "2073": {
+      "$id": "62",
+      "ID": "2073"
+    },
+    "1758": {
+      "$id": "63",
+      "ID": "1758"
+    },
+    "2017": {
+      "$id": "64",
+      "ID": "2017"
+    },
+    "2072": {
+      "$id": "65",
+      "ID": "2072"
+    },
+    "567": {
+      "$id": "66",
+      "ID": "567"
+    },
+    "1681": {
+      "$id": "67",
+      "ID": "1681"
+    },
+    "644": {
+      "$id": "68",
+      "ID": "644"
+    },
+    "244": {
+      "$id": "69",
+      "ID": "244"
+    },
+    "218": {
+      "$id": "70",
+      "ID": "218"
+    },
+    "685": {
+      "$id": "71",
+      "ID": "685"
+    },
+    "389": {
+      "$id": "72",
+      "ID": "389"
+    },
+    "1711": {
+      "$id": "73",
+      "ID": "1711"
+    },
+    "1082": {
+      "$id": "74",
+      "ID": "1082"
+    },
+    "494": {
+      "$id": "75",
+      "ID": "494"
+    },
+    "213": {
+      "$id": "76",
+      "ID": "213"
+    },
+    "1305": {
+      "$id": "77",
+      "ID": "1305"
+    },
+    "116": {
+      "$id": "78",
+      "ID": "116"
+    },
+    "1733": {
+      "$id": "79",
+      "ID": "1733"
+    },
+    "413": {
+      "$id": "80",
+      "ID": "413"
+    },
+    "481": {
+      "$id": "81",
+      "ID": "481"
+    },
+    "2001": {
+      "$id": "82",
+      "ID": "2001"
+    },
+    "1083": {
+      "$id": "83",
+      "ID": "1083"
+    },
+    "553": {
+      "$id": "84",
+      "ID": "553"
+    },
+    "467": {
+      "$id": "85",
+      "ID": "467"
+    },
+    "1033": {
+      "$id": "86",
+      "ID": "1033"
+    },
+    "837": {
+      "$id": "87",
+      "ID": "837"
+    },
+    "1665": {
+      "$id": "88",
+      "ID": "1665"
+    },
+    "278": {
+      "$id": "89",
+      "ID": "278"
+    },
+    "357": {
+      "$id": "90",
+      "ID": "357"
+    },
+    "648": {
+      "$id": "91",
+      "ID": "648"
+    },
+    "93": {
+      "$id": "92",
+      "ID": "93"
+    },
+    "645": {
+      "$id": "93",
+      "ID": "645"
+    },
+    "1470": {
+      "$id": "94",
+      "ID": "1470"
+    },
+    "2084": {
+      "$id": "95",
+      "ID": "2084"
+    },
+    "1667": {
+      "$id": "96",
+      "ID": "1667"
+    },
+    "1092": {
+      "$id": "97",
+      "ID": "1092"
+    },
+    "572": {
+      "$id": "98",
+      "ID": "572"
+    },
+    "1335": {
+      "$id": "99",
+      "ID": "1335"
+    }
+  },
+  "AdOrders": {
+    "$id": "100",
+    "3886": {
+      "$id": "101",
+      "Advertisements": [
+        {
+          "$id": "102",
+          "AdvertisementOrder": {
+            "$ref": "101"
+          },
+          "AdOrderID": "3886",
+          "Owner": {
+            "$ref": "50"
+          },
+          "OwnerID": "575",
+          "Type": {
+            "$ref": "3"
+          },
+          "TypeID": "190303",
+          "Cost": 525.0,
+          "Span": "00:00:45",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:14:34",
+          "EndTime": "2014-03-05T12:15:19"
+        },
+        {
+          "$id": "103",
+          "AdvertisementOrder": {
+            "$ref": "101"
+          },
+          "AdOrderID": "3886",
+          "Owner": {
+            "$ref": "50"
+          },
+          "OwnerID": "575",
+          "Type": {
+            "$ref": "3"
+          },
+          "TypeID": "190303",
+          "Cost": 525.0,
+          "Span": "00:00:45",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:45:34",
+          "EndTime": "2014-03-05T12:46:19"
+        }
+      ],
+      "ID": "3886"
+    },
+    "252": {
+      "$id": "104",
+      "Advertisements": [
+        {
+          "$id": "105",
+          "AdvertisementOrder": {
+            "$ref": "104"
+          },
+          "AdOrderID": "252",
+          "Owner": {
+            "$ref": "51"
+          },
+          "OwnerID": "1269",
+          "Type": {
+            "$ref": "4"
+          },
+          "TypeID": "161005",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:15:19",
+          "EndTime": "2014-03-05T12:15:49"
+        },
+        {
+          "$id": "106",
+          "AdvertisementOrder": {
+            "$ref": "104"
+          },
+          "AdOrderID": "252",
+          "Owner": {
+            "$ref": "51"
+          },
+          "OwnerID": "1269",
+          "Type": {
+            "$ref": "4"
+          },
+          "TypeID": "161005",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:48:49",
+          "EndTime": "2014-03-05T12:49:19"
+        }
+      ],
+      "ID": "252"
+    },
+    "3904": {
+      "$id": "107",
+      "Advertisements": [
+        {
+          "$id": "108",
+          "AdvertisementOrder": {
+            "$ref": "107"
+          },
+          "AdOrderID": "3904",
+          "Owner": {
+            "$ref": "52"
+          },
+          "OwnerID": "1875",
+          "Type": {
+            "$ref": "5"
+          },
+          "TypeID": "090714",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:15:49",
+          "EndTime": "2014-03-05T12:16:19"
+        },
+        {
+          "$id": "109",
+          "AdvertisementOrder": {
+            "$ref": "107"
+          },
+          "AdOrderID": "3904",
+          "Owner": {
+            "$ref": "52"
+          },
+          "OwnerID": "1875",
+          "Type": {
+            "$ref": "5"
+          },
+          "TypeID": "090714",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:46:19",
+          "EndTime": "2014-03-05T12:46:49"
+        },
+        {
+          "$id": "110",
+          "AdvertisementOrder": {
+            "$ref": "107"
+          },
+          "AdOrderID": "3904",
+          "Owner": {
+            "$ref": "52"
+          },
+          "OwnerID": "1875",
+          "Type": {
+            "$ref": "5"
+          },
+          "TypeID": "090714",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:59:07",
+          "EndTime": "2014-03-05T12:59:37"
+        }
+      ],
+      "ID": "3904"
+    },
+    "3437": {
+      "$id": "111",
+      "Advertisements": [
+        {
+          "$id": "112",
+          "AdvertisementOrder": {
+            "$ref": "111"
+          },
+          "AdOrderID": "3437",
+          "Owner": {
+            "$ref": "53"
+          },
+          "OwnerID": "0",
+          "Type": {
+            "$ref": "6"
+          },
+          "TypeID": "160300",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:16:19",
+          "EndTime": "2014-03-05T12:16:49"
+        },
+        {
+          "$id": "113",
+          "AdvertisementOrder": {
+            "$ref": "111"
+          },
+          "AdOrderID": "3437",
+          "Owner": {
+            "$ref": "53"
+          },
+          "OwnerID": "0",
+          "Type": {
+            "$ref": "6"
+          },
+          "TypeID": "160300",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:46:49",
+          "EndTime": "2014-03-05T12:47:19"
+        },
+        {
+          "$id": "114",
+          "AdvertisementOrder": {
+            "$ref": "111"
+          },
+          "AdOrderID": "3437",
+          "Owner": {
+            "$ref": "53"
+          },
+          "OwnerID": "0",
+          "Type": {
+            "$ref": "6"
+          },
+          "TypeID": "160300",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:51:19",
+          "EndTime": "2014-03-05T12:51:49"
+        },
+        {
+          "$id": "115",
+          "AdvertisementOrder": {
+            "$ref": "111"
+          },
+          "AdOrderID": "3437",
+          "Owner": {
+            "$ref": "53"
+          },
+          "OwnerID": "0",
+          "Type": {
+            "$ref": "6"
+          },
+          "TypeID": "160300",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:07:14",
+          "EndTime": "2014-03-05T12:07:44"
+        }
+      ],
+      "ID": "3437"
+    },
+    "2577": {
+      "$id": "116",
+      "Advertisements": [
+        {
+          "$id": "117",
+          "AdvertisementOrder": {
+            "$ref": "116"
+          },
+          "AdOrderID": "2577",
+          "Owner": {
+            "$ref": "54"
+          },
+          "OwnerID": "66",
+          "Type": {
+            "$ref": "7"
+          },
+          "TypeID": "111301",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:16:49",
+          "EndTime": "2014-03-05T12:17:19"
+        },
+        {
+          "$id": "118",
+          "AdvertisementOrder": {
+            "$ref": "116"
+          },
+          "AdOrderID": "2577",
+          "Owner": {
+            "$ref": "54"
+          },
+          "OwnerID": "66",
+          "Type": {
+            "$ref": "7"
+          },
+          "TypeID": "111301",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:47:19",
+          "EndTime": "2014-03-05T12:47:49"
+        }
+      ],
+      "ID": "2577"
+    },
+    "4169": {
+      "$id": "119",
+      "Advertisements": [
+        {
+          "$id": "120",
+          "AdvertisementOrder": {
+            "$ref": "119"
+          },
+          "AdOrderID": "4169",
+          "Owner": {
+            "$ref": "55"
+          },
+          "OwnerID": "480",
+          "Type": {
+            "$ref": "8"
+          },
+          "TypeID": "161504",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:17:19",
+          "EndTime": "2014-03-05T12:17:49"
+        }
+      ],
+      "ID": "4169"
+    },
+    "3850": {
+      "$id": "121",
+      "Advertisements": [
+        {
+          "$id": "122",
+          "AdvertisementOrder": {
+            "$ref": "121"
+          },
+          "AdOrderID": "3850",
+          "Owner": {
+            "$ref": "56"
+          },
+          "OwnerID": "1566",
+          "Type": {
+            "$ref": "9"
+          },
+          "TypeID": "190900",
+          "Cost": 245.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:17:49",
+          "EndTime": "2014-03-05T12:18:04"
+        }
+      ],
+      "ID": "3850"
+    },
+    "2924": {
+      "$id": "123",
+      "Advertisements": [
+        {
+          "$id": "124",
+          "AdvertisementOrder": {
+            "$ref": "123"
+          },
+          "AdOrderID": "2924",
+          "Owner": {
+            "$ref": "57"
+          },
+          "OwnerID": "1723",
+          "Type": {
+            "$ref": "10"
+          },
+          "TypeID": "050104",
+          "Cost": 1050.0,
+          "Span": "00:01:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:26:15",
+          "EndTime": "2014-03-05T12:27:45"
+        }
+      ],
+      "ID": "2924"
+    },
+    "256": {
+      "$id": "125",
+      "Advertisements": [
+        {
+          "$id": "126",
+          "AdvertisementOrder": {
+            "$ref": "125"
+          },
+          "AdOrderID": "256",
+          "Owner": {
+            "$ref": "51"
+          },
+          "OwnerID": "1269",
+          "Type": {
+            "$ref": "4"
+          },
+          "TypeID": "161005",
+          "Cost": 245.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:27:45",
+          "EndTime": "2014-03-05T12:28:00"
+        },
+        {
+          "$id": "127",
+          "AdvertisementOrder": {
+            "$ref": "125"
+          },
+          "AdOrderID": "256",
+          "Owner": {
+            "$ref": "51"
+          },
+          "OwnerID": "1269",
+          "Type": {
+            "$ref": "4"
+          },
+          "TypeID": "161005",
+          "Cost": 245.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:44:49",
+          "EndTime": "2014-03-05T12:45:04"
+        },
+        {
+          "$id": "128",
+          "AdvertisementOrder": {
+            "$ref": "125"
+          },
+          "AdOrderID": "256",
+          "Owner": {
+            "$ref": "51"
+          },
+          "OwnerID": "1269",
+          "Type": {
+            "$ref": "4"
+          },
+          "TypeID": "161005",
+          "Cost": 245.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:57:06",
+          "EndTime": "2014-03-05T12:57:21"
+        }
+      ],
+      "ID": "256"
+    },
+    "4115": {
+      "$id": "129",
+      "Advertisements": [
+        {
+          "$id": "130",
+          "AdvertisementOrder": {
+            "$ref": "129"
+          },
+          "AdOrderID": "4115",
+          "Owner": {
+            "$ref": "58"
+          },
+          "OwnerID": "1471",
+          "Type": {
+            "$ref": "11"
+          },
+          "TypeID": "001300",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:28:00",
+          "EndTime": "2014-03-05T12:28:30"
+        },
+        {
+          "$id": "131",
+          "AdvertisementOrder": {
+            "$ref": "129"
+          },
+          "AdOrderID": "4115",
+          "Owner": {
+            "$ref": "58"
+          },
+          "OwnerID": "1471",
+          "Type": {
+            "$ref": "11"
+          },
+          "TypeID": "001300",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:57:21",
+          "EndTime": "2014-03-05T12:57:51"
+        }
+      ],
+      "ID": "4115"
+    },
+    "4121": {
+      "$id": "132",
+      "Advertisements": [
+        {
+          "$id": "133",
+          "AdvertisementOrder": {
+            "$ref": "132"
+          },
+          "AdOrderID": "4121",
+          "Owner": {
+            "$ref": "58"
+          },
+          "OwnerID": "1471",
+          "Type": {
+            "$ref": "12"
+          },
+          "TypeID": "001901",
+          "Cost": 245.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:28:30",
+          "EndTime": "2014-03-05T12:28:45"
+        },
+        {
+          "$id": "134",
+          "AdvertisementOrder": {
+            "$ref": "132"
+          },
+          "AdOrderID": "4121",
+          "Owner": {
+            "$ref": "58"
+          },
+          "OwnerID": "1471",
+          "Type": {
+            "$ref": "12"
+          },
+          "TypeID": "001901",
+          "Cost": 350.0,
+          "Span": "00:00:31",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:57:51",
+          "EndTime": "2014-03-05T12:58:22"
+        }
+      ],
+      "ID": "4121"
+    },
+    "2557": {
+      "$id": "135",
+      "Advertisements": [
+        {
+          "$id": "136",
+          "AdvertisementOrder": {
+            "$ref": "135"
+          },
+          "AdOrderID": "2557",
+          "Owner": {
+            "$ref": "59"
+          },
+          "OwnerID": "1885",
+          "Type": {
+            "$ref": "13"
+          },
+          "TypeID": "190601",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:44:19",
+          "EndTime": "2014-03-05T12:44:49"
+        }
+      ],
+      "ID": "2557"
+    },
+    "3188": {
+      "$id": "137",
+      "Advertisements": [
+        {
+          "$id": "138",
+          "AdvertisementOrder": {
+            "$ref": "137"
+          },
+          "AdOrderID": "3188",
+          "Owner": {
+            "$ref": "60"
+          },
+          "OwnerID": "1283",
+          "Type": {
+            "$ref": "14"
+          },
+          "TypeID": "180101",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:45:04",
+          "EndTime": "2014-03-05T12:45:34"
+        },
+        {
+          "$id": "139",
+          "AdvertisementOrder": {
+            "$ref": "137"
+          },
+          "AdOrderID": "3188",
+          "Owner": {
+            "$ref": "60"
+          },
+          "OwnerID": "1283",
+          "Type": {
+            "$ref": "14"
+          },
+          "TypeID": "180101",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:50:04",
+          "EndTime": "2014-03-05T12:50:34"
+        }
+      ],
+      "ID": "3188"
+    },
+    "2870": {
+      "$id": "140",
+      "Advertisements": [
+        {
+          "$id": "141",
+          "AdvertisementOrder": {
+            "$ref": "140"
+          },
+          "AdOrderID": "2870",
+          "Owner": {
+            "$ref": "61"
+          },
+          "OwnerID": "1835",
+          "Type": {
+            "$ref": "15"
+          },
+          "TypeID": "141801",
+          "Cost": 245.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:58:22",
+          "EndTime": "2014-03-05T12:58:37"
+        }
+      ],
+      "ID": "2870"
+    },
+    "2240": {
+      "$id": "142",
+      "Advertisements": [
+        {
+          "$id": "143",
+          "AdvertisementOrder": {
+            "$ref": "142"
+          },
+          "AdOrderID": "2240",
+          "Owner": {
+            "$ref": "62"
+          },
+          "OwnerID": "2073",
+          "Type": {
+            "$ref": "16"
+          },
+          "TypeID": "190200",
+          "Cost": 350.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:58:37",
+          "EndTime": "2014-03-05T12:59:07"
+        }
+      ],
+      "ID": "2240"
+    },
+    "1183": {
+      "$id": "144",
+      "Advertisements": [
+        {
+          "$id": "145",
+          "AdvertisementOrder": {
+            "$ref": "144"
+          },
+          "AdOrderID": "1183",
+          "Owner": {
+            "$ref": "63"
+          },
+          "OwnerID": "1758",
+          "Type": {
+            "$ref": "17"
+          },
+          "TypeID": "080100",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:47:24",
+          "EndTime": "2014-03-05T12:47:54"
+        }
+      ],
+      "ID": "1183"
+    },
+    "3448": {
+      "$id": "146",
+      "Advertisements": [
+        {
+          "$id": "147",
+          "AdvertisementOrder": {
+            "$ref": "146"
+          },
+          "AdOrderID": "3448",
+          "Owner": {
+            "$ref": "64"
+          },
+          "OwnerID": "2017",
+          "Type": {
+            "$ref": "18"
+          },
+          "TypeID": "050502",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:48:04",
+          "EndTime": "2014-03-05T12:48:34"
+        },
+        {
+          "$id": "148",
+          "AdvertisementOrder": {
+            "$ref": "146"
+          },
+          "AdOrderID": "3448",
+          "Owner": {
+            "$ref": "64"
+          },
+          "OwnerID": "2017",
+          "Type": {
+            "$ref": "18"
+          },
+          "TypeID": "050502",
+          "Cost": 400.0,
+          "Span": "00:00:31",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:34:03",
+          "EndTime": "2014-03-05T12:34:34"
+        }
+      ],
+      "ID": "3448"
+    },
+    "4125": {
+      "$id": "149",
+      "Advertisements": [
+        {
+          "$id": "150",
+          "AdvertisementOrder": {
+            "$ref": "149"
+          },
+          "AdOrderID": "4125",
+          "Owner": {
+            "$ref": "65"
+          },
+          "OwnerID": "2072",
+          "Type": {
+            "$ref": "19"
+          },
+          "TypeID": "110100",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:48:34",
+          "EndTime": "2014-03-05T12:48:49"
+        },
+        {
+          "$id": "151",
+          "AdvertisementOrder": {
+            "$ref": "149"
+          },
+          "AdOrderID": "4125",
+          "Owner": {
+            "$ref": "65"
+          },
+          "OwnerID": "2072",
+          "Type": {
+            "$ref": "19"
+          },
+          "TypeID": "110100",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:56:54",
+          "EndTime": "2014-03-05T12:57:09"
+        }
+      ],
+      "ID": "4125"
+    },
+    "4050": {
+      "$id": "152",
+      "Advertisements": [
+        {
+          "$id": "153",
+          "AdvertisementOrder": {
+            "$ref": "152"
+          },
+          "AdOrderID": "4050",
+          "Owner": {
+            "$ref": "66"
+          },
+          "OwnerID": "567",
+          "Type": {
+            "$ref": "20"
+          },
+          "TypeID": "050503",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:49:19",
+          "EndTime": "2014-03-05T12:49:34"
+        },
+        {
+          "$id": "154",
+          "AdvertisementOrder": {
+            "$ref": "152"
+          },
+          "AdOrderID": "4050",
+          "Owner": {
+            "$ref": "66"
+          },
+          "OwnerID": "567",
+          "Type": {
+            "$ref": "20"
+          },
+          "TypeID": "050503",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:56:39",
+          "EndTime": "2014-03-05T12:56:54"
+        }
+      ],
+      "ID": "4050"
+    },
+    "998": {
+      "$id": "155",
+      "Advertisements": [
+        {
+          "$id": "156",
+          "AdvertisementOrder": {
+            "$ref": "155"
+          },
+          "AdOrderID": "998",
+          "Owner": {
+            "$ref": "67"
+          },
+          "OwnerID": "1681",
+          "Type": {
+            "$ref": "21"
+          },
+          "TypeID": "060900",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:49:34",
+          "EndTime": "2014-03-05T12:50:04"
+        },
+        {
+          "$id": "157",
+          "AdvertisementOrder": {
+            "$ref": "155"
+          },
+          "AdOrderID": "998",
+          "Owner": {
+            "$ref": "67"
+          },
+          "OwnerID": "1681",
+          "Type": {
+            "$ref": "21"
+          },
+          "TypeID": "060900",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:40:24",
+          "EndTime": "2014-03-05T11:40:54"
+        },
+        {
+          "$id": "158",
+          "AdvertisementOrder": {
+            "$ref": "155"
+          },
+          "AdOrderID": "998",
+          "Owner": {
+            "$ref": "67"
+          },
+          "OwnerID": "1681",
+          "Type": {
+            "$ref": "21"
+          },
+          "TypeID": "060900",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:35:03",
+          "EndTime": "2014-03-05T12:35:33"
+        }
+      ],
+      "ID": "998"
+    },
+    "4326": {
+      "$id": "159",
+      "Advertisements": [
+        {
+          "$id": "160",
+          "AdvertisementOrder": {
+            "$ref": "159"
+          },
+          "AdOrderID": "4326",
+          "Owner": {
+            "$ref": "68"
+          },
+          "OwnerID": "644",
+          "Type": {
+            "$ref": "22"
+          },
+          "TypeID": "161000",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:50:34",
+          "EndTime": "2014-03-05T12:50:49"
+        }
+      ],
+      "ID": "4326"
+    },
+    "628": {
+      "$id": "161",
+      "Advertisements": [
+        {
+          "$id": "162",
+          "AdvertisementOrder": {
+            "$ref": "161"
+          },
+          "AdOrderID": "628",
+          "Owner": {
+            "$ref": "69"
+          },
+          "OwnerID": "244",
+          "Type": {
+            "$ref": "18"
+          },
+          "TypeID": "050502",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:50:49",
+          "EndTime": "2014-03-05T12:51:19"
+        }
+      ],
+      "ID": "628"
+    },
+    "3988": {
+      "$id": "163",
+      "Advertisements": [
+        {
+          "$id": "164",
+          "AdvertisementOrder": {
+            "$ref": "163"
+          },
+          "AdOrderID": "3988",
+          "Owner": {
+            "$ref": "70"
+          },
+          "OwnerID": "218",
+          "Type": {
+            "$ref": "23"
+          },
+          "TypeID": "090708",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:51:49",
+          "EndTime": "2014-03-05T12:52:04"
+        }
+      ],
+      "ID": "3988"
+    },
+    "2850": {
+      "$id": "165",
+      "Advertisements": [
+        {
+          "$id": "166",
+          "AdvertisementOrder": {
+            "$ref": "165"
+          },
+          "AdOrderID": "2850",
+          "Owner": {
+            "$ref": "71"
+          },
+          "OwnerID": "685",
+          "Type": {
+            "$ref": "24"
+          },
+          "TypeID": "000600",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:52:04",
+          "EndTime": "2014-03-05T12:52:34"
+        }
+      ],
+      "ID": "2850"
+    },
+    "1877": {
+      "$id": "167",
+      "Advertisements": [
+        {
+          "$id": "168",
+          "AdvertisementOrder": {
+            "$ref": "167"
+          },
+          "AdOrderID": "1877",
+          "Owner": {
+            "$ref": "72"
+          },
+          "OwnerID": "389",
+          "Type": {
+            "$ref": "25"
+          },
+          "TypeID": "002301",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:52:34",
+          "EndTime": "2014-03-05T12:52:49"
+        }
+      ],
+      "ID": "1877"
+    },
+    "4177": {
+      "$id": "169",
+      "Advertisements": [
+        {
+          "$id": "170",
+          "AdvertisementOrder": {
+            "$ref": "169"
+          },
+          "AdOrderID": "4177",
+          "Owner": {
+            "$ref": "73"
+          },
+          "OwnerID": "1711",
+          "Type": {
+            "$ref": "14"
+          },
+          "TypeID": "180101",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:52:49",
+          "EndTime": "2014-03-05T12:53:19"
+        },
+        {
+          "$id": "171",
+          "AdvertisementOrder": {
+            "$ref": "169"
+          },
+          "AdOrderID": "4177",
+          "Owner": {
+            "$ref": "73"
+          },
+          "OwnerID": "1711",
+          "Type": {
+            "$ref": "14"
+          },
+          "TypeID": "180101",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:08:14",
+          "EndTime": "2014-03-05T12:08:44"
+        }
+      ],
+      "ID": "4177"
+    },
+    "1612": {
+      "$id": "172",
+      "Advertisements": [
+        {
+          "$id": "173",
+          "AdvertisementOrder": {
+            "$ref": "172"
+          },
+          "AdOrderID": "1612",
+          "Owner": {
+            "$ref": "74"
+          },
+          "OwnerID": "1082",
+          "Type": {
+            "$ref": "26"
+          },
+          "TypeID": "000300",
+          "Cost": 275.0,
+          "Span": "00:00:10",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:53:19",
+          "EndTime": "2014-03-05T12:53:29"
+        }
+      ],
+      "ID": "1612"
+    },
+    "3994": {
+      "$id": "174",
+      "Advertisements": [
+        {
+          "$id": "175",
+          "AdvertisementOrder": {
+            "$ref": "174"
+          },
+          "AdOrderID": "3994",
+          "Owner": {
+            "$ref": "75"
+          },
+          "OwnerID": "494",
+          "Type": {
+            "$ref": "27"
+          },
+          "TypeID": "011002",
+          "Cost": 275.0,
+          "Span": "00:00:10",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:55:29",
+          "EndTime": "2014-03-05T12:55:39"
+        }
+      ],
+      "ID": "3994"
+    },
+    "869": {
+      "$id": "176",
+      "Advertisements": [
+        {
+          "$id": "177",
+          "AdvertisementOrder": {
+            "$ref": "176"
+          },
+          "AdOrderID": "869",
+          "Owner": {
+            "$ref": "76"
+          },
+          "OwnerID": "213",
+          "Type": {
+            "$ref": "28"
+          },
+          "TypeID": "010400",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:55:39",
+          "EndTime": "2014-03-05T12:55:54"
+        }
+      ],
+      "ID": "869"
+    },
+    "2183": {
+      "$id": "178",
+      "Advertisements": [
+        {
+          "$id": "179",
+          "AdvertisementOrder": {
+            "$ref": "178"
+          },
+          "AdOrderID": "2183",
+          "Owner": {
+            "$ref": "77"
+          },
+          "OwnerID": "1305",
+          "Type": {
+            "$ref": "29"
+          },
+          "TypeID": "050505",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:55:54",
+          "EndTime": "2014-03-05T12:56:09"
+        }
+      ],
+      "ID": "2183"
+    },
+    "2562": {
+      "$id": "180",
+      "Advertisements": [
+        {
+          "$id": "181",
+          "AdvertisementOrder": {
+            "$ref": "180"
+          },
+          "AdOrderID": "2562",
+          "Owner": {
+            "$ref": "59"
+          },
+          "OwnerID": "1885",
+          "Type": {
+            "$ref": "30"
+          },
+          "TypeID": "190804",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:56:09",
+          "EndTime": "2014-03-05T12:56:39"
+        },
+        {
+          "$id": "182",
+          "AdvertisementOrder": {
+            "$ref": "180"
+          },
+          "AdOrderID": "2562",
+          "Owner": {
+            "$ref": "59"
+          },
+          "OwnerID": "1885",
+          "Type": {
+            "$ref": "30"
+          },
+          "TypeID": "190804",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:06:29",
+          "EndTime": "2014-03-05T12:06:59"
+        }
+      ],
+      "ID": "2562"
+    },
+    "23": {
+      "$id": "183",
+      "Advertisements": [
+        {
+          "$id": "184",
+          "AdvertisementOrder": {
+            "$ref": "183"
+          },
+          "AdOrderID": "23",
+          "Owner": {
+            "$ref": "78"
+          },
+          "OwnerID": "116",
+          "Type": {
+            "$ref": "31"
+          },
+          "TypeID": "161804",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:57:09",
+          "EndTime": "2014-03-05T12:57:39"
+        },
+        {
+          "$id": "185",
+          "AdvertisementOrder": {
+            "$ref": "183"
+          },
+          "AdOrderID": "23",
+          "Owner": {
+            "$ref": "78"
+          },
+          "OwnerID": "116",
+          "Type": {
+            "$ref": "31"
+          },
+          "TypeID": "161804",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:42:29",
+          "EndTime": "2014-03-05T11:42:59"
+        }
+      ],
+      "ID": "23"
+    },
+    "1932": {
+      "$id": "186",
+      "Advertisements": [
+        {
+          "$id": "187",
+          "AdvertisementOrder": {
+            "$ref": "186"
+          },
+          "AdOrderID": "1932",
+          "Owner": {
+            "$ref": "79"
+          },
+          "OwnerID": "1733",
+          "Type": {
+            "$ref": "32"
+          },
+          "TypeID": "162008",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:57:39",
+          "EndTime": "2014-03-05T12:57:54"
+        }
+      ],
+      "ID": "1932"
+    },
+    "1958": {
+      "$id": "188",
+      "Advertisements": [
+        {
+          "$id": "189",
+          "AdvertisementOrder": {
+            "$ref": "188"
+          },
+          "AdOrderID": "1958",
+          "Owner": {
+            "$ref": "80"
+          },
+          "OwnerID": "413",
+          "Type": {
+            "$ref": "33"
+          },
+          "TypeID": "180105",
+          "Cost": 750.0,
+          "Span": "00:00:45",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:57:54",
+          "EndTime": "2014-03-05T12:58:39"
+        },
+        {
+          "$id": "190",
+          "AdvertisementOrder": {
+            "$ref": "188"
+          },
+          "AdOrderID": "1958",
+          "Owner": {
+            "$ref": "80"
+          },
+          "OwnerID": "413",
+          "Type": {
+            "$ref": "33"
+          },
+          "TypeID": "180105",
+          "Cost": 280.0,
+          "Span": "00:00:16",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:36:33",
+          "EndTime": "2014-03-05T12:36:49"
+        }
+      ],
+      "ID": "1958"
+    },
+    "801": {
+      "$id": "191",
+      "Advertisements": [
+        {
+          "$id": "192",
+          "AdvertisementOrder": {
+            "$ref": "191"
+          },
+          "AdOrderID": "801",
+          "Owner": {
+            "$ref": "81"
+          },
+          "OwnerID": "481",
+          "Type": {
+            "$ref": "34"
+          },
+          "TypeID": "090713",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:58:39",
+          "EndTime": "2014-03-05T12:59:09"
+        }
+      ],
+      "ID": "801"
+    },
+    "1857": {
+      "$id": "193",
+      "Advertisements": [
+        {
+          "$id": "194",
+          "AdvertisementOrder": {
+            "$ref": "193"
+          },
+          "AdOrderID": "1857",
+          "Owner": {
+            "$ref": "82"
+          },
+          "OwnerID": "2001",
+          "Type": {
+            "$ref": "35"
+          },
+          "TypeID": "161501",
+          "Cost": 500.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:59:09",
+          "EndTime": "2014-03-05T12:59:39"
+        }
+      ],
+      "ID": "1857"
+    },
+    "1645": {
+      "$id": "195",
+      "Advertisements": [
+        {
+          "$id": "196",
+          "AdvertisementOrder": {
+            "$ref": "195"
+          },
+          "AdOrderID": "1645",
+          "Owner": {
+            "$ref": "83"
+          },
+          "OwnerID": "1083",
+          "Type": {
+            "$ref": "36"
+          },
+          "TypeID": "190103",
+          "Cost": 350.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:59:39",
+          "EndTime": "2014-03-05T12:59:54"
+        }
+      ],
+      "ID": "1645"
+    },
+    "2475": {
+      "$id": "197",
+      "Advertisements": [
+        {
+          "$id": "198",
+          "AdvertisementOrder": {
+            "$ref": "197"
+          },
+          "AdOrderID": "2475",
+          "Owner": {
+            "$ref": "84"
+          },
+          "OwnerID": "553",
+          "Type": {
+            "$ref": "12"
+          },
+          "TypeID": "001901",
+          "Cost": 360.0,
+          "Span": "00:00:20",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:39:49",
+          "EndTime": "2014-03-05T11:40:09"
+        }
+      ],
+      "ID": "2475"
+    },
+    "934": {
+      "$id": "199",
+      "Advertisements": [
+        {
+          "$id": "200",
+          "AdvertisementOrder": {
+            "$ref": "199"
+          },
+          "AdOrderID": "934",
+          "Owner": {
+            "$ref": "85"
+          },
+          "OwnerID": "467",
+          "Type": {
+            "$ref": "37"
+          },
+          "TypeID": "160303",
+          "Cost": 280.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:40:09",
+          "EndTime": "2014-03-05T11:40:24"
+        }
+      ],
+      "ID": "934"
+    },
+    "3189": {
+      "$id": "201",
+      "Advertisements": [
+        {
+          "$id": "202",
+          "AdvertisementOrder": {
+            "$ref": "201"
+          },
+          "AdOrderID": "3189",
+          "Owner": {
+            "$ref": "60"
+          },
+          "OwnerID": "1283",
+          "Type": {
+            "$ref": "38"
+          },
+          "TypeID": "180300",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:40:54",
+          "EndTime": "2014-03-05T11:41:24"
+        }
+      ],
+      "ID": "3189"
+    },
+    "1097": {
+      "$id": "203",
+      "Advertisements": [
+        {
+          "$id": "204",
+          "AdvertisementOrder": {
+            "$ref": "203"
+          },
+          "AdOrderID": "1097",
+          "Owner": {
+            "$ref": "86"
+          },
+          "OwnerID": "1033",
+          "Type": {
+            "$ref": "39"
+          },
+          "TypeID": "111303",
+          "Cost": 280.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:41:24",
+          "EndTime": "2014-03-05T11:41:39"
+        }
+      ],
+      "ID": "1097"
+    },
+    "713": {
+      "$id": "205",
+      "Advertisements": [
+        {
+          "$id": "206",
+          "AdvertisementOrder": {
+            "$ref": "205"
+          },
+          "AdOrderID": "713",
+          "Owner": {
+            "$ref": "87"
+          },
+          "OwnerID": "837",
+          "Type": {
+            "$ref": "40"
+          },
+          "TypeID": "001200",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:41:39",
+          "EndTime": "2014-03-05T11:42:09"
+        }
+      ],
+      "ID": "713"
+    },
+    "3522": {
+      "$id": "207",
+      "Advertisements": [
+        {
+          "$id": "208",
+          "AdvertisementOrder": {
+            "$ref": "207"
+          },
+          "AdOrderID": "3522",
+          "Owner": {
+            "$ref": "88"
+          },
+          "OwnerID": "1665",
+          "Type": {
+            "$ref": "41"
+          },
+          "TypeID": "040700",
+          "Cost": 360.0,
+          "Span": "00:00:20",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:42:09",
+          "EndTime": "2014-03-05T11:42:29"
+        }
+      ],
+      "ID": "3522"
+    },
+    "2964": {
+      "$id": "209",
+      "Advertisements": [
+        {
+          "$id": "210",
+          "AdvertisementOrder": {
+            "$ref": "209"
+          },
+          "AdOrderID": "2964",
+          "Owner": {
+            "$ref": "89"
+          },
+          "OwnerID": "278",
+          "Type": {
+            "$ref": "42"
+          },
+          "TypeID": "000200",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:42:59",
+          "EndTime": "2014-03-05T11:43:29"
+        }
+      ],
+      "ID": "2964"
+    },
+    "982": {
+      "$id": "211",
+      "Advertisements": [
+        {
+          "$id": "212",
+          "AdvertisementOrder": {
+            "$ref": "211"
+          },
+          "AdOrderID": "982",
+          "Owner": {
+            "$ref": "90"
+          },
+          "OwnerID": "357",
+          "Type": {
+            "$ref": "43"
+          },
+          "TypeID": "161010",
+          "Cost": 360.0,
+          "Span": "00:00:20",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:43:29",
+          "EndTime": "2014-03-05T11:43:49"
+        }
+      ],
+      "ID": "982"
+    },
+    "1233": {
+      "$id": "213",
+      "Advertisements": [
+        {
+          "$id": "214",
+          "AdvertisementOrder": {
+            "$ref": "213"
+          },
+          "AdOrderID": "1233",
+          "Owner": {
+            "$ref": "91"
+          },
+          "OwnerID": "648",
+          "Type": {
+            "$ref": "34"
+          },
+          "TypeID": "090713",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T11:43:49",
+          "EndTime": "2014-03-05T11:44:19"
+        },
+        {
+          "$id": "215",
+          "AdvertisementOrder": {
+            "$ref": "213"
+          },
+          "AdOrderID": "1233",
+          "Owner": {
+            "$ref": "91"
+          },
+          "OwnerID": "648",
+          "Type": {
+            "$ref": "34"
+          },
+          "TypeID": "090713",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:09:59",
+          "EndTime": "2014-03-05T12:10:29"
+        }
+      ],
+      "ID": "1233"
+    },
+    "4000": {
+      "$id": "216",
+      "Advertisements": [
+        {
+          "$id": "217",
+          "AdvertisementOrder": {
+            "$ref": "216"
+          },
+          "AdOrderID": "4000",
+          "Owner": {
+            "$ref": "92"
+          },
+          "OwnerID": "93",
+          "Type": {
+            "$ref": "44"
+          },
+          "TypeID": "180001",
+          "Cost": 280.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:06:59",
+          "EndTime": "2014-03-05T12:07:14"
+        }
+      ],
+      "ID": "4000"
+    },
+    "3187": {
+      "$id": "218",
+      "Advertisements": [
+        {
+          "$id": "219",
+          "AdvertisementOrder": {
+            "$ref": "218"
+          },
+          "AdOrderID": "3187",
+          "Owner": {
+            "$ref": "60"
+          },
+          "OwnerID": "1283",
+          "Type": {
+            "$ref": "38"
+          },
+          "TypeID": "180300",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:07:44",
+          "EndTime": "2014-03-05T12:08:14"
+        }
+      ],
+      "ID": "3187"
+    },
+    "1021": {
+      "$id": "220",
+      "Advertisements": [
+        {
+          "$id": "221",
+          "AdvertisementOrder": {
+            "$ref": "220"
+          },
+          "AdOrderID": "1021",
+          "Owner": {
+            "$ref": "93"
+          },
+          "OwnerID": "645",
+          "Type": {
+            "$ref": "45"
+          },
+          "TypeID": "090710",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:08:44",
+          "EndTime": "2014-03-05T12:09:14"
+        }
+      ],
+      "ID": "1021"
+    },
+    "4329": {
+      "$id": "222",
+      "Advertisements": [
+        {
+          "$id": "223",
+          "AdvertisementOrder": {
+            "$ref": "222"
+          },
+          "AdOrderID": "4329",
+          "Owner": {
+            "$ref": "68"
+          },
+          "OwnerID": "644",
+          "Type": {
+            "$ref": "22"
+          },
+          "TypeID": "161000",
+          "Cost": 280.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:09:14",
+          "EndTime": "2014-03-05T12:09:29"
+        }
+      ],
+      "ID": "4329"
+    },
+    "2784": {
+      "$id": "224",
+      "Advertisements": [
+        {
+          "$id": "225",
+          "AdvertisementOrder": {
+            "$ref": "224"
+          },
+          "AdOrderID": "2784",
+          "Owner": {
+            "$ref": "94"
+          },
+          "OwnerID": "1470",
+          "Type": {
+            "$ref": "46"
+          },
+          "TypeID": "162003",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:09:29",
+          "EndTime": "2014-03-05T12:09:59"
+        }
+      ],
+      "ID": "2784"
+    },
+    "288": {
+      "$id": "226",
+      "Advertisements": [
+        {
+          "$id": "227",
+          "AdvertisementOrder": {
+            "$ref": "226"
+          },
+          "AdOrderID": "288",
+          "Owner": {
+            "$ref": "95"
+          },
+          "OwnerID": "2084",
+          "Type": {
+            "$ref": "7"
+          },
+          "TypeID": "111301",
+          "Cost": 280.0,
+          "Span": "00:00:15",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:33:48",
+          "EndTime": "2014-03-05T12:34:03"
+        }
+      ],
+      "ID": "288"
+    },
+    "62": {
+      "$id": "228",
+      "Advertisements": [
+        {
+          "$id": "229",
+          "AdvertisementOrder": {
+            "$ref": "228"
+          },
+          "AdOrderID": "62",
+          "Owner": {
+            "$ref": "96"
+          },
+          "OwnerID": "1667",
+          "Type": {
+            "$ref": "47"
+          },
+          "TypeID": "090707",
+          "Cost": 400.0,
+          "Span": "00:00:29",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:34:34",
+          "EndTime": "2014-03-05T12:35:03"
+        }
+      ],
+      "ID": "62"
+    },
+    "3691": {
+      "$id": "230",
+      "Advertisements": [
+        {
+          "$id": "231",
+          "AdvertisementOrder": {
+            "$ref": "230"
+          },
+          "AdOrderID": "3691",
+          "Owner": {
+            "$ref": "97"
+          },
+          "OwnerID": "1092",
+          "Type": {
+            "$ref": "48"
+          },
+          "TypeID": "002102",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:35:33",
+          "EndTime": "2014-03-05T12:36:03"
+        }
+      ],
+      "ID": "3691"
+    },
+    "3837": {
+      "$id": "232",
+      "Advertisements": [
+        {
+          "$id": "233",
+          "AdvertisementOrder": {
+            "$ref": "232"
+          },
+          "AdOrderID": "3837",
+          "Owner": {
+            "$ref": "98"
+          },
+          "OwnerID": "572",
+          "Type": {
+            "$ref": "22"
+          },
+          "TypeID": "161000",
+          "Cost": 400.0,
+          "Span": "00:00:30",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:36:03",
+          "EndTime": "2014-03-05T12:36:33"
+        }
+      ],
+      "ID": "3837"
+    },
+    "3861": {
+      "$id": "234",
+      "Advertisements": [
+        {
+          "$id": "235",
+          "AdvertisementOrder": {
+            "$ref": "234"
+          },
+          "AdOrderID": "3861",
+          "Owner": {
+            "$ref": "99"
+          },
+          "OwnerID": "1335",
+          "Type": {
+            "$ref": "38"
+          },
+          "TypeID": "180300",
+          "Cost": 400.0,
+          "Span": "00:00:29",
+          "SpanUnits": 0,
+          "StartTime": "2014-03-05T12:36:49",
+          "EndTime": "2014-03-05T12:37:18"
+        }
+      ],
+      "ID": "3861"
+    }
+  },
+  "Channels": {
+    "$id": "236",
+    "7": {
+      "$id": "237",
+      "ID": "7",
+      "StartTime": "2014-03-05T11:59:48",
+      "EndTime": "2014-03-05T12:59:51",
+      "Span": "01:00:03",
+      "SpanUnits": 0,
+      "Instance": null,
+      "Breaks": [
+        {
+          "$id": "238",
+          "StartTime": "2014-03-05T12:13:49",
+          "EndTime": "2014-03-05T12:18:43",
+          "DesiredTimespan": "00:04:54",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "102"
+            },
+            {
+              "$ref": "105"
+            },
+            {
+              "$ref": "108"
+            },
+            {
+              "$ref": "112"
+            },
+            {
+              "$ref": "117"
+            },
+            {
+              "$ref": "120"
+            },
+            {
+              "$ref": "122"
+            }
+          ]
+        },
+        {
+          "$id": "239",
+          "StartTime": "2014-03-05T12:25:55",
+          "EndTime": "2014-03-05T12:28:49",
+          "DesiredTimespan": "00:02:54",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "124"
+            },
+            {
+              "$ref": "126"
+            },
+            {
+              "$ref": "130"
+            },
+            {
+              "$ref": "133"
+            }
+          ]
+        },
+        {
+          "$id": "240",
+          "StartTime": "2014-03-05T12:43:39",
+          "EndTime": "2014-03-05T12:48:24",
+          "DesiredTimespan": "00:04:45",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "136"
+            },
+            {
+              "$ref": "127"
+            },
+            {
+              "$ref": "138"
+            },
+            {
+              "$ref": "103"
+            },
+            {
+              "$ref": "109"
+            },
+            {
+              "$ref": "113"
+            },
+            {
+              "$ref": "118"
+            }
+          ]
+        },
+        {
+          "$id": "241",
+          "StartTime": "2014-03-05T12:56:22",
+          "EndTime": "2014-03-05T12:59:37",
+          "DesiredTimespan": "00:03:15",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "128"
+            },
+            {
+              "$ref": "131"
+            },
+            {
+              "$ref": "134"
+            },
+            {
+              "$ref": "141"
+            },
+            {
+              "$ref": "143"
+            },
+            {
+              "$ref": "110"
+            }
+          ]
+        }
+      ]
+    },
+    "51": {
+      "$id": "242",
+      "ID": "51",
+      "StartTime": "2014-03-05T11:59:58",
+      "EndTime": "2014-03-05T13:00:01",
+      "Span": "01:00:03",
+      "SpanUnits": 0,
+      "Instance": null,
+      "Breaks": [
+        {
+          "$id": "243",
+          "StartTime": "2014-03-05T12:47:19",
+          "EndTime": "2014-03-05T12:53:34",
+          "DesiredTimespan": "00:06:15",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "145"
+            },
+            {
+              "$ref": "147"
+            },
+            {
+              "$ref": "150"
+            },
+            {
+              "$ref": "106"
+            },
+            {
+              "$ref": "153"
+            },
+            {
+              "$ref": "156"
+            },
+            {
+              "$ref": "139"
+            },
+            {
+              "$ref": "160"
+            },
+            {
+              "$ref": "162"
+            },
+            {
+              "$ref": "114"
+            },
+            {
+              "$ref": "164"
+            },
+            {
+              "$ref": "166"
+            },
+            {
+              "$ref": "168"
+            },
+            {
+              "$ref": "170"
+            },
+            {
+              "$ref": "173"
+            }
+          ]
+        },
+        {
+          "$id": "244",
+          "StartTime": "2014-03-05T12:55:24",
+          "EndTime": "2014-03-05T13:00:00",
+          "DesiredTimespan": "00:04:36",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "175"
+            },
+            {
+              "$ref": "177"
+            },
+            {
+              "$ref": "179"
+            },
+            {
+              "$ref": "181"
+            },
+            {
+              "$ref": "154"
+            },
+            {
+              "$ref": "151"
+            },
+            {
+              "$ref": "184"
+            },
+            {
+              "$ref": "187"
+            },
+            {
+              "$ref": "189"
+            },
+            {
+              "$ref": "192"
+            },
+            {
+              "$ref": "194"
+            },
+            {
+              "$ref": "196"
+            }
+          ]
+        }
+      ]
+    },
+    "53": {
+      "$id": "245",
+      "ID": "53",
+      "StartTime": "2014-03-05T11:38:17",
+      "EndTime": "2014-03-05T12:38:20",
+      "Span": "01:00:03",
+      "SpanUnits": 0,
+      "Instance": null,
+      "Breaks": [
+        {
+          "$id": "246",
+          "StartTime": "2014-03-05T11:38:34",
+          "EndTime": "2014-03-05T11:44:25",
+          "DesiredTimespan": "00:05:51",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "198"
+            },
+            {
+              "$ref": "200"
+            },
+            {
+              "$ref": "157"
+            },
+            {
+              "$ref": "202"
+            },
+            {
+              "$ref": "204"
+            },
+            {
+              "$ref": "206"
+            },
+            {
+              "$ref": "208"
+            },
+            {
+              "$ref": "185"
+            },
+            {
+              "$ref": "210"
+            },
+            {
+              "$ref": "212"
+            },
+            {
+              "$ref": "214"
+            }
+          ]
+        },
+        {
+          "$id": "247",
+          "StartTime": "2014-03-05T12:06:24",
+          "EndTime": "2014-03-05T12:11:45",
+          "DesiredTimespan": "00:05:21",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "182"
+            },
+            {
+              "$ref": "217"
+            },
+            {
+              "$ref": "115"
+            },
+            {
+              "$ref": "219"
+            },
+            {
+              "$ref": "171"
+            },
+            {
+              "$ref": "221"
+            },
+            {
+              "$ref": "223"
+            },
+            {
+              "$ref": "225"
+            },
+            {
+              "$ref": "215"
+            }
+          ]
+        },
+        {
+          "$id": "248",
+          "StartTime": "2014-03-05T12:33:43",
+          "EndTime": "2014-03-05T12:37:22",
+          "DesiredTimespan": "00:03:39",
+          "DesiredTimespanUnits": 0,
+          "MaximumExtension": "00:00:00",
+          "MaximumExtensionUnits": 0,
+          "Advertisements": [
+            {
+              "$ref": "227"
+            },
+            {
+              "$ref": "148"
+            },
+            {
+              "$ref": "229"
+            },
+            {
+              "$ref": "158"
+            },
+            {
+              "$ref": "231"
+            },
+            {
+              "$ref": "233"
+            },
+            {
+              "$ref": "190"
+            },
+            {
+              "$ref": "235"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -109,6 +109,7 @@ namespace ExampleFileReader
             lineNum += 1;
             string channelStart = Reader.ReadLine();
             currentChannel.StartTime = DateTime.ParseExact(channelStart, DATETIME_FORMAT_CHANNEL, CultureInfo.InvariantCulture);
+            currentChannel.EndTime = currentChannel.StartTime;
             string line = null;
             lineNum += 1;
             while (!(line = Reader.ReadLine()).StartsWith("%"))
@@ -135,9 +136,9 @@ namespace ExampleFileReader
             Autopromotion autopromotion = new Autopromotion()
             {
                 Span = new TimeSpan(0, 0, Convert.ToInt32(fields[1])),
-                Start = currentChannel.EndTime,
+                StartTime = currentChannel.EndTime,
             };
-            autopromotion.End = currentChannel.EndTime = currentChannel.EndTime.Add(autopromotion.Span);
+            autopromotion.EndTime = currentChannel.EndTime = currentChannel.EndTime.Add(autopromotion.Span);
             currentChannel.Autopromotions.Add(autopromotion);
             currentChannel.Activities.Add(autopromotion);
         }
@@ -148,9 +149,9 @@ namespace ExampleFileReader
             TvProgram program = new TvProgram()
             {
                 Span = new TimeSpan(0, 0, Convert.ToInt32(fields[1])),
-                Start = currentChannel.EndTime,
+                StartTime = currentChannel.EndTime,
             };
-            program.End = currentChannel.EndTime = currentChannel.EndTime.Add(program.Span);
+            program.EndTime = currentChannel.EndTime = currentChannel.EndTime.Add(program.Span);
             currentChannel.Programs.Add(program);
             currentChannel.Activities.Add(program);
         }
@@ -162,13 +163,13 @@ namespace ExampleFileReader
             {
                 Span = new TimeSpan(0, 0, Convert.ToInt32(fields[1])),
                 Type = instance.GetOrAddTypeOfAds(fields[4]),
-                Cost = Convert.ToDecimal(fields[5]),
+                Cost = Convert.ToDouble(fields[5].Replace(",", "."), CultureInfo.InvariantCulture),
                 AdvertisementOrder = instance.GetOrAddOrderOfAds(fields[7]),
                 Owner = instance.GetOrAddOwnerOfAds(fields[8]),
                 Channel = currentChannel,
-                Start = currentChannel.EndTime,
+                StartTime = currentChannel.EndTime,
             };
-            advertisement.End = currentChannel.EndTime = currentChannel.EndTime.Add(advertisement.Span);
+            advertisement.EndTime = currentChannel.EndTime = currentChannel.EndTime.Add(advertisement.Span);
             currentChannel.Advertisements.Add(advertisement);
             currentChannel.Activities.Add(advertisement);
         }

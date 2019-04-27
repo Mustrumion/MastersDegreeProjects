@@ -12,7 +12,11 @@ namespace ExampleFileReader.InstanceData
     {
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        
+        public TimeSpan DesiredTimespan { get; set; }
+        public int DesiredTimespanUnits { get; set; }
+        public TimeSpan MaximumExtension { get; set; }
+        public int MaximumExtensionUnits { get; set; }
+
         public List<AdvertisementInstance> Advertisements { get; set; } = new List<AdvertisementInstance>();
 
         public void AddAdvertisement(AdvertisementInstance ad)
