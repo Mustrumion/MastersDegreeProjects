@@ -1,4 +1,5 @@
 ﻿using ExampleFileReader.InstanceData;
+using ExampleFileReader.InstanceData.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,58 +19,34 @@ namespace ExampleFileReader.InstanceModification
         {
             foreach(var channel in Instance.Channels.Values)
             {
-                AdjustChannelActivities(channel);
+                AdjustLengthAndActivities(channel);
                 foreach(var tvBreak in channel.Breaks)
                 {
-                    AdjustBreakActivities(tvBreak);
+                    AdjustLengthAndActivities(tvBreak);
                 }
             }
         }
 
-        private void AdjustChannelActivities(Channel channel)
+        private void AdjustLengthAndActivities(IActivitiesSequence activitiesContainer)
         {
-            for (int i = 1; i < channel.Activities.Count; i++)
+            for (int i = 1; i < activitiesContainer.Activities.Count; i++)
             {
-                var firstActiv = channel.Activities[i - 1];
-                var secondActiv = channel.Activities[i];
+                var firstActiv = activitiesContainer.Activities[i - 1];
+                var secondActiv = activitiesContainer.Activities[i];
                 if (secondActiv.StartTime < firstActiv.EndTime)
                 {
                     secondActiv.StartTime = firstActiv.EndTime;
                     secondActiv.EndTime = secondActiv.StartTime + secondActiv.Span;
                 }
             }
-            if (channel.Activities.Count > 0)
+            if (activitiesContainer.Activities.Count > 0)
             {
-                channel.EndTime = channel.Activities.Last().EndTime;
-                channel.Span = channel.EndTime - channel.StartTime;
+                activitiesContainer.EndTime = activitiesContainer.Activities.Last().EndTime;
+                activitiesContainer.Span = activitiesContainer.EndTime - activitiesContainer.StartTime;
                 if (Instance.UnitSizeInSeconds != 0)
                 {
-                    Helpers.NearestDivisibleBy(channel.Span.TotalSeconds, Instance.UnitSizeInSeconds, out int numberOfUnits);
-                    channel.SpanUnits = numberOfUnits;
-                }
-            }
-        }
-
-        private void AdjustBreakActivities(TvBreak tvBreak)
-        {
-            for (int i = 1; i < tvBreak.Activities.Count; i++)
-            {
-                var firstActiv = tvBreak.Activities[i - 1];
-                var secondActiv = tvBreak.Activities[i];
-                if (secondActiv.StartTime < firstActiv.EndTime)
-                {
-                    secondActiv.StartTime = firstActiv.EndTime;
-                    secondActiv.EndTime = secondActiv.StartTime + secondActiv.Span;
-                }
-            }
-            if (tvBreak.Activities.Count > 0)
-            {
-                tvBreak.EndTime = tvBreak.Activities.Last().EndTime;
-                tvBreak.DesiredTimespan = tvBreak.EndTime - tvBreak.StartTime;
-                if (Instance.UnitSizeInSeconds != 0)
-                {
-                    Helpers.NearestDivisibleBy(tvBreak.DesiredTimespan.TotalSeconds, Instance.UnitSizeInSeconds, out int numberOfUnits);
-                    tvBreak.DesiredTimespanUnits = numberOfUnits;
+                    Helpers.NearestDivisibleBy(activitiesContainer.Span.TotalSeconds, Instance.UnitSizeInSeconds, out int numberOfUnits);
+                    activitiesContainer.SpanUnits = numberOfUnits;
                 }
             }
         }

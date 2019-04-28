@@ -1,4 +1,5 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
+using ExampleFileReader.InstanceData.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Xml.Serialization;
 namespace ExampleFileReader.InstanceData
 {
     [Serializable]
-    public class Channel
+    public class Channel : IActivitiesSequence
     {
         public string ID { get; set; }
         public DateTime StartTime { get; set; }

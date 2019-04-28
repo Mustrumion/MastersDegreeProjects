@@ -1,4 +1,5 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
+using ExampleFileReader.InstanceData.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ExampleFileReader.InstanceData
 {
-    public class Instance
+    public class Instance: ISpannedObject
     {
         [JsonProperty(Order = 4)]
         public Dictionary<string, Channel> Channels { get; set; } = new Dictionary<string, Channel>();

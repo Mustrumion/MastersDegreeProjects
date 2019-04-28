@@ -1,5 +1,6 @@
 ﻿using ExampleFileReader.InstanceData;
 using ExampleFileReader.InstanceData.Activities;
+using ExampleFileReader.InstanceData.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,20 +71,11 @@ namespace ExampleFileReader.InstanceModification
             if (tvBreak != null && tvBreak.Advertisements.Count > 0)
             {
                 tvBreak.EndTime = tvBreak.Advertisements.Last().EndTime;
-                RecalculateBreakSpan(tvBreak);
+                RecalculateSpanToUnits(tvBreak);
                 channel.AddBreak(tvBreak);
             }
         }
 
-
-        private void RecalculateBreakSpan(TvBreak adBreak)
-        {
-            TimeSpan span = adBreak.EndTime - adBreak.StartTime;
-            double spanSeconds = Helpers.NearestDivisibleBy(span.TotalSeconds, TimeUnitInSeconds, out int number);
-            adBreak.DesiredTimespan = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
-            adBreak.DesiredTimespanUnits = number;
-            adBreak.EndTime = adBreak.StartTime + adBreak.DesiredTimespan;
-        }
 
 
         public void AddViewershipFunctions()
@@ -102,32 +94,34 @@ namespace ExampleFileReader.InstanceModification
             }
         }
 
+        
 
         public void ConvertToUnits()
         {
             Instance.UnitSizeInSeconds = TimeUnitInSeconds;
-            TimeSpan instanceSpan = Instance.EndTime - Instance.StartTime;
-            double instanceSpanSeconds = Helpers.NearestDivisibleBy(instanceSpan.TotalSeconds, TimeUnitInSeconds, out int numberOfUnits);
-            Instance.Span = new TimeSpan(0, 0, Convert.ToInt32(instanceSpanSeconds));
-            Instance.SpanUnits = numberOfUnits;
-            Instance.EndTime = Instance.StartTime + Instance.Span;
+            RecalculateSpanToUnits(Instance);
             foreach (var channel in Instance.Channels.Values)
             {
-                TimeSpan span = channel.EndTime - channel.StartTime;
-                double spanSeconds = Helpers.NearestDivisibleBy(span.TotalSeconds, TimeUnitInSeconds, out int number);
-                channel.Span = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
-                channel.SpanUnits = number;
-                channel.EndTime = channel.StartTime + channel.Span;
+                RecalculateSpanToUnits(channel);
                 ConvertBreaksToUnits(channel);
                 ConvertActivitiesToUnits(channel);
             }
+        }
+
+        private void RecalculateSpanToUnits(ISpannedObject spannedObj)
+        {
+            TimeSpan span = spannedObj.EndTime - spannedObj.StartTime;
+            double spanSeconds = Helpers.NearestDivisibleBy(span.TotalSeconds, TimeUnitInSeconds, out int number);
+            spannedObj.Span = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
+            spannedObj.SpanUnits = number;
+            spannedObj.EndTime = spannedObj.StartTime + spannedObj.Span;
         }
 
         private void ConvertBreaksToUnits(Channel channel)
         {
             foreach (var adBreak in channel.Breaks)
             {
-                RecalculateBreakSpan(adBreak);
+                RecalculateSpanToUnits(adBreak);
             }
         }
 
@@ -135,11 +129,7 @@ namespace ExampleFileReader.InstanceModification
         {
             foreach (var activity in channel.Activities)
             {
-                TimeSpan span = activity.EndTime - activity.StartTime;
-                double spanSeconds = Helpers.NearestDivisibleBy(span.TotalSeconds, TimeUnitInSeconds, out int number);
-                activity.Span = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
-                activity.SpanUnits = number;
-                activity.EndTime = activity.StartTime + activity.Span;
+                RecalculateSpanToUnits(activity);
             }
         }
     }

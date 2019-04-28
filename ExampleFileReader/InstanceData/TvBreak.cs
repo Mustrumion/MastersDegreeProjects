@@ -1,4 +1,5 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
+using ExampleFileReader.InstanceData.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 namespace ExampleFileReader.InstanceData
 {
     [Serializable]
-    public class TvBreak
+    public class TvBreak: IActivitiesSequence
     {
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public TimeSpan DesiredTimespan { get; set; }
-        public int DesiredTimespanUnits { get; set; }
+        public TimeSpan Span { get; set; }
+        public int SpanUnits { get; set; }
         public TimeSpan MaximumExtension { get; set; }
         public int MaximumExtensionUnits { get; set; }
 
