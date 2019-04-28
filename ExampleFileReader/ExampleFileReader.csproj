@@ -46,10 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers.cs" />
+    <Compile Include="InstanceData\Interfaces\IActivityContainer.cs" />
+    <Compile Include="InstanceData\Interfaces\ISpannedObject.cs" />
     <Compile Include="InstanceData\OwnerOfAd.cs" />
     <Compile Include="InstanceData\ViewershipFunction.cs" />
     <Compile Include="InstanceData\ViewershipSpan.cs" />
-    <Compile Include="RealInstanceDataLoader.cs" />
+    <Compile Include="DataAcces\RealInstanceDataLoader.cs" />
     <Compile Include="InstanceData\Activities\AdvertisementInstance.cs" />
     <Compile Include="InstanceData\Activities\Autopromotion.cs" />
     <Compile Include="InstanceData\Activities\BaseActivity.cs" />
@@ -59,11 +61,12 @@
     <Compile Include="InstanceData\Channel.cs" />
     <Compile Include="InstanceData\Instance.cs" />
     <Compile Include="InstanceData\TypeOfAd.cs" />
+    <Compile Include="InstanceModification\InstanceCorrector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\InstanceJsonSerializer.cs" />
-    <Compile Include="Serialization\SerializableDictionary.cs" />
-    <Compile Include="RealInstanceToProblemConverter.cs" />
+    <Compile Include="DataAcces\InstanceJsonSerializer.cs" />
+    <Compile Include="DataAcces\SerializableDictionary.cs" />
+    <Compile Include="InstanceModification\RealInstanceToProblemConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

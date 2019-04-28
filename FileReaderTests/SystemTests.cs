@@ -1,6 +1,7 @@
 ﻿using ExampleFileReader;
+using ExampleFileReader.DataAccess;
 using ExampleFileReader.InstanceData;
-using ExampleFileReader.Serialization;
+using ExampleFileReader.InstanceModification;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace ExampleFileReader.InstanceData
         public int MaximumExtensionUnits { get; set; }
 
         public List<AdvertisementInstance> Advertisements { get; set; } = new List<AdvertisementInstance>();
+        [JsonIgnore]
+        public List<BaseActivity> Activities { get; set; } = new List<BaseActivity>();
 
         public void AddAdvertisement(AdvertisementInstance ad)
         {

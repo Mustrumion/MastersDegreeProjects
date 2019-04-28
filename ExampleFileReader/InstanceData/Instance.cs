@@ -1,5 +1,4 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
-using ExampleFileReader.Serialization;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

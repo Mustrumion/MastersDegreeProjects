@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader.Serialization
+namespace ExampleFileReader.DataAccess
 {
     using System;
     using System.Collections.Generic;

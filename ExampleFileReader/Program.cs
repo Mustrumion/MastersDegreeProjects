@@ -1,4 +1,5 @@
-﻿using ExampleFileReader.InstanceData;
+﻿using ExampleFileReader.DataAccess;
+using ExampleFileReader.InstanceData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ExampleFileReader
         static void Main(string[] args)
         {
             RealInstanceDataLoader loader = new RealInstanceDataLoader();
-            loader.Filepath = @"C:\Users\bartl\source\repos\MastersDegreeProjects\FileReaderTests\Resources\3_channel_week.txt";
+            loader.Filepath = @"C:\Users\bartl\source\repos\MastersDegreeProjects\FileReaderTests\Resources\hour_3channels.txt";
             Instance instance = loader.LoadInstanceFile();
             Console.WriteLine("End.");
             Console.ReadKey();

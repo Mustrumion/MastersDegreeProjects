@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader
+namespace ExampleFileReader.InstanceModification
 {
     public class RealInstanceToProblemConverter
     {
@@ -16,9 +16,11 @@ namespace ExampleFileReader
 
         public void ConvertToProblem()
         {
+            ConvertToUnits();
+            InstanceCorrector corrector = new InstanceCorrector() { Instance = Instance };
+            corrector.AdjustTimestampsToDuration();
             CreateBreaks();
             RemoveUnnecessaryActivities();
-            ConvertToUnits();
         }
 
         public void CreateBreaks()
@@ -37,11 +39,7 @@ namespace ExampleFileReader
                 if (activity is TvProgram)
                 {
                     TvProgram program = activity as TvProgram;
-                    if (currentBreak != null && currentBreak.Advertisements.Count > 0)
-                    {
-                        currentBreak.EndTime = program.StartTime;
-                        channel.AddBreak(currentBreak);
-                    }
+                    AddBreakToChannelIfNotEmpty(currentBreak, channel);
                     currentBreak = new TvBreak()
                     {
                         StartTime = program.EndTime,
@@ -56,17 +54,41 @@ namespace ExampleFileReader
                             StartTime = activity.StartTime,
                         };
                     }
+                    currentBreak.Activities.Add(activity);
                     if(activity is AdvertisementInstance)
                     {
                         currentBreak.AddAdvertisement(activity as AdvertisementInstance);
                     }
                 }
             }
-            if (currentBreak != null && currentBreak.Advertisements.Count > 0)
+            AddBreakToChannelIfNotEmpty(currentBreak, channel);
+        }
+
+
+        private void AddBreakToChannelIfNotEmpty(TvBreak tvBreak, Channel channel)
+        {
+            if (tvBreak != null && tvBreak.Advertisements.Count > 0)
             {
-                currentBreak.EndTime = currentBreak.Advertisements.Last().EndTime;
-                channel.AddBreak(currentBreak);
+                tvBreak.EndTime = tvBreak.Advertisements.Last().EndTime;
+                RecalculateBreakSpan(tvBreak);
+                channel.AddBreak(tvBreak);
             }
+        }
+
+
+        private void RecalculateBreakSpan(TvBreak adBreak)
+        {
+            TimeSpan span = adBreak.EndTime - adBreak.StartTime;
+            double spanSeconds = Helpers.NearestDivisibleBy(span.TotalSeconds, TimeUnitInSeconds, out int number);
+            adBreak.DesiredTimespan = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
+            adBreak.DesiredTimespanUnits = number;
+            adBreak.EndTime = adBreak.StartTime + adBreak.DesiredTimespan;
+        }
+
+
+        public void AddViewershipFunctions()
+        {
+
         }
 
 
@@ -79,6 +101,7 @@ namespace ExampleFileReader
                 channel.Activities.RemoveAll(a => a is TvProgram || a is Autopromotion);
             }
         }
+
 
         public void ConvertToUnits()
         {
@@ -96,32 +119,27 @@ namespace ExampleFileReader
                 channel.SpanUnits = number;
                 channel.EndTime = channel.StartTime + channel.Span;
                 ConvertBreaksToUnits(channel);
-                ConvertAdInstancesToUnits(channel);
+                ConvertActivitiesToUnits(channel);
             }
-
         }
 
         private void ConvertBreaksToUnits(Channel channel)
         {
             foreach (var adBreak in channel.Breaks)
             {
-                TimeSpan span = adBreak.EndTime - adBreak.StartTime;
-                double spanSeconds = Helpers.NearestDivisibleBy(span.TotalSeconds, TimeUnitInSeconds, out int number);
-                adBreak.DesiredTimespan = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
-                adBreak.DesiredTimespanUnits = number;
-                adBreak.EndTime = adBreak.StartTime + adBreak.DesiredTimespan;
+                RecalculateBreakSpan(adBreak);
             }
         }
 
-        private void ConvertAdInstancesToUnits(Channel channel)
+        private void ConvertActivitiesToUnits(Channel channel)
         {
-            foreach (var advertisement in channel.Advertisements)
+            foreach (var activity in channel.Activities)
             {
-                TimeSpan span = advertisement.EndTime - advertisement.StartTime;
+                TimeSpan span = activity.EndTime - activity.StartTime;
                 double spanSeconds = Helpers.NearestDivisibleBy(span.TotalSeconds, TimeUnitInSeconds, out int number);
-                advertisement.Span = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
-                advertisement.SpanUnits = number;
-                advertisement.EndTime = advertisement.StartTime + advertisement.Span;
+                activity.Span = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
+                activity.SpanUnits = number;
+                activity.EndTime = activity.StartTime + activity.Span;
             }
         }
     }
