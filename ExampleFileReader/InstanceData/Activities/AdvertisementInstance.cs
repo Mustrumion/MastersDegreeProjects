@@ -15,6 +15,11 @@ namespace ExampleFileReader.InstanceData.Activities
         private OwnerOfAd _owner;
         private Channel _channel;
 
+        [JsonProperty(Order = -2)]
+        public double Cost { get; set; }
+        [JsonProperty(Order = -1)]
+        public double Viewers { get; set; }
+
         [XmlIgnore]
         public AdvertisementOrder AdvertisementOrder
         {
@@ -108,7 +113,5 @@ namespace ExampleFileReader.InstanceData.Activities
                 _channel = value;
             }
         }
-
-        public double Cost { get; set; }
     }
 }

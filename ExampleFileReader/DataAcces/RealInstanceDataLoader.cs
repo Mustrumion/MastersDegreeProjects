@@ -166,6 +166,7 @@ namespace ExampleFileReader.DataAccess
                 Cost = Convert.ToDouble(fields[5].Replace(",", "."), CultureInfo.InvariantCulture),
                 AdvertisementOrder = instance.GetOrAddOrderOfAds(fields[7]),
                 Owner = instance.GetOrAddOwnerOfAds(fields[8]),
+                Viewers = Convert.ToDouble(fields[9].Replace(",", "."), CultureInfo.InvariantCulture),
                 Channel = currentChannel,
                 StartTime = currentChannel.EndTime,
             };

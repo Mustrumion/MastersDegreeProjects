@@ -21,6 +21,7 @@ namespace ExampleFileReader.InstanceModification
             InstanceCorrector corrector = new InstanceCorrector() { Instance = Instance };
             corrector.AdjustTimestampsToDuration();
             CreateBreaks();
+            AddViewershipFunctions();
             RemoveUnnecessaryActivities();
         }
 
@@ -80,9 +81,34 @@ namespace ExampleFileReader.InstanceModification
 
         public void AddViewershipFunctions()
         {
-
+            foreach(var channel in Instance.Channels.Values)
+            {
+                foreach(var tvBreak in channel.Breaks)
+                {
+                    AddBreakViewershipFunction(tvBreak);
+                }
+            }
         }
 
+        private void AddBreakViewershipFunction(TvBreak tvBreak)
+        {
+            ViewershipFunction function = new ViewershipFunction();
+            AdvertisementInstance lastAd = new AdvertisementInstance();
+            foreach(BaseActivity activity in tvBreak.Activities)
+            {
+                ViewershipSpan currentSpan = null;
+                if (activity is Autopromotion autopromotion)
+                {
+                    currentSpan = new ViewershipSpan(autopromotion);
+                }
+                if (activity is AdvertisementInstance advertisement)
+                {
+                    currentSpan = new ViewershipSpan(advertisement);
+                }
+                function.AddTimeInterval(currentSpan);
+            }
+            tvBreak.MainViewsFunction = function;
+        }
 
         public void RemoveUnnecessaryActivities()
         {
@@ -91,6 +117,10 @@ namespace ExampleFileReader.InstanceModification
                 channel.Autopromotions.Clear();
                 channel.Programs.Clear();
                 channel.Activities.RemoveAll(a => a is TvProgram || a is Autopromotion);
+                foreach(var tvBreak in channel.Breaks)
+                {
+                    tvBreak.Activities.RemoveAll(a => a is Autopromotion);
+                }
             }
         }
 

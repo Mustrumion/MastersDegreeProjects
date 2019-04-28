@@ -18,6 +18,8 @@ namespace ExampleFileReader.InstanceData
         public int SpanUnits { get; set; }
         public TimeSpan MaximumExtension { get; set; }
         public int MaximumExtensionUnits { get; set; }
+        public ViewershipFunction MainViewsFunction { get; set; }
+        public Dictionary<string, ViewershipFunction> TypeViewsFunctions { get; set; } = new Dictionary<string, ViewershipFunction>();
 
         public List<AdvertisementInstance> Advertisements { get; set; } = new List<AdvertisementInstance>();
         [JsonIgnore]
