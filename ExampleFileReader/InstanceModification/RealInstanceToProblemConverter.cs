@@ -12,7 +12,13 @@ namespace ExampleFileReader.InstanceModification
     public class RealInstanceToProblemConverter
     {
         public Instance Instance { get; set; }
-        public double TimeUnitInSeconds = 3.0d;
+        public double TimeUnitInSeconds { get; set; } = 3.0d;
+        public double MinBeginingsProportionMultiplier { get; set; } = 0.8d;
+        public double MinEndsProportionMultiplier { get; set; } = 0.8d;
+        public int MaxAdsPerBreakOffset { get; set; } = 1;
+        public int MinAdsInBetweenSameOffset { get; set; } = -1;
+        public int MinTimesAiredOffset { get; set; } = 0;
+        public TimeSpan DueTimeOffset { get; set; } = new TimeSpan(0, 0, 0, 0);
 
 
         public void ConvertToProblem()
@@ -23,6 +29,7 @@ namespace ExampleFileReader.InstanceModification
             CreateBreaks();
             AddViewershipFunctions();
             RemoveUnnecessaryActivities();
+            GenerateAllAdOrdersData();
         }
 
         public void CreateBreaks()
@@ -161,6 +168,72 @@ namespace ExampleFileReader.InstanceModification
             {
                 RecalculateSpanToUnits(activity);
             }
+        }
+
+
+        public void GenerateAllAdOrdersData()
+        {
+            foreach(AdvertisementOrder order in Instance.AdOrders.Values)
+            {
+                GenerateAdOrderData(order);
+            }
+        }
+
+        private void CountMinTimesAired(AdvertisementOrder order)
+        {
+            TimeSpan sumSpan = new TimeSpan(0, 0, 0);
+            foreach(AdvertisementInstance ad in order.Advertisements)
+            {
+                sumSpan += ad.Span;
+            }
+            int requiredAmount = (int)(sumSpan.TotalMilliseconds / order.AdSpan.TotalMilliseconds);
+            order.MinTimesAired = Math.Max(requiredAmount + MinTimesAiredOffset, 0);
+        }
+
+        private void GenerateSelfIncompatibilityData(AdvertisementOrder order)
+        {
+            int minSelfInterval = int.MaxValue;
+            int maxAiredInBlock = 0;
+            foreach(var ad in order.Advertisements)
+            {
+                var adsInThisBreak = ad.Break.Advertisements;
+                int indexStarting = adsInThisBreak.IndexOf(ad);
+                int times = 0;
+                for(int i = indexStarting + 1; i < adsInThisBreak.Count; i++)
+                {
+                    if(adsInThisBreak[i].AdvertisementOrder == order)
+                    {
+                        times += 1;
+                        if (minSelfInterval > i - indexStarting - 1)
+                        {
+                            minSelfInterval = i - indexStarting - 1;
+                        }
+                    }
+                }
+                if(maxAiredInBlock < times)
+                {
+                    maxAiredInBlock = times;
+                }
+            }
+        }
+
+        private void GenerateAdOrderData(AdvertisementOrder order)
+        {
+            order.Gain = order.Advertisements.Sum(a => a.Profit);
+            order.DueTime = order.Advertisements.OrderBy(a => a.EndTime).Last().EndTime + DueTimeOffset;
+            order.MinViewership = order.Advertisements.Sum(a => a.Viewers);
+            //Ads with same advertisement ID had different spans in real data, we choose the most frequent one here
+            var modeSpanGroup = order.Advertisements.ToLookup(a => a.SpanUnits).OrderBy(cat => cat.Count()).Last();
+            order.AdSpan = modeSpanGroup.First().Span;
+            //As a consequence we count the times aired requirements based on total span and above chosen single ad span
+            CountMinTimesAired(order);
+            order.MinBeginingsProportion = order.Advertisements.Where(a => a.Break.Advertisements.First() == a).Count();
+            order.MinBeginingsProportion /= order.Advertisements.Count();
+            order.MinBeginingsProportion *= MinBeginingsProportionMultiplier;
+            order.MinEndsProportion = order.Advertisements.Where(a => a.Break.Advertisements.Last() == a).Count();
+            order.MinEndsProportion /= order.Advertisements.Count();
+            order.MinEndsProportion *= MinEndsProportionMultiplier;
+            GenerateSelfIncompatibilityData(order);
         }
     }
 }

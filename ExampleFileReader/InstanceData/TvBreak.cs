@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 namespace ExampleFileReader.InstanceData
 {
     [Serializable]
-    public class TvBreak: IActivitiesSequence
+    public class TvBreak : IActivitiesSequence
     {
+        private List<AdvertisementInstance> _advertisements = new List<AdvertisementInstance>();
+
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public TimeSpan Span { get; set; }
@@ -21,13 +23,33 @@ namespace ExampleFileReader.InstanceData
         public ViewershipFunction MainViewsFunction { get; set; }
         public Dictionary<string, ViewershipFunction> TypeViewsFunctions { get; set; } = new Dictionary<string, ViewershipFunction>();
 
-        public List<AdvertisementInstance> Advertisements { get; set; } = new List<AdvertisementInstance>();
-        [JsonIgnore]
-        public List<BaseActivity> Activities { get; set; } = new List<BaseActivity>();
+
+        public List<AdvertisementInstance> Advertisements
+        {
+            get => _advertisements;
+            set
+            {
+                _advertisements = value;
+                foreach(var ad in _advertisements)
+                {
+                    if (ad.Break != this)
+                    {
+                        ad.Break = this;
+                    }
+                }
+            }
+        }
 
         public void AddAdvertisement(AdvertisementInstance ad)
         {
             Advertisements.Add(ad);
+            if (ad.Break != this)
+            {
+                ad.Break = this;
+            }
         }
+
+        [JsonIgnore]
+        public List<BaseActivity> Activities { get; set; } = new List<BaseActivity>();
     }
 }

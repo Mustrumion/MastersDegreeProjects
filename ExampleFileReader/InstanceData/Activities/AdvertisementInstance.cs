@@ -13,10 +13,9 @@ namespace ExampleFileReader.InstanceData.Activities
         private AdvertisementOrder _adOrder;
         private TypeOfAd _type;
         private OwnerOfAd _owner;
-        private Channel _channel;
 
         [JsonProperty(Order = -2)]
-        public double Cost { get; set; }
+        public double Profit { get; set; }
         [JsonProperty(Order = -1)]
         public double Viewers { get; set; }
 
@@ -36,7 +35,7 @@ namespace ExampleFileReader.InstanceData.Activities
         {
             get
             {
-                if(AdvertisementOrder != null)
+                if (AdvertisementOrder != null)
                 {
                     return AdvertisementOrder.ID;
                 }
@@ -88,6 +87,8 @@ namespace ExampleFileReader.InstanceData.Activities
         }
 
         private string _typeID;
+        private TvBreak _break;
+
         public string TypeID
         {
             get
@@ -105,12 +106,19 @@ namespace ExampleFileReader.InstanceData.Activities
         }
 
         [JsonIgnore]
-        public Channel Channel
+        public Channel Channel { get; set; }
+
+        [JsonIgnore]
+        public TvBreak Break
         {
-            get => _channel;
+            get => _break;
             set
             {
-                _channel = value;
+                _break = value;
+                if (!_break.Advertisements.Contains(this))
+                {
+                    _break.AddAdvertisement(this);
+                }
             }
         }
     }

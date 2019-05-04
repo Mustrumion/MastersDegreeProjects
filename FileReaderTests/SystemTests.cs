@@ -38,7 +38,7 @@ namespace FileReaderTests
 
 
         [TestMethod]
-        public void SerializeDay3ChannelsInstance()
+        public void GenerateDay3ChannelsInstanceBasedOnRealData()
         {
             var file = Properties.Resources.day_3channels;
             Instance instance = null;
@@ -62,7 +62,7 @@ namespace FileReaderTests
 
 
         [TestMethod]
-        public void SerializeWeek3ChannelsInstance()
+        public void GenerateWeek3ChannelsInstanceBasedOnRealData()
         {
             var file = Properties.Resources.week_3channel;
             Instance instance = null;
@@ -86,7 +86,7 @@ namespace FileReaderTests
 
 
         [TestMethod]
-        public void SerializeHour3ChannelsInstance()
+        public void GenerateHour3ChannelsInstanceBasedOnRealData()
         {
             var file = Properties.Resources.hour_3channels;
             Instance instance = null;

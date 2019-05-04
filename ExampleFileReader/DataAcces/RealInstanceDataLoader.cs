@@ -163,7 +163,7 @@ namespace ExampleFileReader.DataAccess
             {
                 Span = new TimeSpan(0, 0, Convert.ToInt32(fields[1])),
                 Type = instance.GetOrAddTypeOfAds(fields[4]),
-                Cost = Convert.ToDouble(fields[5].Replace(",", "."), CultureInfo.InvariantCulture),
+                Profit = Convert.ToDouble(fields[5].Replace(",", "."), CultureInfo.InvariantCulture),
                 AdvertisementOrder = instance.GetOrAddOrderOfAds(fields[7]),
                 Owner = instance.GetOrAddOwnerOfAds(fields[8]),
                 Viewers = Convert.ToDouble(fields[9].Replace(",", "."), CultureInfo.InvariantCulture),
