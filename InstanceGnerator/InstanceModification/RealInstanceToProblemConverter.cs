@@ -220,11 +220,66 @@ namespace InstanceGenerator.InstanceModification
         }
 
 
+
+        private Dictionary<string, int> nightTypesCount = new Dictionary<string, int>();
+        private Dictionary<string, int> dayTypesCount = new Dictionary<string, int>();
+        private HashSet<TvBreak> nightlyBreaks = new HashSet<TvBreak>();
+        private HashSet<TvBreak> dailyBreaks = new HashSet<TvBreak>();
+        private TimeSpan nightsEnd = new TimeSpan(6, 0, 0);
+        private TimeSpan nightsStart = new TimeSpan(22, 0, 0);
+
         public void GenerateBreakToTypeCompatibilityMatrix()
         {
-
+            foreach (var channel in Instance.Channels.Values)
+            {
+                foreach(var tvBreak in channel.Breaks)
+                {
+                    AssignBreakToDayPeriod(tvBreak);
+                    foreach(var ad in tvBreak.Advertisements)
+                    {
+                        AddAdvertisementToDayPeriodCounts(ad);
+                    }
+                }
+            }
         }
 
+        private void AddAdvertisementToDayPeriodCounts(AdvertisementInstance ad)
+        {
+            if (ad.StartTime.TimeOfDay <= nightsEnd && ad.EndTime.TimeOfDay <= nightsEnd || ad.StartTime.TimeOfDay >= nightsStart && ad.EndTime.TimeOfDay >= nightsStart)
+            {
+                if (!nightTypesCount.ContainsKey(ad.TypeID))
+                {
+                    nightTypesCount[ad.TypeID] = 1;
+                }
+                else
+                {
+                    nightTypesCount[ad.TypeID] += 1;
+                }
+            }
+            else
+            {
+                if (!dayTypesCount.ContainsKey(ad.TypeID))
+                {
+                    dayTypesCount[ad.TypeID] = 1;
+                }
+                else
+                {
+                    dayTypesCount[ad.TypeID] += 1;
+                }
+            }
+        }
+
+        private void AssignBreakToDayPeriod(TvBreak tvBreak)
+        {
+            if (tvBreak.StartTime.TimeOfDay <= nightsEnd || tvBreak.StartTime.TimeOfDay >= nightsStart)
+            {
+                nightlyBreaks.Add(tvBreak);
+            }
+            else
+            {
+                dailyBreaks.Add(tvBreak);
+            }
+        }
 
         private void GenerateAdOrderData(AdvertisementOrder order)
         {
@@ -243,8 +298,8 @@ namespace InstanceGenerator.InstanceModification
             order.MinEndsProportion = order.AdvertisementInstances.Where(a => a.Break.Advertisements.Last() == a).Count();
             order.MinEndsProportion /= order.AdvertisementInstances.Count();
             order.MinEndsProportion *= MinEndsProportionMultiplier;
-            order.Type = order.AdvertisementInstances[0].Type;
-            order.Brand = order.AdvertisementInstances[0].Brand;
+            order.Type = order.AdvertisementInstances.First().Type;
+            order.Brand = order.AdvertisementInstances.First().Brand;
             GenerateSelfIncompatibilityData(order);
             order.OverdueCostParameter = order.Gain;
         }
