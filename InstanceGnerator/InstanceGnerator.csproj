@@ -67,7 +67,7 @@
     <Compile Include="InstanceData\Channel.cs" />
     <Compile Include="InstanceData\Instance.cs" />
     <Compile Include="InstanceData\TypeOfAd.cs" />
-    <Compile Include="InstanceGenerator.cs" />
+    <Compile Include="Generator.cs" />
     <Compile Include="InstanceModification\InstanceCorrector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAcces\InstanceJsonSerializer.cs" />

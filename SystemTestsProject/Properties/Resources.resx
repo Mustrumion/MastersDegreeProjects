@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="day_3channels_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\day_3channels_json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="day_DS_D_DH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\day_ds_d_dh.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="hour_3channels_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\hour_3channels_json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="day_DS_D_DH_inst" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\day_ds_d_dh_inst.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="hour_DS_D_DH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\hour_ds_d_dh.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="month_3channels_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\month_3channels_json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="hour_DS_D_DH_inst" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\hour_ds_d_dh_inst.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="month_DS_D_DH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\month_ds_d_dh.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="week_3channels_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\week_3channels_json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="month_DS_D_DH_inst" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\month_ds_d_dh_inst.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="week_DS_D_DH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\week_ds_d_dh.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="week_DS_D_DH_inst" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\week_ds_d_dh_inst.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

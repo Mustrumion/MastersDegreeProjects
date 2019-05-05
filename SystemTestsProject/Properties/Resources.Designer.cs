@@ -61,41 +61,6 @@ namespace SystemTestsProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;StartTime&quot;: &quot;2014-05-05T00:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-05-06T00:00:00&quot;,
-        ///  &quot;Span&quot;: &quot;1.00:00:00&quot;,
-        ///  &quot;SpanUnits&quot;: 28800,
-        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
-        ///  &quot;ChannelAmountChecksum&quot;: 3,
-        ///  &quot;TypesOfAds&quot;: {
-        ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;161005&quot;: {
-        ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;161005&quot;
-        ///    },
-        ///    &quot;100402&quot;: {
-        ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;100402&quot;
-        ///    },
-        ///    &quot;111303&quot;: {
-        ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;111303&quot;
-        ///    },
-        ///    &quot;141900&quot;: {
-        ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;141900&quot;
-        ///    },
-        ///    &quot;19110 [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string day_3channels_json {
-            get {
-                return ResourceManager.GetString("day_3channels_json", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 58 32 68
         ///5.5.2014 0:0:0
         ///6.5.2014 0:0:0
@@ -126,37 +91,12 @@ namespace SystemTestsProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;StartTime&quot;: &quot;2014-05-05T18:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-05-05T19:00:00&quot;,
-        ///  &quot;Span&quot;: &quot;01:00:00&quot;,
-        ///  &quot;SpanUnits&quot;: 1200,
-        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
-        ///  &quot;ChannelAmountChecksum&quot;: 3,
-        ///  &quot;TypesOfAds&quot;: {
-        ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;050100&quot;: {
-        ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;050100&quot;
-        ///    },
-        ///    &quot;030100&quot;: {
-        ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;030100&quot;
-        ///    },
-        ///    &quot;190301&quot;: {
-        ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;190301&quot;
-        ///    },
-        ///    &quot;050101&quot;: {
-        ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;050101&quot;
-        ///    },
-        ///    &quot;160600&quot;: [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string hour_3channels_json {
+        internal static byte[] day_DS_D_DH_inst {
             get {
-                return ResourceManager.GetString("hour_3channels_json", resourceCulture);
+                object obj = ResourceManager.GetObject("day_DS_D_DH_inst", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -190,37 +130,12 @@ namespace SystemTestsProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;StartTime&quot;: &quot;2014-05-05T00:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-06-05T00:00:00&quot;,
-        ///  &quot;Span&quot;: &quot;31.00:00:00&quot;,
-        ///  &quot;SpanUnits&quot;: 892800,
-        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
-        ///  &quot;ChannelAmountChecksum&quot;: 3,
-        ///  &quot;TypesOfAds&quot;: {
-        ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;161005&quot;: {
-        ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;161005&quot;
-        ///    },
-        ///    &quot;100402&quot;: {
-        ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;100402&quot;
-        ///    },
-        ///    &quot;111303&quot;: {
-        ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;111303&quot;
-        ///    },
-        ///    &quot;141900&quot;: {
-        ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;141900&quot;
-        ///    },
-        ///    &quot;191 [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string month_3channels_json {
+        internal static byte[] hour_DS_D_DH_inst {
             get {
-                return ResourceManager.GetString("month_3channels_json", resourceCulture);
+                object obj = ResourceManager.GetObject("hour_DS_D_DH_inst", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -255,37 +170,12 @@ namespace SystemTestsProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;StartTime&quot;: &quot;2014-05-05T00:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-05-12T00:00:00&quot;,
-        ///  &quot;Span&quot;: &quot;7.00:00:00&quot;,
-        ///  &quot;SpanUnits&quot;: 201600,
-        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
-        ///  &quot;ChannelAmountChecksum&quot;: 3,
-        ///  &quot;TypesOfAds&quot;: {
-        ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;161005&quot;: {
-        ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;161005&quot;
-        ///    },
-        ///    &quot;100402&quot;: {
-        ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;100402&quot;
-        ///    },
-        ///    &quot;111303&quot;: {
-        ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;111303&quot;
-        ///    },
-        ///    &quot;141900&quot;: {
-        ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;141900&quot;
-        ///    },
-        ///    &quot;1911 [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string week_3channels_json {
+        internal static byte[] month_DS_D_DH_inst {
             get {
-                return ResourceManager.GetString("week_3channels_json", resourceCulture);
+                object obj = ResourceManager.GetObject("month_DS_D_DH_inst", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -316,6 +206,16 @@ namespace SystemTestsProject.Properties {
         internal static string week_DS_D_DH {
             get {
                 return ResourceManager.GetString("week_DS_D_DH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] week_DS_D_DH_inst {
+            get {
+                object obj = ResourceManager.GetObject("week_DS_D_DH_inst", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

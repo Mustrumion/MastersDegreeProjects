@@ -33,9 +33,9 @@ namespace SystemTestsProject
         [TestMethod]
         public void DeserializeWeek3ChannelTest()
         {
-            var file = Properties.Resources.week_3channels_json;
+            var file = Properties.Resources.week_DS_D_DH_inst;
             var reader = new InstanceJsonSerializer();
-            reader.Reader = new StringReader(file);
+            reader.Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8);
             Instance instance = reader.Deserialize();
             Assert.IsNotNull(instance);
         }
@@ -44,114 +44,48 @@ namespace SystemTestsProject
         [TestMethod]
         public void GenerateDay3ChannelsInstanceBasedOnRealData()
         {
-            var file = Properties.Resources.day_DS_D_DH;
-            Instance instance = null;
-            using (var reader = new StringReader(file))
-            {
-                RealInstanceDataLoader loader = new RealInstanceDataLoader();
-                loader.Reader = reader;
-                instance = loader.LoadInstanceFile();
-                Assert.IsNotNull(instance);
-            }
-            RealInstanceToProblemConverter converter = new RealInstanceToProblemConverter()
-            {
-                Instance = instance,
-                TimeUnitInSeconds = 3.0,
-            };
-            converter.ConvertToProblem();
-            InstanceJsonSerializer serializer = new InstanceJsonSerializer();
-            serializer.Path = @"day_3channels_json.txt";
-            serializer.Serialize(instance);
+            Generator instanceGenerator = new Generator();
+            instanceGenerator.DataSource = new StringReader(Properties.Resources.day_DS_D_DH);
+            instanceGenerator.OutputFilename = "day_DS_D_DH_inst.json";
+            instanceGenerator.GenerateInstance();
         }
 
 
         [TestMethod]
         public void GenerateWeek3ChannelsInstanceBasedOnRealData()
         {
-            var file = Properties.Resources.week_DS_D_DH;
-            Instance instance = null;
-            using (var reader = new StringReader(file))
-            {
-                RealInstanceDataLoader loader = new RealInstanceDataLoader();
-                loader.Reader = reader;
-                instance = loader.LoadInstanceFile();
-                Assert.IsNotNull(instance);
-            }
-            RealInstanceToProblemConverter converter = new RealInstanceToProblemConverter()
-            {
-                Instance = instance,
-                TimeUnitInSeconds = 3.0,
-            };
-            converter.ConvertToProblem();
-            InstanceJsonSerializer serializer = new InstanceJsonSerializer();
-            serializer.Path = @"week_3channels_json.txt";
-            serializer.Serialize(instance);
+            Generator instanceGenerator = new Generator();
+            instanceGenerator.DataSource = new StringReader(Properties.Resources.week_DS_D_DH);
+            instanceGenerator.OutputFilename = "week_DS_D_DH_inst.json";
+            instanceGenerator.GenerateInstance();
         }
 
 
         [TestMethod]
         public void GenerateHour3ChannelsInstanceBasedOnRealData()
         {
-            var file = Properties.Resources.hour_DS_D_DH;
-            Instance instance = null;
-            using (var reader = new StringReader(file))
-            {
-                RealInstanceDataLoader loader = new RealInstanceDataLoader();
-                loader.Reader = reader;
-                instance = loader.LoadInstanceFile();
-                Assert.IsNotNull(instance);
-            }
-            RealInstanceToProblemConverter converter = new RealInstanceToProblemConverter()
-            {
-                Instance = instance,
-                TimeUnitInSeconds = 3.0,
-            };
-            converter.ConvertToProblem();
-            InstanceJsonSerializer serializer = new InstanceJsonSerializer();
-            serializer.Path = @"hour_3channels_json.txt";
-            serializer.Serialize(instance);
+            Generator instanceGenerator = new Generator();
+            instanceGenerator.DataSource = new StringReader(Properties.Resources.hour_DS_D_DH);
+            instanceGenerator.OutputFilename = "hour_DS_D_DH_inst.json";
+            instanceGenerator.GenerateInstance();
         }
 
 
         [TestMethod]
         public void GenerateMonth3ChannelsInstanceBasedOnRealData()
         {
-            var file = Properties.Resources.month_DS_D_DH;
-            Instance instance = null;
-            using (var reader = new StringReader(file))
-            {
-                RealInstanceDataLoader loader = new RealInstanceDataLoader();
-                loader.Reader = reader;
-                instance = loader.LoadInstanceFile();
-                Assert.IsNotNull(instance);
-            }
-            RealInstanceToProblemConverter converter = new RealInstanceToProblemConverter()
-            {
-                Instance = instance,
-                TimeUnitInSeconds = 3.0,
-            };
-            converter.ConvertToProblem();
-            InstanceJsonSerializer serializer = new InstanceJsonSerializer();
-            serializer.Path = @"month_3channels_json.txt";
-            serializer.Serialize(instance);
+            Generator instanceGenerator = new Generator();
+            instanceGenerator.DataSource = new StringReader(Properties.Resources.month_DS_D_DH);
+            instanceGenerator.OutputFilename = "month_DS_D_DH_inst.json";
+            instanceGenerator.GenerateInstance();
         }
 
         [TestMethod]
         public void GenerateJsonSchemaForInstance()
         {
-            JSchemaGenerator generator = new JSchemaGenerator();
-
-            generator.GenerationProviders.Add(new StringEnumGenerationProvider());
-            generator.DefaultRequired = Required.Default;
-            generator.SchemaLocationHandling = SchemaLocationHandling.Inline;
-            generator.SchemaReferenceHandling = SchemaReferenceHandling.All;
-            generator.SchemaIdGenerationHandling = SchemaIdGenerationHandling.FullTypeName;
-
-            JSchema schema = generator.Generate(typeof(Instance));
-            string json = schema.ToString();
-            StreamWriter writer = new StreamWriter(@"instance_json_schema.json");
-            writer.Write(json);
-            writer.FlushAsync();
+            Generator instanceGenerator = new Generator();
+            instanceGenerator.OutputFilename = "instance_schema.json";
+            instanceGenerator.GenerateSchema();
         }
     }
 }

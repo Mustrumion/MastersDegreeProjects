@@ -64,16 +64,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\day_DS_D_DH_inst.json" />
+    <None Include="Resources\hour_DS_D_DH_inst.json" />
+    <None Include="Resources\month_DS_D_DH_inst.json" />
+    <None Include="Resources\week_DS_D_DH_inst.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Resources\day_3channels_json.txt" />
     <Content Include="Resources\day_DS_D_DH.txt" />
-    <Content Include="Resources\hour_3channels_json.txt" />
     <Content Include="Resources\hour_DS_D_DH.txt" />
-    <Content Include="Resources\month_3channels_json.txt" />
     <Content Include="Resources\month_DS_D_DH.txt" />
-    <Content Include="Resources\week_3channels_json.txt" />
     <Content Include="Resources\week_DS_D_DH.txt" />
   </ItemGroup>
   <ItemGroup>
