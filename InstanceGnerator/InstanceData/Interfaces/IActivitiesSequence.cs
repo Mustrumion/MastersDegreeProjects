@@ -1,11 +1,11 @@
-﻿using ExampleFileReader.InstanceData.Activities;
+﻿using InstanceGenerator.InstanceData.Activities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader.InstanceData.Interfaces
+namespace InstanceGenerator.InstanceData.Interfaces
 {
     public interface IActivitiesSequence : ISpannedObject
     {

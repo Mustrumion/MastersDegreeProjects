@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CE30FF74-7A54-43EC-9485-2BA365AAA3E7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ExampleFileReader</RootNamespace>
-    <AssemblyName>ExampleFileReader</AssemblyName>
+    <RootNamespace>InstanceGenerator</RootNamespace>
+    <AssemblyName>InstanceGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

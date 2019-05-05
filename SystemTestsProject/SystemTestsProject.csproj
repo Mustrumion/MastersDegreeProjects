@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExampleFileReader\InstanceGnerator.csproj" />
+    <ProjectReference Include="..\InstanceGnerator\InstanceGnerator.csproj" />
   </ItemGroup>
 
   <ItemGroup>

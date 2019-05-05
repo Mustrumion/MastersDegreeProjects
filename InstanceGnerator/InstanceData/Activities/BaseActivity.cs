@@ -1,4 +1,4 @@
-﻿using ExampleFileReader.InstanceData.Interfaces;
+﻿using InstanceGenerator.InstanceData.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader.InstanceData.Activities
+namespace InstanceGenerator.InstanceData.Activities
 {
     public class BaseActivity : ISpannedObject
     {

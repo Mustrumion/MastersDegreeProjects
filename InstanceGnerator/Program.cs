@@ -1,12 +1,12 @@
-﻿using ExampleFileReader.DataAccess;
-using ExampleFileReader.InstanceData;
+﻿using InstanceGenerator.DataAccess;
+using InstanceGenerator.InstanceData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader
+namespace InstanceGenerator
 {
     class Program
     {

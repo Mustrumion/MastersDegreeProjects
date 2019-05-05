@@ -1,5 +1,5 @@
-﻿using ExampleFileReader.InstanceData.Activities;
-using ExampleFileReader.InstanceData.Interfaces;
+﻿using InstanceGenerator.InstanceData.Activities;
+using InstanceGenerator.InstanceData.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader.InstanceData
+namespace InstanceGenerator.InstanceData
 {
     public class Instance: ISpannedObject
     {
@@ -18,6 +18,9 @@ namespace ExampleFileReader.InstanceData
             return Channels.Values;
         }
 
+        /// <summary>
+        /// Tasks - advertisements to schedule
+        /// </summary>
         [JsonProperty(Order = 3)]
         public Dictionary<string, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<string, AdvertisementOrder>();
         public IEnumerable<AdvertisementOrder> GetBlocksOfAdsList()

@@ -1,7 +1,7 @@
-﻿using ExampleFileReader;
-using ExampleFileReader.DataAccess;
-using ExampleFileReader.InstanceData;
-using ExampleFileReader.InstanceModification;
+﻿using InstanceGenerator;
+using InstanceGenerator.DataAccess;
+using InstanceGenerator.InstanceData;
+using InstanceGenerator.InstanceModification;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace FileReaderTests
+namespace SystemTestsProject
 {
     [TestClass]
     public class SystemTests

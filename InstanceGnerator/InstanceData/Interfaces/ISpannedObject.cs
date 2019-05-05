@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader.InstanceData.Interfaces
+namespace InstanceGenerator.InstanceData.Interfaces
 {
     public interface ISpannedObject
     {

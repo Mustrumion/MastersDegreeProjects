@@ -1,5 +1,5 @@
-﻿using ExampleFileReader.InstanceData.Activities;
-using ExampleFileReader.InstanceData.Interfaces;
+﻿using InstanceGenerator.InstanceData.Activities;
+using InstanceGenerator.InstanceData.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader.InstanceData
+namespace InstanceGenerator.InstanceData
 {
     [Serializable]
     public class AdvertisementOrder

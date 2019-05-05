@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FileReaderTests.Properties {
+namespace SystemTestsProject.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FileReaderTests.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FileReaderTests.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SystemTestsProject.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,30 +63,32 @@ namespace FileReaderTests.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;StartTime&quot;: &quot;2014-04-01T00:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-04-01T23:24:00&quot;,
-        ///  &quot;Span&quot;: &quot;23:24:00&quot;,
-        ///  &quot;SpanUnits&quot;: 99,
-        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
-        ///  &quot;ChannelAmountChecksum&quot;: 3,
-        ///  &quot;ProgramAmountChecksum&quot;: 837,
-        ///  &quot;AdsAmountChecksum&quot;: 1350,
-        ///  &quot;TypesOfAds&quot;: {
+        ///  &quot;BrandConflictMatrix&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;141200&quot;: {
+        ///    &quot;519&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;141200&quot;
-        ///    },
-        ///    &quot;060702&quot;: {
-        ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;060702&quot;
-        ///    },
-        ///    &quot;011002&quot;: {
-        ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;011002&quot;
-        ///    },
-        ///    &quot;161001&quot;: {
-        ///  [rest of string was truncated]&quot;;.
+        ///      &quot;554&quot;: 0.0,
+        ///      &quot;1761&quot;: 0.0,
+        ///      &quot;1936&quot;: 0.0,
+        ///      &quot;846&quot;: 0.0,
+        ///      &quot;358&quot;: 0.0,
+        ///      &quot;1774&quot;: 0.0,
+        ///      &quot;337&quot;: 0.0,
+        ///      &quot;63&quot;: 0.0,
+        ///      &quot;1260&quot;: 0.0,
+        ///      &quot;1446&quot;: 0.0,
+        ///      &quot;1873&quot;: 0.0,
+        ///      &quot;1082&quot;: 0.0,
+        ///      &quot;1283&quot;: 0.0,
+        ///      &quot;540&quot;: 0.0,
+        ///      &quot;1203&quot;: 0.0,
+        ///      &quot;645&quot;: 0.0,
+        ///      &quot;467&quot;: 0.0,
+        ///      &quot;1724&quot;: 0.0,
+        ///      &quot;845&quot;: 0.0,
+        ///      &quot;481&quot;: 0.0,
+        ///      &quot;246&quot;: 0.0,
+        ///      &quot;1 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string day_3channels_json {
             get {
@@ -127,30 +129,33 @@ namespace FileReaderTests.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;StartTime&quot;: &quot;2014-03-05T12:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-03-05T13:00:00&quot;,
-        ///  &quot;Span&quot;: &quot;01:00:00&quot;,
-        ///  &quot;SpanUnits&quot;: 73,
-        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
-        ///  &quot;ChannelAmountChecksum&quot;: 3,
-        ///  &quot;ProgramAmountChecksum&quot;: 35,
-        ///  &quot;AdsAmountChecksum&quot;: 79,
-        ///  &quot;TypesOfAds&quot;: {
+        ///  &quot;BrandConflictMatrix&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;190303&quot;: {
+        ///    &quot;575&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;190303&quot;
+        ///      &quot;1446&quot;: 0.0,
+        ///      &quot;572&quot;: 0.0,
+        ///      &quot;1296&quot;: 0.0,
+        ///      &quot;554&quot;: 0.0,
+        ///      &quot;1283&quot;: 0.0,
+        ///      &quot;337&quot;: 1.0,
+        ///      &quot;575&quot;: 1.0,
+        ///      &quot;317&quot;: 1.0,
+        ///      &quot;1305&quot;: 1.0,
+        ///      &quot;1538&quot;: 1.0,
+        ///      &quot;1973&quot;: 1.0,
+        ///      &quot;1082&quot;: 1.0,
+        ///      &quot;519&quot;: 1.0
         ///    },
-        ///    &quot;161005&quot;: {
+        ///    &quot;1446&quot;: {
         ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;161005&quot;
-        ///    },
-        ///    &quot;090714&quot;: {
-        ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;090714&quot;
-        ///    },
-        ///    &quot;160300&quot;: {
-        ///     [rest of string was truncated]&quot;;.
+        ///      &quot;575&quot;: 0.0,
+        ///      &quot;317&quot;: 0.0,
+        ///      &quot;337&quot;: 0.0,
+        ///      &quot;572&quot;: 1.0,
+        ///      &quot;1446&quot;: 1.0,
+        ///      &quot;1296&quot;: 1.0,
+        ///      [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string hour_3channels_json {
             get {
@@ -188,6 +193,42 @@ namespace FileReaderTests.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;$id&quot;: &quot;1&quot;,
+        ///  &quot;BrandConflictMatrix&quot;: {
+        ///    &quot;$id&quot;: &quot;2&quot;,
+        ///    &quot;607&quot;: {
+        ///      &quot;$id&quot;: &quot;3&quot;,
+        ///      &quot;1&quot;: 0.0,
+        ///      &quot;1487&quot;: 0.0,
+        ///      &quot;1761&quot;: 0.0,
+        ///      &quot;1484&quot;: 0.0,
+        ///      &quot;1283&quot;: 0.0,
+        ///      &quot;577&quot;: 0.0,
+        ///      &quot;1235&quot;: 0.0,
+        ///      &quot;1568&quot;: 0.0,
+        ///      &quot;540&quot;: 0.0,
+        ///      &quot;955&quot;: 0.0,
+        ///      &quot;1082&quot;: 0.0,
+        ///      &quot;235&quot;: 0.0,
+        ///      &quot;1885&quot;: 0.0,
+        ///      &quot;2085&quot;: 0.0,
+        ///      &quot;1023&quot;: 0.0,
+        ///      &quot;1499&quot;: 0.0,
+        ///      &quot;607&quot;: 0.0,
+        ///      &quot;142&quot;: 0.0,
+        ///      &quot;815&quot;: 0.0,
+        ///      &quot;572&quot;: 0.0,
+        ///      &quot;1305&quot;: 0.0,
+        ///      &quot; [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string month_3channels_json {
+            get {
+                return ResourceManager.GetString("month_3channels_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 58 32 68
         ///5.5.2014 0:0:0
         ///5.6.2014 0:0:0
@@ -220,29 +261,32 @@ namespace FileReaderTests.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;StartTime&quot;: &quot;2014-01-01T00:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-01-08T00:00:00&quot;,
-        ///  &quot;Span&quot;: &quot;7.00:00:00&quot;,
-        ///  &quot;SpanUnits&quot;: 72,
-        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
-        ///  &quot;ChannelAmountChecksum&quot;: 2,
-        ///  &quot;ProgramAmountChecksum&quot;: 2653,
-        ///  &quot;AdsAmountChecksum&quot;: 5581,
-        ///  &quot;TypesOfAds&quot;: {
+        ///  &quot;BrandConflictMatrix&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;060300&quot;: {
+        ///    &quot;607&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;ID&quot;: &quot;060300&quot;
-        ///    },
-        ///    &quot;020304&quot;: {
-        ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;ID&quot;: &quot;020304&quot;
-        ///    },
-        ///    &quot;162006&quot;: {
-        ///      &quot;$id&quot;: &quot;5&quot;,
-        ///      &quot;ID&quot;: &quot;162006&quot;
-        ///    },
-        ///    &quot;190804&quot;: { [rest of string was truncated]&quot;;.
+        ///      &quot;1&quot;: 0.0,
+        ///      &quot;577&quot;: 0.0,
+        ///      &quot;1761&quot;: 0.0,
+        ///      &quot;1235&quot;: 0.0,
+        ///      &quot;1043&quot;: 0.0,
+        ///      &quot;142&quot;: 0.0,
+        ///      &quot;1960&quot;: 0.0,
+        ///      &quot;1568&quot;: 0.0,
+        ///      &quot;955&quot;: 0.0,
+        ///      &quot;648&quot;: 0.0,
+        ///      &quot;1499&quot;: 0.0,
+        ///      &quot;218&quot;: 0.0,
+        ///      &quot;1875&quot;: 0.0,
+        ///      &quot;1484&quot;: 0.0,
+        ///      &quot;1023&quot;: 0.0,
+        ///      &quot;1692&quot;: 0.0,
+        ///      &quot;2085&quot;: 0.0,
+        ///      &quot;845&quot;: 0.0,
+        ///      &quot;1972&quot;: 0.0,
+        ///      &quot;235&quot;: 0.0,
+        ///      &quot;519&quot;: 0.0,
+        ///      &quot; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string week_3channels_json {
             get {

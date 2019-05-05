@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace ExampleFileReader.InstanceData.Activities
+namespace InstanceGenerator.InstanceData.Activities
 {
     public class AdvertisementInstance : BaseActivity
     {

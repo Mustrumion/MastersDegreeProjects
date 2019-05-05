@@ -1,5 +1,5 @@
-﻿using ExampleFileReader.InstanceData;
-using ExampleFileReader.InstanceData.Activities;
+﻿using InstanceGenerator.InstanceData;
+using InstanceGenerator.InstanceData.Activities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader.DataAccess
+namespace InstanceGenerator.DataAccess
 {
     public class RealInstanceDataLoader
     {

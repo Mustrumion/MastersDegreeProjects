@@ -1,13 +1,13 @@
-﻿using ExampleFileReader.InstanceData;
-using ExampleFileReader.InstanceData.Activities;
-using ExampleFileReader.InstanceData.Interfaces;
+﻿using InstanceGenerator.InstanceData;
+using InstanceGenerator.InstanceData.Activities;
+using InstanceGenerator.InstanceData.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleFileReader.InstanceModification
+namespace InstanceGenerator.InstanceModification
 {
     public class RealInstanceToProblemConverter
     {
