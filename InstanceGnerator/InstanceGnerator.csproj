@@ -62,6 +62,7 @@
     <Compile Include="InstanceData\Channel.cs" />
     <Compile Include="InstanceData\Instance.cs" />
     <Compile Include="InstanceData\TypeOfAd.cs" />
+    <Compile Include="InstanceGenerator.cs" />
     <Compile Include="InstanceModification\InstanceCorrector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

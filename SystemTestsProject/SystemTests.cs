@@ -143,10 +143,9 @@ namespace SystemTestsProject
             
             generator.GenerationProviders.Add(new StringEnumGenerationProvider());
             generator.DefaultRequired = Required.Default;
-            generator.SchemaLocationHandling = SchemaLocationHandling.Definitions;
-            generator.SchemaReferenceHandling = SchemaReferenceHandling.All;
+            generator.SchemaLocationHandling = SchemaLocationHandling.Inline;
+            generator.SchemaReferenceHandling = SchemaReferenceHandling.Objects;
             generator.SchemaIdGenerationHandling = SchemaIdGenerationHandling.TypeName;
-            generator.ContractResolver = new CamelCasePropertyNamesContractResolver();
             
             JSchema schema = generator.Generate(typeof(Instance));
             string json = schema.ToString();

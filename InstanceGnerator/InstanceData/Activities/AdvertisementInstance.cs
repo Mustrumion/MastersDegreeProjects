@@ -12,7 +12,7 @@ namespace InstanceGenerator.InstanceData.Activities
     {
         private AdvertisementOrder _adOrder;
         private TypeOfAd _type;
-        private OwnerOfAd _owner;
+        private Brand _owner;
 
         [JsonProperty(Order = -2)]
         public double Profit { get; set; }
@@ -47,7 +47,7 @@ namespace InstanceGenerator.InstanceData.Activities
             }
         }
 
-        public OwnerOfAd Owner
+        public Brand Owner
         {
             get => _owner;
             set

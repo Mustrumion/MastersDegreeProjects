@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InstanceGenerator.InstanceData
 {
-    public class OwnerOfAd
+    public class Brand
     {
         [JsonIgnore]
         public List<AdvertisementInstance> Ads { get; set; } = new List<AdvertisementInstance>();

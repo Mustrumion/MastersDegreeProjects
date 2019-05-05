@@ -219,6 +219,13 @@ namespace InstanceGenerator.InstanceModification
             order.MaxPerBlock = Math.Max(maxAiredInBlock + MaxAdsPerBreakOffset, 1);
         }
 
+
+        public void GenerateBreakToTypeCompatibilityMatrix()
+        {
+
+        }
+
+
         private void GenerateAdOrderData(AdvertisementOrder order)
         {
             order.Gain = order.AdvertisementInstances.Sum(a => a.Profit);
