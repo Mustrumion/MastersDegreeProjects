@@ -61,37 +61,13 @@ namespace FileReaderTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 94 16 4
-        ///1.4.2014 0:0:0
-        ///1.4.2014 23:23:59
-        ///%
-        ///3
-        ///837
-        ///1350
-        ///%
-        ///94
-        ///2014-03-31 23:16:33
-        ///P 953 bac 115115.84 73445 176220 23759.58 115115.84 73445 176220 23759.58
-        ///A 5
-        ///R 30 bac 8402 141200 7800 0 1725 379 97448.0 97448.0
-        ///R 15 bac 8402 060702 5460 0 1968 561 97448.0 97448.0
-        ///R 10 bac 8402 011002 4290 0 3994 494 97448.0 97448.0
-        ///R 30 bac 8402 161001 7800 0 3435 0 99311.33 99311.33
-        ///R 30 bac 8402 180300 7800 0 3187 1283 100243.0 100243.0
-        ///R 30 bac 8402 001500 7800 0 1566 1082 101174.67 101174.67
-        ///R 21 bac 84 [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string day_3channels {
-            get {
-                return ResourceManager.GetString("day_3channels", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
         ///  &quot;StartTime&quot;: &quot;2014-04-01T00:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-04-01T23:23:59&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-04-01T23:24:00&quot;,
+        ///  &quot;Span&quot;: &quot;23:24:00&quot;,
+        ///  &quot;SpanUnits&quot;: 99,
+        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
         ///  &quot;ChannelAmountChecksum&quot;: 3,
         ///  &quot;ProgramAmountChecksum&quot;: 837,
         ///  &quot;AdsAmountChecksum&quot;: 1350,
@@ -110,11 +86,7 @@ namespace FileReaderTests.Properties {
         ///      &quot;ID&quot;: &quot;011002&quot;
         ///    },
         ///    &quot;161001&quot;: {
-        ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;161001&quot;
-        ///    },
-        ///    &quot;180300&quot;: {
-        ///      &quot; [rest of string was truncated]&quot;;.
+        ///  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string day_3channels_json {
             get {
@@ -123,34 +95,32 @@ namespace FileReaderTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7 51 53
-        ///5.3.2014 12:0:0
-        ///5.3.2014 13:0:1
+        ///   Looks up a localized string similar to 58 32 68
+        ///5.5.2014 0:0:0
+        ///6.5.2014 0:0:0
         ///%
         ///3
-        ///35
-        ///79
+        ///862
+        ///1619
         ///%
-        ///7
-        ///2014-03-05 11:59:48
-        ///A 28
-        ///P 813 idd 0.0 0 0 0.0 0.0 0 0 0.0
-        ///A 45
-        ///R 45 idd 5176 190303 525 0 3886 575 0.0 0.0
-        ///R 30 idd 5176 161005 350 0 252 1269 0.0 0.0
-        ///R 30 idd 5176 090714 350 0 3904 1875 0.0 0.0
-        ///R 30 idd 5176 160300 350 0 3437 0 0.0 0.0
-        ///R 30 idd 5176 111301 350 0 2577 66 0.0 0.0
-        ///R 30 idd 5176 161504 350 0 4169 480 0.0 0.0
-        ///R 15 idd 5176 190900 245 0 3850 1566 0.0 0.0
-        ///A 40
-        ///P 431 idd 0.0 0 0 0.0 0.0 0 0 0.0
-        ///A 20
-        ///R 90 idd 5177 050104 [rest of string was truncated]&quot;;.
+        ///58
+        ///2014-05-04 23:59:48
+        ///R 3 bgd 10622 161005 1225 5 4328 644 0.0 0.0
+        ///A 38
+        ///P 711 bgd 4592.71 0 19525 7492.28 4592.71 0 19525 7492.28
+        ///A 33
+        ///R 20 bgd 10623 100402 1152 0 3125 441 0.0 0.0
+        ///R 15 bgd 10623 111303 896 0 590 554 0.0 0.0
+        ///R 30 bgd 10623 141900 1280 0 2953 694 0.0 0.0
+        ///R 20 bgd 10623 191103 1152 0 3519 1665 0.0 0.0
+        ///R 20 bgd 10623 161007 1152 0 231 1536 0.0 0.0
+        ///R 15 bgd 10623 191000 896 0 3499 1665 0.0 0.0
+        ///A 64
+        ///P 442 bgd 0.0 0 0 0.0 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string hour_3channels {
+        internal static string day_DS_D_DH {
             get {
-                return ResourceManager.GetString("hour_3channels", resourceCulture);
+                return ResourceManager.GetString("day_DS_D_DH", resourceCulture);
             }
         }
         
@@ -158,7 +128,10 @@ namespace FileReaderTests.Properties {
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
         ///  &quot;StartTime&quot;: &quot;2014-03-05T12:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-03-05T13:00:01&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-03-05T13:00:00&quot;,
+        ///  &quot;Span&quot;: &quot;01:00:00&quot;,
+        ///  &quot;SpanUnits&quot;: 73,
+        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
         ///  &quot;ChannelAmountChecksum&quot;: 3,
         ///  &quot;ProgramAmountChecksum&quot;: 35,
         ///  &quot;AdsAmountChecksum&quot;: 79,
@@ -177,11 +150,7 @@ namespace FileReaderTests.Properties {
         ///      &quot;ID&quot;: &quot;090714&quot;
         ///    },
         ///    &quot;160300&quot;: {
-        ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;160300&quot;
-        ///    },
-        ///    &quot;111301&quot;: {
-        ///      &quot;$id [rest of string was truncated]&quot;;.
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string hour_3channels_json {
             get {
@@ -190,29 +159,61 @@ namespace FileReaderTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 94 21
-        ///1.1.2014 0:0:0
-        ///7.1.2014 23:59:59
+        ///   Looks up a localized string similar to 58 32 68
+        ///5.5.2014 18:0:0
+        ///5.5.2014 19:0:0
         ///%
-        ///2
-        ///2653
-        ///5581
+        ///3
+        ///39
+        ///101
         ///%
-        ///94
-        ///2014-01-01 00:50:26
-        ///R 8 dab 1 060300 13250 4 2976 1802 713040.5 586577.55
-        ///R 8 dab 1 020304 13250 4 530 54 713040.5 586577.55
-        ///A 5
-        ///R 30 dab 2 162006 26500 5 577 577 704018.0 578777.72
-        ///R 20 dab 2 190804 23850 5 2553 1885 698552.5 574877.81
-        ///R 30 dab 2 180300 26500 5 814 996 690280.0 573005.09
-        ///R 20 dab 2 040700 23850 5 3522 1665 679854.0 566218.86
-        ///R 15 dab 2 180101 18550 5 4176 1711 679854.0 566218.86
-        ///R 15 dab 2 180105 18550 5 4178 1711  [rest of string was truncated]&quot;;.
+        ///58
+        ///2014-05-05 17:59:56
+        ///A 7
+        ///P 560 bgd 25059.09 12978 28864 5376.16 25059.09 12978 28864 5376.16
+        ///A 31
+        ///R 30 bgd 10677 050100 1400 0 3412 519 33766.0 33766.0
+        ///R 30 bgd 10677 030100 1400 0 3806 572 36217.0 36217.0
+        ///R 15 bgd 10677 190301 980 0 3887 575 36203.67 36203.67
+        ///R 15 bgd 10677 050101 980 0 2737 1446 39873.5 39873.5
+        ///R 15 bgd 10677 160600 980 0 3411 317 39873.5 39873.5
+        ///R 15 bgd 10677 011005 980 0 3928 1936 39873.5 39873.5
+        ///A 11
+        ///P 741 bgd [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string week_3channel {
+        internal static string hour_DS_D_DH {
             get {
-                return ResourceManager.GetString("week_3channel", resourceCulture);
+                return ResourceManager.GetString("hour_DS_D_DH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 58 32 68
+        ///5.5.2014 0:0:0
+        ///5.6.2014 0:0:0
+        ///%
+        ///3
+        ///26654
+        ///51241
+        ///%
+        ///58
+        ///2014-05-04 23:59:48
+        ///R 3 bgd 10622 161005 1225 5 4328 644 0.0 0.0
+        ///A 38
+        ///P 711 bgd 4592.71 0 19525 7492.28 4592.71 0 19525 7492.28
+        ///A 33
+        ///R 20 bgd 10623 100402 1152 0 3125 441 0.0 0.0
+        ///R 15 bgd 10623 111303 896 0 590 554 0.0 0.0
+        ///R 30 bgd 10623 141900 1280 0 2953 694 0.0 0.0
+        ///R 20 bgd 10623 191103 1152 0 3519 1665 0.0 0.0
+        ///R 20 bgd 10623 161007 1152 0 231 1536 0.0 0.0
+        ///R 15 bgd 10623 191000 896 0 3499 1665 0.0 0.0
+        ///A 64
+        ///P 442 bgd 0.0 0 0  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string month_DS_D_DH {
+            get {
+                return ResourceManager.GetString("month_DS_D_DH", resourceCulture);
             }
         }
         
@@ -220,7 +221,10 @@ namespace FileReaderTests.Properties {
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
         ///  &quot;StartTime&quot;: &quot;2014-01-01T00:00:00&quot;,
-        ///  &quot;EndTime&quot;: &quot;2014-01-07T23:59:59&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-01-08T00:00:00&quot;,
+        ///  &quot;Span&quot;: &quot;7.00:00:00&quot;,
+        ///  &quot;SpanUnits&quot;: 72,
+        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
         ///  &quot;ChannelAmountChecksum&quot;: 2,
         ///  &quot;ProgramAmountChecksum&quot;: 2653,
         ///  &quot;AdsAmountChecksum&quot;: 5581,
@@ -238,16 +242,41 @@ namespace FileReaderTests.Properties {
         ///      &quot;$id&quot;: &quot;5&quot;,
         ///      &quot;ID&quot;: &quot;162006&quot;
         ///    },
-        ///    &quot;190804&quot;: {
-        ///      &quot;$id&quot;: &quot;6&quot;,
-        ///      &quot;ID&quot;: &quot;190804&quot;
-        ///    },
-        ///    &quot;180300&quot;: {
-        ///       [rest of string was truncated]&quot;;.
+        ///    &quot;190804&quot;: { [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string week_3channels_json {
             get {
                 return ResourceManager.GetString("week_3channels_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 58 32 68
+        ///5.5.2014 0:0:0
+        ///12.5.2014 0:0:0
+        ///%
+        ///3
+        ///6023
+        ///11702
+        ///%
+        ///58
+        ///2014-05-04 23:59:48
+        ///R 3 bgd 10622 161005 1225 5 4328 644 0.0 0.0
+        ///A 38
+        ///P 711 bgd 4592.71 0 19525 7492.28 4592.71 0 19525 7492.28
+        ///A 33
+        ///R 20 bgd 10623 100402 1152 0 3125 441 0.0 0.0
+        ///R 15 bgd 10623 111303 896 0 590 554 0.0 0.0
+        ///R 30 bgd 10623 141900 1280 0 2953 694 0.0 0.0
+        ///R 20 bgd 10623 191103 1152 0 3519 1665 0.0 0.0
+        ///R 20 bgd 10623 161007 1152 0 231 1536 0.0 0.0
+        ///R 15 bgd 10623 191000 896 0 3499 1665 0.0 0.0
+        ///A 64
+        ///P 442 bgd 0.0 0 0  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string week_DS_D_DH {
+            get {
+                return ResourceManager.GetString("week_DS_D_DH", resourceCulture);
             }
         }
     }

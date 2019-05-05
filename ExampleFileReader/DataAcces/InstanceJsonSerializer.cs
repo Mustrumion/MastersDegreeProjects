@@ -29,7 +29,7 @@ namespace ExampleFileReader.DataAccess
 
             JsonSerializer ser = JsonSerializer.Create(settings);
             ser.Serialize(Writer, instance);
-            Writer.Flush();
+            Writer.FlushAsync();
         }
 
         public Instance Deserialize()

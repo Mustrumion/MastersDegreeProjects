@@ -1,5 +1,6 @@
 ﻿using ExampleFileReader.InstanceData.Activities;
 using ExampleFileReader.InstanceData.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,14 @@ using System.Threading.Tasks;
 namespace ExampleFileReader.InstanceData
 {
     [Serializable]
-    public class AdvertisementOrder 
+    public class AdvertisementOrder
     {
-        public List<AdvertisementInstance> Advertisements { get; set; } = new List<AdvertisementInstance>();
+        [JsonProperty(Order = 1)]
+        public List<AdvertisementInstance> AdvertisementInstances { get; set; } = new List<AdvertisementInstance>();
 
         public string ID { get; set; }
 
-        public int UnitSpan { get; set; }
+        public int AdSpanUnits { get; set; }
         public TimeSpan AdSpan { get; set; }
 
         public double Gain { get; set; }
@@ -27,14 +29,14 @@ namespace ExampleFileReader.InstanceData
         public int MinJobsBetweenSame { get; set; }
 
         public DateTime DueTime { get; set; }
-        public double LossPerDay { get; set; }
+        public double OverdueCostParameter { get; set; }
 
         public TypeOfAd Type { get; set; }
         public OwnerOfAd Owner { get; set; }
        
         public void AddAdvertisement(AdvertisementInstance advertisement)
         {
-            Advertisements.Add(advertisement);
+            AdvertisementInstances.Add(advertisement);
             if(advertisement.AdvertisementOrder != this)
             {
                 advertisement.AdvertisementOrder = this;

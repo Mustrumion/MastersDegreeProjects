@@ -24,6 +24,8 @@ namespace ExampleFileReader.InstanceData
         {
             return AdOrders.Values;
         }
+        
+        public Dictionary<string, Dictionary<string, double>> BrandConflictMatrix { get; set; }
 
         public AdvertisementOrder GetOrAddOrderOfAds(string advertisementId)
         {

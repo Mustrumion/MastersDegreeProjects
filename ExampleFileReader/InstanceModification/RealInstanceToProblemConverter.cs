@@ -182,7 +182,7 @@ namespace ExampleFileReader.InstanceModification
         private void CountMinTimesAired(AdvertisementOrder order)
         {
             TimeSpan sumSpan = new TimeSpan(0, 0, 0);
-            foreach(AdvertisementInstance ad in order.Advertisements)
+            foreach(AdvertisementInstance ad in order.AdvertisementInstances)
             {
                 sumSpan += ad.Span;
             }
@@ -192,9 +192,9 @@ namespace ExampleFileReader.InstanceModification
 
         private void GenerateSelfIncompatibilityData(AdvertisementOrder order)
         {
-            int minSelfInterval = int.MaxValue;
+            int minSelfInterval = 999999 - MinAdsInBetweenSameOffset;
             int maxAiredInBlock = 0;
-            foreach(var ad in order.Advertisements)
+            foreach(var ad in order.AdvertisementInstances)
             {
                 var adsInThisBreak = ad.Break.Advertisements;
                 int indexStarting = adsInThisBreak.IndexOf(ad);
@@ -215,25 +215,31 @@ namespace ExampleFileReader.InstanceModification
                     maxAiredInBlock = times;
                 }
             }
+            order.MinJobsBetweenSame = Math.Max(minSelfInterval + MinAdsInBetweenSameOffset, 0);
+            order.MaxPerBlock = Math.Max(maxAiredInBlock + MaxAdsPerBreakOffset, 1);
         }
 
         private void GenerateAdOrderData(AdvertisementOrder order)
         {
-            order.Gain = order.Advertisements.Sum(a => a.Profit);
-            order.DueTime = order.Advertisements.OrderBy(a => a.EndTime).Last().EndTime + DueTimeOffset;
-            order.MinViewership = order.Advertisements.Sum(a => a.Viewers);
+            order.Gain = order.AdvertisementInstances.Sum(a => a.Profit);
+            order.DueTime = order.AdvertisementInstances.OrderBy(a => a.EndTime).Last().EndTime + DueTimeOffset;
+            order.MinViewership = order.AdvertisementInstances.Sum(a => a.Viewers);
             //Ads with same advertisement ID had different spans in real data, we choose the most frequent one here
-            var modeSpanGroup = order.Advertisements.ToLookup(a => a.SpanUnits).OrderBy(cat => cat.Count()).Last();
+            var modeSpanGroup = order.AdvertisementInstances.ToLookup(a => a.SpanUnits).OrderBy(cat => cat.Count()).Last();
             order.AdSpan = modeSpanGroup.First().Span;
+            order.AdSpanUnits = modeSpanGroup.First().SpanUnits;
             //As a consequence we count the times aired requirements based on total span and above chosen single ad span
             CountMinTimesAired(order);
-            order.MinBeginingsProportion = order.Advertisements.Where(a => a.Break.Advertisements.First() == a).Count();
-            order.MinBeginingsProportion /= order.Advertisements.Count();
+            order.MinBeginingsProportion = order.AdvertisementInstances.Where(a => a.Break.Advertisements.First() == a).Count();
+            order.MinBeginingsProportion /= order.AdvertisementInstances.Count();
             order.MinBeginingsProportion *= MinBeginingsProportionMultiplier;
-            order.MinEndsProportion = order.Advertisements.Where(a => a.Break.Advertisements.Last() == a).Count();
-            order.MinEndsProportion /= order.Advertisements.Count();
+            order.MinEndsProportion = order.AdvertisementInstances.Where(a => a.Break.Advertisements.Last() == a).Count();
+            order.MinEndsProportion /= order.AdvertisementInstances.Count();
             order.MinEndsProportion *= MinEndsProportionMultiplier;
+            order.Type = order.AdvertisementInstances[0].Type;
+            order.Owner = order.AdvertisementInstances[0].Owner;
             GenerateSelfIncompatibilityData(order);
+            order.OverdueCostParameter = order.Gain;
         }
     }
 }
