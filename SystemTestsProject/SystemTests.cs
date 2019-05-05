@@ -140,13 +140,13 @@ namespace SystemTestsProject
         public void GenerateJsonSchemaForInstance()
         {
             JSchemaGenerator generator = new JSchemaGenerator();
-            
+
             generator.GenerationProviders.Add(new StringEnumGenerationProvider());
             generator.DefaultRequired = Required.Default;
             generator.SchemaLocationHandling = SchemaLocationHandling.Inline;
             generator.SchemaReferenceHandling = SchemaReferenceHandling.All;
             generator.SchemaIdGenerationHandling = SchemaIdGenerationHandling.FullTypeName;
-            
+
             JSchema schema = generator.Generate(typeof(Instance));
             string json = schema.ToString();
             StreamWriter writer = new StreamWriter(@"instance_json_schema.json");

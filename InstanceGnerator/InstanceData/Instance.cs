@@ -12,10 +12,15 @@ namespace InstanceGenerator.InstanceData
 {
     public class Instance: ISpannedObject
     {
+        [Description("Instance begining in ISO 8601 UTC format.")]
         public DateTime StartTime { get; set; }
+        [Description("Instance end in ISO 8601 UTC format.")]
         public DateTime EndTime { get; set; }
+        [Description("Instance span in '[d.]hh:mm:ss' format (the part in [] is optional).")]
         public TimeSpan Span { get; set; }
+        [Description("Instance span in units.")]
         public int SpanUnits { get; set; }
+        [Description("Chosen unit size in seconds.")]
         public double UnitSizeInSeconds { get; set; }
         
         public int ChannelAmountChecksum { get; set; }

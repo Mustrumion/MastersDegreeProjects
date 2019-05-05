@@ -63,32 +63,31 @@ namespace SystemTestsProject.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;BrandConflictMatrix&quot;: {
+        ///  &quot;StartTime&quot;: &quot;2014-05-05T00:00:00&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-05-06T00:00:00&quot;,
+        ///  &quot;Span&quot;: &quot;1.00:00:00&quot;,
+        ///  &quot;SpanUnits&quot;: 28800,
+        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
+        ///  &quot;ChannelAmountChecksum&quot;: 3,
+        ///  &quot;TypesOfAds&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;519&quot;: {
+        ///    &quot;161005&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;554&quot;: 0.0,
-        ///      &quot;1761&quot;: 0.0,
-        ///      &quot;1936&quot;: 0.0,
-        ///      &quot;846&quot;: 0.0,
-        ///      &quot;358&quot;: 0.0,
-        ///      &quot;1774&quot;: 0.0,
-        ///      &quot;337&quot;: 0.0,
-        ///      &quot;63&quot;: 0.0,
-        ///      &quot;1260&quot;: 0.0,
-        ///      &quot;1446&quot;: 0.0,
-        ///      &quot;1873&quot;: 0.0,
-        ///      &quot;1082&quot;: 0.0,
-        ///      &quot;1283&quot;: 0.0,
-        ///      &quot;540&quot;: 0.0,
-        ///      &quot;1203&quot;: 0.0,
-        ///      &quot;645&quot;: 0.0,
-        ///      &quot;467&quot;: 0.0,
-        ///      &quot;1724&quot;: 0.0,
-        ///      &quot;845&quot;: 0.0,
-        ///      &quot;481&quot;: 0.0,
-        ///      &quot;246&quot;: 0.0,
-        ///      &quot;1 [rest of string was truncated]&quot;;.
+        ///      &quot;ID&quot;: &quot;161005&quot;
+        ///    },
+        ///    &quot;100402&quot;: {
+        ///      &quot;$id&quot;: &quot;4&quot;,
+        ///      &quot;ID&quot;: &quot;100402&quot;
+        ///    },
+        ///    &quot;111303&quot;: {
+        ///      &quot;$id&quot;: &quot;5&quot;,
+        ///      &quot;ID&quot;: &quot;111303&quot;
+        ///    },
+        ///    &quot;141900&quot;: {
+        ///      &quot;$id&quot;: &quot;6&quot;,
+        ///      &quot;ID&quot;: &quot;141900&quot;
+        ///    },
+        ///    &quot;19110 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string day_3channels_json {
             get {
@@ -129,33 +128,31 @@ namespace SystemTestsProject.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;BrandConflictMatrix&quot;: {
+        ///  &quot;StartTime&quot;: &quot;2014-05-05T18:00:00&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-05-05T19:00:00&quot;,
+        ///  &quot;Span&quot;: &quot;01:00:00&quot;,
+        ///  &quot;SpanUnits&quot;: 1200,
+        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
+        ///  &quot;ChannelAmountChecksum&quot;: 3,
+        ///  &quot;TypesOfAds&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;575&quot;: {
+        ///    &quot;050100&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;1446&quot;: 0.0,
-        ///      &quot;572&quot;: 0.0,
-        ///      &quot;1296&quot;: 0.0,
-        ///      &quot;554&quot;: 0.0,
-        ///      &quot;1283&quot;: 0.0,
-        ///      &quot;337&quot;: 1.0,
-        ///      &quot;575&quot;: 1.0,
-        ///      &quot;317&quot;: 1.0,
-        ///      &quot;1305&quot;: 1.0,
-        ///      &quot;1538&quot;: 1.0,
-        ///      &quot;1973&quot;: 1.0,
-        ///      &quot;1082&quot;: 1.0,
-        ///      &quot;519&quot;: 1.0
+        ///      &quot;ID&quot;: &quot;050100&quot;
         ///    },
-        ///    &quot;1446&quot;: {
+        ///    &quot;030100&quot;: {
         ///      &quot;$id&quot;: &quot;4&quot;,
-        ///      &quot;575&quot;: 0.0,
-        ///      &quot;317&quot;: 0.0,
-        ///      &quot;337&quot;: 0.0,
-        ///      &quot;572&quot;: 1.0,
-        ///      &quot;1446&quot;: 1.0,
-        ///      &quot;1296&quot;: 1.0,
-        ///      [rest of string was truncated]&quot;;.
+        ///      &quot;ID&quot;: &quot;030100&quot;
+        ///    },
+        ///    &quot;190301&quot;: {
+        ///      &quot;$id&quot;: &quot;5&quot;,
+        ///      &quot;ID&quot;: &quot;190301&quot;
+        ///    },
+        ///    &quot;050101&quot;: {
+        ///      &quot;$id&quot;: &quot;6&quot;,
+        ///      &quot;ID&quot;: &quot;050101&quot;
+        ///    },
+        ///    &quot;160600&quot;: [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string hour_3channels_json {
             get {
@@ -195,32 +192,31 @@ namespace SystemTestsProject.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;BrandConflictMatrix&quot;: {
+        ///  &quot;StartTime&quot;: &quot;2014-05-05T00:00:00&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-06-05T00:00:00&quot;,
+        ///  &quot;Span&quot;: &quot;31.00:00:00&quot;,
+        ///  &quot;SpanUnits&quot;: 892800,
+        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
+        ///  &quot;ChannelAmountChecksum&quot;: 3,
+        ///  &quot;TypesOfAds&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;607&quot;: {
+        ///    &quot;161005&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;1&quot;: 0.0,
-        ///      &quot;1487&quot;: 0.0,
-        ///      &quot;1761&quot;: 0.0,
-        ///      &quot;1484&quot;: 0.0,
-        ///      &quot;1283&quot;: 0.0,
-        ///      &quot;577&quot;: 0.0,
-        ///      &quot;1235&quot;: 0.0,
-        ///      &quot;1568&quot;: 0.0,
-        ///      &quot;540&quot;: 0.0,
-        ///      &quot;955&quot;: 0.0,
-        ///      &quot;1082&quot;: 0.0,
-        ///      &quot;235&quot;: 0.0,
-        ///      &quot;1885&quot;: 0.0,
-        ///      &quot;2085&quot;: 0.0,
-        ///      &quot;1023&quot;: 0.0,
-        ///      &quot;1499&quot;: 0.0,
-        ///      &quot;607&quot;: 0.0,
-        ///      &quot;142&quot;: 0.0,
-        ///      &quot;815&quot;: 0.0,
-        ///      &quot;572&quot;: 0.0,
-        ///      &quot;1305&quot;: 0.0,
-        ///      &quot; [rest of string was truncated]&quot;;.
+        ///      &quot;ID&quot;: &quot;161005&quot;
+        ///    },
+        ///    &quot;100402&quot;: {
+        ///      &quot;$id&quot;: &quot;4&quot;,
+        ///      &quot;ID&quot;: &quot;100402&quot;
+        ///    },
+        ///    &quot;111303&quot;: {
+        ///      &quot;$id&quot;: &quot;5&quot;,
+        ///      &quot;ID&quot;: &quot;111303&quot;
+        ///    },
+        ///    &quot;141900&quot;: {
+        ///      &quot;$id&quot;: &quot;6&quot;,
+        ///      &quot;ID&quot;: &quot;141900&quot;
+        ///    },
+        ///    &quot;191 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string month_3channels_json {
             get {
@@ -261,32 +257,31 @@ namespace SystemTestsProject.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;$id&quot;: &quot;1&quot;,
-        ///  &quot;BrandConflictMatrix&quot;: {
+        ///  &quot;StartTime&quot;: &quot;2014-05-05T00:00:00&quot;,
+        ///  &quot;EndTime&quot;: &quot;2014-05-12T00:00:00&quot;,
+        ///  &quot;Span&quot;: &quot;7.00:00:00&quot;,
+        ///  &quot;SpanUnits&quot;: 201600,
+        ///  &quot;UnitSizeInSeconds&quot;: 3.0,
+        ///  &quot;ChannelAmountChecksum&quot;: 3,
+        ///  &quot;TypesOfAds&quot;: {
         ///    &quot;$id&quot;: &quot;2&quot;,
-        ///    &quot;607&quot;: {
+        ///    &quot;161005&quot;: {
         ///      &quot;$id&quot;: &quot;3&quot;,
-        ///      &quot;1&quot;: 0.0,
-        ///      &quot;577&quot;: 0.0,
-        ///      &quot;1761&quot;: 0.0,
-        ///      &quot;1235&quot;: 0.0,
-        ///      &quot;1043&quot;: 0.0,
-        ///      &quot;142&quot;: 0.0,
-        ///      &quot;1960&quot;: 0.0,
-        ///      &quot;1568&quot;: 0.0,
-        ///      &quot;955&quot;: 0.0,
-        ///      &quot;648&quot;: 0.0,
-        ///      &quot;1499&quot;: 0.0,
-        ///      &quot;218&quot;: 0.0,
-        ///      &quot;1875&quot;: 0.0,
-        ///      &quot;1484&quot;: 0.0,
-        ///      &quot;1023&quot;: 0.0,
-        ///      &quot;1692&quot;: 0.0,
-        ///      &quot;2085&quot;: 0.0,
-        ///      &quot;845&quot;: 0.0,
-        ///      &quot;1972&quot;: 0.0,
-        ///      &quot;235&quot;: 0.0,
-        ///      &quot;519&quot;: 0.0,
-        ///      &quot; [rest of string was truncated]&quot;;.
+        ///      &quot;ID&quot;: &quot;161005&quot;
+        ///    },
+        ///    &quot;100402&quot;: {
+        ///      &quot;$id&quot;: &quot;4&quot;,
+        ///      &quot;ID&quot;: &quot;100402&quot;
+        ///    },
+        ///    &quot;111303&quot;: {
+        ///      &quot;$id&quot;: &quot;5&quot;,
+        ///      &quot;ID&quot;: &quot;111303&quot;
+        ///    },
+        ///    &quot;141900&quot;: {
+        ///      &quot;$id&quot;: &quot;6&quot;,
+        ///      &quot;ID&quot;: &quot;141900&quot;
+        ///    },
+        ///    &quot;1911 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string week_3channels_json {
             get {
