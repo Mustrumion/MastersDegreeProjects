@@ -12,8 +12,9 @@ namespace InstanceGenerator.InstanceData
     [Serializable]
     public class AdvertisementOrder
     {
-        [JsonProperty(Order = 1)]
-        public List<AdvertisementInstance> AdvertisementInstances { get; set; } = new List<AdvertisementInstance>();
+        //[JsonProperty(Order = 1)]
+        [JsonIgnore]
+        public HashSet<AdvertisementInstance> AdvertisementInstances { get; set; } = new HashSet<AdvertisementInstance>();
 
         public string ID { get; set; }
 

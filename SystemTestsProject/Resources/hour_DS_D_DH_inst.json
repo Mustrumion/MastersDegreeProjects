@@ -1030,117 +1030,10 @@
       },
       "Brand": {
         "$ref": "52"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "166",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:09:54",
-          "EndTime": "2014-05-05T18:10:24",
-          "Profit": 1400.0,
-          "Viewers": 33766.0,
-          "AdvertisementOrder": {
-            "$ref": "165"
-          },
-          "AdOrderID": "3412",
-          "Brand": {
-            "$ref": "52"
-          },
-          "OwnerID": "519",
-          "Type": {
-            "$ref": "3"
-          },
-          "TypeID": "050100"
-        },
-        {
-          "$id": "167",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:43:54",
-          "EndTime": "2014-05-05T18:44:24",
-          "Profit": 1400.0,
-          "Viewers": 33326.0,
-          "AdvertisementOrder": {
-            "$ref": "165"
-          },
-          "AdOrderID": "3412",
-          "Brand": {
-            "$ref": "52"
-          },
-          "OwnerID": "519",
-          "Type": {
-            "$ref": "3"
-          },
-          "TypeID": "050100"
-        },
-        {
-          "$id": "168",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:58:24",
-          "EndTime": "2014-05-05T18:58:54",
-          "Profit": 1400.0,
-          "Viewers": 12978.0,
-          "AdvertisementOrder": {
-            "$ref": "165"
-          },
-          "AdOrderID": "3412",
-          "Brand": {
-            "$ref": "52"
-          },
-          "OwnerID": "519",
-          "Type": {
-            "$ref": "3"
-          },
-          "TypeID": "050100"
-        },
-        {
-          "$id": "169",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:25:35",
-          "EndTime": "2014-05-05T18:26:05",
-          "Profit": 2570.0,
-          "Viewers": 81004.0,
-          "AdvertisementOrder": {
-            "$ref": "165"
-          },
-          "AdOrderID": "3412",
-          "Brand": {
-            "$ref": "52"
-          },
-          "OwnerID": "519",
-          "Type": {
-            "$ref": "3"
-          },
-          "TypeID": "050100"
-        },
-        {
-          "$id": "170",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:48:41",
-          "EndTime": "2014-05-05T18:49:11",
-          "Profit": 2570.0,
-          "Viewers": 108550.33,
-          "AdvertisementOrder": {
-            "$ref": "165"
-          },
-          "AdOrderID": "3412",
-          "Brand": {
-            "$ref": "52"
-          },
-          "OwnerID": "519",
-          "Type": {
-            "$ref": "3"
-          },
-          "TypeID": "050100"
-        }
-      ]
+      }
     },
     "3806": {
-      "$id": "171",
+      "$id": "166",
       "ID": "3806",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -1158,33 +1051,10 @@
       },
       "Brand": {
         "$ref": "53"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "172",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:10:24",
-          "EndTime": "2014-05-05T18:10:54",
-          "Profit": 1400.0,
-          "Viewers": 36217.0,
-          "AdvertisementOrder": {
-            "$ref": "171"
-          },
-          "AdOrderID": "3806",
-          "Brand": {
-            "$ref": "53"
-          },
-          "OwnerID": "572",
-          "Type": {
-            "$ref": "4"
-          },
-          "TypeID": "030100"
-        }
-      ]
+      }
     },
     "3887": {
-      "$id": "173",
+      "$id": "167",
       "ID": "3887",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -1202,75 +1072,10 @@
       },
       "Brand": {
         "$ref": "54"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "174",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:10:54",
-          "EndTime": "2014-05-05T18:11:09",
-          "Profit": 980.0,
-          "Viewers": 36203.67,
-          "AdvertisementOrder": {
-            "$ref": "173"
-          },
-          "AdOrderID": "3887",
-          "Brand": {
-            "$ref": "54"
-          },
-          "OwnerID": "575",
-          "Type": {
-            "$ref": "5"
-          },
-          "TypeID": "190301"
-        },
-        {
-          "$id": "175",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:26:09",
-          "EndTime": "2014-05-05T18:26:24",
-          "Profit": 980.0,
-          "Viewers": 30690.0,
-          "AdvertisementOrder": {
-            "$ref": "173"
-          },
-          "AdOrderID": "3887",
-          "Brand": {
-            "$ref": "54"
-          },
-          "OwnerID": "575",
-          "Type": {
-            "$ref": "5"
-          },
-          "TypeID": "190301"
-        },
-        {
-          "$id": "176",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:27:20",
-          "EndTime": "2014-05-05T18:27:35",
-          "Profit": 1799.0,
-          "Viewers": 31427.5,
-          "AdvertisementOrder": {
-            "$ref": "173"
-          },
-          "AdOrderID": "3887",
-          "Brand": {
-            "$ref": "54"
-          },
-          "OwnerID": "575",
-          "Type": {
-            "$ref": "5"
-          },
-          "TypeID": "190301"
-        }
-      ]
+      }
     },
     "2737": {
-      "$id": "177",
+      "$id": "168",
       "ID": "2737",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -1288,54 +1093,10 @@
       },
       "Brand": {
         "$ref": "55"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "178",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:11:09",
-          "EndTime": "2014-05-05T18:11:24",
-          "Profit": 980.0,
-          "Viewers": 39873.5,
-          "AdvertisementOrder": {
-            "$ref": "177"
-          },
-          "AdOrderID": "2737",
-          "Brand": {
-            "$ref": "55"
-          },
-          "OwnerID": "1446",
-          "Type": {
-            "$ref": "6"
-          },
-          "TypeID": "050101"
-        },
-        {
-          "$id": "179",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:25:54",
-          "EndTime": "2014-05-05T18:26:09",
-          "Profit": 980.0,
-          "Viewers": 33763.33,
-          "AdvertisementOrder": {
-            "$ref": "177"
-          },
-          "AdOrderID": "2737",
-          "Brand": {
-            "$ref": "55"
-          },
-          "OwnerID": "1446",
-          "Type": {
-            "$ref": "6"
-          },
-          "TypeID": "050101"
-        }
-      ]
+      }
     },
     "3411": {
-      "$id": "180",
+      "$id": "169",
       "ID": "3411",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -1353,33 +1114,10 @@
       },
       "Brand": {
         "$ref": "56"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "181",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:11:24",
-          "EndTime": "2014-05-05T18:11:39",
-          "Profit": 980.0,
-          "Viewers": 39873.5,
-          "AdvertisementOrder": {
-            "$ref": "180"
-          },
-          "AdOrderID": "3411",
-          "Brand": {
-            "$ref": "56"
-          },
-          "OwnerID": "317",
-          "Type": {
-            "$ref": "7"
-          },
-          "TypeID": "160600"
-        }
-      ]
+      }
     },
     "3928": {
-      "$id": "182",
+      "$id": "170",
       "ID": "3928",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -1397,54 +1135,10 @@
       },
       "Brand": {
         "$ref": "57"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "183",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:11:39",
-          "EndTime": "2014-05-05T18:11:54",
-          "Profit": 980.0,
-          "Viewers": 39873.5,
-          "AdvertisementOrder": {
-            "$ref": "182"
-          },
-          "AdOrderID": "3928",
-          "Brand": {
-            "$ref": "57"
-          },
-          "OwnerID": "1936",
-          "Type": {
-            "$ref": "8"
-          },
-          "TypeID": "011005"
-        },
-        {
-          "$id": "184",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:26:35",
-          "EndTime": "2014-05-05T18:26:50",
-          "Profit": 1799.0,
-          "Viewers": 73832.5,
-          "AdvertisementOrder": {
-            "$ref": "182"
-          },
-          "AdOrderID": "3928",
-          "Brand": {
-            "$ref": "57"
-          },
-          "OwnerID": "1936",
-          "Type": {
-            "$ref": "8"
-          },
-          "TypeID": "011005"
-        }
-      ]
+      }
     },
     "1742": {
-      "$id": "185",
+      "$id": "171",
       "ID": "1742",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -1462,96 +1156,10 @@
       },
       "Brand": {
         "$ref": "58"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "186",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:25:09",
-          "EndTime": "2014-05-05T18:25:24",
-          "Profit": 980.0,
-          "Viewers": 39910.0,
-          "AdvertisementOrder": {
-            "$ref": "185"
-          },
-          "AdOrderID": "1742",
-          "Brand": {
-            "$ref": "58"
-          },
-          "OwnerID": "1873",
-          "Type": {
-            "$ref": "9"
-          },
-          "TypeID": "050503"
-        },
-        {
-          "$id": "187",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:42:45",
-          "EndTime": "2014-05-05T18:43:00",
-          "Profit": 980.0,
-          "Viewers": 58126.0,
-          "AdvertisementOrder": {
-            "$ref": "185"
-          },
-          "AdOrderID": "1742",
-          "Brand": {
-            "$ref": "58"
-          },
-          "OwnerID": "1873",
-          "Type": {
-            "$ref": "9"
-          },
-          "TypeID": "050503"
-        },
-        {
-          "$id": "188",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:57:39",
-          "EndTime": "2014-05-05T18:57:54",
-          "Profit": 980.0,
-          "Viewers": 12978.0,
-          "AdvertisementOrder": {
-            "$ref": "185"
-          },
-          "AdOrderID": "1742",
-          "Brand": {
-            "$ref": "58"
-          },
-          "OwnerID": "1873",
-          "Type": {
-            "$ref": "9"
-          },
-          "TypeID": "050503"
-        },
-        {
-          "$id": "189",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:10:00",
-          "EndTime": "2014-05-05T18:10:15",
-          "Profit": 217.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "185"
-          },
-          "AdOrderID": "1742",
-          "Brand": {
-            "$ref": "58"
-          },
-          "OwnerID": "1873",
-          "Type": {
-            "$ref": "9"
-          },
-          "TypeID": "050503"
-        }
-      ]
+      }
     },
     "2645": {
-      "$id": "190",
+      "$id": "172",
       "ID": "2645",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -1569,96 +1177,10 @@
       },
       "Brand": {
         "$ref": "59"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "191",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:25:24",
-          "EndTime": "2014-05-05T18:25:54",
-          "Profit": 1400.0,
-          "Viewers": 39910.0,
-          "AdvertisementOrder": {
-            "$ref": "190"
-          },
-          "AdOrderID": "2645",
-          "Brand": {
-            "$ref": "59"
-          },
-          "OwnerID": "337",
-          "Type": {
-            "$ref": "10"
-          },
-          "TypeID": "100400"
-        },
-        {
-          "$id": "192",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:13:05",
-          "EndTime": "2014-05-05T18:13:35",
-          "Profit": 2570.0,
-          "Viewers": 140859.0,
-          "AdvertisementOrder": {
-            "$ref": "190"
-          },
-          "AdOrderID": "2645",
-          "Brand": {
-            "$ref": "59"
-          },
-          "OwnerID": "337",
-          "Type": {
-            "$ref": "10"
-          },
-          "TypeID": "100400"
-        },
-        {
-          "$id": "193",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:26:05",
-          "EndTime": "2014-05-05T18:26:35",
-          "Profit": 2570.0,
-          "Viewers": 73832.5,
-          "AdvertisementOrder": {
-            "$ref": "190"
-          },
-          "AdOrderID": "2645",
-          "Brand": {
-            "$ref": "59"
-          },
-          "OwnerID": "337",
-          "Type": {
-            "$ref": "10"
-          },
-          "TypeID": "100400"
-        },
-        {
-          "$id": "194",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:12:00",
-          "EndTime": "2014-05-05T18:12:30",
-          "Profit": 310.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "190"
-          },
-          "AdOrderID": "2645",
-          "Brand": {
-            "$ref": "59"
-          },
-          "OwnerID": "337",
-          "Type": {
-            "$ref": "10"
-          },
-          "TypeID": "100400"
-        }
-      ]
+      }
     },
     "1922": {
-      "$id": "195",
+      "$id": "173",
       "ID": "1922",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -1676,54 +1198,10 @@
       },
       "Brand": {
         "$ref": "60"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "196",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:26:24",
-          "EndTime": "2014-05-05T18:26:54",
-          "Profit": 1400.0,
-          "Viewers": 30690.0,
-          "AdvertisementOrder": {
-            "$ref": "195"
-          },
-          "AdOrderID": "1922",
-          "Brand": {
-            "$ref": "60"
-          },
-          "OwnerID": "1296",
-          "Type": {
-            "$ref": "11"
-          },
-          "TypeID": "050500"
-        },
-        {
-          "$id": "197",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:45:23",
-          "EndTime": "2014-05-05T18:45:53",
-          "Profit": 310.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "195"
-          },
-          "AdOrderID": "1922",
-          "Brand": {
-            "$ref": "60"
-          },
-          "OwnerID": "1296",
-          "Type": {
-            "$ref": "11"
-          },
-          "TypeID": "050500"
-        }
-      ]
+      }
     },
     "2184": {
-      "$id": "198",
+      "$id": "174",
       "ID": "2184",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -1741,54 +1219,10 @@
       },
       "Brand": {
         "$ref": "61"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "199",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:26:54",
-          "EndTime": "2014-05-05T18:27:24",
-          "Profit": 1400.0,
-          "Viewers": 27616.67,
-          "AdvertisementOrder": {
-            "$ref": "198"
-          },
-          "AdOrderID": "2184",
-          "Brand": {
-            "$ref": "61"
-          },
-          "OwnerID": "1305",
-          "Type": {
-            "$ref": "12"
-          },
-          "TypeID": "050502"
-        },
-        {
-          "$id": "200",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:48:02",
-          "EndTime": "2014-05-05T18:48:11",
-          "Profit": 1413.0,
-          "Viewers": 107797.5,
-          "AdvertisementOrder": {
-            "$ref": "198"
-          },
-          "AdOrderID": "2184",
-          "Brand": {
-            "$ref": "61"
-          },
-          "OwnerID": "1305",
-          "Type": {
-            "$ref": "12"
-          },
-          "TypeID": "050502"
-        }
-      ]
+      }
     },
     "3865": {
-      "$id": "201",
+      "$id": "175",
       "ID": "3865",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -1806,54 +1240,10 @@
       },
       "Brand": {
         "$ref": "62"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "202",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:27:24",
-          "EndTime": "2014-05-05T18:27:39",
-          "Profit": 980.0,
-          "Viewers": 21470.0,
-          "AdvertisementOrder": {
-            "$ref": "201"
-          },
-          "AdOrderID": "3865",
-          "Brand": {
-            "$ref": "62"
-          },
-          "OwnerID": "1538",
-          "Type": {
-            "$ref": "13"
-          },
-          "TypeID": "020602"
-        },
-        {
-          "$id": "203",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:46:23",
-          "EndTime": "2014-05-05T18:46:38",
-          "Profit": 217.0,
-          "Viewers": 3458.5,
-          "AdvertisementOrder": {
-            "$ref": "201"
-          },
-          "AdOrderID": "3865",
-          "Brand": {
-            "$ref": "62"
-          },
-          "OwnerID": "1538",
-          "Type": {
-            "$ref": "13"
-          },
-          "TypeID": "020602"
-        }
-      ]
+      }
     },
     "3656": {
-      "$id": "204",
+      "$id": "176",
       "ID": "3656",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -1871,54 +1261,10 @@
       },
       "Brand": {
         "$ref": "63"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "205",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:27:39",
-          "EndTime": "2014-05-05T18:28:09",
-          "Profit": 1400.0,
-          "Viewers": 27739.33,
-          "AdvertisementOrder": {
-            "$ref": "204"
-          },
-          "AdOrderID": "3656",
-          "Brand": {
-            "$ref": "63"
-          },
-          "OwnerID": "1973",
-          "Type": {
-            "$ref": "14"
-          },
-          "TypeID": "011100"
-        },
-        {
-          "$id": "206",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:45:57",
-          "EndTime": "2014-05-05T18:46:27",
-          "Profit": 1400.0,
-          "Viewers": 20926.0,
-          "AdvertisementOrder": {
-            "$ref": "204"
-          },
-          "AdOrderID": "3656",
-          "Brand": {
-            "$ref": "63"
-          },
-          "OwnerID": "1973",
-          "Type": {
-            "$ref": "14"
-          },
-          "TypeID": "011100"
-        }
-      ]
+      }
     },
     "3554": {
-      "$id": "207",
+      "$id": "177",
       "ID": "3554",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -1936,54 +1282,10 @@
       },
       "Brand": {
         "$ref": "64"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "208",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:28:09",
-          "EndTime": "2014-05-05T18:28:39",
-          "Profit": 1400.0,
-          "Viewers": 30874.0,
-          "AdvertisementOrder": {
-            "$ref": "207"
-          },
-          "AdOrderID": "3554",
-          "Brand": {
-            "$ref": "64"
-          },
-          "OwnerID": "1724",
-          "Type": {
-            "$ref": "15"
-          },
-          "TypeID": "180401"
-        },
-        {
-          "$id": "209",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:25:28",
-          "EndTime": "2014-05-05T18:25:58",
-          "Profit": 310.0,
-          "Viewers": 13605.0,
-          "AdvertisementOrder": {
-            "$ref": "207"
-          },
-          "AdOrderID": "3554",
-          "Brand": {
-            "$ref": "64"
-          },
-          "OwnerID": "1724",
-          "Type": {
-            "$ref": "15"
-          },
-          "TypeID": "180401"
-        }
-      ]
+      }
     },
     "1599": {
-      "$id": "210",
+      "$id": "178",
       "ID": "1599",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -2001,96 +1303,10 @@
       },
       "Brand": {
         "$ref": "65"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "211",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:28:39",
-          "EndTime": "2014-05-05T18:29:09",
-          "Profit": 1400.0,
-          "Viewers": 34008.67,
-          "AdvertisementOrder": {
-            "$ref": "210"
-          },
-          "AdOrderID": "1599",
-          "Brand": {
-            "$ref": "65"
-          },
-          "OwnerID": "1082",
-          "Type": {
-            "$ref": "16"
-          },
-          "TypeID": "002000"
-        },
-        {
-          "$id": "212",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:12:05",
-          "EndTime": "2014-05-05T18:12:35",
-          "Profit": 2570.0,
-          "Viewers": 140859.0,
-          "AdvertisementOrder": {
-            "$ref": "210"
-          },
-          "AdOrderID": "1599",
-          "Brand": {
-            "$ref": "65"
-          },
-          "OwnerID": "1082",
-          "Type": {
-            "$ref": "16"
-          },
-          "TypeID": "002000"
-        },
-        {
-          "$id": "213",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:24:35",
-          "EndTime": "2014-05-05T18:25:05",
-          "Profit": 2570.0,
-          "Viewers": 98177.67,
-          "AdvertisementOrder": {
-            "$ref": "210"
-          },
-          "AdOrderID": "1599",
-          "Brand": {
-            "$ref": "65"
-          },
-          "OwnerID": "1082",
-          "Type": {
-            "$ref": "16"
-          },
-          "TypeID": "002000"
-        },
-        {
-          "$id": "214",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:12:30",
-          "EndTime": "2014-05-05T18:13:00",
-          "Profit": 310.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "210"
-          },
-          "AdOrderID": "1599",
-          "Brand": {
-            "$ref": "65"
-          },
-          "OwnerID": "1082",
-          "Type": {
-            "$ref": "16"
-          },
-          "TypeID": "002000"
-        }
-      ]
+      }
     },
     "3389": {
-      "$id": "215",
+      "$id": "179",
       "ID": "3389",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -2108,54 +1324,10 @@
       },
       "Brand": {
         "$ref": "66"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "216",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:43:00",
-          "EndTime": "2014-05-05T18:43:09",
-          "Profit": 770.0,
-          "Viewers": 45726.0,
-          "AdvertisementOrder": {
-            "$ref": "215"
-          },
-          "AdOrderID": "3389",
-          "Brand": {
-            "$ref": "66"
-          },
-          "OwnerID": "1761",
-          "Type": {
-            "$ref": "17"
-          },
-          "TypeID": "180001"
-        },
-        {
-          "$id": "217",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:58:38",
-          "EndTime": "2014-05-05T18:58:47",
-          "Profit": 170.0,
-          "Viewers": 6917.0,
-          "AdvertisementOrder": {
-            "$ref": "215"
-          },
-          "AdOrderID": "3389",
-          "Brand": {
-            "$ref": "66"
-          },
-          "OwnerID": "1761",
-          "Type": {
-            "$ref": "17"
-          },
-          "TypeID": "180001"
-        }
-      ]
+      }
     },
     "274": {
-      "$id": "218",
+      "$id": "180",
       "ID": "274",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -2173,33 +1345,10 @@
       },
       "Brand": {
         "$ref": "67"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "219",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:43:09",
-          "EndTime": "2014-05-05T18:43:39",
-          "Profit": 1400.0,
-          "Viewers": 39526.0,
-          "AdvertisementOrder": {
-            "$ref": "218"
-          },
-          "AdOrderID": "274",
-          "Brand": {
-            "$ref": "67"
-          },
-          "OwnerID": "1551",
-          "Type": {
-            "$ref": "9"
-          },
-          "TypeID": "050503"
-        }
-      ]
+      }
     },
     "88": {
-      "$id": "220",
+      "$id": "181",
       "ID": "88",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -2217,54 +1366,10 @@
       },
       "Brand": {
         "$ref": "68"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "221",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:43:39",
-          "EndTime": "2014-05-05T18:43:54",
-          "Profit": 980.0,
-          "Viewers": 39526.0,
-          "AdvertisementOrder": {
-            "$ref": "220"
-          },
-          "AdOrderID": "88",
-          "Brand": {
-            "$ref": "68"
-          },
-          "OwnerID": "358",
-          "Type": {
-            "$ref": "18"
-          },
-          "TypeID": "010202"
-        },
-        {
-          "$id": "222",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:58:54",
-          "EndTime": "2014-05-05T18:59:09",
-          "Profit": 980.0,
-          "Viewers": 12978.0,
-          "AdvertisementOrder": {
-            "$ref": "220"
-          },
-          "AdOrderID": "88",
-          "Brand": {
-            "$ref": "68"
-          },
-          "OwnerID": "358",
-          "Type": {
-            "$ref": "18"
-          },
-          "TypeID": "010202"
-        }
-      ]
+      }
     },
     "1711": {
-      "$id": "223",
+      "$id": "182",
       "ID": "1711",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -2282,33 +1387,10 @@
       },
       "Brand": {
         "$ref": "69"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "224",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:44:24",
-          "EndTime": "2014-05-05T18:44:54",
-          "Profit": 1400.0,
-          "Viewers": 20926.0,
-          "AdvertisementOrder": {
-            "$ref": "223"
-          },
-          "AdOrderID": "1711",
-          "Brand": {
-            "$ref": "69"
-          },
-          "OwnerID": "1260",
-          "Type": {
-            "$ref": "9"
-          },
-          "TypeID": "050503"
-        }
-      ]
+      }
     },
     "3530": {
-      "$id": "225",
+      "$id": "183",
       "ID": "3530",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -2326,33 +1408,10 @@
       },
       "Brand": {
         "$ref": "70"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "226",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:44:54",
-          "EndTime": "2014-05-05T18:45:24",
-          "Profit": 1400.0,
-          "Viewers": 20926.0,
-          "AdvertisementOrder": {
-            "$ref": "225"
-          },
-          "AdOrderID": "3530",
-          "Brand": {
-            "$ref": "70"
-          },
-          "OwnerID": "254",
-          "Type": {
-            "$ref": "19"
-          },
-          "TypeID": "050000"
-        }
-      ]
+      }
     },
     "3550": {
-      "$id": "227",
+      "$id": "184",
       "ID": "3550",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -2370,33 +1429,10 @@
       },
       "Brand": {
         "$ref": "71"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "228",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:45:24",
-          "EndTime": "2014-05-05T18:45:39",
-          "Profit": 980.0,
-          "Viewers": 20926.0,
-          "AdvertisementOrder": {
-            "$ref": "227"
-          },
-          "AdOrderID": "3550",
-          "Brand": {
-            "$ref": "71"
-          },
-          "OwnerID": "658",
-          "Type": {
-            "$ref": "20"
-          },
-          "TypeID": "060900"
-        }
-      ]
+      }
     },
     "540": {
-      "$id": "229",
+      "$id": "185",
       "ID": "540",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -2414,33 +1450,10 @@
       },
       "Brand": {
         "$ref": "72"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "230",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:45:39",
-          "EndTime": "2014-05-05T18:45:48",
-          "Profit": 770.0,
-          "Viewers": 20926.0,
-          "AdvertisementOrder": {
-            "$ref": "229"
-          },
-          "AdOrderID": "540",
-          "Brand": {
-            "$ref": "72"
-          },
-          "OwnerID": "1992",
-          "Type": {
-            "$ref": "21"
-          },
-          "TypeID": "140104"
-        }
-      ]
+      }
     },
     "834": {
-      "$id": "231",
+      "$id": "186",
       "ID": "834",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -2458,54 +1471,10 @@
       },
       "Brand": {
         "$ref": "73"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "232",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:45:48",
-          "EndTime": "2014-05-05T18:45:57",
-          "Profit": 770.0,
-          "Viewers": 20926.0,
-          "AdvertisementOrder": {
-            "$ref": "231"
-          },
-          "AdOrderID": "834",
-          "Brand": {
-            "$ref": "73"
-          },
-          "OwnerID": "1846",
-          "Type": {
-            "$ref": "8"
-          },
-          "TypeID": "011005"
-        },
-        {
-          "$id": "233",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:59:00",
-          "EndTime": "2014-05-05T18:59:09",
-          "Profit": 1413.0,
-          "Viewers": 71004.0,
-          "AdvertisementOrder": {
-            "$ref": "231"
-          },
-          "AdOrderID": "834",
-          "Brand": {
-            "$ref": "73"
-          },
-          "OwnerID": "1846",
-          "Type": {
-            "$ref": "8"
-          },
-          "TypeID": "011005"
-        }
-      ]
+      }
     },
     "255": {
-      "$id": "234",
+      "$id": "187",
       "ID": "255",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -2523,33 +1492,10 @@
       },
       "Brand": {
         "$ref": "74"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "235",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:46:27",
-          "EndTime": "2014-05-05T18:46:42",
-          "Profit": 980.0,
-          "Viewers": 20926.0,
-          "AdvertisementOrder": {
-            "$ref": "234"
-          },
-          "AdOrderID": "255",
-          "Brand": {
-            "$ref": "74"
-          },
-          "OwnerID": "1269",
-          "Type": {
-            "$ref": "22"
-          },
-          "TypeID": "161013"
-        }
-      ]
+      }
     },
     "526": {
-      "$id": "236",
+      "$id": "188",
       "ID": "526",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -2567,33 +1513,10 @@
       },
       "Brand": {
         "$ref": "75"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "237",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:57:54",
-          "EndTime": "2014-05-05T18:58:24",
-          "Profit": 1400.0,
-          "Viewers": 12978.0,
-          "AdvertisementOrder": {
-            "$ref": "236"
-          },
-          "AdOrderID": "526",
-          "Brand": {
-            "$ref": "75"
-          },
-          "OwnerID": "846",
-          "Type": {
-            "$ref": "15"
-          },
-          "TypeID": "180401"
-        }
-      ]
+      }
     },
     "2442": {
-      "$id": "238",
+      "$id": "189",
       "ID": "2442",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -2611,54 +1534,10 @@
       },
       "Brand": {
         "$ref": "76"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "239",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:59:09",
-          "EndTime": "2014-05-05T18:59:39",
-          "Profit": 1400.0,
-          "Viewers": 12978.0,
-          "AdvertisementOrder": {
-            "$ref": "238"
-          },
-          "AdOrderID": "2442",
-          "Brand": {
-            "$ref": "76"
-          },
-          "OwnerID": "335",
-          "Type": {
-            "$ref": "23"
-          },
-          "TypeID": "162008"
-        },
-        {
-          "$id": "240",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:59:26",
-          "EndTime": "2014-05-05T18:59:56",
-          "Profit": 310.0,
-          "Viewers": 6917.0,
-          "AdvertisementOrder": {
-            "$ref": "238"
-          },
-          "AdOrderID": "2442",
-          "Brand": {
-            "$ref": "76"
-          },
-          "OwnerID": "335",
-          "Type": {
-            "$ref": "23"
-          },
-          "TypeID": "162008"
-        }
-      ]
+      }
     },
     "2987": {
-      "$id": "241",
+      "$id": "190",
       "ID": "2987",
       "AdSpanUnits": 1,
       "AdSpan": "00:00:03",
@@ -2676,33 +1555,10 @@
       },
       "Brand": {
         "$ref": "77"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "242",
-          "SpanUnits": 1,
-          "Span": "00:00:03",
-          "StartTime": "2014-05-05T17:59:47",
-          "EndTime": "2014-05-05T17:59:50",
-          "Profit": 1165.0,
-          "Viewers": 70444.67,
-          "AdvertisementOrder": {
-            "$ref": "241"
-          },
-          "AdOrderID": "2987",
-          "Brand": {
-            "$ref": "77"
-          },
-          "OwnerID": "1472",
-          "Type": {
-            "$ref": "24"
-          },
-          "TypeID": "190304"
-        }
-      ]
+      }
     },
     "824": {
-      "$id": "243",
+      "$id": "191",
       "ID": "824",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -2720,75 +1576,10 @@
       },
       "Brand": {
         "$ref": "78"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "244",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T17:59:50",
-          "EndTime": "2014-05-05T17:59:59",
-          "Profit": 1165.0,
-          "Viewers": 72096.0,
-          "AdvertisementOrder": {
-            "$ref": "243"
-          },
-          "AdOrderID": "824",
-          "Brand": {
-            "$ref": "78"
-          },
-          "OwnerID": "1024",
-          "Type": {
-            "$ref": "25"
-          },
-          "TypeID": "010400"
-        },
-        {
-          "$id": "245",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:28:47",
-          "EndTime": "2014-05-05T18:28:56",
-          "Profit": 1285.0,
-          "Viewers": 19029.0,
-          "AdvertisementOrder": {
-            "$ref": "243"
-          },
-          "AdOrderID": "824",
-          "Brand": {
-            "$ref": "78"
-          },
-          "OwnerID": "1024",
-          "Type": {
-            "$ref": "25"
-          },
-          "TypeID": "010400"
-        },
-        {
-          "$id": "246",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:56:51",
-          "EndTime": "2014-05-05T18:57:00",
-          "Profit": 1285.0,
-          "Viewers": 79811.0,
-          "AdvertisementOrder": {
-            "$ref": "243"
-          },
-          "AdOrderID": "824",
-          "Brand": {
-            "$ref": "78"
-          },
-          "OwnerID": "1024",
-          "Type": {
-            "$ref": "25"
-          },
-          "TypeID": "010400"
-        }
-      ]
+      }
     },
     "1022": {
-      "$id": "247",
+      "$id": "192",
       "ID": "1022",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -2806,33 +1597,10 @@
       },
       "Brand": {
         "$ref": "79"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "248",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:12:35",
-          "EndTime": "2014-05-05T18:13:05",
-          "Profit": 2570.0,
-          "Viewers": 140859.0,
-          "AdvertisementOrder": {
-            "$ref": "247"
-          },
-          "AdOrderID": "1022",
-          "Brand": {
-            "$ref": "79"
-          },
-          "OwnerID": "645",
-          "Type": {
-            "$ref": "26"
-          },
-          "TypeID": "090705"
-        }
-      ]
+      }
     },
     "3185": {
-      "$id": "249",
+      "$id": "193",
       "ID": "3185",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -2850,54 +1618,10 @@
       },
       "Brand": {
         "$ref": "80"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "250",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:13:35",
-          "EndTime": "2014-05-05T18:13:50",
-          "Profit": 1799.0,
-          "Viewers": 122832.67,
-          "AdvertisementOrder": {
-            "$ref": "249"
-          },
-          "AdOrderID": "3185",
-          "Brand": {
-            "$ref": "80"
-          },
-          "OwnerID": "1283",
-          "Type": {
-            "$ref": "27"
-          },
-          "TypeID": "010701"
-        },
-        {
-          "$id": "251",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:27:35",
-          "EndTime": "2014-05-05T18:28:05",
-          "Profit": 2570.0,
-          "Viewers": 27294.67,
-          "AdvertisementOrder": {
-            "$ref": "249"
-          },
-          "AdOrderID": "3185",
-          "Brand": {
-            "$ref": "80"
-          },
-          "OwnerID": "1283",
-          "Type": {
-            "$ref": "27"
-          },
-          "TypeID": "010701"
-        }
-      ]
+      }
     },
     "1815": {
-      "$id": "252",
+      "$id": "194",
       "ID": "1815",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -2915,54 +1639,10 @@
       },
       "Brand": {
         "$ref": "81"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "253",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:13:50",
-          "EndTime": "2014-05-05T18:14:05",
-          "Profit": 1799.0,
-          "Viewers": 113819.5,
-          "AdvertisementOrder": {
-            "$ref": "252"
-          },
-          "AdOrderID": "1815",
-          "Brand": {
-            "$ref": "81"
-          },
-          "OwnerID": "510",
-          "Type": {
-            "$ref": "18"
-          },
-          "TypeID": "010202"
-        },
-        {
-          "$id": "254",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:25:13",
-          "EndTime": "2014-05-05T18:25:28",
-          "Profit": 217.0,
-          "Viewers": 13605.0,
-          "AdvertisementOrder": {
-            "$ref": "252"
-          },
-          "AdOrderID": "1815",
-          "Brand": {
-            "$ref": "81"
-          },
-          "OwnerID": "510",
-          "Type": {
-            "$ref": "18"
-          },
-          "TypeID": "010202"
-        }
-      ]
+      }
     },
     "2967": {
-      "$id": "255",
+      "$id": "195",
       "ID": "2967",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -2980,33 +1660,10 @@
       },
       "Brand": {
         "$ref": "82"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "256",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:24:02",
-          "EndTime": "2014-05-05T18:24:11",
-          "Profit": 1285.0,
-          "Viewers": 95347.0,
-          "AdvertisementOrder": {
-            "$ref": "255"
-          },
-          "AdOrderID": "2967",
-          "Brand": {
-            "$ref": "82"
-          },
-          "OwnerID": "956",
-          "Type": {
-            "$ref": "28"
-          },
-          "TypeID": "141700"
-        }
-      ]
+      }
     },
     "1570": {
-      "$id": "257",
+      "$id": "196",
       "ID": "1570",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3024,33 +1681,10 @@
       },
       "Brand": {
         "$ref": "65"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "258",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:25:05",
-          "EndTime": "2014-05-05T18:25:35",
-          "Profit": 2570.0,
-          "Viewers": 99593.0,
-          "AdvertisementOrder": {
-            "$ref": "257"
-          },
-          "AdOrderID": "1570",
-          "Brand": {
-            "$ref": "65"
-          },
-          "OwnerID": "1082",
-          "Type": {
-            "$ref": "29"
-          },
-          "TypeID": "002102"
-        }
-      ]
+      }
     },
     "590": {
-      "$id": "259",
+      "$id": "197",
       "ID": "590",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3068,75 +1702,10 @@
       },
       "Brand": {
         "$ref": "83"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "260",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:26:50",
-          "EndTime": "2014-05-05T18:27:20",
-          "Profit": 2570.0,
-          "Viewers": 31427.5,
-          "AdvertisementOrder": {
-            "$ref": "259"
-          },
-          "AdOrderID": "590",
-          "Brand": {
-            "$ref": "83"
-          },
-          "OwnerID": "554",
-          "Type": {
-            "$ref": "30"
-          },
-          "TypeID": "111303"
-        },
-        {
-          "$id": "261",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:48:11",
-          "EndTime": "2014-05-05T18:48:41",
-          "Profit": 2570.0,
-          "Viewers": 107797.5,
-          "AdvertisementOrder": {
-            "$ref": "259"
-          },
-          "AdOrderID": "590",
-          "Brand": {
-            "$ref": "83"
-          },
-          "OwnerID": "554",
-          "Type": {
-            "$ref": "30"
-          },
-          "TypeID": "111303"
-        },
-        {
-          "$id": "262",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:11:30",
-          "EndTime": "2014-05-05T18:12:00",
-          "Profit": 310.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "259"
-          },
-          "AdOrderID": "590",
-          "Brand": {
-            "$ref": "83"
-          },
-          "OwnerID": "554",
-          "Type": {
-            "$ref": "30"
-          },
-          "TypeID": "111303"
-        }
-      ]
+      }
     },
     "802": {
-      "$id": "263",
+      "$id": "198",
       "ID": "802",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3154,33 +1723,10 @@
       },
       "Brand": {
         "$ref": "84"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "264",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:28:05",
-          "EndTime": "2014-05-05T18:28:35",
-          "Profit": 2570.0,
-          "Viewers": 19029.0,
-          "AdvertisementOrder": {
-            "$ref": "263"
-          },
-          "AdOrderID": "802",
-          "Brand": {
-            "$ref": "84"
-          },
-          "OwnerID": "481",
-          "Type": {
-            "$ref": "31"
-          },
-          "TypeID": "090703"
-        }
-      ]
+      }
     },
     "1136": {
-      "$id": "265",
+      "$id": "199",
       "ID": "1136",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3198,33 +1744,10 @@
       },
       "Brand": {
         "$ref": "85"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "266",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:46:32",
-          "EndTime": "2014-05-05T18:47:02",
-          "Profit": 2570.0,
-          "Viewers": 108550.33,
-          "AdvertisementOrder": {
-            "$ref": "265"
-          },
-          "AdOrderID": "1136",
-          "Brand": {
-            "$ref": "85"
-          },
-          "OwnerID": "999",
-          "Type": {
-            "$ref": "32"
-          },
-          "TypeID": "002200"
-        }
-      ]
+      }
     },
     "117": {
-      "$id": "267",
+      "$id": "200",
       "ID": "117",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3242,75 +1765,10 @@
       },
       "Brand": {
         "$ref": "86"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "268",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:47:02",
-          "EndTime": "2014-05-05T18:47:17",
-          "Profit": 1799.0,
-          "Viewers": 107797.5,
-          "AdvertisementOrder": {
-            "$ref": "267"
-          },
-          "AdOrderID": "117",
-          "Brand": {
-            "$ref": "86"
-          },
-          "OwnerID": "2085",
-          "Type": {
-            "$ref": "33"
-          },
-          "TypeID": "111000"
-        },
-        {
-          "$id": "269",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:23:58",
-          "EndTime": "2014-05-05T18:24:28",
-          "Profit": 310.0,
-          "Viewers": 9070.0,
-          "AdvertisementOrder": {
-            "$ref": "267"
-          },
-          "AdOrderID": "117",
-          "Brand": {
-            "$ref": "86"
-          },
-          "OwnerID": "2085",
-          "Type": {
-            "$ref": "33"
-          },
-          "TypeID": "111000"
-        },
-        {
-          "$id": "270",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:58:08",
-          "EndTime": "2014-05-05T18:58:38",
-          "Profit": 310.0,
-          "Viewers": 6917.0,
-          "AdvertisementOrder": {
-            "$ref": "267"
-          },
-          "AdOrderID": "117",
-          "Brand": {
-            "$ref": "86"
-          },
-          "OwnerID": "2085",
-          "Type": {
-            "$ref": "33"
-          },
-          "TypeID": "111000"
-        }
-      ]
+      }
     },
     "3903": {
-      "$id": "271",
+      "$id": "201",
       "ID": "3903",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3328,33 +1786,10 @@
       },
       "Brand": {
         "$ref": "87"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "272",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:47:17",
-          "EndTime": "2014-05-05T18:47:47",
-          "Profit": 2570.0,
-          "Viewers": 107797.5,
-          "AdvertisementOrder": {
-            "$ref": "271"
-          },
-          "AdOrderID": "3903",
-          "Brand": {
-            "$ref": "87"
-          },
-          "OwnerID": "1875",
-          "Type": {
-            "$ref": "34"
-          },
-          "TypeID": "090710"
-        }
-      ]
+      }
     },
     "1923": {
-      "$id": "273",
+      "$id": "202",
       "ID": "1923",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -3372,54 +1807,10 @@
       },
       "Brand": {
         "$ref": "88"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "274",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:47:47",
-          "EndTime": "2014-05-05T18:48:02",
-          "Profit": 1799.0,
-          "Viewers": 108550.33,
-          "AdvertisementOrder": {
-            "$ref": "273"
-          },
-          "AdOrderID": "1923",
-          "Brand": {
-            "$ref": "88"
-          },
-          "OwnerID": "1943",
-          "Type": {
-            "$ref": "12"
-          },
-          "TypeID": "050502"
-        },
-        {
-          "$id": "275",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:47:14",
-          "EndTime": "2014-05-05T18:47:29",
-          "Profit": 217.0,
-          "Viewers": 6917.0,
-          "AdvertisementOrder": {
-            "$ref": "273"
-          },
-          "AdOrderID": "1923",
-          "Brand": {
-            "$ref": "88"
-          },
-          "OwnerID": "1943",
-          "Type": {
-            "$ref": "12"
-          },
-          "TypeID": "050502"
-        }
-      ]
+      }
     },
     "2778": {
-      "$id": "276",
+      "$id": "203",
       "ID": "2778",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -3437,33 +1828,10 @@
       },
       "Brand": {
         "$ref": "89"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "277",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:49:11",
-          "EndTime": "2014-05-05T18:49:26",
-          "Profit": 1799.0,
-          "Viewers": 110056.0,
-          "AdvertisementOrder": {
-            "$ref": "276"
-          },
-          "AdOrderID": "2778",
-          "Brand": {
-            "$ref": "89"
-          },
-          "OwnerID": "1774",
-          "Type": {
-            "$ref": "35"
-          },
-          "TypeID": "162002"
-        }
-      ]
+      }
     },
     "2785": {
-      "$id": "278",
+      "$id": "204",
       "ID": "2785",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3481,33 +1849,10 @@
       },
       "Brand": {
         "$ref": "90"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "279",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:49:26",
-          "EndTime": "2014-05-05T18:49:56",
-          "Profit": 2570.0,
-          "Viewers": 114218.33,
-          "AdvertisementOrder": {
-            "$ref": "278"
-          },
-          "AdOrderID": "2785",
-          "Brand": {
-            "$ref": "90"
-          },
-          "OwnerID": "1470",
-          "Type": {
-            "$ref": "36"
-          },
-          "TypeID": "160002"
-        }
-      ]
+      }
     },
     "1465": {
-      "$id": "280",
+      "$id": "205",
       "ID": "1465",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -3525,54 +1870,10 @@
       },
       "Brand": {
         "$ref": "91"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "281",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:49:56",
-          "EndTime": "2014-05-05T18:50:11",
-          "Profit": 1799.0,
-          "Viewers": 116299.5,
-          "AdvertisementOrder": {
-            "$ref": "280"
-          },
-          "AdOrderID": "1465",
-          "Brand": {
-            "$ref": "91"
-          },
-          "OwnerID": "1838",
-          "Type": {
-            "$ref": "17"
-          },
-          "TypeID": "180001"
-        },
-        {
-          "$id": "282",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:46:59",
-          "EndTime": "2014-05-05T18:47:14",
-          "Profit": 217.0,
-          "Viewers": 4611.33,
-          "AdvertisementOrder": {
-            "$ref": "280"
-          },
-          "AdOrderID": "1465",
-          "Brand": {
-            "$ref": "91"
-          },
-          "OwnerID": "1838",
-          "Type": {
-            "$ref": "17"
-          },
-          "TypeID": "180001"
-        }
-      ]
+      }
     },
     "810": {
-      "$id": "283",
+      "$id": "206",
       "ID": "810",
       "AdSpanUnits": 7,
       "AdSpan": "00:00:21",
@@ -3590,54 +1891,10 @@
       },
       "Brand": {
         "$ref": "92"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "284",
-          "SpanUnits": 7,
-          "Span": "00:00:21",
-          "StartTime": "2014-05-05T18:50:11",
-          "EndTime": "2014-05-05T18:50:32",
-          "Profit": 2313.0,
-          "Viewers": 116299.5,
-          "AdvertisementOrder": {
-            "$ref": "283"
-          },
-          "AdOrderID": "810",
-          "Brand": {
-            "$ref": "92"
-          },
-          "OwnerID": "6",
-          "Type": {
-            "$ref": "37"
-          },
-          "TypeID": "190204"
-        },
-        {
-          "$id": "285",
-          "SpanUnits": 7,
-          "Span": "00:00:21",
-          "StartTime": "2014-05-05T18:59:09",
-          "EndTime": "2014-05-05T18:59:30",
-          "Profit": 2313.0,
-          "Viewers": 71004.0,
-          "AdvertisementOrder": {
-            "$ref": "283"
-          },
-          "AdOrderID": "810",
-          "Brand": {
-            "$ref": "92"
-          },
-          "OwnerID": "6",
-          "Type": {
-            "$ref": "37"
-          },
-          "TypeID": "190204"
-        }
-      ]
+      }
     },
     "4057": {
-      "$id": "286",
+      "$id": "207",
       "ID": "4057",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3655,75 +1912,10 @@
       },
       "Brand": {
         "$ref": "93"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "287",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:57:39",
-          "EndTime": "2014-05-05T18:58:09",
-          "Profit": 2570.0,
-          "Viewers": 76875.33,
-          "AdvertisementOrder": {
-            "$ref": "286"
-          },
-          "AdOrderID": "4057",
-          "Brand": {
-            "$ref": "93"
-          },
-          "OwnerID": "1023",
-          "Type": {
-            "$ref": "38"
-          },
-          "TypeID": "090712"
-        },
-        {
-          "$id": "288",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:23:28",
-          "EndTime": "2014-05-05T18:23:58",
-          "Profit": 310.0,
-          "Viewers": 6802.5,
-          "AdvertisementOrder": {
-            "$ref": "286"
-          },
-          "AdOrderID": "4057",
-          "Brand": {
-            "$ref": "93"
-          },
-          "OwnerID": "1023",
-          "Type": {
-            "$ref": "38"
-          },
-          "TypeID": "090712"
-        },
-        {
-          "$id": "289",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:57:38",
-          "EndTime": "2014-05-05T18:58:08",
-          "Profit": 310.0,
-          "Viewers": 6917.0,
-          "AdvertisementOrder": {
-            "$ref": "286"
-          },
-          "AdOrderID": "4057",
-          "Brand": {
-            "$ref": "93"
-          },
-          "OwnerID": "1023",
-          "Type": {
-            "$ref": "38"
-          },
-          "TypeID": "090712"
-        }
-      ]
+      }
     },
     "2258": {
-      "$id": "290",
+      "$id": "208",
       "ID": "2258",
       "AdSpanUnits": 7,
       "AdSpan": "00:00:21",
@@ -3741,33 +1933,10 @@
       },
       "Brand": {
         "$ref": "94"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "291",
-          "SpanUnits": 7,
-          "Span": "00:00:21",
-          "StartTime": "2014-05-05T18:58:09",
-          "EndTime": "2014-05-05T18:58:30",
-          "Profit": 2313.0,
-          "Viewers": 73126.5,
-          "AdvertisementOrder": {
-            "$ref": "290"
-          },
-          "AdOrderID": "2258",
-          "Brand": {
-            "$ref": "94"
-          },
-          "OwnerID": "1568",
-          "Type": {
-            "$ref": "39"
-          },
-          "TypeID": "191000"
-        }
-      ]
+      }
     },
     "4117": {
-      "$id": "292",
+      "$id": "209",
       "ID": "4117",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3785,33 +1954,10 @@
       },
       "Brand": {
         "$ref": "95"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "293",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:58:30",
-          "EndTime": "2014-05-05T18:59:00",
-          "Profit": 2570.0,
-          "Viewers": 72419.0,
-          "AdvertisementOrder": {
-            "$ref": "292"
-          },
-          "AdOrderID": "4117",
-          "Brand": {
-            "$ref": "95"
-          },
-          "OwnerID": "1471",
-          "Type": {
-            "$ref": "29"
-          },
-          "TypeID": "002102"
-        }
-      ]
+      }
     },
     "1631": {
-      "$id": "294",
+      "$id": "210",
       "ID": "1631",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -3829,33 +1975,10 @@
       },
       "Brand": {
         "$ref": "65"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "295",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:59:30",
-          "EndTime": "2014-05-05T18:59:39",
-          "Profit": 1413.0,
-          "Viewers": 71004.0,
-          "AdvertisementOrder": {
-            "$ref": "294"
-          },
-          "AdOrderID": "1631",
-          "Brand": {
-            "$ref": "65"
-          },
-          "OwnerID": "1082",
-          "Type": {
-            "$ref": "40"
-          },
-          "TypeID": "001900"
-        }
-      ]
+      }
     },
     "118": {
-      "$id": "296",
+      "$id": "211",
       "ID": "118",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -3873,54 +1996,10 @@
       },
       "Brand": {
         "$ref": "86"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "297",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:10:15",
-          "EndTime": "2014-05-05T18:10:30",
-          "Profit": 217.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "296"
-          },
-          "AdOrderID": "118",
-          "Brand": {
-            "$ref": "86"
-          },
-          "OwnerID": "2085",
-          "Type": {
-            "$ref": "33"
-          },
-          "TypeID": "111000"
-        },
-        {
-          "$id": "298",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:44:44",
-          "EndTime": "2014-05-05T18:44:59",
-          "Profit": 217.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "296"
-          },
-          "AdOrderID": "118",
-          "Brand": {
-            "$ref": "86"
-          },
-          "OwnerID": "2085",
-          "Type": {
-            "$ref": "33"
-          },
-          "TypeID": "111000"
-        }
-      ]
+      }
     },
     "702": {
-      "$id": "299",
+      "$id": "212",
       "ID": "702",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3938,33 +2017,10 @@
       },
       "Brand": {
         "$ref": "96"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "300",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:10:30",
-          "EndTime": "2014-05-05T18:11:00",
-          "Profit": 310.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "299"
-          },
-          "AdOrderID": "702",
-          "Brand": {
-            "$ref": "96"
-          },
-          "OwnerID": "142",
-          "Type": {
-            "$ref": "41"
-          },
-          "TypeID": "011001"
-        }
-      ]
+      }
     },
     "2185": {
-      "$id": "301",
+      "$id": "213",
       "ID": "2185",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -3982,33 +2038,10 @@
       },
       "Brand": {
         "$ref": "61"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "302",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:11:00",
-          "EndTime": "2014-05-05T18:11:30",
-          "Profit": 310.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "301"
-          },
-          "AdOrderID": "2185",
-          "Brand": {
-            "$ref": "61"
-          },
-          "OwnerID": "1305",
-          "Type": {
-            "$ref": "9"
-          },
-          "TypeID": "050503"
-        }
-      ]
+      }
     },
     "2953": {
-      "$id": "303",
+      "$id": "214",
       "ID": "2953",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -4026,33 +2059,10 @@
       },
       "Brand": {
         "$ref": "97"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "304",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:24:28",
-          "EndTime": "2014-05-05T18:24:43",
-          "Profit": 217.0,
-          "Viewers": 13605.0,
-          "AdvertisementOrder": {
-            "$ref": "303"
-          },
-          "AdOrderID": "2953",
-          "Brand": {
-            "$ref": "97"
-          },
-          "OwnerID": "694",
-          "Type": {
-            "$ref": "42"
-          },
-          "TypeID": "141900"
-        }
-      ]
+      }
     },
     "1996": {
-      "$id": "305",
+      "$id": "215",
       "ID": "1996",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -4070,33 +2080,10 @@
       },
       "Brand": {
         "$ref": "98"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "306",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:24:43",
-          "EndTime": "2014-05-05T18:25:13",
-          "Profit": 310.0,
-          "Viewers": 13605.0,
-          "AdvertisementOrder": {
-            "$ref": "305"
-          },
-          "AdOrderID": "1996",
-          "Brand": {
-            "$ref": "98"
-          },
-          "OwnerID": "1817",
-          "Type": {
-            "$ref": "43"
-          },
-          "TypeID": "111305"
-        }
-      ]
+      }
     },
     "3780": {
-      "$id": "307",
+      "$id": "216",
       "ID": "3780",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -4114,33 +2101,10 @@
       },
       "Brand": {
         "$ref": "99"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "308",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:25:58",
-          "EndTime": "2014-05-05T18:26:28",
-          "Profit": 310.0,
-          "Viewers": 13605.0,
-          "AdvertisementOrder": {
-            "$ref": "307"
-          },
-          "AdOrderID": "3780",
-          "Brand": {
-            "$ref": "99"
-          },
-          "OwnerID": "1643",
-          "Type": {
-            "$ref": "44"
-          },
-          "TypeID": "090708"
-        }
-      ]
+      }
     },
     "3857": {
-      "$id": "309",
+      "$id": "217",
       "ID": "3857",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -4158,33 +2122,10 @@
       },
       "Brand": {
         "$ref": "100"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "310",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:44:29",
-          "EndTime": "2014-05-05T18:44:44",
-          "Profit": 217.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "309"
-          },
-          "AdOrderID": "3857",
-          "Brand": {
-            "$ref": "100"
-          },
-          "OwnerID": "1566",
-          "Type": {
-            "$ref": "45"
-          },
-          "TypeID": "190901"
-        }
-      ]
+      }
     },
     "3363": {
-      "$id": "311",
+      "$id": "218",
       "ID": "3363",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -4202,33 +2143,10 @@
       },
       "Brand": {
         "$ref": "101"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "312",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:44:59",
-          "EndTime": "2014-05-05T18:45:08",
-          "Profit": 170.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "311"
-          },
-          "AdOrderID": "3363",
-          "Brand": {
-            "$ref": "101"
-          },
-          "OwnerID": "1499",
-          "Type": {
-            "$ref": "46"
-          },
-          "TypeID": "161501"
-        }
-      ]
+      }
     },
     "3579": {
-      "$id": "313",
+      "$id": "219",
       "ID": "3579",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -4246,33 +2164,10 @@
       },
       "Brand": {
         "$ref": "102"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "314",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:45:08",
-          "EndTime": "2014-05-05T18:45:23",
-          "Profit": 217.0,
-          "Viewers": 0.0,
-          "AdvertisementOrder": {
-            "$ref": "313"
-          },
-          "AdOrderID": "3579",
-          "Brand": {
-            "$ref": "102"
-          },
-          "OwnerID": "171",
-          "Type": {
-            "$ref": "47"
-          },
-          "TypeID": "160900"
-        }
-      ]
+      }
     },
     "504": {
-      "$id": "315",
+      "$id": "220",
       "ID": "504",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -4290,33 +2185,10 @@
       },
       "Brand": {
         "$ref": "103"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "316",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:45:53",
-          "EndTime": "2014-05-05T18:46:23",
-          "Profit": 310.0,
-          "Viewers": 2305.67,
-          "AdvertisementOrder": {
-            "$ref": "315"
-          },
-          "AdOrderID": "504",
-          "Brand": {
-            "$ref": "103"
-          },
-          "OwnerID": "1203",
-          "Type": {
-            "$ref": "17"
-          },
-          "TypeID": "180001"
-        }
-      ]
+      }
     },
     "2757": {
-      "$id": "317",
+      "$id": "221",
       "ID": "2757",
       "AdSpanUnits": 2,
       "AdSpan": "00:00:06",
@@ -4334,33 +2206,10 @@
       },
       "Brand": {
         "$ref": "104"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "318",
-          "SpanUnits": 2,
-          "Span": "00:00:06",
-          "StartTime": "2014-05-05T18:46:38",
-          "EndTime": "2014-05-05T18:46:44",
-          "Profit": 124.0,
-          "Viewers": 3458.5,
-          "AdvertisementOrder": {
-            "$ref": "317"
-          },
-          "AdOrderID": "2757",
-          "Brand": {
-            "$ref": "104"
-          },
-          "OwnerID": "1249",
-          "Type": {
-            "$ref": "9"
-          },
-          "TypeID": "050503"
-        }
-      ]
+      }
     },
     "2784": {
-      "$id": "319",
+      "$id": "222",
       "ID": "2784",
       "AdSpanUnits": 5,
       "AdSpan": "00:00:15",
@@ -4378,33 +2227,10 @@
       },
       "Brand": {
         "$ref": "90"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "320",
-          "SpanUnits": 5,
-          "Span": "00:00:15",
-          "StartTime": "2014-05-05T18:46:44",
-          "EndTime": "2014-05-05T18:46:59",
-          "Profit": 217.0,
-          "Viewers": 3458.5,
-          "AdvertisementOrder": {
-            "$ref": "319"
-          },
-          "AdOrderID": "2784",
-          "Brand": {
-            "$ref": "90"
-          },
-          "OwnerID": "1470",
-          "Type": {
-            "$ref": "48"
-          },
-          "TypeID": "162003"
-        }
-      ]
+      }
     },
     "3043": {
-      "$id": "321",
+      "$id": "223",
       "ID": "3043",
       "AdSpanUnits": 10,
       "AdSpan": "00:00:30",
@@ -4422,33 +2248,10 @@
       },
       "Brand": {
         "$ref": "105"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "322",
-          "SpanUnits": 10,
-          "Span": "00:00:30",
-          "StartTime": "2014-05-05T18:58:47",
-          "EndTime": "2014-05-05T18:59:17",
-          "Profit": 310.0,
-          "Viewers": 6917.0,
-          "AdvertisementOrder": {
-            "$ref": "321"
-          },
-          "AdOrderID": "3043",
-          "Brand": {
-            "$ref": "105"
-          },
-          "OwnerID": "845",
-          "Type": {
-            "$ref": "48"
-          },
-          "TypeID": "162003"
-        }
-      ]
+      }
     },
     "1192": {
-      "$id": "323",
+      "$id": "224",
       "ID": "1192",
       "AdSpanUnits": 3,
       "AdSpan": "00:00:09",
@@ -4466,33 +2269,10 @@
       },
       "Brand": {
         "$ref": "106"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "324",
-          "SpanUnits": 3,
-          "Span": "00:00:09",
-          "StartTime": "2014-05-05T18:59:17",
-          "EndTime": "2014-05-05T18:59:26",
-          "Profit": 170.0,
-          "Viewers": 6917.0,
-          "AdvertisementOrder": {
-            "$ref": "323"
-          },
-          "AdOrderID": "1192",
-          "Brand": {
-            "$ref": "106"
-          },
-          "OwnerID": "2035",
-          "Type": {
-            "$ref": "49"
-          },
-          "TypeID": "050501"
-        }
-      ]
+      }
     },
     "3494": {
-      "$id": "325",
+      "$id": "225",
       "ID": "3494",
       "AdSpanUnits": 2,
       "AdSpan": "00:00:06",
@@ -4510,36 +2290,13 @@
       },
       "Brand": {
         "$ref": "107"
-      },
-      "AdvertisementInstances": [
-        {
-          "$id": "326",
-          "SpanUnits": 2,
-          "Span": "00:00:06",
-          "StartTime": "2014-05-05T18:59:56",
-          "EndTime": "2014-05-05T19:00:02",
-          "Profit": 310.0,
-          "Viewers": 6917.0,
-          "AdvertisementOrder": {
-            "$ref": "325"
-          },
-          "AdOrderID": "3494",
-          "Brand": {
-            "$ref": "107"
-          },
-          "OwnerID": "184",
-          "Type": {
-            "$ref": "50"
-          },
-          "TypeID": "160303"
-        }
-      ]
+      }
     }
   },
   "Channels": {
-    "$id": "327",
+    "$id": "226",
     "58": {
-      "$id": "328",
+      "$id": "227",
       "ID": "58",
       "StartTime": "2014-05-05T17:59:56",
       "EndTime": "2014-05-05T19:00:00",
@@ -4547,7 +2304,7 @@
       "SpanUnits": 1201,
       "Breaks": [
         {
-          "$id": "329",
+          "$id": "228",
           "StartTime": "2014-05-05T18:09:24",
           "EndTime": "2014-05-05T18:11:54",
           "Span": "00:02:30",
@@ -4555,10 +2312,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "330",
+            "$id": "229",
             "TimeIntervals": [
               {
-                "$id": "331",
+                "$id": "230",
                 "StartTime": "2014-05-05T18:09:24",
                 "EndTime": "2014-05-05T18:10:24",
                 "Span": "00:01:00",
@@ -4566,7 +2323,7 @@
                 "Viewers": 33766.0
               },
               {
-                "$id": "332",
+                "$id": "231",
                 "StartTime": "2014-05-05T18:10:24",
                 "EndTime": "2014-05-05T18:10:54",
                 "Span": "00:00:30",
@@ -4574,7 +2331,7 @@
                 "Viewers": 36217.0
               },
               {
-                "$id": "333",
+                "$id": "232",
                 "StartTime": "2014-05-05T18:10:54",
                 "EndTime": "2014-05-05T18:11:09",
                 "Span": "00:00:15",
@@ -4582,7 +2339,7 @@
                 "Viewers": 36203.67
               },
               {
-                "$id": "334",
+                "$id": "233",
                 "StartTime": "2014-05-05T18:11:09",
                 "EndTime": "2014-05-05T18:12:06",
                 "Span": "00:00:57",
@@ -4593,31 +2350,139 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "335"
+            "$id": "234"
           },
           "Advertisements": [
             {
-              "$ref": "166"
+              "$id": "235",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:09:54",
+              "EndTime": "2014-05-05T18:10:24",
+              "Profit": 1400.0,
+              "Viewers": 33766.0,
+              "AdvertisementOrder": {
+                "$ref": "165"
+              },
+              "AdOrderID": "3412",
+              "Brand": {
+                "$ref": "52"
+              },
+              "OwnerID": "519",
+              "Type": {
+                "$ref": "3"
+              },
+              "TypeID": "050100"
             },
             {
-              "$ref": "172"
+              "$id": "236",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:10:24",
+              "EndTime": "2014-05-05T18:10:54",
+              "Profit": 1400.0,
+              "Viewers": 36217.0,
+              "AdvertisementOrder": {
+                "$ref": "166"
+              },
+              "AdOrderID": "3806",
+              "Brand": {
+                "$ref": "53"
+              },
+              "OwnerID": "572",
+              "Type": {
+                "$ref": "4"
+              },
+              "TypeID": "030100"
             },
             {
-              "$ref": "174"
+              "$id": "237",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:10:54",
+              "EndTime": "2014-05-05T18:11:09",
+              "Profit": 980.0,
+              "Viewers": 36203.67,
+              "AdvertisementOrder": {
+                "$ref": "167"
+              },
+              "AdOrderID": "3887",
+              "Brand": {
+                "$ref": "54"
+              },
+              "OwnerID": "575",
+              "Type": {
+                "$ref": "5"
+              },
+              "TypeID": "190301"
             },
             {
-              "$ref": "178"
+              "$id": "238",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:11:09",
+              "EndTime": "2014-05-05T18:11:24",
+              "Profit": 980.0,
+              "Viewers": 39873.5,
+              "AdvertisementOrder": {
+                "$ref": "168"
+              },
+              "AdOrderID": "2737",
+              "Brand": {
+                "$ref": "55"
+              },
+              "OwnerID": "1446",
+              "Type": {
+                "$ref": "6"
+              },
+              "TypeID": "050101"
             },
             {
-              "$ref": "181"
+              "$id": "239",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:11:24",
+              "EndTime": "2014-05-05T18:11:39",
+              "Profit": 980.0,
+              "Viewers": 39873.5,
+              "AdvertisementOrder": {
+                "$ref": "169"
+              },
+              "AdOrderID": "3411",
+              "Brand": {
+                "$ref": "56"
+              },
+              "OwnerID": "317",
+              "Type": {
+                "$ref": "7"
+              },
+              "TypeID": "160600"
             },
             {
-              "$ref": "183"
+              "$id": "240",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:11:39",
+              "EndTime": "2014-05-05T18:11:54",
+              "Profit": 980.0,
+              "Viewers": 39873.5,
+              "AdvertisementOrder": {
+                "$ref": "170"
+              },
+              "AdOrderID": "3928",
+              "Brand": {
+                "$ref": "57"
+              },
+              "OwnerID": "1936",
+              "Type": {
+                "$ref": "8"
+              },
+              "TypeID": "011005"
             }
           ]
         },
         {
-          "$id": "336",
+          "$id": "241",
           "StartTime": "2014-05-05T18:24:27",
           "EndTime": "2014-05-05T18:29:09",
           "Span": "00:04:42",
@@ -4625,10 +2490,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "337",
+            "$id": "242",
             "TimeIntervals": [
               {
-                "$id": "338",
+                "$id": "243",
                 "StartTime": "2014-05-05T18:24:27",
                 "EndTime": "2014-05-05T18:25:54",
                 "Span": "00:01:27",
@@ -4636,7 +2501,7 @@
                 "Viewers": 39910.0
               },
               {
-                "$id": "339",
+                "$id": "244",
                 "StartTime": "2014-05-05T18:25:54",
                 "EndTime": "2014-05-05T18:26:09",
                 "Span": "00:00:15",
@@ -4644,7 +2509,7 @@
                 "Viewers": 33763.33
               },
               {
-                "$id": "340",
+                "$id": "245",
                 "StartTime": "2014-05-05T18:26:09",
                 "EndTime": "2014-05-05T18:26:54",
                 "Span": "00:00:45",
@@ -4652,7 +2517,7 @@
                 "Viewers": 30690.0
               },
               {
-                "$id": "341",
+                "$id": "246",
                 "StartTime": "2014-05-05T18:26:54",
                 "EndTime": "2014-05-05T18:27:24",
                 "Span": "00:00:30",
@@ -4660,7 +2525,7 @@
                 "Viewers": 27616.67
               },
               {
-                "$id": "342",
+                "$id": "247",
                 "StartTime": "2014-05-05T18:27:24",
                 "EndTime": "2014-05-05T18:27:39",
                 "Span": "00:00:15",
@@ -4668,7 +2533,7 @@
                 "Viewers": 21470.0
               },
               {
-                "$id": "343",
+                "$id": "248",
                 "StartTime": "2014-05-05T18:27:39",
                 "EndTime": "2014-05-05T18:28:09",
                 "Span": "00:00:30",
@@ -4676,7 +2541,7 @@
                 "Viewers": 27739.33
               },
               {
-                "$id": "344",
+                "$id": "249",
                 "StartTime": "2014-05-05T18:28:09",
                 "EndTime": "2014-05-05T18:28:39",
                 "Span": "00:00:30",
@@ -4684,7 +2549,7 @@
                 "Viewers": 30874.0
               },
               {
-                "$id": "345",
+                "$id": "250",
                 "StartTime": "2014-05-05T18:28:39",
                 "EndTime": "2014-05-05T18:29:21",
                 "Span": "00:00:42",
@@ -4695,43 +2560,223 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "346"
+            "$id": "251"
           },
           "Advertisements": [
             {
-              "$ref": "186"
+              "$id": "252",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:25:09",
+              "EndTime": "2014-05-05T18:25:24",
+              "Profit": 980.0,
+              "Viewers": 39910.0,
+              "AdvertisementOrder": {
+                "$ref": "171"
+              },
+              "AdOrderID": "1742",
+              "Brand": {
+                "$ref": "58"
+              },
+              "OwnerID": "1873",
+              "Type": {
+                "$ref": "9"
+              },
+              "TypeID": "050503"
             },
             {
-              "$ref": "191"
+              "$id": "253",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:25:24",
+              "EndTime": "2014-05-05T18:25:54",
+              "Profit": 1400.0,
+              "Viewers": 39910.0,
+              "AdvertisementOrder": {
+                "$ref": "172"
+              },
+              "AdOrderID": "2645",
+              "Brand": {
+                "$ref": "59"
+              },
+              "OwnerID": "337",
+              "Type": {
+                "$ref": "10"
+              },
+              "TypeID": "100400"
             },
             {
-              "$ref": "179"
+              "$id": "254",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:25:54",
+              "EndTime": "2014-05-05T18:26:09",
+              "Profit": 980.0,
+              "Viewers": 33763.33,
+              "AdvertisementOrder": {
+                "$ref": "168"
+              },
+              "AdOrderID": "2737",
+              "Brand": {
+                "$ref": "55"
+              },
+              "OwnerID": "1446",
+              "Type": {
+                "$ref": "6"
+              },
+              "TypeID": "050101"
             },
             {
-              "$ref": "175"
+              "$id": "255",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:26:09",
+              "EndTime": "2014-05-05T18:26:24",
+              "Profit": 980.0,
+              "Viewers": 30690.0,
+              "AdvertisementOrder": {
+                "$ref": "167"
+              },
+              "AdOrderID": "3887",
+              "Brand": {
+                "$ref": "54"
+              },
+              "OwnerID": "575",
+              "Type": {
+                "$ref": "5"
+              },
+              "TypeID": "190301"
             },
             {
-              "$ref": "196"
+              "$id": "256",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:26:24",
+              "EndTime": "2014-05-05T18:26:54",
+              "Profit": 1400.0,
+              "Viewers": 30690.0,
+              "AdvertisementOrder": {
+                "$ref": "173"
+              },
+              "AdOrderID": "1922",
+              "Brand": {
+                "$ref": "60"
+              },
+              "OwnerID": "1296",
+              "Type": {
+                "$ref": "11"
+              },
+              "TypeID": "050500"
             },
             {
-              "$ref": "199"
+              "$id": "257",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:26:54",
+              "EndTime": "2014-05-05T18:27:24",
+              "Profit": 1400.0,
+              "Viewers": 27616.67,
+              "AdvertisementOrder": {
+                "$ref": "174"
+              },
+              "AdOrderID": "2184",
+              "Brand": {
+                "$ref": "61"
+              },
+              "OwnerID": "1305",
+              "Type": {
+                "$ref": "12"
+              },
+              "TypeID": "050502"
             },
             {
-              "$ref": "202"
+              "$id": "258",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:27:24",
+              "EndTime": "2014-05-05T18:27:39",
+              "Profit": 980.0,
+              "Viewers": 21470.0,
+              "AdvertisementOrder": {
+                "$ref": "175"
+              },
+              "AdOrderID": "3865",
+              "Brand": {
+                "$ref": "62"
+              },
+              "OwnerID": "1538",
+              "Type": {
+                "$ref": "13"
+              },
+              "TypeID": "020602"
             },
             {
-              "$ref": "205"
+              "$id": "259",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:27:39",
+              "EndTime": "2014-05-05T18:28:09",
+              "Profit": 1400.0,
+              "Viewers": 27739.33,
+              "AdvertisementOrder": {
+                "$ref": "176"
+              },
+              "AdOrderID": "3656",
+              "Brand": {
+                "$ref": "63"
+              },
+              "OwnerID": "1973",
+              "Type": {
+                "$ref": "14"
+              },
+              "TypeID": "011100"
             },
             {
-              "$ref": "208"
+              "$id": "260",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:28:09",
+              "EndTime": "2014-05-05T18:28:39",
+              "Profit": 1400.0,
+              "Viewers": 30874.0,
+              "AdvertisementOrder": {
+                "$ref": "177"
+              },
+              "AdOrderID": "3554",
+              "Brand": {
+                "$ref": "64"
+              },
+              "OwnerID": "1724",
+              "Type": {
+                "$ref": "15"
+              },
+              "TypeID": "180401"
             },
             {
-              "$ref": "211"
+              "$id": "261",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:28:39",
+              "EndTime": "2014-05-05T18:29:09",
+              "Profit": 1400.0,
+              "Viewers": 34008.67,
+              "AdvertisementOrder": {
+                "$ref": "178"
+              },
+              "AdOrderID": "1599",
+              "Brand": {
+                "$ref": "65"
+              },
+              "OwnerID": "1082",
+              "Type": {
+                "$ref": "16"
+              },
+              "TypeID": "002000"
             }
           ]
         },
         {
-          "$id": "347",
+          "$id": "262",
           "StartTime": "2014-05-05T18:42:03",
           "EndTime": "2014-05-05T18:46:42",
           "Span": "00:04:39",
@@ -4739,10 +2784,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "348",
+            "$id": "263",
             "TimeIntervals": [
               {
-                "$id": "349",
+                "$id": "264",
                 "StartTime": "2014-05-05T18:42:03",
                 "EndTime": "2014-05-05T18:43:00",
                 "Span": "00:00:57",
@@ -4750,7 +2795,7 @@
                 "Viewers": 58126.0
               },
               {
-                "$id": "350",
+                "$id": "265",
                 "StartTime": "2014-05-05T18:43:00",
                 "EndTime": "2014-05-05T18:43:09",
                 "Span": "00:00:09",
@@ -4758,7 +2803,7 @@
                 "Viewers": 45726.0
               },
               {
-                "$id": "351",
+                "$id": "266",
                 "StartTime": "2014-05-05T18:43:09",
                 "EndTime": "2014-05-05T18:43:54",
                 "Span": "00:00:45",
@@ -4766,7 +2811,7 @@
                 "Viewers": 39526.0
               },
               {
-                "$id": "352",
+                "$id": "267",
                 "StartTime": "2014-05-05T18:43:54",
                 "EndTime": "2014-05-05T18:44:24",
                 "Span": "00:00:30",
@@ -4774,7 +2819,7 @@
                 "Viewers": 33326.0
               },
               {
-                "$id": "353",
+                "$id": "268",
                 "StartTime": "2014-05-05T18:44:24",
                 "EndTime": "2014-05-05T18:46:54",
                 "Span": "00:02:30",
@@ -4785,49 +2830,265 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "354"
+            "$id": "269"
           },
           "Advertisements": [
             {
-              "$ref": "187"
+              "$id": "270",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:42:45",
+              "EndTime": "2014-05-05T18:43:00",
+              "Profit": 980.0,
+              "Viewers": 58126.0,
+              "AdvertisementOrder": {
+                "$ref": "171"
+              },
+              "AdOrderID": "1742",
+              "Brand": {
+                "$ref": "58"
+              },
+              "OwnerID": "1873",
+              "Type": {
+                "$ref": "9"
+              },
+              "TypeID": "050503"
             },
             {
-              "$ref": "216"
+              "$id": "271",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:43:00",
+              "EndTime": "2014-05-05T18:43:09",
+              "Profit": 770.0,
+              "Viewers": 45726.0,
+              "AdvertisementOrder": {
+                "$ref": "179"
+              },
+              "AdOrderID": "3389",
+              "Brand": {
+                "$ref": "66"
+              },
+              "OwnerID": "1761",
+              "Type": {
+                "$ref": "17"
+              },
+              "TypeID": "180001"
             },
             {
-              "$ref": "219"
+              "$id": "272",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:43:09",
+              "EndTime": "2014-05-05T18:43:39",
+              "Profit": 1400.0,
+              "Viewers": 39526.0,
+              "AdvertisementOrder": {
+                "$ref": "180"
+              },
+              "AdOrderID": "274",
+              "Brand": {
+                "$ref": "67"
+              },
+              "OwnerID": "1551",
+              "Type": {
+                "$ref": "9"
+              },
+              "TypeID": "050503"
             },
             {
-              "$ref": "221"
+              "$id": "273",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:43:39",
+              "EndTime": "2014-05-05T18:43:54",
+              "Profit": 980.0,
+              "Viewers": 39526.0,
+              "AdvertisementOrder": {
+                "$ref": "181"
+              },
+              "AdOrderID": "88",
+              "Brand": {
+                "$ref": "68"
+              },
+              "OwnerID": "358",
+              "Type": {
+                "$ref": "18"
+              },
+              "TypeID": "010202"
             },
             {
-              "$ref": "167"
+              "$id": "274",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:43:54",
+              "EndTime": "2014-05-05T18:44:24",
+              "Profit": 1400.0,
+              "Viewers": 33326.0,
+              "AdvertisementOrder": {
+                "$ref": "165"
+              },
+              "AdOrderID": "3412",
+              "Brand": {
+                "$ref": "52"
+              },
+              "OwnerID": "519",
+              "Type": {
+                "$ref": "3"
+              },
+              "TypeID": "050100"
             },
             {
-              "$ref": "224"
+              "$id": "275",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:44:24",
+              "EndTime": "2014-05-05T18:44:54",
+              "Profit": 1400.0,
+              "Viewers": 20926.0,
+              "AdvertisementOrder": {
+                "$ref": "182"
+              },
+              "AdOrderID": "1711",
+              "Brand": {
+                "$ref": "69"
+              },
+              "OwnerID": "1260",
+              "Type": {
+                "$ref": "9"
+              },
+              "TypeID": "050503"
             },
             {
-              "$ref": "226"
+              "$id": "276",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:44:54",
+              "EndTime": "2014-05-05T18:45:24",
+              "Profit": 1400.0,
+              "Viewers": 20926.0,
+              "AdvertisementOrder": {
+                "$ref": "183"
+              },
+              "AdOrderID": "3530",
+              "Brand": {
+                "$ref": "70"
+              },
+              "OwnerID": "254",
+              "Type": {
+                "$ref": "19"
+              },
+              "TypeID": "050000"
             },
             {
-              "$ref": "228"
+              "$id": "277",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:45:24",
+              "EndTime": "2014-05-05T18:45:39",
+              "Profit": 980.0,
+              "Viewers": 20926.0,
+              "AdvertisementOrder": {
+                "$ref": "184"
+              },
+              "AdOrderID": "3550",
+              "Brand": {
+                "$ref": "71"
+              },
+              "OwnerID": "658",
+              "Type": {
+                "$ref": "20"
+              },
+              "TypeID": "060900"
             },
             {
-              "$ref": "230"
+              "$id": "278",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:45:39",
+              "EndTime": "2014-05-05T18:45:48",
+              "Profit": 770.0,
+              "Viewers": 20926.0,
+              "AdvertisementOrder": {
+                "$ref": "185"
+              },
+              "AdOrderID": "540",
+              "Brand": {
+                "$ref": "72"
+              },
+              "OwnerID": "1992",
+              "Type": {
+                "$ref": "21"
+              },
+              "TypeID": "140104"
             },
             {
-              "$ref": "232"
+              "$id": "279",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:45:48",
+              "EndTime": "2014-05-05T18:45:57",
+              "Profit": 770.0,
+              "Viewers": 20926.0,
+              "AdvertisementOrder": {
+                "$ref": "186"
+              },
+              "AdOrderID": "834",
+              "Brand": {
+                "$ref": "73"
+              },
+              "OwnerID": "1846",
+              "Type": {
+                "$ref": "8"
+              },
+              "TypeID": "011005"
             },
             {
-              "$ref": "206"
+              "$id": "280",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:45:57",
+              "EndTime": "2014-05-05T18:46:27",
+              "Profit": 1400.0,
+              "Viewers": 20926.0,
+              "AdvertisementOrder": {
+                "$ref": "176"
+              },
+              "AdOrderID": "3656",
+              "Brand": {
+                "$ref": "63"
+              },
+              "OwnerID": "1973",
+              "Type": {
+                "$ref": "14"
+              },
+              "TypeID": "011100"
             },
             {
-              "$ref": "235"
+              "$id": "281",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:46:27",
+              "EndTime": "2014-05-05T18:46:42",
+              "Profit": 980.0,
+              "Viewers": 20926.0,
+              "AdvertisementOrder": {
+                "$ref": "187"
+              },
+              "AdOrderID": "255",
+              "Brand": {
+                "$ref": "74"
+              },
+              "OwnerID": "1269",
+              "Type": {
+                "$ref": "22"
+              },
+              "TypeID": "161013"
             }
           ]
         },
         {
-          "$id": "355",
+          "$id": "282",
           "StartTime": "2014-05-05T18:56:42",
           "EndTime": "2014-05-05T18:59:39",
           "Span": "00:02:57",
@@ -4835,10 +3096,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "356",
+            "$id": "283",
             "TimeIntervals": [
               {
-                "$id": "357",
+                "$id": "284",
                 "StartTime": "2014-05-05T18:56:42",
                 "EndTime": "2014-05-05T19:00:00",
                 "Span": "00:03:18",
@@ -4849,30 +3110,120 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "358"
+            "$id": "285"
           },
           "Advertisements": [
             {
-              "$ref": "188"
+              "$id": "286",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:57:39",
+              "EndTime": "2014-05-05T18:57:54",
+              "Profit": 980.0,
+              "Viewers": 12978.0,
+              "AdvertisementOrder": {
+                "$ref": "171"
+              },
+              "AdOrderID": "1742",
+              "Brand": {
+                "$ref": "58"
+              },
+              "OwnerID": "1873",
+              "Type": {
+                "$ref": "9"
+              },
+              "TypeID": "050503"
             },
             {
-              "$ref": "237"
+              "$id": "287",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:57:54",
+              "EndTime": "2014-05-05T18:58:24",
+              "Profit": 1400.0,
+              "Viewers": 12978.0,
+              "AdvertisementOrder": {
+                "$ref": "188"
+              },
+              "AdOrderID": "526",
+              "Brand": {
+                "$ref": "75"
+              },
+              "OwnerID": "846",
+              "Type": {
+                "$ref": "15"
+              },
+              "TypeID": "180401"
             },
             {
-              "$ref": "168"
+              "$id": "288",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:58:24",
+              "EndTime": "2014-05-05T18:58:54",
+              "Profit": 1400.0,
+              "Viewers": 12978.0,
+              "AdvertisementOrder": {
+                "$ref": "165"
+              },
+              "AdOrderID": "3412",
+              "Brand": {
+                "$ref": "52"
+              },
+              "OwnerID": "519",
+              "Type": {
+                "$ref": "3"
+              },
+              "TypeID": "050100"
             },
             {
-              "$ref": "222"
+              "$id": "289",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:58:54",
+              "EndTime": "2014-05-05T18:59:09",
+              "Profit": 980.0,
+              "Viewers": 12978.0,
+              "AdvertisementOrder": {
+                "$ref": "181"
+              },
+              "AdOrderID": "88",
+              "Brand": {
+                "$ref": "68"
+              },
+              "OwnerID": "358",
+              "Type": {
+                "$ref": "18"
+              },
+              "TypeID": "010202"
             },
             {
-              "$ref": "239"
+              "$id": "290",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:59:09",
+              "EndTime": "2014-05-05T18:59:39",
+              "Profit": 1400.0,
+              "Viewers": 12978.0,
+              "AdvertisementOrder": {
+                "$ref": "189"
+              },
+              "AdOrderID": "2442",
+              "Brand": {
+                "$ref": "76"
+              },
+              "OwnerID": "335",
+              "Type": {
+                "$ref": "23"
+              },
+              "TypeID": "162008"
             }
           ]
         }
       ]
     },
     "32": {
-      "$id": "359",
+      "$id": "291",
       "ID": "32",
       "StartTime": "2014-05-05T17:59:47",
       "EndTime": "2014-05-05T18:59:48",
@@ -4880,7 +3231,7 @@
       "SpanUnits": 1200,
       "Breaks": [
         {
-          "$id": "360",
+          "$id": "292",
           "StartTime": "2014-05-05T17:59:47",
           "EndTime": "2014-05-05T17:59:59",
           "Span": "00:00:12",
@@ -4888,10 +3239,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "361",
+            "$id": "293",
             "TimeIntervals": [
               {
-                "$id": "362",
+                "$id": "294",
                 "StartTime": "2014-05-05T17:59:47",
                 "EndTime": "2014-05-05T17:59:50",
                 "Span": "00:00:03",
@@ -4899,7 +3250,7 @@
                 "Viewers": 70444.67
               },
               {
-                "$id": "363",
+                "$id": "295",
                 "StartTime": "2014-05-05T17:59:50",
                 "EndTime": "2014-05-05T17:59:59",
                 "Span": "00:00:09",
@@ -4910,19 +3261,55 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "364"
+            "$id": "296"
           },
           "Advertisements": [
             {
-              "$ref": "242"
+              "$id": "297",
+              "SpanUnits": 1,
+              "Span": "00:00:03",
+              "StartTime": "2014-05-05T17:59:47",
+              "EndTime": "2014-05-05T17:59:50",
+              "Profit": 1165.0,
+              "Viewers": 70444.67,
+              "AdvertisementOrder": {
+                "$ref": "190"
+              },
+              "AdOrderID": "2987",
+              "Brand": {
+                "$ref": "77"
+              },
+              "OwnerID": "1472",
+              "Type": {
+                "$ref": "24"
+              },
+              "TypeID": "190304"
             },
             {
-              "$ref": "244"
+              "$id": "298",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T17:59:50",
+              "EndTime": "2014-05-05T17:59:59",
+              "Profit": 1165.0,
+              "Viewers": 72096.0,
+              "AdvertisementOrder": {
+                "$ref": "191"
+              },
+              "AdOrderID": "824",
+              "Brand": {
+                "$ref": "78"
+              },
+              "OwnerID": "1024",
+              "Type": {
+                "$ref": "25"
+              },
+              "TypeID": "010400"
             }
           ]
         },
         {
-          "$id": "365",
+          "$id": "299",
           "StartTime": "2014-05-05T18:11:41",
           "EndTime": "2014-05-05T18:14:05",
           "Span": "00:02:24",
@@ -4930,10 +3317,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "366",
+            "$id": "300",
             "TimeIntervals": [
               {
-                "$id": "367",
+                "$id": "301",
                 "StartTime": "2014-05-05T18:11:41",
                 "EndTime": "2014-05-05T18:13:35",
                 "Span": "00:01:54",
@@ -4941,7 +3328,7 @@
                 "Viewers": 140859.0
               },
               {
-                "$id": "368",
+                "$id": "302",
                 "StartTime": "2014-05-05T18:13:35",
                 "EndTime": "2014-05-05T18:13:50",
                 "Span": "00:00:15",
@@ -4949,7 +3336,7 @@
                 "Viewers": 122832.67
               },
               {
-                "$id": "369",
+                "$id": "303",
                 "StartTime": "2014-05-05T18:13:50",
                 "EndTime": "2014-05-05T18:14:08",
                 "Span": "00:00:18",
@@ -4960,28 +3347,118 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "370"
+            "$id": "304"
           },
           "Advertisements": [
             {
-              "$ref": "212"
+              "$id": "305",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:12:05",
+              "EndTime": "2014-05-05T18:12:35",
+              "Profit": 2570.0,
+              "Viewers": 140859.0,
+              "AdvertisementOrder": {
+                "$ref": "178"
+              },
+              "AdOrderID": "1599",
+              "Brand": {
+                "$ref": "65"
+              },
+              "OwnerID": "1082",
+              "Type": {
+                "$ref": "16"
+              },
+              "TypeID": "002000"
             },
             {
-              "$ref": "248"
+              "$id": "306",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:12:35",
+              "EndTime": "2014-05-05T18:13:05",
+              "Profit": 2570.0,
+              "Viewers": 140859.0,
+              "AdvertisementOrder": {
+                "$ref": "192"
+              },
+              "AdOrderID": "1022",
+              "Brand": {
+                "$ref": "79"
+              },
+              "OwnerID": "645",
+              "Type": {
+                "$ref": "26"
+              },
+              "TypeID": "090705"
             },
             {
-              "$ref": "192"
+              "$id": "307",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:13:05",
+              "EndTime": "2014-05-05T18:13:35",
+              "Profit": 2570.0,
+              "Viewers": 140859.0,
+              "AdvertisementOrder": {
+                "$ref": "172"
+              },
+              "AdOrderID": "2645",
+              "Brand": {
+                "$ref": "59"
+              },
+              "OwnerID": "337",
+              "Type": {
+                "$ref": "10"
+              },
+              "TypeID": "100400"
             },
             {
-              "$ref": "250"
+              "$id": "308",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:13:35",
+              "EndTime": "2014-05-05T18:13:50",
+              "Profit": 1799.0,
+              "Viewers": 122832.67,
+              "AdvertisementOrder": {
+                "$ref": "193"
+              },
+              "AdOrderID": "3185",
+              "Brand": {
+                "$ref": "80"
+              },
+              "OwnerID": "1283",
+              "Type": {
+                "$ref": "27"
+              },
+              "TypeID": "010701"
             },
             {
-              "$ref": "253"
+              "$id": "309",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:13:50",
+              "EndTime": "2014-05-05T18:14:05",
+              "Profit": 1799.0,
+              "Viewers": 113819.5,
+              "AdvertisementOrder": {
+                "$ref": "194"
+              },
+              "AdOrderID": "1815",
+              "Brand": {
+                "$ref": "81"
+              },
+              "OwnerID": "510",
+              "Type": {
+                "$ref": "18"
+              },
+              "TypeID": "010202"
             }
           ]
         },
         {
-          "$id": "371",
+          "$id": "310",
           "StartTime": "2014-05-05T18:23:53",
           "EndTime": "2014-05-05T18:28:56",
           "Span": "00:05:03",
@@ -4989,10 +3466,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "372",
+            "$id": "311",
             "TimeIntervals": [
               {
-                "$id": "373",
+                "$id": "312",
                 "StartTime": "2014-05-05T18:23:53",
                 "EndTime": "2014-05-05T18:24:35",
                 "Span": "00:00:42",
@@ -5000,7 +3477,7 @@
                 "Viewers": 95347.0
               },
               {
-                "$id": "374",
+                "$id": "313",
                 "StartTime": "2014-05-05T18:24:35",
                 "EndTime": "2014-05-05T18:25:05",
                 "Span": "00:00:30",
@@ -5008,7 +3485,7 @@
                 "Viewers": 98177.67
               },
               {
-                "$id": "375",
+                "$id": "314",
                 "StartTime": "2014-05-05T18:25:05",
                 "EndTime": "2014-05-05T18:25:35",
                 "Span": "00:00:30",
@@ -5016,7 +3493,7 @@
                 "Viewers": 99593.0
               },
               {
-                "$id": "376",
+                "$id": "315",
                 "StartTime": "2014-05-05T18:25:35",
                 "EndTime": "2014-05-05T18:26:05",
                 "Span": "00:00:30",
@@ -5024,7 +3501,7 @@
                 "Viewers": 81004.0
               },
               {
-                "$id": "377",
+                "$id": "316",
                 "StartTime": "2014-05-05T18:26:05",
                 "EndTime": "2014-05-05T18:26:50",
                 "Span": "00:00:45",
@@ -5032,7 +3509,7 @@
                 "Viewers": 73832.5
               },
               {
-                "$id": "378",
+                "$id": "317",
                 "StartTime": "2014-05-05T18:26:50",
                 "EndTime": "2014-05-05T18:27:35",
                 "Span": "00:00:45",
@@ -5040,7 +3517,7 @@
                 "Viewers": 31427.5
               },
               {
-                "$id": "379",
+                "$id": "318",
                 "StartTime": "2014-05-05T18:27:35",
                 "EndTime": "2014-05-05T18:28:05",
                 "Span": "00:00:30",
@@ -5048,7 +3525,7 @@
                 "Viewers": 27294.67
               },
               {
-                "$id": "380",
+                "$id": "319",
                 "StartTime": "2014-05-05T18:28:05",
                 "EndTime": "2014-05-05T18:28:56",
                 "Span": "00:00:51",
@@ -5059,46 +3536,244 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "381"
+            "$id": "320"
           },
           "Advertisements": [
             {
-              "$ref": "256"
+              "$id": "321",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:24:02",
+              "EndTime": "2014-05-05T18:24:11",
+              "Profit": 1285.0,
+              "Viewers": 95347.0,
+              "AdvertisementOrder": {
+                "$ref": "195"
+              },
+              "AdOrderID": "2967",
+              "Brand": {
+                "$ref": "82"
+              },
+              "OwnerID": "956",
+              "Type": {
+                "$ref": "28"
+              },
+              "TypeID": "141700"
             },
             {
-              "$ref": "213"
+              "$id": "322",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:24:35",
+              "EndTime": "2014-05-05T18:25:05",
+              "Profit": 2570.0,
+              "Viewers": 98177.67,
+              "AdvertisementOrder": {
+                "$ref": "178"
+              },
+              "AdOrderID": "1599",
+              "Brand": {
+                "$ref": "65"
+              },
+              "OwnerID": "1082",
+              "Type": {
+                "$ref": "16"
+              },
+              "TypeID": "002000"
             },
             {
-              "$ref": "258"
+              "$id": "323",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:25:05",
+              "EndTime": "2014-05-05T18:25:35",
+              "Profit": 2570.0,
+              "Viewers": 99593.0,
+              "AdvertisementOrder": {
+                "$ref": "196"
+              },
+              "AdOrderID": "1570",
+              "Brand": {
+                "$ref": "65"
+              },
+              "OwnerID": "1082",
+              "Type": {
+                "$ref": "29"
+              },
+              "TypeID": "002102"
             },
             {
-              "$ref": "169"
+              "$id": "324",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:25:35",
+              "EndTime": "2014-05-05T18:26:05",
+              "Profit": 2570.0,
+              "Viewers": 81004.0,
+              "AdvertisementOrder": {
+                "$ref": "165"
+              },
+              "AdOrderID": "3412",
+              "Brand": {
+                "$ref": "52"
+              },
+              "OwnerID": "519",
+              "Type": {
+                "$ref": "3"
+              },
+              "TypeID": "050100"
             },
             {
-              "$ref": "193"
+              "$id": "325",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:26:05",
+              "EndTime": "2014-05-05T18:26:35",
+              "Profit": 2570.0,
+              "Viewers": 73832.5,
+              "AdvertisementOrder": {
+                "$ref": "172"
+              },
+              "AdOrderID": "2645",
+              "Brand": {
+                "$ref": "59"
+              },
+              "OwnerID": "337",
+              "Type": {
+                "$ref": "10"
+              },
+              "TypeID": "100400"
             },
             {
-              "$ref": "184"
+              "$id": "326",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:26:35",
+              "EndTime": "2014-05-05T18:26:50",
+              "Profit": 1799.0,
+              "Viewers": 73832.5,
+              "AdvertisementOrder": {
+                "$ref": "170"
+              },
+              "AdOrderID": "3928",
+              "Brand": {
+                "$ref": "57"
+              },
+              "OwnerID": "1936",
+              "Type": {
+                "$ref": "8"
+              },
+              "TypeID": "011005"
             },
             {
-              "$ref": "260"
+              "$id": "327",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:26:50",
+              "EndTime": "2014-05-05T18:27:20",
+              "Profit": 2570.0,
+              "Viewers": 31427.5,
+              "AdvertisementOrder": {
+                "$ref": "197"
+              },
+              "AdOrderID": "590",
+              "Brand": {
+                "$ref": "83"
+              },
+              "OwnerID": "554",
+              "Type": {
+                "$ref": "30"
+              },
+              "TypeID": "111303"
             },
             {
-              "$ref": "176"
+              "$id": "328",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:27:20",
+              "EndTime": "2014-05-05T18:27:35",
+              "Profit": 1799.0,
+              "Viewers": 31427.5,
+              "AdvertisementOrder": {
+                "$ref": "167"
+              },
+              "AdOrderID": "3887",
+              "Brand": {
+                "$ref": "54"
+              },
+              "OwnerID": "575",
+              "Type": {
+                "$ref": "5"
+              },
+              "TypeID": "190301"
             },
             {
-              "$ref": "251"
+              "$id": "329",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:27:35",
+              "EndTime": "2014-05-05T18:28:05",
+              "Profit": 2570.0,
+              "Viewers": 27294.67,
+              "AdvertisementOrder": {
+                "$ref": "193"
+              },
+              "AdOrderID": "3185",
+              "Brand": {
+                "$ref": "80"
+              },
+              "OwnerID": "1283",
+              "Type": {
+                "$ref": "27"
+              },
+              "TypeID": "010701"
             },
             {
-              "$ref": "264"
+              "$id": "330",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:28:05",
+              "EndTime": "2014-05-05T18:28:35",
+              "Profit": 2570.0,
+              "Viewers": 19029.0,
+              "AdvertisementOrder": {
+                "$ref": "198"
+              },
+              "AdOrderID": "802",
+              "Brand": {
+                "$ref": "84"
+              },
+              "OwnerID": "481",
+              "Type": {
+                "$ref": "31"
+              },
+              "TypeID": "090703"
             },
             {
-              "$ref": "245"
+              "$id": "331",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:28:47",
+              "EndTime": "2014-05-05T18:28:56",
+              "Profit": 1285.0,
+              "Viewers": 19029.0,
+              "AdvertisementOrder": {
+                "$ref": "191"
+              },
+              "AdOrderID": "824",
+              "Brand": {
+                "$ref": "78"
+              },
+              "OwnerID": "1024",
+              "Type": {
+                "$ref": "25"
+              },
+              "TypeID": "010400"
             }
           ]
         },
         {
-          "$id": "382",
+          "$id": "332",
           "StartTime": "2014-05-05T18:46:02",
           "EndTime": "2014-05-05T18:50:32",
           "Span": "00:04:30",
@@ -5106,10 +3781,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "383",
+            "$id": "333",
             "TimeIntervals": [
               {
-                "$id": "384",
+                "$id": "334",
                 "StartTime": "2014-05-05T18:46:02",
                 "EndTime": "2014-05-05T18:47:02",
                 "Span": "00:01:00",
@@ -5117,7 +3792,7 @@
                 "Viewers": 108550.33
               },
               {
-                "$id": "385",
+                "$id": "335",
                 "StartTime": "2014-05-05T18:47:02",
                 "EndTime": "2014-05-05T18:47:47",
                 "Span": "00:00:45",
@@ -5125,7 +3800,7 @@
                 "Viewers": 107797.5
               },
               {
-                "$id": "386",
+                "$id": "336",
                 "StartTime": "2014-05-05T18:47:47",
                 "EndTime": "2014-05-05T18:48:02",
                 "Span": "00:00:15",
@@ -5133,7 +3808,7 @@
                 "Viewers": 108550.33
               },
               {
-                "$id": "387",
+                "$id": "337",
                 "StartTime": "2014-05-05T18:48:02",
                 "EndTime": "2014-05-05T18:48:41",
                 "Span": "00:00:39",
@@ -5141,7 +3816,7 @@
                 "Viewers": 107797.5
               },
               {
-                "$id": "388",
+                "$id": "338",
                 "StartTime": "2014-05-05T18:48:41",
                 "EndTime": "2014-05-05T18:49:11",
                 "Span": "00:00:30",
@@ -5149,7 +3824,7 @@
                 "Viewers": 108550.33
               },
               {
-                "$id": "389",
+                "$id": "339",
                 "StartTime": "2014-05-05T18:49:11",
                 "EndTime": "2014-05-05T18:49:26",
                 "Span": "00:00:15",
@@ -5157,7 +3832,7 @@
                 "Viewers": 110056.0
               },
               {
-                "$id": "390",
+                "$id": "340",
                 "StartTime": "2014-05-05T18:49:26",
                 "EndTime": "2014-05-05T18:49:56",
                 "Span": "00:00:30",
@@ -5165,7 +3840,7 @@
                 "Viewers": 114218.33
               },
               {
-                "$id": "391",
+                "$id": "341",
                 "StartTime": "2014-05-05T18:49:56",
                 "EndTime": "2014-05-05T18:51:02",
                 "Span": "00:01:06",
@@ -5176,46 +3851,244 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "392"
+            "$id": "342"
           },
           "Advertisements": [
             {
-              "$ref": "266"
+              "$id": "343",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:46:32",
+              "EndTime": "2014-05-05T18:47:02",
+              "Profit": 2570.0,
+              "Viewers": 108550.33,
+              "AdvertisementOrder": {
+                "$ref": "199"
+              },
+              "AdOrderID": "1136",
+              "Brand": {
+                "$ref": "85"
+              },
+              "OwnerID": "999",
+              "Type": {
+                "$ref": "32"
+              },
+              "TypeID": "002200"
             },
             {
-              "$ref": "268"
+              "$id": "344",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:47:02",
+              "EndTime": "2014-05-05T18:47:17",
+              "Profit": 1799.0,
+              "Viewers": 107797.5,
+              "AdvertisementOrder": {
+                "$ref": "200"
+              },
+              "AdOrderID": "117",
+              "Brand": {
+                "$ref": "86"
+              },
+              "OwnerID": "2085",
+              "Type": {
+                "$ref": "33"
+              },
+              "TypeID": "111000"
             },
             {
-              "$ref": "272"
+              "$id": "345",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:47:17",
+              "EndTime": "2014-05-05T18:47:47",
+              "Profit": 2570.0,
+              "Viewers": 107797.5,
+              "AdvertisementOrder": {
+                "$ref": "201"
+              },
+              "AdOrderID": "3903",
+              "Brand": {
+                "$ref": "87"
+              },
+              "OwnerID": "1875",
+              "Type": {
+                "$ref": "34"
+              },
+              "TypeID": "090710"
             },
             {
-              "$ref": "274"
+              "$id": "346",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:47:47",
+              "EndTime": "2014-05-05T18:48:02",
+              "Profit": 1799.0,
+              "Viewers": 108550.33,
+              "AdvertisementOrder": {
+                "$ref": "202"
+              },
+              "AdOrderID": "1923",
+              "Brand": {
+                "$ref": "88"
+              },
+              "OwnerID": "1943",
+              "Type": {
+                "$ref": "12"
+              },
+              "TypeID": "050502"
             },
             {
-              "$ref": "200"
+              "$id": "347",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:48:02",
+              "EndTime": "2014-05-05T18:48:11",
+              "Profit": 1413.0,
+              "Viewers": 107797.5,
+              "AdvertisementOrder": {
+                "$ref": "174"
+              },
+              "AdOrderID": "2184",
+              "Brand": {
+                "$ref": "61"
+              },
+              "OwnerID": "1305",
+              "Type": {
+                "$ref": "12"
+              },
+              "TypeID": "050502"
             },
             {
-              "$ref": "261"
+              "$id": "348",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:48:11",
+              "EndTime": "2014-05-05T18:48:41",
+              "Profit": 2570.0,
+              "Viewers": 107797.5,
+              "AdvertisementOrder": {
+                "$ref": "197"
+              },
+              "AdOrderID": "590",
+              "Brand": {
+                "$ref": "83"
+              },
+              "OwnerID": "554",
+              "Type": {
+                "$ref": "30"
+              },
+              "TypeID": "111303"
             },
             {
-              "$ref": "170"
+              "$id": "349",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:48:41",
+              "EndTime": "2014-05-05T18:49:11",
+              "Profit": 2570.0,
+              "Viewers": 108550.33,
+              "AdvertisementOrder": {
+                "$ref": "165"
+              },
+              "AdOrderID": "3412",
+              "Brand": {
+                "$ref": "52"
+              },
+              "OwnerID": "519",
+              "Type": {
+                "$ref": "3"
+              },
+              "TypeID": "050100"
             },
             {
-              "$ref": "277"
+              "$id": "350",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:49:11",
+              "EndTime": "2014-05-05T18:49:26",
+              "Profit": 1799.0,
+              "Viewers": 110056.0,
+              "AdvertisementOrder": {
+                "$ref": "203"
+              },
+              "AdOrderID": "2778",
+              "Brand": {
+                "$ref": "89"
+              },
+              "OwnerID": "1774",
+              "Type": {
+                "$ref": "35"
+              },
+              "TypeID": "162002"
             },
             {
-              "$ref": "279"
+              "$id": "351",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:49:26",
+              "EndTime": "2014-05-05T18:49:56",
+              "Profit": 2570.0,
+              "Viewers": 114218.33,
+              "AdvertisementOrder": {
+                "$ref": "204"
+              },
+              "AdOrderID": "2785",
+              "Brand": {
+                "$ref": "90"
+              },
+              "OwnerID": "1470",
+              "Type": {
+                "$ref": "36"
+              },
+              "TypeID": "160002"
             },
             {
-              "$ref": "281"
+              "$id": "352",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:49:56",
+              "EndTime": "2014-05-05T18:50:11",
+              "Profit": 1799.0,
+              "Viewers": 116299.5,
+              "AdvertisementOrder": {
+                "$ref": "205"
+              },
+              "AdOrderID": "1465",
+              "Brand": {
+                "$ref": "91"
+              },
+              "OwnerID": "1838",
+              "Type": {
+                "$ref": "17"
+              },
+              "TypeID": "180001"
             },
             {
-              "$ref": "284"
+              "$id": "353",
+              "SpanUnits": 7,
+              "Span": "00:00:21",
+              "StartTime": "2014-05-05T18:50:11",
+              "EndTime": "2014-05-05T18:50:32",
+              "Profit": 2313.0,
+              "Viewers": 116299.5,
+              "AdvertisementOrder": {
+                "$ref": "206"
+              },
+              "AdOrderID": "810",
+              "Brand": {
+                "$ref": "92"
+              },
+              "OwnerID": "6",
+              "Type": {
+                "$ref": "37"
+              },
+              "TypeID": "190204"
             }
           ]
         },
         {
-          "$id": "393",
+          "$id": "354",
           "StartTime": "2014-05-05T18:56:41",
           "EndTime": "2014-05-05T18:59:38",
           "Span": "00:02:57",
@@ -5223,10 +4096,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "394",
+            "$id": "355",
             "TimeIntervals": [
               {
-                "$id": "395",
+                "$id": "356",
                 "StartTime": "2014-05-05T18:56:42",
                 "EndTime": "2014-05-05T18:57:39",
                 "Span": "00:00:57",
@@ -5234,7 +4107,7 @@
                 "Viewers": 79811.0
               },
               {
-                "$id": "396",
+                "$id": "357",
                 "StartTime": "2014-05-05T18:57:39",
                 "EndTime": "2014-05-05T18:58:09",
                 "Span": "00:00:30",
@@ -5242,7 +4115,7 @@
                 "Viewers": 76875.33
               },
               {
-                "$id": "397",
+                "$id": "358",
                 "StartTime": "2014-05-05T18:58:09",
                 "EndTime": "2014-05-05T18:58:30",
                 "Span": "00:00:21",
@@ -5250,7 +4123,7 @@
                 "Viewers": 73126.5
               },
               {
-                "$id": "398",
+                "$id": "359",
                 "StartTime": "2014-05-05T18:58:30",
                 "EndTime": "2014-05-05T18:59:00",
                 "Span": "00:00:30",
@@ -5258,7 +4131,7 @@
                 "Viewers": 72419.0
               },
               {
-                "$id": "399",
+                "$id": "360",
                 "StartTime": "2014-05-05T18:59:00",
                 "EndTime": "2014-05-05T18:59:48",
                 "Span": "00:00:48",
@@ -5269,36 +4142,162 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "400"
+            "$id": "361"
           },
           "Advertisements": [
             {
-              "$ref": "246"
+              "$id": "362",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:56:51",
+              "EndTime": "2014-05-05T18:57:00",
+              "Profit": 1285.0,
+              "Viewers": 79811.0,
+              "AdvertisementOrder": {
+                "$ref": "191"
+              },
+              "AdOrderID": "824",
+              "Brand": {
+                "$ref": "78"
+              },
+              "OwnerID": "1024",
+              "Type": {
+                "$ref": "25"
+              },
+              "TypeID": "010400"
             },
             {
-              "$ref": "287"
+              "$id": "363",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:57:39",
+              "EndTime": "2014-05-05T18:58:09",
+              "Profit": 2570.0,
+              "Viewers": 76875.33,
+              "AdvertisementOrder": {
+                "$ref": "207"
+              },
+              "AdOrderID": "4057",
+              "Brand": {
+                "$ref": "93"
+              },
+              "OwnerID": "1023",
+              "Type": {
+                "$ref": "38"
+              },
+              "TypeID": "090712"
             },
             {
-              "$ref": "291"
+              "$id": "364",
+              "SpanUnits": 7,
+              "Span": "00:00:21",
+              "StartTime": "2014-05-05T18:58:09",
+              "EndTime": "2014-05-05T18:58:30",
+              "Profit": 2313.0,
+              "Viewers": 73126.5,
+              "AdvertisementOrder": {
+                "$ref": "208"
+              },
+              "AdOrderID": "2258",
+              "Brand": {
+                "$ref": "94"
+              },
+              "OwnerID": "1568",
+              "Type": {
+                "$ref": "39"
+              },
+              "TypeID": "191000"
             },
             {
-              "$ref": "293"
+              "$id": "365",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:58:30",
+              "EndTime": "2014-05-05T18:59:00",
+              "Profit": 2570.0,
+              "Viewers": 72419.0,
+              "AdvertisementOrder": {
+                "$ref": "209"
+              },
+              "AdOrderID": "4117",
+              "Brand": {
+                "$ref": "95"
+              },
+              "OwnerID": "1471",
+              "Type": {
+                "$ref": "29"
+              },
+              "TypeID": "002102"
             },
             {
-              "$ref": "233"
+              "$id": "366",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:59:00",
+              "EndTime": "2014-05-05T18:59:09",
+              "Profit": 1413.0,
+              "Viewers": 71004.0,
+              "AdvertisementOrder": {
+                "$ref": "186"
+              },
+              "AdOrderID": "834",
+              "Brand": {
+                "$ref": "73"
+              },
+              "OwnerID": "1846",
+              "Type": {
+                "$ref": "8"
+              },
+              "TypeID": "011005"
             },
             {
-              "$ref": "285"
+              "$id": "367",
+              "SpanUnits": 7,
+              "Span": "00:00:21",
+              "StartTime": "2014-05-05T18:59:09",
+              "EndTime": "2014-05-05T18:59:30",
+              "Profit": 2313.0,
+              "Viewers": 71004.0,
+              "AdvertisementOrder": {
+                "$ref": "206"
+              },
+              "AdOrderID": "810",
+              "Brand": {
+                "$ref": "92"
+              },
+              "OwnerID": "6",
+              "Type": {
+                "$ref": "37"
+              },
+              "TypeID": "190204"
             },
             {
-              "$ref": "295"
+              "$id": "368",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:59:30",
+              "EndTime": "2014-05-05T18:59:39",
+              "Profit": 1413.0,
+              "Viewers": 71004.0,
+              "AdvertisementOrder": {
+                "$ref": "210"
+              },
+              "AdOrderID": "1631",
+              "Brand": {
+                "$ref": "65"
+              },
+              "OwnerID": "1082",
+              "Type": {
+                "$ref": "40"
+              },
+              "TypeID": "001900"
             }
           ]
         }
       ]
     },
     "68": {
-      "$id": "401",
+      "$id": "369",
       "ID": "68",
       "StartTime": "2014-05-05T17:59:59",
       "EndTime": "2014-05-05T19:00:02",
@@ -5306,7 +4305,7 @@
       "SpanUnits": 1201,
       "Breaks": [
         {
-          "$id": "402",
+          "$id": "370",
           "StartTime": "2014-05-05T18:09:23",
           "EndTime": "2014-05-05T18:12:59",
           "Span": "00:03:36",
@@ -5314,10 +4313,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "403",
+            "$id": "371",
             "TimeIntervals": [
               {
-                "$id": "404",
+                "$id": "372",
                 "StartTime": "2014-05-05T18:09:24",
                 "EndTime": "2014-05-05T18:13:33",
                 "Span": "00:04:09",
@@ -5328,34 +4327,160 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "405"
+            "$id": "373"
           },
           "Advertisements": [
             {
-              "$ref": "189"
+              "$id": "374",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:10:00",
+              "EndTime": "2014-05-05T18:10:15",
+              "Profit": 217.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "171"
+              },
+              "AdOrderID": "1742",
+              "Brand": {
+                "$ref": "58"
+              },
+              "OwnerID": "1873",
+              "Type": {
+                "$ref": "9"
+              },
+              "TypeID": "050503"
             },
             {
-              "$ref": "297"
+              "$id": "375",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:10:15",
+              "EndTime": "2014-05-05T18:10:30",
+              "Profit": 217.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "211"
+              },
+              "AdOrderID": "118",
+              "Brand": {
+                "$ref": "86"
+              },
+              "OwnerID": "2085",
+              "Type": {
+                "$ref": "33"
+              },
+              "TypeID": "111000"
             },
             {
-              "$ref": "300"
+              "$id": "376",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:10:30",
+              "EndTime": "2014-05-05T18:11:00",
+              "Profit": 310.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "212"
+              },
+              "AdOrderID": "702",
+              "Brand": {
+                "$ref": "96"
+              },
+              "OwnerID": "142",
+              "Type": {
+                "$ref": "41"
+              },
+              "TypeID": "011001"
             },
             {
-              "$ref": "302"
+              "$id": "377",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:11:00",
+              "EndTime": "2014-05-05T18:11:30",
+              "Profit": 310.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "213"
+              },
+              "AdOrderID": "2185",
+              "Brand": {
+                "$ref": "61"
+              },
+              "OwnerID": "1305",
+              "Type": {
+                "$ref": "9"
+              },
+              "TypeID": "050503"
             },
             {
-              "$ref": "262"
+              "$id": "378",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:11:30",
+              "EndTime": "2014-05-05T18:12:00",
+              "Profit": 310.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "197"
+              },
+              "AdOrderID": "590",
+              "Brand": {
+                "$ref": "83"
+              },
+              "OwnerID": "554",
+              "Type": {
+                "$ref": "30"
+              },
+              "TypeID": "111303"
             },
             {
-              "$ref": "194"
+              "$id": "379",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:12:00",
+              "EndTime": "2014-05-05T18:12:30",
+              "Profit": 310.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "172"
+              },
+              "AdOrderID": "2645",
+              "Brand": {
+                "$ref": "59"
+              },
+              "OwnerID": "337",
+              "Type": {
+                "$ref": "10"
+              },
+              "TypeID": "100400"
             },
             {
-              "$ref": "214"
+              "$id": "380",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:12:30",
+              "EndTime": "2014-05-05T18:13:00",
+              "Profit": 310.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "178"
+              },
+              "AdOrderID": "1599",
+              "Brand": {
+                "$ref": "65"
+              },
+              "OwnerID": "1082",
+              "Type": {
+                "$ref": "16"
+              },
+              "TypeID": "002000"
             }
           ]
         },
         {
-          "$id": "406",
+          "$id": "381",
           "StartTime": "2014-05-05T18:22:52",
           "EndTime": "2014-05-05T18:26:28",
           "Span": "00:03:36",
@@ -5363,10 +4488,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "407",
+            "$id": "382",
             "TimeIntervals": [
               {
-                "$id": "408",
+                "$id": "383",
                 "StartTime": "2014-05-05T18:22:52",
                 "EndTime": "2014-05-05T18:23:58",
                 "Span": "00:01:06",
@@ -5374,7 +4499,7 @@
                 "Viewers": 6802.5
               },
               {
-                "$id": "409",
+                "$id": "384",
                 "StartTime": "2014-05-05T18:23:58",
                 "EndTime": "2014-05-05T18:24:28",
                 "Span": "00:00:30",
@@ -5382,7 +4507,7 @@
                 "Viewers": 9070.0
               },
               {
-                "$id": "410",
+                "$id": "385",
                 "StartTime": "2014-05-05T18:24:28",
                 "EndTime": "2014-05-05T18:27:01",
                 "Span": "00:02:33",
@@ -5393,34 +4518,160 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "411"
+            "$id": "386"
           },
           "Advertisements": [
             {
-              "$ref": "288"
+              "$id": "387",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:23:28",
+              "EndTime": "2014-05-05T18:23:58",
+              "Profit": 310.0,
+              "Viewers": 6802.5,
+              "AdvertisementOrder": {
+                "$ref": "207"
+              },
+              "AdOrderID": "4057",
+              "Brand": {
+                "$ref": "93"
+              },
+              "OwnerID": "1023",
+              "Type": {
+                "$ref": "38"
+              },
+              "TypeID": "090712"
             },
             {
-              "$ref": "269"
+              "$id": "388",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:23:58",
+              "EndTime": "2014-05-05T18:24:28",
+              "Profit": 310.0,
+              "Viewers": 9070.0,
+              "AdvertisementOrder": {
+                "$ref": "200"
+              },
+              "AdOrderID": "117",
+              "Brand": {
+                "$ref": "86"
+              },
+              "OwnerID": "2085",
+              "Type": {
+                "$ref": "33"
+              },
+              "TypeID": "111000"
             },
             {
-              "$ref": "304"
+              "$id": "389",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:24:28",
+              "EndTime": "2014-05-05T18:24:43",
+              "Profit": 217.0,
+              "Viewers": 13605.0,
+              "AdvertisementOrder": {
+                "$ref": "214"
+              },
+              "AdOrderID": "2953",
+              "Brand": {
+                "$ref": "97"
+              },
+              "OwnerID": "694",
+              "Type": {
+                "$ref": "42"
+              },
+              "TypeID": "141900"
             },
             {
-              "$ref": "306"
+              "$id": "390",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:24:43",
+              "EndTime": "2014-05-05T18:25:13",
+              "Profit": 310.0,
+              "Viewers": 13605.0,
+              "AdvertisementOrder": {
+                "$ref": "215"
+              },
+              "AdOrderID": "1996",
+              "Brand": {
+                "$ref": "98"
+              },
+              "OwnerID": "1817",
+              "Type": {
+                "$ref": "43"
+              },
+              "TypeID": "111305"
             },
             {
-              "$ref": "254"
+              "$id": "391",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:25:13",
+              "EndTime": "2014-05-05T18:25:28",
+              "Profit": 217.0,
+              "Viewers": 13605.0,
+              "AdvertisementOrder": {
+                "$ref": "194"
+              },
+              "AdOrderID": "1815",
+              "Brand": {
+                "$ref": "81"
+              },
+              "OwnerID": "510",
+              "Type": {
+                "$ref": "18"
+              },
+              "TypeID": "010202"
             },
             {
-              "$ref": "209"
+              "$id": "392",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:25:28",
+              "EndTime": "2014-05-05T18:25:58",
+              "Profit": 310.0,
+              "Viewers": 13605.0,
+              "AdvertisementOrder": {
+                "$ref": "177"
+              },
+              "AdOrderID": "3554",
+              "Brand": {
+                "$ref": "64"
+              },
+              "OwnerID": "1724",
+              "Type": {
+                "$ref": "15"
+              },
+              "TypeID": "180401"
             },
             {
-              "$ref": "308"
+              "$id": "393",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:25:58",
+              "EndTime": "2014-05-05T18:26:28",
+              "Profit": 310.0,
+              "Viewers": 13605.0,
+              "AdvertisementOrder": {
+                "$ref": "216"
+              },
+              "AdOrderID": "3780",
+              "Brand": {
+                "$ref": "99"
+              },
+              "OwnerID": "1643",
+              "Type": {
+                "$ref": "44"
+              },
+              "TypeID": "090708"
             }
           ]
         },
         {
-          "$id": "412",
+          "$id": "394",
           "StartTime": "2014-05-05T18:43:53",
           "EndTime": "2014-05-05T18:47:29",
           "Span": "00:03:36",
@@ -5428,10 +4679,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "413",
+            "$id": "395",
             "TimeIntervals": [
               {
-                "$id": "414",
+                "$id": "396",
                 "StartTime": "2014-05-05T18:43:53",
                 "EndTime": "2014-05-05T18:46:23",
                 "Span": "00:02:30",
@@ -5439,7 +4690,7 @@
                 "Viewers": 2305.67
               },
               {
-                "$id": "415",
+                "$id": "397",
                 "StartTime": "2014-05-05T18:46:23",
                 "EndTime": "2014-05-05T18:46:59",
                 "Span": "00:00:36",
@@ -5447,7 +4698,7 @@
                 "Viewers": 3458.5
               },
               {
-                "$id": "416",
+                "$id": "398",
                 "StartTime": "2014-05-05T18:46:59",
                 "EndTime": "2014-05-05T18:47:14",
                 "Span": "00:00:15",
@@ -5455,7 +4706,7 @@
                 "Viewers": 4611.33
               },
               {
-                "$id": "417",
+                "$id": "399",
                 "StartTime": "2014-05-05T18:47:14",
                 "EndTime": "2014-05-05T18:47:35",
                 "Span": "00:00:21",
@@ -5466,46 +4717,244 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "418"
+            "$id": "400"
           },
           "Advertisements": [
             {
-              "$ref": "310"
+              "$id": "401",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:44:29",
+              "EndTime": "2014-05-05T18:44:44",
+              "Profit": 217.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "217"
+              },
+              "AdOrderID": "3857",
+              "Brand": {
+                "$ref": "100"
+              },
+              "OwnerID": "1566",
+              "Type": {
+                "$ref": "45"
+              },
+              "TypeID": "190901"
             },
             {
-              "$ref": "298"
+              "$id": "402",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:44:44",
+              "EndTime": "2014-05-05T18:44:59",
+              "Profit": 217.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "211"
+              },
+              "AdOrderID": "118",
+              "Brand": {
+                "$ref": "86"
+              },
+              "OwnerID": "2085",
+              "Type": {
+                "$ref": "33"
+              },
+              "TypeID": "111000"
             },
             {
-              "$ref": "312"
+              "$id": "403",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:44:59",
+              "EndTime": "2014-05-05T18:45:08",
+              "Profit": 170.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "218"
+              },
+              "AdOrderID": "3363",
+              "Brand": {
+                "$ref": "101"
+              },
+              "OwnerID": "1499",
+              "Type": {
+                "$ref": "46"
+              },
+              "TypeID": "161501"
             },
             {
-              "$ref": "314"
+              "$id": "404",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:45:08",
+              "EndTime": "2014-05-05T18:45:23",
+              "Profit": 217.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "219"
+              },
+              "AdOrderID": "3579",
+              "Brand": {
+                "$ref": "102"
+              },
+              "OwnerID": "171",
+              "Type": {
+                "$ref": "47"
+              },
+              "TypeID": "160900"
             },
             {
-              "$ref": "197"
+              "$id": "405",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:45:23",
+              "EndTime": "2014-05-05T18:45:53",
+              "Profit": 310.0,
+              "Viewers": 0.0,
+              "AdvertisementOrder": {
+                "$ref": "173"
+              },
+              "AdOrderID": "1922",
+              "Brand": {
+                "$ref": "60"
+              },
+              "OwnerID": "1296",
+              "Type": {
+                "$ref": "11"
+              },
+              "TypeID": "050500"
             },
             {
-              "$ref": "316"
+              "$id": "406",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:45:53",
+              "EndTime": "2014-05-05T18:46:23",
+              "Profit": 310.0,
+              "Viewers": 2305.67,
+              "AdvertisementOrder": {
+                "$ref": "220"
+              },
+              "AdOrderID": "504",
+              "Brand": {
+                "$ref": "103"
+              },
+              "OwnerID": "1203",
+              "Type": {
+                "$ref": "17"
+              },
+              "TypeID": "180001"
             },
             {
-              "$ref": "203"
+              "$id": "407",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:46:23",
+              "EndTime": "2014-05-05T18:46:38",
+              "Profit": 217.0,
+              "Viewers": 3458.5,
+              "AdvertisementOrder": {
+                "$ref": "175"
+              },
+              "AdOrderID": "3865",
+              "Brand": {
+                "$ref": "62"
+              },
+              "OwnerID": "1538",
+              "Type": {
+                "$ref": "13"
+              },
+              "TypeID": "020602"
             },
             {
-              "$ref": "318"
+              "$id": "408",
+              "SpanUnits": 2,
+              "Span": "00:00:06",
+              "StartTime": "2014-05-05T18:46:38",
+              "EndTime": "2014-05-05T18:46:44",
+              "Profit": 124.0,
+              "Viewers": 3458.5,
+              "AdvertisementOrder": {
+                "$ref": "221"
+              },
+              "AdOrderID": "2757",
+              "Brand": {
+                "$ref": "104"
+              },
+              "OwnerID": "1249",
+              "Type": {
+                "$ref": "9"
+              },
+              "TypeID": "050503"
             },
             {
-              "$ref": "320"
+              "$id": "409",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:46:44",
+              "EndTime": "2014-05-05T18:46:59",
+              "Profit": 217.0,
+              "Viewers": 3458.5,
+              "AdvertisementOrder": {
+                "$ref": "222"
+              },
+              "AdOrderID": "2784",
+              "Brand": {
+                "$ref": "90"
+              },
+              "OwnerID": "1470",
+              "Type": {
+                "$ref": "48"
+              },
+              "TypeID": "162003"
             },
             {
-              "$ref": "282"
+              "$id": "410",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:46:59",
+              "EndTime": "2014-05-05T18:47:14",
+              "Profit": 217.0,
+              "Viewers": 4611.33,
+              "AdvertisementOrder": {
+                "$ref": "205"
+              },
+              "AdOrderID": "1465",
+              "Brand": {
+                "$ref": "91"
+              },
+              "OwnerID": "1838",
+              "Type": {
+                "$ref": "17"
+              },
+              "TypeID": "180001"
             },
             {
-              "$ref": "275"
+              "$id": "411",
+              "SpanUnits": 5,
+              "Span": "00:00:15",
+              "StartTime": "2014-05-05T18:47:14",
+              "EndTime": "2014-05-05T18:47:29",
+              "Profit": 217.0,
+              "Viewers": 6917.0,
+              "AdvertisementOrder": {
+                "$ref": "202"
+              },
+              "AdOrderID": "1923",
+              "Brand": {
+                "$ref": "88"
+              },
+              "OwnerID": "1943",
+              "Type": {
+                "$ref": "12"
+              },
+              "TypeID": "050502"
             }
           ]
         },
         {
-          "$id": "419",
+          "$id": "412",
           "StartTime": "2014-05-05T18:57:02",
           "EndTime": "2014-05-05T19:00:02",
           "Span": "00:03:00",
@@ -5513,10 +4962,10 @@
           "MaximumExtension": "00:00:00",
           "MaximumExtensionUnits": 0,
           "MainViewsFunction": {
-            "$id": "420",
+            "$id": "413",
             "TimeIntervals": [
               {
-                "$id": "421",
+                "$id": "414",
                 "StartTime": "2014-05-05T18:57:02",
                 "EndTime": "2014-05-05T19:00:02",
                 "Span": "00:03:00",
@@ -5527,29 +4976,155 @@
             "TypeID": null
           },
           "TypeViewsFunctions": {
-            "$id": "422"
+            "$id": "415"
           },
           "Advertisements": [
             {
-              "$ref": "289"
+              "$id": "416",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:57:38",
+              "EndTime": "2014-05-05T18:58:08",
+              "Profit": 310.0,
+              "Viewers": 6917.0,
+              "AdvertisementOrder": {
+                "$ref": "207"
+              },
+              "AdOrderID": "4057",
+              "Brand": {
+                "$ref": "93"
+              },
+              "OwnerID": "1023",
+              "Type": {
+                "$ref": "38"
+              },
+              "TypeID": "090712"
             },
             {
-              "$ref": "270"
+              "$id": "417",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:58:08",
+              "EndTime": "2014-05-05T18:58:38",
+              "Profit": 310.0,
+              "Viewers": 6917.0,
+              "AdvertisementOrder": {
+                "$ref": "200"
+              },
+              "AdOrderID": "117",
+              "Brand": {
+                "$ref": "86"
+              },
+              "OwnerID": "2085",
+              "Type": {
+                "$ref": "33"
+              },
+              "TypeID": "111000"
             },
             {
-              "$ref": "217"
+              "$id": "418",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:58:38",
+              "EndTime": "2014-05-05T18:58:47",
+              "Profit": 170.0,
+              "Viewers": 6917.0,
+              "AdvertisementOrder": {
+                "$ref": "179"
+              },
+              "AdOrderID": "3389",
+              "Brand": {
+                "$ref": "66"
+              },
+              "OwnerID": "1761",
+              "Type": {
+                "$ref": "17"
+              },
+              "TypeID": "180001"
             },
             {
-              "$ref": "322"
+              "$id": "419",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:58:47",
+              "EndTime": "2014-05-05T18:59:17",
+              "Profit": 310.0,
+              "Viewers": 6917.0,
+              "AdvertisementOrder": {
+                "$ref": "223"
+              },
+              "AdOrderID": "3043",
+              "Brand": {
+                "$ref": "105"
+              },
+              "OwnerID": "845",
+              "Type": {
+                "$ref": "48"
+              },
+              "TypeID": "162003"
             },
             {
-              "$ref": "324"
+              "$id": "420",
+              "SpanUnits": 3,
+              "Span": "00:00:09",
+              "StartTime": "2014-05-05T18:59:17",
+              "EndTime": "2014-05-05T18:59:26",
+              "Profit": 170.0,
+              "Viewers": 6917.0,
+              "AdvertisementOrder": {
+                "$ref": "224"
+              },
+              "AdOrderID": "1192",
+              "Brand": {
+                "$ref": "106"
+              },
+              "OwnerID": "2035",
+              "Type": {
+                "$ref": "49"
+              },
+              "TypeID": "050501"
             },
             {
-              "$ref": "240"
+              "$id": "421",
+              "SpanUnits": 10,
+              "Span": "00:00:30",
+              "StartTime": "2014-05-05T18:59:26",
+              "EndTime": "2014-05-05T18:59:56",
+              "Profit": 310.0,
+              "Viewers": 6917.0,
+              "AdvertisementOrder": {
+                "$ref": "189"
+              },
+              "AdOrderID": "2442",
+              "Brand": {
+                "$ref": "76"
+              },
+              "OwnerID": "335",
+              "Type": {
+                "$ref": "23"
+              },
+              "TypeID": "162008"
             },
             {
-              "$ref": "326"
+              "$id": "422",
+              "SpanUnits": 2,
+              "Span": "00:00:06",
+              "StartTime": "2014-05-05T18:59:56",
+              "EndTime": "2014-05-05T19:00:02",
+              "Profit": 310.0,
+              "Viewers": 6917.0,
+              "AdvertisementOrder": {
+                "$ref": "225"
+              },
+              "AdOrderID": "3494",
+              "Brand": {
+                "$ref": "107"
+              },
+              "OwnerID": "184",
+              "Type": {
+                "$ref": "50"
+              },
+              "TypeID": "160303"
             }
           ]
         }

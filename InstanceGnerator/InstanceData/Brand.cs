@@ -11,7 +11,7 @@ namespace InstanceGenerator.InstanceData
     public class Brand
     {
         [JsonIgnore]
-        public List<AdvertisementInstance> Ads { get; set; } = new List<AdvertisementInstance>();
+        public HashSet<AdvertisementInstance> Ads { get; set; } = new HashSet<AdvertisementInstance>();
 
         public string ID { get; set; }
 
