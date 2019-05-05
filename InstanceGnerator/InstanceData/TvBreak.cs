@@ -14,6 +14,7 @@ namespace InstanceGenerator.InstanceData
     {
         private List<AdvertisementInstance> _advertisements = new List<AdvertisementInstance>();
 
+        public string ID { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public TimeSpan Span { get; set; }

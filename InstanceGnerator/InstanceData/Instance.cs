@@ -36,7 +36,7 @@ namespace InstanceGenerator.InstanceData
         [Description("Dictionary declaring brands present in the instance.")]
         public Dictionary<string, Brand> Brands { get; set; } = new Dictionary<string, Brand>();
         [JsonProperty(Order = 3)]
-        [Description("Brand compatibility matrix in sparse form (value not present means full incompatibility). Values 0 - fully compatible, >0 - not preferred, acts as cost")]
+        [Description("Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight")]
         public Dictionary<string, Dictionary<string, double>> BrandConflictMatrix { get; set; } = new Dictionary<string, Dictionary<string, double>>();
         [JsonProperty(Order = 4)]
         [Description("Tasks - advertisements to schedule with their constraints.")]
@@ -44,6 +44,13 @@ namespace InstanceGenerator.InstanceData
         [Description("Channels - 'machines' on which we schedule the tasks.")]
         [JsonProperty(Order = 5)]
         public Dictionary<string, Channel> Channels { get; set; } = new Dictionary<string, Channel>();
+        [JsonProperty(Order = 6)]
+        [Description("Type to break sparse compatibility matrix (values not present are compatible). Possible values: 1 - incompatible.")]
+        public Dictionary<string, Dictionary<string, byte>> TypeToBreakIncompatibilityMatrix { get; set; } = new Dictionary<string, Dictionary<string, byte>>();
+
+
+
+
         public IEnumerable<Channel> GetChannelList()
         {
             return Channels.Values;

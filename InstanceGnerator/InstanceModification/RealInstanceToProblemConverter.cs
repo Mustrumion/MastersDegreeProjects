@@ -21,6 +21,16 @@ namespace InstanceGenerator.InstanceModification
         public TimeSpan DueTimeOffset { get; set; } = new TimeSpan(0, 0, 0, 0);
 
 
+        private Dictionary<string, int> nightTypesCount;
+        private Dictionary<string, int> dayTypesCount;
+        private HashSet<TvBreak> nightlyBreaks;
+        private HashSet<TvBreak> dailyBreaks;
+        private TimeSpan nightsEnd = new TimeSpan(6, 0, 0);
+        private TimeSpan nightsStart = new TimeSpan(22, 0, 0);
+
+        int lastBreakId;
+
+
         public void ConvertToProblem()
         {
             ConvertToUnits();
@@ -30,6 +40,7 @@ namespace InstanceGenerator.InstanceModification
             AddViewershipFunctions();
             RemoveUnnecessaryActivities();
             GenerateAllAdOrdersData();
+            GenerateBreakToTypeCompatibilityMatrix();
         }
 
         public void CreateBreaks()
@@ -42,6 +53,7 @@ namespace InstanceGenerator.InstanceModification
 
         private void CreateChannelBreaks(Channel channel)
         {
+            lastBreakId = 0;
             TvBreak currentBreak = null;
             foreach (BaseActivity activity in channel.Activities)
             {
@@ -78,6 +90,7 @@ namespace InstanceGenerator.InstanceModification
         {
             if (tvBreak != null && tvBreak.Advertisements.Count > 0)
             {
+                tvBreak.ID = $"{lastBreakId++}";
                 tvBreak.EndTime = tvBreak.Advertisements.Last().EndTime;
                 RecalculateSpanToUnits(tvBreak);
                 channel.AddBreak(tvBreak);
@@ -220,16 +233,12 @@ namespace InstanceGenerator.InstanceModification
         }
 
 
-
-        private Dictionary<string, int> nightTypesCount = new Dictionary<string, int>();
-        private Dictionary<string, int> dayTypesCount = new Dictionary<string, int>();
-        private HashSet<TvBreak> nightlyBreaks = new HashSet<TvBreak>();
-        private HashSet<TvBreak> dailyBreaks = new HashSet<TvBreak>();
-        private TimeSpan nightsEnd = new TimeSpan(6, 0, 0);
-        private TimeSpan nightsStart = new TimeSpan(22, 0, 0);
-
         public void GenerateBreakToTypeCompatibilityMatrix()
         {
+            nightTypesCount = new Dictionary<string, int>();
+            dayTypesCount = new Dictionary<string, int>();
+            nightlyBreaks = new HashSet<TvBreak>();
+            dailyBreaks = new HashSet<TvBreak>();
             foreach (var channel in Instance.Channels.Values)
             {
                 foreach(var tvBreak in channel.Breaks)
@@ -240,6 +249,38 @@ namespace InstanceGenerator.InstanceModification
                         AddAdvertisementToDayPeriodCounts(ad);
                     }
                 }
+            }
+            GenerateMatrixFromData();
+        }
+
+        private void GenerateMatrixFromData()
+        {
+            double cutoffTreshold = 0.95d;
+            foreach(var type in Instance.TypesOfAds.Values)
+            {
+                if (dayTypesCount.ContainsKey(type.ID) && nightlyBreaks.Count > 0)
+                {
+                    if(dayTypesCount[type.ID]/type.Ads.Count > cutoffTreshold)
+                    {
+                        AddIncompatibility(type, nightlyBreaks);
+                    }
+                }
+                if (nightTypesCount.ContainsKey(type.ID) && dailyBreaks.Count > 0)
+                {
+                    if (nightTypesCount[type.ID] / type.Ads.Count > cutoffTreshold)
+                    {
+                        AddIncompatibility(type, dailyBreaks);
+                    }
+                }
+            }
+        }
+
+        private void AddIncompatibility(TypeOfAd type, HashSet<TvBreak> breaks)
+        {
+            Instance.TypeToBreakIncompatibilityMatrix[type.ID] = new Dictionary<string, byte>();
+            foreach(TvBreak tvBreak in breaks)
+            {
+                Instance.TypeToBreakIncompatibilityMatrix[type.ID][tvBreak.ID] = 1;
             }
         }
 
