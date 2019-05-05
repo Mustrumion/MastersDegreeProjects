@@ -44,6 +44,12 @@ namespace ExampleFileReader.DataAccess
                     {
                         ReadChannelAssignment();
                     }
+                    JumpToStatistics();
+                    JumpToNextSection();
+                    JumpToNextSection();
+                    ReadCloseCompatibilityData();
+                    JumpToNextSection();
+                    ReadMediumCompatibilityData();
                 }
                 catch(Exception e)
                 {
@@ -51,6 +57,34 @@ namespace ExampleFileReader.DataAccess
                 }
             }
             return instance;
+        }
+
+        private void ReadMediumCompatibilityData()
+        {
+            lineNum += 1;
+            string count = Reader.ReadLine();
+            int lineCount = Convert.ToInt32(count);
+            string line = null;
+            while (!(line = Reader.ReadLine()).StartsWith("%"))
+            {
+                string[] fields = line.Split(' ');
+                instance.AddBrandCompatibilityIfNotExists(fields[0], fields[1], 1.0d);
+                lineNum += 1;
+            }
+        }
+
+        private void ReadCloseCompatibilityData()
+        {
+            lineNum += 1;
+            string count = Reader.ReadLine();
+            int lineCount = Convert.ToInt32(count);
+            string line = null;
+            while (!(line = Reader.ReadLine()).StartsWith("%"))
+            {
+                string[] fields = line.Split(' ');
+                instance.AddBrandCompatibilityIfNotExists(fields[0], fields[1], 0.0d);
+                lineNum += 1;
+            }
         }
 
         private void ReadInstancesHeader()
@@ -127,6 +161,30 @@ namespace ExampleFileReader.DataAccess
                     AnalyzeAutopromotion(line);
                 }
                 lineNum += 1;
+            }
+        }
+
+        private void JumpToStatistics()
+        {
+            string line = null;
+            lineNum += 1;
+            line = Reader.ReadLine();
+            while (line != null && !line.StartsWith("%STATISTICS%"))
+            {
+                lineNum += 1;
+                line = Reader.ReadLine();
+            }
+        }
+
+        private void JumpToNextSection()
+        { 
+            string line = null;
+            lineNum += 1;
+            line = Reader.ReadLine();
+            while (line != null && !line.StartsWith("%"))
+            {
+                lineNum += 1;
+                line = Reader.ReadLine();
             }
         }
 

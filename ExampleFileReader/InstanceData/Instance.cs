@@ -24,8 +24,8 @@ namespace ExampleFileReader.InstanceData
         {
             return AdOrders.Values;
         }
-        
-        public Dictionary<string, Dictionary<string, double>> BrandConflictMatrix { get; set; }
+
+        public Dictionary<string, Dictionary<string, double>> BrandConflictMatrix { get; set; } = new Dictionary<string, Dictionary<string, double>>();
 
         public AdvertisementOrder GetOrAddOrderOfAds(string advertisementId)
         {
@@ -69,6 +69,26 @@ namespace ExampleFileReader.InstanceData
         public IEnumerable<OwnerOfAd> GetOwnersOfAdsList()
         {
             return OwnerOfAds.Values;
+        }
+
+        public void AddBrandCompatibilityIfNotExists(string brand1, string brand2, double incompatibilityScore)
+        {
+            if (!BrandConflictMatrix.ContainsKey(brand1))
+            {
+                BrandConflictMatrix.Add(brand1, new Dictionary<string, double>());
+            }
+            if (!BrandConflictMatrix.ContainsKey(brand2))
+            {
+                BrandConflictMatrix.Add(brand2, new Dictionary<string, double>());
+            }
+            if (!BrandConflictMatrix[brand2].ContainsKey(brand1))
+            {
+                BrandConflictMatrix[brand2][brand1] = incompatibilityScore;
+            }
+            if (!BrandConflictMatrix[brand1].ContainsKey(brand2))
+            {
+                BrandConflictMatrix[brand1][brand2] = incompatibilityScore;
+            }
         }
 
         public OwnerOfAd GetOrAddOwnerOfAds(string ownerId)
