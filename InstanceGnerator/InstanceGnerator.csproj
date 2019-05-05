@@ -46,10 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers.cs" />
-    <Compile Include="InstanceData\BrandCompatibilities.cs" />
     <Compile Include="InstanceData\Interfaces\IActivitiesSequence.cs" />
     <Compile Include="InstanceData\Interfaces\ISpannedObject.cs" />
-    <Compile Include="InstanceData\OwnerOfAd.cs" />
+    <Compile Include="InstanceData\Brand.cs" />
     <Compile Include="InstanceData\ViewershipFunction.cs" />
     <Compile Include="InstanceData\ViewershipSpan.cs" />
     <Compile Include="DataAcces\RealInstanceDataLoader.cs" />

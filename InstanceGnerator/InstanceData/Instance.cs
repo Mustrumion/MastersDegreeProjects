@@ -67,11 +67,11 @@ namespace InstanceGenerator.InstanceData
         }
 
         [JsonProperty(Order = 2)]
-        public Dictionary<string, OwnerOfAd> OwnerOfAds { get; set; } = new Dictionary<string, OwnerOfAd>();
+        public Dictionary<string, Brand> Brands { get; set; } = new Dictionary<string, Brand>();
 
-        public IEnumerable<OwnerOfAd> GetOwnersOfAdsList()
+        public IEnumerable<Brand> GetBrandsList()
         {
-            return OwnerOfAds.Values;
+            return Brands.Values;
         }
 
         public void AddBrandCompatibilityIfNotExists(string brand1, string brand2, double incompatibilityScore)
@@ -94,17 +94,17 @@ namespace InstanceGenerator.InstanceData
             }
         }
 
-        public OwnerOfAd GetOrAddOwnerOfAds(string ownerId)
+        public Brand GetOrAddBrand(string ownerId)
         {
-            if (OwnerOfAds.ContainsKey(ownerId))
+            if (Brands.ContainsKey(ownerId))
             {
-                return OwnerOfAds[ownerId];
+                return Brands[ownerId];
             }
-            OwnerOfAd owner = new OwnerOfAd()
+            Brand owner = new Brand()
             {
                 ID = ownerId,
             };
-            OwnerOfAds[ownerId] = owner;
+            Brands[ownerId] = owner;
             return owner;
         }
 

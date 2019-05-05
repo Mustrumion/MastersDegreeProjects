@@ -244,7 +244,7 @@ namespace InstanceGenerator.InstanceModification
             order.MinEndsProportion /= order.AdvertisementInstances.Count();
             order.MinEndsProportion *= MinEndsProportionMultiplier;
             order.Type = order.AdvertisementInstances[0].Type;
-            order.Owner = order.AdvertisementInstances[0].Owner;
+            order.Brand = order.AdvertisementInstances[0].Brand;
             GenerateSelfIncompatibilityData(order);
             order.OverdueCostParameter = order.Gain;
         }

@@ -32,7 +32,7 @@ namespace InstanceGenerator.InstanceData
         public double OverdueCostParameter { get; set; }
 
         public TypeOfAd Type { get; set; }
-        public OwnerOfAd Owner { get; set; }
+        public Brand Brand { get; set; }
        
         public void AddAdvertisement(AdvertisementInstance advertisement)
         {

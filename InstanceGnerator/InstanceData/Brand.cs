@@ -23,9 +23,9 @@ namespace InstanceGenerator.InstanceData
         public void AddAdvertisement(AdvertisementInstance advertisement)
         {
             Ads.Add(advertisement);
-            if (advertisement.Owner != this)
+            if (advertisement.Brand != this)
             {
-                advertisement.Owner = this;
+                advertisement.Brand = this;
             }
         }
     }

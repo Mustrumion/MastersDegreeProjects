@@ -47,7 +47,7 @@ namespace InstanceGenerator.InstanceData.Activities
             }
         }
 
-        public Brand Owner
+        public Brand Brand
         {
             get => _owner;
             set
@@ -63,9 +63,9 @@ namespace InstanceGenerator.InstanceData.Activities
         {
             get
             {
-                if (Owner != null)
+                if (Brand != null)
                 {
-                    return Owner.ID;
+                    return Brand.ID;
                 }
                 return _ownerID;
             }

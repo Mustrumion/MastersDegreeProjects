@@ -223,7 +223,7 @@ namespace InstanceGenerator.DataAccess
                 Type = instance.GetOrAddTypeOfAds(fields[4]),
                 Profit = Convert.ToDouble(fields[5].Replace(",", "."), CultureInfo.InvariantCulture),
                 AdvertisementOrder = instance.GetOrAddOrderOfAds(fields[7]),
-                Owner = instance.GetOrAddOwnerOfAds(fields[8]),
+                Brand = instance.GetOrAddBrand(fields[8]),
                 Viewers = Convert.ToDouble(fields[9].Replace(",", "."), CultureInfo.InvariantCulture),
                 Channel = currentChannel,
                 StartTime = currentChannel.EndTime,
