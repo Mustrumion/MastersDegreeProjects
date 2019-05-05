@@ -1,0 +1,367 @@
+{
+  "$id": "InstanceGenerator.InstanceData.Instance",
+  "type": "object",
+  "properties": {
+    "StartTime": {
+      "description": "Instance begining in ISO 8601 UTC format.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "EndTime": {
+      "description": "Instance end in ISO 8601 UTC format.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "Span": {
+      "description": "Instance span in '[d.]hh:mm:ss' format (the part in [] is optional).",
+      "type": "string"
+    },
+    "SpanUnits": {
+      "description": "Instance span in units.",
+      "type": "integer"
+    },
+    "UnitSizeInSeconds": {
+      "description": "Chosen unit size in seconds.",
+      "type": "number"
+    },
+    "ChannelAmountChecksum": {
+      "type": "integer"
+    },
+    "TypesOfAds": {
+      "description": "Dictionary declaring types of ads present in the instance.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$id": "InstanceGenerator.InstanceData.TypeOfAd",
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "ID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "Brands": {
+      "description": "Dictionary declaring brands present in the instance.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$id": "InstanceGenerator.InstanceData.Brand",
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "ID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "BrandConflictMatrix": {
+      "description": "Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "additionalProperties": {
+          "type": "number"
+        }
+      }
+    },
+    "AdOrders": {
+      "description": "Tasks - advertisements to schedule with their constraints.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$id": "InstanceGenerator.InstanceData.AdvertisementOrder",
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "ID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "AdSpanUnits": {
+            "type": "integer"
+          },
+          "AdSpan": {
+            "type": "string"
+          },
+          "Gain": {
+            "type": "number"
+          },
+          "MinViewership": {
+            "type": "number"
+          },
+          "MinTimesAired": {
+            "type": "integer"
+          },
+          "MinBeginingsProportion": {
+            "type": "number"
+          },
+          "MinEndsProportion": {
+            "type": "number"
+          },
+          "MaxPerBlock": {
+            "type": "integer"
+          },
+          "MinJobsBetweenSame": {
+            "type": "integer"
+          },
+          "DueTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "OverdueCostParameter": {
+            "type": "number"
+          },
+          "Type": {
+            "$ref": "InstanceGenerator.InstanceData.TypeOfAd"
+          },
+          "Brand": {
+            "$ref": "InstanceGenerator.InstanceData.Brand"
+          }
+        }
+      }
+    },
+    "Channels": {
+      "description": "Channels - 'machines' on which we schedule the tasks.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$id": "InstanceGenerator.InstanceData.Channel",
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "ID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "StartTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "EndTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Span": {
+            "type": "string"
+          },
+          "SpanUnits": {
+            "type": "integer"
+          },
+          "Breaks": {
+            "$id": "System.Collections.Generic.List`1[[InstanceGenerator.InstanceData.TvBreak, InstanceGenerator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$id": "InstanceGenerator.InstanceData.TvBreak",
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "ID": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "StartTime": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "EndTime": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "Span": {
+                  "type": "string"
+                },
+                "SpanUnits": {
+                  "type": "integer"
+                },
+                "MaximumExtension": {
+                  "type": "string"
+                },
+                "MaximumExtensionUnits": {
+                  "type": "integer"
+                },
+                "MainViewsFunction": {
+                  "$id": "InstanceGenerator.InstanceData.ViewershipFunction",
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "TimeIntervals": {
+                      "$id": "System.Collections.Generic.List`1[[InstanceGenerator.InstanceData.ViewershipSpan, InstanceGenerator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "$id": "InstanceGenerator.InstanceData.ViewershipSpan",
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "StartTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "EndTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "Span": {
+                            "type": "string"
+                          },
+                          "SpanUnits": {
+                            "type": "integer"
+                          },
+                          "Viewers": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "TypeID": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                "TypeViewsFunctions": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": {
+                    "$ref": "InstanceGenerator.InstanceData.ViewershipFunction"
+                  }
+                },
+                "Advertisements": {
+                  "$id": "System.Collections.Generic.List`1[[InstanceGenerator.InstanceData.Activities.AdvertisementInstance, InstanceGenerator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "$id": "InstanceGenerator.InstanceData.Activities.AdvertisementInstance",
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "SpanUnits": {
+                        "type": "integer"
+                      },
+                      "Span": {
+                        "type": "string"
+                      },
+                      "StartTime": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "EndTime": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "Profit": {
+                        "type": "number"
+                      },
+                      "Viewers": {
+                        "type": "number"
+                      },
+                      "AdvertisementOrder": {
+                        "$ref": "InstanceGenerator.InstanceData.AdvertisementOrder"
+                      },
+                      "AdOrderID": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Brand": {
+                        "$ref": "InstanceGenerator.InstanceData.Brand"
+                      },
+                      "OwnerID": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Type": {
+                        "$ref": "InstanceGenerator.InstanceData.TypeOfAd"
+                      },
+                      "TypeID": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "TypeToBreakIncompatibilityMatrix": {
+      "description": "Type to break sparse compatibility matrix (values not present are compatible). Possible values: 1 - incompatible.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "additionalProperties": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

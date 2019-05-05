@@ -130,6 +130,9 @@
   <data name="hour_DS_D_DH_inst" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\hour_ds_d_dh_inst.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="instance_schema" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\instance_schema.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="month_DS_D_DH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\month_ds_d_dh.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>

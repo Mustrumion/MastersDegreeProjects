@@ -140,6 +140,16 @@ namespace SystemTestsProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] instance_schema {
+            get {
+                object obj = ResourceManager.GetObject("instance_schema", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 58 32 68
         ///5.5.2014 0:0:0
         ///5.6.2014 0:0:0

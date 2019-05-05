@@ -66,6 +66,7 @@
     <None Include="packages.config" />
     <None Include="Resources\day_DS_D_DH_inst.json" />
     <None Include="Resources\hour_DS_D_DH_inst.json" />
+    <None Include="Resources\instance_schema.json" />
     <None Include="Resources\month_DS_D_DH_inst.json" />
     <None Include="Resources\week_DS_D_DH_inst.json" />
   </ItemGroup>
