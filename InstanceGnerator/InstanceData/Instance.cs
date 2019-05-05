@@ -3,6 +3,7 @@ using InstanceGenerator.InstanceData.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,24 +12,43 @@ namespace InstanceGenerator.InstanceData
 {
     public class Instance: ISpannedObject
     {
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public TimeSpan Span { get; set; }
+        public int SpanUnits { get; set; }
+        public double UnitSizeInSeconds { get; set; }
+        
+        public int ChannelAmountChecksum { get; set; }
+        [JsonIgnore]
+        public int ProgramAmountChecksum { get; set; }
+        [JsonIgnore]
+        public int AdsAmountChecksum { get; set; }
+
+        [JsonProperty(Order = 1)]
+        [Description("Dictionary declaring types of ads present in the instance.")]
+        public Dictionary<string, TypeOfAd> TypesOfAds { get; set; } = new Dictionary<string, TypeOfAd>();
+        [JsonProperty(Order = 2)]
+        [Description("Dictionary declaring brands present in the instance.")]
+        public Dictionary<string, Brand> Brands { get; set; } = new Dictionary<string, Brand>();
+        [JsonProperty(Order = 3)]
+        [Description("Brand compatibility matrix in sparse form (value not present means full incompatibility). Values 0 - fully compatible, >0 - not preferred, acts as cost")]
+        public Dictionary<string, Dictionary<string, double>> BrandConflictMatrix { get; set; } = new Dictionary<string, Dictionary<string, double>>();
         [JsonProperty(Order = 4)]
+        [Description("Tasks - advertisements to schedule with their constraints.")]
+        public Dictionary<string, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<string, AdvertisementOrder>();
+        [Description("Channels - 'machines' on which we schedule the tasks.")]
+        [JsonProperty(Order = 5)]
         public Dictionary<string, Channel> Channels { get; set; } = new Dictionary<string, Channel>();
         public IEnumerable<Channel> GetChannelList()
         {
             return Channels.Values;
         }
 
-        /// <summary>
-        /// Tasks - advertisements to schedule
-        /// </summary>
-        [JsonProperty(Order = 3)]
-        public Dictionary<string, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<string, AdvertisementOrder>();
+
         public IEnumerable<AdvertisementOrder> GetBlocksOfAdsList()
         {
             return AdOrders.Values;
         }
-
-        public Dictionary<string, Dictionary<string, double>> BrandConflictMatrix { get; set; } = new Dictionary<string, Dictionary<string, double>>();
 
         public AdvertisementOrder GetOrAddOrderOfAds(string advertisementId)
         {
@@ -44,8 +64,6 @@ namespace InstanceGenerator.InstanceData
             return advert;
         }
 
-        [JsonProperty(Order = 1)]
-        public Dictionary<string, TypeOfAd> TypesOfAds { get; set; } = new Dictionary<string, TypeOfAd>();
 
         public IEnumerable<TypeOfAd> GetTypesOfAdsList()
         {
@@ -65,9 +83,6 @@ namespace InstanceGenerator.InstanceData
             TypesOfAds[blockId] = block;
             return block;
         }
-
-        [JsonProperty(Order = 2)]
-        public Dictionary<string, Brand> Brands { get; set; } = new Dictionary<string, Brand>();
 
         public IEnumerable<Brand> GetBrandsList()
         {
@@ -107,16 +122,5 @@ namespace InstanceGenerator.InstanceData
             Brands[ownerId] = owner;
             return owner;
         }
-
-        
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public TimeSpan Span { get; set; }
-        public int SpanUnits { get; set; }
-        public double UnitSizeInSeconds { get; set; }
-
-        public int ChannelAmountChecksum { get; set; }
-        public int ProgramAmountChecksum { get; set; }
-        public int AdsAmountChecksum { get; set; }
     }
 }

@@ -19,7 +19,8 @@ namespace InstanceGenerator.InstanceData
         public TimeSpan Span { get; set; }
         public int SpanUnits { get; set; }
 
-        
+
+        [JsonIgnore]
         public Instance Instance { get; set; }
         [JsonIgnore]
         public List<Autopromotion> Autopromotions { get; set; } = new List<Autopromotion>();

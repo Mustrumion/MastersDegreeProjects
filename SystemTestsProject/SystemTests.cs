@@ -144,8 +144,8 @@ namespace SystemTestsProject
             generator.GenerationProviders.Add(new StringEnumGenerationProvider());
             generator.DefaultRequired = Required.Default;
             generator.SchemaLocationHandling = SchemaLocationHandling.Inline;
-            generator.SchemaReferenceHandling = SchemaReferenceHandling.Objects;
-            generator.SchemaIdGenerationHandling = SchemaIdGenerationHandling.TypeName;
+            generator.SchemaReferenceHandling = SchemaReferenceHandling.All;
+            generator.SchemaIdGenerationHandling = SchemaIdGenerationHandling.FullTypeName;
             
             JSchema schema = generator.Generate(typeof(Instance));
             string json = schema.ToString();
