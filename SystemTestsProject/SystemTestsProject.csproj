@@ -78,7 +78,7 @@
     <Content Include="Resources\week_DS_D_DH.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InstanceGnerator\InstanceGnerator.csproj">
+    <ProjectReference Include="..\InstanceGenerator\InstanceGenerator.csproj">
       <Project>{ce30ff74-7a54-43ec-9485-2ba365aaa3e7}</Project>
       <Name>InstanceGnerator</Name>
     </ProjectReference>
