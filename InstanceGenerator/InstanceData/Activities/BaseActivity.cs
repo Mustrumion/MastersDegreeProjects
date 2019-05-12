@@ -1,4 +1,4 @@
-﻿using InstanceGenerator.InstanceData.Interfaces;
+﻿using InstanceGenerator.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

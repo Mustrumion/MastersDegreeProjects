@@ -68,6 +68,8 @@
     <None Include="Resources\hour_DS_D_DH_inst.json" />
     <None Include="Resources\instance_schema.json" />
     <None Include="Resources\month_DS_D_DH_inst.json" />
+    <None Include="Resources\month_DS_D_DH_sol.json" />
+    <None Include="Resources\solution_schema.json" />
     <None Include="Resources\week_DS_D_DH_inst.json" />
   </ItemGroup>
   <ItemGroup />

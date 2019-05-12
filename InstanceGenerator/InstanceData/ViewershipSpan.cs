@@ -1,5 +1,5 @@
 ﻿using InstanceGenerator.InstanceData.Activities;
-using InstanceGenerator.InstanceData.Interfaces;
+using InstanceGenerator.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

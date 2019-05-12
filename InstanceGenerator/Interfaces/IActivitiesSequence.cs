@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceGenerator.InstanceData.Interfaces
+namespace InstanceGenerator.Interfaces
 {
     public interface IActivitiesSequence : ISpannedObject
     {

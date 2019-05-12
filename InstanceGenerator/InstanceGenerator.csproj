@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers.cs" />
-    <Compile Include="InstanceData\Interfaces\IActivitiesSequence.cs" />
-    <Compile Include="InstanceData\Interfaces\ISpannedObject.cs" />
+    <Compile Include="Interfaces\IGradingFunction.cs" />
+    <Compile Include="Interfaces\IActivitiesSequence.cs" />
+    <Compile Include="Interfaces\IMove.cs" />
+    <Compile Include="Interfaces\ISpannedObject.cs" />
     <Compile Include="InstanceData\Brand.cs" />
     <Compile Include="InstanceData\ViewershipFunction.cs" />
     <Compile Include="InstanceData\ViewershipSpan.cs" />
