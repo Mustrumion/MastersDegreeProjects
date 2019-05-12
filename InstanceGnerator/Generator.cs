@@ -38,15 +38,43 @@ namespace InstanceGenerator
             InstanceCoverter.Instance = instance;
             InstanceCoverter.ConvertToProblem();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer();
-            if(OutputFilename == null)
+            if (OutputFilename == null)
             {
                 OutputFilename = Path.GetFileNameWithoutExtension(SourcePath) + ".json";
             }
             serializer.Path = OutputFilename;
-            serializer.Serialize(instance);
+            FileInfo file = new FileInfo(OutputFilename);
+            file.Directory.Create();
+            serializer.SerializeInstance(instance);
         }
 
-        public void GenerateSchema()
+        public void GenerateSolution()
+        {
+            if (DataSource == null)
+            {
+                DataSource = new StreamReader(SourcePath);
+            }
+            InstanceLoader.Reader = DataSource;
+            Instance instance = InstanceLoader.LoadInstanceFile();
+            InstanceCoverter.Instance = instance;
+            InstanceCoverter.ConvertToProblem();
+            Solution solution = new Solution()
+            {
+                Instance = instance,
+            };
+            solution.GenerateSolutionFromRealData();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer();
+            if (OutputFilename == null)
+            {
+                OutputFilename = Path.GetFileNameWithoutExtension(SourcePath) + ".json";
+            }
+            serializer.Path = OutputFilename;
+            FileInfo file = new FileInfo(OutputFilename);
+            file.Directory.Create();
+            serializer.SerializeSolution(solution);
+        }
+
+        public void GenerateInstanceSchema()
         {
             JSchemaGenerator generator = new JSchemaGenerator();
 
@@ -58,6 +86,27 @@ namespace InstanceGenerator
 
             JSchema schema = generator.Generate(typeof(Instance));
             string json = schema.ToString();
+            FileInfo file = new FileInfo(OutputFilename);
+            file.Directory.Create();
+            StreamWriter writer = new StreamWriter(OutputFilename);
+            writer.Write(json);
+            writer.FlushAsync();
+        }
+
+        public void GenerateSolutionSchema()
+        {
+            JSchemaGenerator generator = new JSchemaGenerator();
+
+            generator.GenerationProviders.Add(new StringEnumGenerationProvider());
+            generator.DefaultRequired = Required.Default;
+            generator.SchemaLocationHandling = SchemaLocationHandling.Inline;
+            generator.SchemaReferenceHandling = SchemaReferenceHandling.All;
+            generator.SchemaIdGenerationHandling = SchemaIdGenerationHandling.FullTypeName;
+
+            JSchema schema = generator.Generate(typeof(Solution));
+            string json = schema.ToString();
+            FileInfo file = new FileInfo(OutputFilename);
+            file.Directory.Create();
             StreamWriter writer = new StreamWriter(OutputFilename);
             writer.Write(json);
             writer.FlushAsync();

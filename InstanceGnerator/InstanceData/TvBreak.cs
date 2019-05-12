@@ -24,7 +24,10 @@ namespace InstanceGenerator.InstanceData
         public ViewershipFunction MainViewsFunction { get; set; }
         public Dictionary<string, ViewershipFunction> TypeViewsFunctions { get; set; } = new Dictionary<string, ViewershipFunction>();
 
-
+        /// <summary>
+        /// Advertisement instances from the real data. Used only for the instance generation.
+        /// </summary>
+        [JsonIgnore]
         public List<AdvertisementInstance> Advertisements
         {
             get => _advertisements;

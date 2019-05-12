@@ -73,6 +73,7 @@
     <Compile Include="DataAcces\InstanceJsonSerializer.cs" />
     <Compile Include="DataAcces\SerializableDictionary.cs" />
     <Compile Include="InstanceModification\RealInstanceToProblemConverter.cs" />
+    <Compile Include="Solution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

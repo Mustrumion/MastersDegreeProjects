@@ -15,7 +15,7 @@ namespace InstanceGenerator.DataAccess
         public TextReader Reader { get; set; }
         public TextWriter Writer { get; set; }
 
-        public void Serialize(Instance instance)
+        public void SerializeInstance(Instance instance)
         {
             if (Writer == null)
             {
@@ -29,6 +29,23 @@ namespace InstanceGenerator.DataAccess
 
             JsonSerializer ser = JsonSerializer.Create(settings);
             ser.Serialize(Writer, instance);
+            Writer.FlushAsync();
+        }
+
+        public void SerializeSolution(Solution solution)
+        {
+            if (Writer == null)
+            {
+                Writer = new StreamWriter(Path);
+            }
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                PreserveReferencesHandling = PreserveReferencesHandling.None,
+                Formatting = Formatting.Indented,
+            };
+
+            JsonSerializer ser = JsonSerializer.Create(settings);
+            ser.Serialize(Writer, solution);
             Writer.FlushAsync();
         }
 

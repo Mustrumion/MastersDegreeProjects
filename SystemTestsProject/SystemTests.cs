@@ -46,7 +46,7 @@ namespace SystemTestsProject
         {
             Generator instanceGenerator = new Generator();
             instanceGenerator.DataSource = new StringReader(Properties.Resources.day_DS_D_DH);
-            instanceGenerator.OutputFilename = "day_DS_D_DH_inst.json";
+            instanceGenerator.OutputFilename = @"results\day_DS_D_DH_inst.json";
             instanceGenerator.GenerateInstance();
         }
 
@@ -56,7 +56,7 @@ namespace SystemTestsProject
         {
             Generator instanceGenerator = new Generator();
             instanceGenerator.DataSource = new StringReader(Properties.Resources.week_DS_D_DH);
-            instanceGenerator.OutputFilename = "week_DS_D_DH_inst.json";
+            instanceGenerator.OutputFilename = @"results\week_DS_D_DH_inst.json";
             instanceGenerator.GenerateInstance();
         }
 
@@ -66,7 +66,7 @@ namespace SystemTestsProject
         {
             Generator instanceGenerator = new Generator();
             instanceGenerator.DataSource = new StringReader(Properties.Resources.hour_DS_D_DH);
-            instanceGenerator.OutputFilename = "hour_DS_D_DH_inst.json";
+            instanceGenerator.OutputFilename = @"results\hour_DS_D_DH_inst.json";
             instanceGenerator.GenerateInstance();
         }
 
@@ -76,16 +76,33 @@ namespace SystemTestsProject
         {
             Generator instanceGenerator = new Generator();
             instanceGenerator.DataSource = new StringReader(Properties.Resources.month_DS_D_DH);
-            instanceGenerator.OutputFilename = "month_DS_D_DH_inst.json";
+            instanceGenerator.OutputFilename = @"results\month_DS_D_DH_inst.json";
             instanceGenerator.GenerateInstance();
         }
 
         [TestMethod]
-        public void GenerateJsonSchemaForInstance()
+        public void GenerateMonth3ChannelSolutionBasenOnRealData()
         {
             Generator instanceGenerator = new Generator();
-            instanceGenerator.OutputFilename = "instance_schema.json";
-            instanceGenerator.GenerateSchema();
+            instanceGenerator.DataSource = new StringReader(Properties.Resources.month_DS_D_DH);
+            instanceGenerator.OutputFilename = @"results\month_DS_D_DH_sol.json";
+            instanceGenerator.GenerateSolution();
+        }
+
+        [TestMethod]
+        public void GenerateInstanceJsonSchemaForInstance()
+        {
+            Generator instanceGenerator = new Generator();
+            instanceGenerator.OutputFilename = @"results\instance_schema.json";
+            instanceGenerator.GenerateInstanceSchema();
+        }
+
+        [TestMethod]
+        public void GenerateSolutionJsonSchemaForInstance()
+        {
+            Generator instanceGenerator = new Generator();
+            instanceGenerator.OutputFilename = @"results\solution_schema.json";
+            instanceGenerator.GenerateSolutionSchema();
         }
     }
 }

@@ -33,6 +33,7 @@ namespace InstanceGenerator.InstanceModification
 
         public void ConvertToProblem()
         {
+            CombineAdTypes();
             ConvertToUnits();
             InstanceCorrector corrector = new InstanceCorrector() { Instance = Instance };
             corrector.AdjustTimestampsToDuration();
@@ -45,7 +46,8 @@ namespace InstanceGenerator.InstanceModification
 
         public void CreateBreaks()
         {
-            foreach(Channel channel in Instance.GetChannelList())
+            lastBreakId = 0;
+            foreach (Channel channel in Instance.GetChannelList())
             {
                 CreateChannelBreaks(channel);
             }
@@ -53,7 +55,6 @@ namespace InstanceGenerator.InstanceModification
 
         private void CreateChannelBreaks(Channel channel)
         {
-            lastBreakId = 0;
             TvBreak currentBreak = null;
             foreach (BaseActivity activity in channel.Activities)
             {
@@ -255,7 +256,7 @@ namespace InstanceGenerator.InstanceModification
 
         private void GenerateMatrixFromData()
         {
-            double cutoffTreshold = 0.95d;
+            double cutoffTreshold = 1.0d;
             foreach(var type in Instance.TypesOfAds.Values)
             {
                 if (dayTypesCount.ContainsKey(type.ID) && nightlyBreaks.Count > 0)
@@ -343,6 +344,34 @@ namespace InstanceGenerator.InstanceModification
             order.Brand = order.AdvertisementInstances.First().Brand;
             GenerateSelfIncompatibilityData(order);
             order.OverdueCostParameter = order.Gain;
+        }
+
+        /// <summary>
+        /// Joins advertisement types on second category level.
+        /// Advertisement types have 6 digit ID number
+        /// Each two didigts represent a level in category tree 
+        /// This function basically lumps all types that have same four digits.
+        /// </summary>
+        public void CombineAdTypes()
+        {
+            var typesGroups = Instance.TypesOfAds.Values.ToLookup(t => t.ID.Substring(0, 4)).ToList();
+            foreach(var group in typesGroups)
+            {
+                CombineAdGroup(group);
+            }
+        }
+
+        private void CombineAdGroup(IGrouping<string,  TypeOfAd> group)
+        {
+            TypeOfAd firstType = group.First();
+            Instance.TypesOfAds.Remove(firstType.ID);
+            firstType.ID = group.Key;
+            Instance.TypesOfAds[firstType.ID] = firstType;
+            foreach (var adType in group.Skip(1))
+            {
+                firstType.JoinType(adType);
+                Instance.TypesOfAds.Remove(adType.ID);
+            }
         }
     }
 }
