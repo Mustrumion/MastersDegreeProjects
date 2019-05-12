@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstanceGnerator", "InstanceGnerator\InstanceGnerator.csproj", "{CE30FF74-7A54-43EC-9485-2BA365AAA3E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstanceGenerator", "InstanceGenerator\InstanceGenerator.csproj", "{CE30FF74-7A54-43EC-9485-2BA365AAA3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstanceGeneratorConsole", "InstanceGeneratorConsole\InstanceGeneratorConsole.csproj", "{9C12EFD1-6D59-4D92-9159-734670F1237B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstanceGeneratorConsole", "InstanceGeneratorConsole\InstanceGeneratorConsole.csproj", "{9C12EFD1-6D59-4D92-9159-734670F1237B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTestsProject", "SystemTestsProject\SystemTestsProject.csproj", "{66B027A6-D29B-49F2-A262-3C9985007C32}"
 EndProject
