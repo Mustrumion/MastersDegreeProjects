@@ -277,69 +277,6 @@
                   "additionalProperties": {
                     "$ref": "InstanceGenerator.InstanceData.ViewershipFunction"
                   }
-                },
-                "Advertisements": {
-                  "$id": "System.Collections.Generic.List`1[[InstanceGenerator.InstanceData.Activities.AdvertisementInstance, InstanceGenerator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-                  "type": [
-                    "array",
-                    "null"
-                  ],
-                  "items": {
-                    "$id": "InstanceGenerator.InstanceData.Activities.AdvertisementInstance",
-                    "type": [
-                      "object",
-                      "null"
-                    ],
-                    "properties": {
-                      "SpanUnits": {
-                        "type": "integer"
-                      },
-                      "Span": {
-                        "type": "string"
-                      },
-                      "StartTime": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "EndTime": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "Profit": {
-                        "type": "number"
-                      },
-                      "Viewers": {
-                        "type": "number"
-                      },
-                      "AdvertisementOrder": {
-                        "$ref": "InstanceGenerator.InstanceData.AdvertisementOrder"
-                      },
-                      "AdOrderID": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "Brand": {
-                        "$ref": "InstanceGenerator.InstanceData.Brand"
-                      },
-                      "OwnerID": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "Type": {
-                        "$ref": "InstanceGenerator.InstanceData.TypeOfAd"
-                      },
-                      "TypeID": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      }
-                    }
-                  }
                 }
               }
             }

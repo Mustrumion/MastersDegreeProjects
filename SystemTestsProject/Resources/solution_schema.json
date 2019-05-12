@@ -1,0 +1,26 @@
+{
+  "$id": "InstanceGenerator.Solution",
+  "type": "object",
+  "properties": {
+    "AdvertisementsScheduledOnBreaks": {
+      "description": "Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$id": "System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",
+        "type": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}
