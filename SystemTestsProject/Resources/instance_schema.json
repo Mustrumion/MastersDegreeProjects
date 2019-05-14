@@ -41,10 +41,7 @@
         ],
         "properties": {
           "ID": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": "integer"
           }
         }
       }
@@ -63,10 +60,7 @@
         ],
         "properties": {
           "ID": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": "integer"
           }
         }
       }
@@ -101,10 +95,7 @@
         ],
         "properties": {
           "ID": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": "integer"
           },
           "AdSpanUnits": {
             "type": "integer"
@@ -196,10 +187,7 @@
               ],
               "properties": {
                 "ID": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
+                  "type": "integer"
                 },
                 "StartTime": {
                   "type": "string",
@@ -213,12 +201,6 @@
                   "type": "string"
                 },
                 "SpanUnits": {
-                  "type": "integer"
-                },
-                "MaximumExtension": {
-                  "type": "string"
-                },
-                "MaximumExtensionUnits": {
                   "type": "integer"
                 },
                 "MainViewsFunction": {

@@ -2,6 +2,28 @@
   "$id": "InstanceGenerator.Solution",
   "type": "object",
   "properties": {
+    "Score": {
+      "description": "Objective function score.",
+      "type": "number"
+    },
+    "Integrity": {
+      "description": "Number of advertisement orders (tasks) with hard constraints met.",
+      "type": "integer"
+    },
+    "IntegrityScore": {
+      "description": "Fraction of tasks with hard constraints met.",
+      "type": "number"
+    },
+    "MaxIntegrity": {
+      "description": "Number of tasks.",
+      "type": "integer"
+    },
+    "GradingFunctionDescription": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "AdvertisementsScheduledOnBreaks": {
       "description": "Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.",
       "type": [
@@ -9,16 +31,13 @@
         "null"
       ],
       "additionalProperties": {
-        "$id": "System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",
+        "$id": "System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",
         "type": [
           "array",
           "null"
         ],
         "items": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": "integer"
         }
       }
     }
