@@ -16,7 +16,7 @@ namespace InstanceGenerator.InstanceData
         [JsonIgnore]
         public HashSet<AdvertisementInstance> AdvertisementInstances { get; set; } = new HashSet<AdvertisementInstance>();
 
-        public string ID { get; set; }
+        public int ID { get; set; }
 
         public int AdSpanUnits { get; set; }
         public TimeSpan AdSpan { get; set; }

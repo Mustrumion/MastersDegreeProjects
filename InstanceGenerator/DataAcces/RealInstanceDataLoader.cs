@@ -68,7 +68,7 @@ namespace InstanceGenerator.DataAccess
             while (!(line = Reader.ReadLine()).StartsWith("%"))
             {
                 string[] fields = line.Split(' ');
-                instance.AddBrandCompatibilityIfNotExists(fields[0], fields[1], 1.0d);
+                instance.AddBrandCompatibilityIfNotExists(Convert.ToInt32(fields[0]), Convert.ToInt32(fields[1]), 1.0d);
                 lineNum += 1;
             }
         }
@@ -82,7 +82,7 @@ namespace InstanceGenerator.DataAccess
             while (!(line = Reader.ReadLine()).StartsWith("%"))
             {
                 string[] fields = line.Split(' ');
-                instance.AddBrandCompatibilityIfNotExists(fields[0], fields[1], 0.0d);
+                instance.AddBrandCompatibilityIfNotExists(Convert.ToInt32(fields[0]), Convert.ToInt32(fields[1]), 0.0d);
                 lineNum += 1;
             }
         }
@@ -220,10 +220,10 @@ namespace InstanceGenerator.DataAccess
             AdvertisementInstance advertisement = new AdvertisementInstance()
             {
                 Span = new TimeSpan(0, 0, Convert.ToInt32(fields[1])),
-                Type = instance.GetOrAddTypeOfAds(fields[4]),
+                Type = instance.GetOrAddTypeOfAds(Convert.ToInt32(fields[4])),
                 Profit = Convert.ToDouble(fields[5].Replace(",", "."), CultureInfo.InvariantCulture),
-                AdvertisementOrder = instance.GetOrAddOrderOfAds(fields[7]),
-                Brand = instance.GetOrAddBrand(fields[8]),
+                AdvertisementOrder = instance.GetOrAddOrderOfAds(Convert.ToInt32(fields[7])),
+                Brand = instance.GetOrAddBrand(Convert.ToInt32(fields[8])),
                 Viewers = Convert.ToDouble(fields[9].Replace(",", "."), CultureInfo.InvariantCulture),
                 Channel = currentChannel,
                 StartTime = currentChannel.EndTime,

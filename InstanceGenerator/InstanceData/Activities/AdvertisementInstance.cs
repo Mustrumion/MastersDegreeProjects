@@ -33,8 +33,8 @@ namespace InstanceGenerator.InstanceData.Activities
             }
         }
 
-        private string _adOrderID;
-        public string AdOrderID
+        private int _adOrderID;
+        public int AdOrderID
         {
             get
             {
@@ -64,8 +64,8 @@ namespace InstanceGenerator.InstanceData.Activities
         }
 
 
-        private string _ownerID;
-        public string OwnerID
+        private int _ownerID;
+        public int OwnerID
         {
             get
             {
@@ -92,10 +92,10 @@ namespace InstanceGenerator.InstanceData.Activities
             }
         }
 
-        private string _typeID;
+        private int _typeID;
         private TvBreak _break;
 
-        public string TypeID
+        public int TypeID
         {
             get
             {

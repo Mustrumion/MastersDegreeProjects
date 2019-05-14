@@ -12,13 +12,13 @@ namespace InstanceGenerator
 {
     public class Solution
     {
-        private Dictionary<string, List<string>> _advertisementsScheduledOnBreaks = new Dictionary<string, List<string>>();
+        private Dictionary<int, List<int>> _advertisementsScheduledOnBreaks = new Dictionary<int, List<int>>();
 
         /// <summary>
         /// Dictionary of where in the solution are instances of AdOrders. Outer key - orderID. Inner key - break ID, inner value - ad position
         /// </summary>
         [JsonIgnore]
-        public Dictionary<string, Dictionary<string, List<int>>> AdOrderInstances { get; set; } = new Dictionary<string, Dictionary<string, List<int>>>();
+        public Dictionary<int, Dictionary<int, List<int>>> AdOrderInstances { get; set; } = new Dictionary<int, Dictionary<int, List<int>>>();
 
         [JsonIgnore]
         public Instance Instance { get; set; }
@@ -34,7 +34,7 @@ namespace InstanceGenerator
         
         [JsonProperty(Order = 1)]
         [Description("Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.")]
-        public Dictionary<string, List<string>> AdvertisementsScheduledOnBreaks
+        public Dictionary<int, List<int>> AdvertisementsScheduledOnBreaks
         {
             get => _advertisementsScheduledOnBreaks;
             set
@@ -76,7 +76,7 @@ namespace InstanceGenerator
 
         public void GenerateSolutionFromRealData()
         {
-            AdvertisementsScheduledOnBreaks = new Dictionary<string, List<string>>();
+            AdvertisementsScheduledOnBreaks = new Dictionary<int, List<int>>();
             foreach (var tvBreak in Instance.Channels.Values.SelectMany(c => c.Breaks))
             {
                 AdvertisementsScheduledOnBreaks.Add(tvBreak.ID, tvBreak.Advertisements.Select(a => a.AdOrderID).ToList());
@@ -86,6 +86,7 @@ namespace InstanceGenerator
 
         public void RestoreHelperStructures()
         {
+            AdOrderInstances = new Dictionary<int, Dictionary<int, List<int>>>();
             foreach (var tvBreak in AdvertisementsScheduledOnBreaks)
             {
                 for (int i = 0; i < tvBreak.Value.Count; i++)
@@ -96,12 +97,12 @@ namespace InstanceGenerator
         }
 
 
-        private void AddAdPositionToOrdersDictionry(string orderId, string breakId, int position)
+        private void AddAdPositionToOrdersDictionry(int orderId, int breakId, int position)
         {
             bool success = AdOrderInstances.TryGetValue(orderId, out var breaksLists);
             if (!success)
             {
-                breaksLists = new Dictionary<string, List<int>>();
+                breaksLists = new Dictionary<int, List<int>>();
                 AdOrderInstances.Add(orderId, breaksLists);
             }
             success = breaksLists.TryGetValue(breakId, out var breakPositions);

@@ -21,8 +21,8 @@ namespace InstanceGenerator.InstanceModification
         public TimeSpan DueTimeOffset { get; set; } = new TimeSpan(0, 0, 0, 0);
 
 
-        private Dictionary<string, int> nightTypesCount;
-        private Dictionary<string, int> dayTypesCount;
+        private Dictionary<int, int> nightTypesCount;
+        private Dictionary<int, int> dayTypesCount;
         private HashSet<TvBreak> nightlyBreaks;
         private HashSet<TvBreak> dailyBreaks;
         private TimeSpan nightsEnd = new TimeSpan(6, 0, 0);
@@ -91,7 +91,7 @@ namespace InstanceGenerator.InstanceModification
         {
             if (tvBreak != null && tvBreak.Advertisements.Count > 0)
             {
-                tvBreak.ID = $"{lastBreakId++}";
+                tvBreak.ID = lastBreakId++;
                 tvBreak.EndTime = tvBreak.Advertisements.Last().EndTime;
                 RecalculateSpanToUnits(tvBreak);
                 channel.AddBreak(tvBreak);
@@ -236,8 +236,8 @@ namespace InstanceGenerator.InstanceModification
 
         public void GenerateBreakToTypeCompatibilityMatrix()
         {
-            nightTypesCount = new Dictionary<string, int>();
-            dayTypesCount = new Dictionary<string, int>();
+            nightTypesCount = new Dictionary<int, int>();
+            dayTypesCount = new Dictionary<int, int>();
             nightlyBreaks = new HashSet<TvBreak>();
             dailyBreaks = new HashSet<TvBreak>();
             foreach (var channel in Instance.Channels.Values)
@@ -256,7 +256,7 @@ namespace InstanceGenerator.InstanceModification
 
         private void GenerateMatrixFromData()
         {
-            double cutoffTreshold = 1.0d;
+            double cutoffTreshold = 0.95d;
             foreach(var type in Instance.TypesOfAds.Values)
             {
                 if (dayTypesCount.ContainsKey(type.ID) && nightlyBreaks.Count > 0)
@@ -278,7 +278,7 @@ namespace InstanceGenerator.InstanceModification
 
         private void AddIncompatibility(TypeOfAd type, HashSet<TvBreak> breaks)
         {
-            Instance.TypeToBreakIncompatibilityMatrix[type.ID] = new Dictionary<string, byte>();
+            Instance.TypeToBreakIncompatibilityMatrix[type.ID] = new Dictionary<int, byte>();
             foreach(TvBreak tvBreak in breaks)
             {
                 Instance.TypeToBreakIncompatibilityMatrix[type.ID][tvBreak.ID] = 1;
@@ -354,7 +354,7 @@ namespace InstanceGenerator.InstanceModification
         /// </summary>
         public void CombineAdTypes()
         {
-            var typesGroups = Instance.TypesOfAds.Values.ToLookup(t => t.ID.Substring(0, 4)).ToList();
+            var typesGroups = Instance.TypesOfAds.Values.ToLookup(t => t.ID.ToString().PadLeft(6, '0').Substring(0, 4)).ToList();
             foreach(var group in typesGroups)
             {
                 CombineAdGroup(group);
@@ -365,7 +365,7 @@ namespace InstanceGenerator.InstanceModification
         {
             TypeOfAd firstType = group.First();
             Instance.TypesOfAds.Remove(firstType.ID);
-            firstType.ID = group.Key;
+            firstType.ID = Convert.ToInt32(group.Key);
             Instance.TypesOfAds[firstType.ID] = firstType;
             foreach (var adType in group.Skip(1))
             {

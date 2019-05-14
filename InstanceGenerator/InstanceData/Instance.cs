@@ -31,22 +31,28 @@ namespace InstanceGenerator.InstanceData
 
         [JsonProperty(Order = 1)]
         [Description("Dictionary declaring types of ads present in the instance.")]
-        public Dictionary<string, TypeOfAd> TypesOfAds { get; set; } = new Dictionary<string, TypeOfAd>();
+        public Dictionary<int, TypeOfAd> TypesOfAds { get; set; } = new Dictionary<int, TypeOfAd>();
+
         [JsonProperty(Order = 2)]
         [Description("Dictionary declaring brands present in the instance.")]
-        public Dictionary<string, Brand> Brands { get; set; } = new Dictionary<string, Brand>();
+        public Dictionary<int, Brand> Brands { get; set; } = new Dictionary<int, Brand>();
+
         [JsonProperty(Order = 3)]
         [Description("Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight")]
-        public Dictionary<string, Dictionary<string, double>> BrandConflictMatrix { get; set; } = new Dictionary<string, Dictionary<string, double>>();
+        public Dictionary<int, Dictionary<int, double>> BrandConflictMatrix { get; set; } = new Dictionary<int, Dictionary<int, double>>();
+
         [JsonProperty(Order = 4)]
         [Description("Tasks - advertisements to schedule with their constraints.")]
-        public Dictionary<string, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<string, AdvertisementOrder>();
+        public Dictionary<int, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<int, AdvertisementOrder>();
+
         [Description("Channels - 'machines' on which we schedule the tasks.")]
         [JsonProperty(Order = 5)]
+
         public Dictionary<string, Channel> Channels { get; set; } = new Dictionary<string, Channel>();
+
         [JsonProperty(Order = 6)]
         [Description("Type to break sparse compatibility matrix (values not present are compatible). Possible values: 1 - incompatible.")]
-        public Dictionary<string, Dictionary<string, byte>> TypeToBreakIncompatibilityMatrix { get; set; } = new Dictionary<string, Dictionary<string, byte>>();
+        public Dictionary<int, Dictionary<int, byte>> TypeToBreakIncompatibilityMatrix { get; set; } = new Dictionary<int, Dictionary<int, byte>>();
 
 
 
@@ -62,7 +68,7 @@ namespace InstanceGenerator.InstanceData
             return AdOrders.Values;
         }
 
-        public AdvertisementOrder GetOrAddOrderOfAds(string advertisementId)
+        public AdvertisementOrder GetOrAddOrderOfAds(int advertisementId)
         {
             if (AdOrders.ContainsKey(advertisementId))
             {
@@ -82,7 +88,7 @@ namespace InstanceGenerator.InstanceData
             return TypesOfAds.Values;
         }
 
-        public TypeOfAd GetOrAddTypeOfAds(string blockId)
+        public TypeOfAd GetOrAddTypeOfAds(int blockId)
         {
             if (TypesOfAds.ContainsKey(blockId))
             {
@@ -101,15 +107,15 @@ namespace InstanceGenerator.InstanceData
             return Brands.Values;
         }
 
-        public void AddBrandCompatibilityIfNotExists(string brand1, string brand2, double incompatibilityScore)
+        public void AddBrandCompatibilityIfNotExists(int brand1, int brand2, double incompatibilityScore)
         {
             if (!BrandConflictMatrix.ContainsKey(brand1))
             {
-                BrandConflictMatrix.Add(brand1, new Dictionary<string, double>());
+                BrandConflictMatrix.Add(brand1, new Dictionary<int, double>());
             }
             if (!BrandConflictMatrix.ContainsKey(brand2))
             {
-                BrandConflictMatrix.Add(brand2, new Dictionary<string, double>());
+                BrandConflictMatrix.Add(brand2, new Dictionary<int, double>());
             }
             if (!BrandConflictMatrix[brand2].ContainsKey(brand1))
             {
@@ -121,7 +127,7 @@ namespace InstanceGenerator.InstanceData
             }
         }
 
-        public Brand GetOrAddBrand(string ownerId)
+        public Brand GetOrAddBrand(int ownerId)
         {
             if (Brands.ContainsKey(ownerId))
             {
