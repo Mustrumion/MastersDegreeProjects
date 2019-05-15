@@ -1,4 +1,5 @@
 ﻿using InstanceGenerator.InstanceData;
+using InstanceGenerator.SolutionObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace InstanceGenerator.Interfaces
         Solution Solution { get; set; }
         Instance Instance { get; set; }
         string Description { get; set; }
+
     }
 }

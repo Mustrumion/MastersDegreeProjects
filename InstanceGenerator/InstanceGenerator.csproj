@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers.cs" />
-    <Compile Include="Interfaces\IGradingFunction.cs" />
+    <Compile Include="Interfaces\IScoringFunction.cs" />
     <Compile Include="Interfaces\IActivitiesSequence.cs" />
     <Compile Include="Interfaces\IMove.cs" />
     <Compile Include="Interfaces\ISpannedObject.cs" />
@@ -75,7 +75,8 @@
     <Compile Include="DataAcces\InstanceJsonSerializer.cs" />
     <Compile Include="DataAcces\SerializableDictionary.cs" />
     <Compile Include="InstanceModification\RealInstanceToProblemConverter.cs" />
-    <Compile Include="Solution.cs" />
+    <Compile Include="SolutionObjects\AdOrder.cs" />
+    <Compile Include="SolutionObjects\Solution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

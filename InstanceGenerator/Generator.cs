@@ -1,6 +1,7 @@
 ﻿using InstanceGenerator.DataAccess;
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.InstanceModification;
+using InstanceGenerator.SolutionObjects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
 using Newtonsoft.Json.Schema.Generation;

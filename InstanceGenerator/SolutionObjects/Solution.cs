@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceGenerator
+namespace InstanceGenerator.SolutionObjects
 {
     public class Solution
     {
@@ -18,7 +18,7 @@ namespace InstanceGenerator
         /// Dictionary of where in the solution are instances of AdOrders. Outer key - orderID. Inner key - break ID, inner value - ad position
         /// </summary>
         [JsonIgnore]
-        public Dictionary<int, Dictionary<int, List<int>>> AdOrderInstances { get; set; } = new Dictionary<int, Dictionary<int, List<int>>>();
+        public Dictionary<int, AdOrder> AdOrderInstances { get; set; } = new Dictionary<int, AdOrder>();
 
         [JsonIgnore]
         public Instance Instance { get; set; }
@@ -86,7 +86,7 @@ namespace InstanceGenerator
 
         public void RestoreHelperStructures()
         {
-            AdOrderInstances = new Dictionary<int, Dictionary<int, List<int>>>();
+            AdOrderInstances = new Dictionary<int, AdOrder>();
             foreach (var tvBreak in AdvertisementsScheduledOnBreaks)
             {
                 for (int i = 0; i < tvBreak.Value.Count; i++)
@@ -99,17 +99,17 @@ namespace InstanceGenerator
 
         private void AddAdPositionToOrdersDictionry(int orderId, int breakId, int position)
         {
-            bool success = AdOrderInstances.TryGetValue(orderId, out var breaksLists);
+            bool success = AdOrderInstances.TryGetValue(orderId, out var adOrder);
             if (!success)
             {
-                breaksLists = new Dictionary<int, List<int>>();
-                AdOrderInstances.Add(orderId, breaksLists);
+                adOrder = new AdOrder() { ID = orderId, AdvertisementOrderConstraints = Instance.AdOrders[orderId] };
+                AdOrderInstances.Add(orderId, adOrder);
             }
-            success = breaksLists.TryGetValue(breakId, out var breakPositions);
+            success = adOrder.BreaksPositions.TryGetValue(breakId, out var breakPositions);
             if (!success)
             {
                 breakPositions = new List<int>();
-                breaksLists.Add(breakId, breakPositions);
+                adOrder.BreaksPositions.Add(breakId, breakPositions);
             }
             breakPositions.Add(position);
         }

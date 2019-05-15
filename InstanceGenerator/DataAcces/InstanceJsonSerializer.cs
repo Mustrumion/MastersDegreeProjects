@@ -1,4 +1,5 @@
 ﻿using InstanceGenerator.InstanceData;
+using InstanceGenerator.SolutionObjects;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
