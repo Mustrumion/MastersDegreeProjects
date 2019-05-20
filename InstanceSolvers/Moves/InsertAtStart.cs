@@ -16,6 +16,9 @@ namespace InstanceSolvers.Moves
         public Instance Instance { get; set; }
         public Solution Solution { get; set; }
 
+        public AdvertisementOrder AdvertisementOrder { get; set; }
+        public TvBreak TvBreak { get; set; }
+
         public void Asses()
         {
             throw new NotImplementedException();
@@ -23,7 +26,6 @@ namespace InstanceSolvers.Moves
 
         public void Execute()
         {
-            throw new NotImplementedException();
         }
 
         public void RollBack()
