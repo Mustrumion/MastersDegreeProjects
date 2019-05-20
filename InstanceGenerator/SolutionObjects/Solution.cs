@@ -18,7 +18,7 @@ namespace InstanceGenerator.SolutionObjects
         /// Dictionary of where in the solution are instances of AdOrders. Outer key - orderID. Inner key - break ID, inner value - ad position
         /// </summary>
         [JsonIgnore]
-        public Dictionary<int, AdOrder> AdOrderInstances { get; set; } = new Dictionary<int, AdOrder>();
+        public Dictionary<int, TaskData> AdOrderInstances { get; set; } = new Dictionary<int, TaskData>();
 
         [JsonIgnore]
         public Instance Instance { get; set; }
@@ -86,7 +86,7 @@ namespace InstanceGenerator.SolutionObjects
 
         public void RestoreHelperStructures()
         {
-            AdOrderInstances = new Dictionary<int, AdOrder>();
+            AdOrderInstances = new Dictionary<int, TaskData>();
             foreach (var tvBreak in AdvertisementsScheduledOnBreaks)
             {
                 for (int i = 0; i < tvBreak.Value.Count; i++)
@@ -102,7 +102,7 @@ namespace InstanceGenerator.SolutionObjects
             bool success = AdOrderInstances.TryGetValue(orderId, out var adOrder);
             if (!success)
             {
-                adOrder = new AdOrder() { ID = orderId, AdvertisementOrderConstraints = Instance.AdOrders[orderId] };
+                adOrder = new TaskData() { ID = orderId, AdvertisementOrderConstraints = Instance.AdOrders[orderId] };
                 AdOrderInstances.Add(orderId, adOrder);
             }
             success = adOrder.BreaksPositions.TryGetValue(breakId, out var breakPositions);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InstanceGenerator.SolutionObjects
 {
-    public class AdOrder
+    public class TaskData
     {
         public int ID { get; set; }
 

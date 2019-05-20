@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace InstanceGenerator.InstanceData
 {
+    /// <summary>
+    /// Class containing instance data for the TV break.
+    /// </summary>
     [Serializable]
     public class TvBreak : IActivitiesSequence
     {

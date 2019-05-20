@@ -15,5 +15,15 @@ namespace InstanceSolvers
         public Solution Solution { get; set; }
         public Instance Instance { get; set; }
         public string Description { get; set; }
+
+        public List<TaskData> AssesBreak(IEnumerable<int> orderedAds, TvBreak tvBreak)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AssesSolution()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
