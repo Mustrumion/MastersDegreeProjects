@@ -1,5 +1,8 @@
 {
-  "Score": 0.0,
+  "WeightedLoss": 0.0,
+  "OverdueAdsLoss": 0.0,
+  "MildIncompatibilityLoss": 0.0,
+  "ExtendedBreakLoss": 0.0,
   "Integrity": 0,
   "IntegrityScore": 0.0,
   "MaxIntegrity": 363,

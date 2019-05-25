@@ -10,10 +10,22 @@ namespace InstanceGenerator.InstanceData
     {
         public List<ViewershipSpan> TimeIntervals { get; set; } = new List<ViewershipSpan>();
         public string TypeID { get; set; }
-        public double GetViewers(TimeSpan timeFromBreakStart)
+
+
+        public double GetViewers(int unitsFromStart)
         {
-            return 0.0d;
+            int unitsPassed = 0;
+            foreach(var span in TimeIntervals)
+            {
+                unitsPassed += span.SpanUnits;
+                if(unitsFromStart <= unitsPassed)
+                {
+                    return span.Viewers;
+                }
+            }
+            return TimeIntervals.Last().Viewers;
         }
+
 
         internal void AddTimeInterval(ViewershipSpan span)
         {

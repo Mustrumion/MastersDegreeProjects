@@ -23,7 +23,7 @@ namespace InstanceGenerator.InstanceData
         public TimeSpan Span { get; set; }
         public int SpanUnits { get; set; }
         public ViewershipFunction MainViewsFunction { get; set; }
-        public Dictionary<string, ViewershipFunction> TypeViewsFunctions { get; set; } = new Dictionary<string, ViewershipFunction>();
+        public Dictionary<int, ViewershipFunction> TypeViewsFunctions { get; set; } = new Dictionary<int, ViewershipFunction>();
 
         /// <summary>
         /// Advertisement instances from the real data. Used only for the instance generation.

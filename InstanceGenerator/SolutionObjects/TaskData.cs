@@ -10,28 +10,38 @@ using System.Threading.Tasks;
 namespace InstanceGenerator.SolutionObjects
 {
     /// <summary>
-    /// Intermediate data used for scoring the solution
+    /// Intermediate, helper data used for scoring the solutions
     /// </summary>
     public class TaskData
     {
         public int ID { get; set; }
 
-        public double Wievership { get; set; }
+        public double Vievership { get; set; }
         public int TimesAired { get; set; }
         public int NumberOfStarts { get; set; }
         public int NumberOfEnds { get; set; }
 
-        [Description("Overall solution score.")]
+        /// <summary>
+        /// Overall solution score.
+        /// </summary>
         public double WeightedLoss { get; set; }
 
-        [Description("Loss from late ad contract completion.")]
+        /// <summary>
+        /// Loss from late ad contract completion.
+        /// </summary>
         public double OverdueAdsLoss { get; set; }
+        public DateTime LastAdTime { get; set; }
 
-        [Description("Loss form scheduling soft-incompatible ads on the same break.")]
+        /// <summary>
+        /// Loss form scheduling soft-incompatible ads on the same break.
+        /// </summary>
         public double MildIncompatibilityLoss { get; set; }
 
-        [Description("Loss form overextending breaks.")]
+        /// <summary>
+        /// Loss form overextending breaks.
+        /// </summary>
         public double ExtendedBreakLoss { get; set; }
+        public long ExtendedBreakSeconds { get; set; }
 
         public int OwnerConflicts { get; set; }
         public int BreakTypeConflicts { get; set; }

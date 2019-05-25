@@ -1,9 +1,21 @@
 {
-  "$id": "InstanceGenerator.Solution",
+  "$id": "InstanceGenerator.SolutionObjects.Solution",
   "type": "object",
   "properties": {
-    "Score": {
-      "description": "Objective function score.",
+    "WeightedLoss": {
+      "description": "Overall solution score.",
+      "type": "number"
+    },
+    "OverdueAdsLoss": {
+      "description": "Loss from late ad contract completion.",
+      "type": "number"
+    },
+    "MildIncompatibilityLoss": {
+      "description": "Loss form scheduling soft-incompatible ads on the same break.",
+      "type": "number"
+    },
+    "ExtendedBreakLoss": {
+      "description": "Loss form overextending breaks.",
       "type": "number"
     },
     "Integrity": {

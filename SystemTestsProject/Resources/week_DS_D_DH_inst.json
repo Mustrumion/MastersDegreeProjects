@@ -876,7 +876,7 @@
       "ID": 299
     }
   },
-  "BrandConflictMatrix": {
+  "BrandIncompatibilityCost": {
     "$id": "220",
     "607": {
       "$id": "221",

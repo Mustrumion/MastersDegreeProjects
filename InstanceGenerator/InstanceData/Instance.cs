@@ -29,27 +29,45 @@ namespace InstanceGenerator.InstanceData
         [JsonIgnore]
         public int AdsAmountChecksum { get; set; }
 
+        /// <summary>
+        /// Dictionary declaring types of ads present in the instance.
+        /// </summary>
         [JsonProperty(Order = 1)]
         [Description("Dictionary declaring types of ads present in the instance.")]
         public Dictionary<int, TypeOfAd> TypesOfAds { get; set; } = new Dictionary<int, TypeOfAd>();
 
+        /// <summary>
+        /// Dictionary declaring brands present in the instance.
+        /// </summary>
         [JsonProperty(Order = 2)]
         [Description("Dictionary declaring brands present in the instance.")]
         public Dictionary<int, Brand> Brands { get; set; } = new Dictionary<int, Brand>();
-
+        
+        /// <summary>
+        /// Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight
+        /// </summary>
         [JsonProperty(Order = 3)]
         [Description("Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight")]
         public Dictionary<int, Dictionary<int, double>> BrandIncompatibilityCost { get; set; } = new Dictionary<int, Dictionary<int, double>>();
 
+        /// <summary>
+        /// Tasks - advertisements to schedule with their constraints
+        /// </summary>
         [JsonProperty(Order = 4)]
         [Description("Tasks - advertisements to schedule with their constraints.")]
         public Dictionary<int, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<int, AdvertisementOrder>();
 
+        /// <summary>
+        /// Channels - 'machines' on which we schedule the tasks.
+        /// </summary>
         [Description("Channels - 'machines' on which we schedule the tasks.")]
         [JsonProperty(Order = 5)]
 
         public Dictionary<string, Channel> Channels { get; set; } = new Dictionary<string, Channel>();
 
+        /// <summary>
+        /// Type to break sparse compatibility matrix (values not present are compatible). Possible values: 1 - incompatible.
+        /// </summary>
         [JsonProperty(Order = 6)]
         [Description("Type to break sparse compatibility matrix (values not present are compatible). Possible values: 1 - incompatible.")]
         public Dictionary<int, Dictionary<int, byte>> TypeToBreakIncompatibilityMatrix { get; set; } = new Dictionary<int, Dictionary<int, byte>>();

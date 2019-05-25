@@ -65,7 +65,7 @@
         }
       }
     },
-    "BrandConflictMatrix": {
+    "BrandIncompatibilityCost": {
       "description": "Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight",
       "type": [
         "object",

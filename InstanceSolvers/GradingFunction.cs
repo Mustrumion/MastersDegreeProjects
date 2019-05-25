@@ -14,11 +14,13 @@ namespace InstanceSolvers
     {
         public Solution Solution { get; set; }
         public Instance Instance { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = "Grading function 0.0.2";
 
         private Dictionary<int, TaskData> _temporaryTaskData;
         private List<int> _currentBreakOrder;
         private TvBreak _currentBreak;
+        private int _unitsFromStart;
+
         private TaskData _currentlyAssessed;
         private int _currentAdId;
         private int _currentAdPosition;
@@ -46,7 +48,7 @@ namespace InstanceSolvers
                     double? incompatibilityWeight = null;
                     if(_currentAdIncompatibilityCosts != null)
                     {
-                        bool success = _currentAdIncompatibilityCosts.TryGetValue(otherId, out double weight);
+                        bool success = _currentAdIncompatibilityCosts.TryGetValue(otherAdInfo.Brand.ID, out double weight);
                         if (success)
                         {
                             incompatibilityWeight = weight;
@@ -78,8 +80,33 @@ namespace InstanceSolvers
                 _temporaryTaskData.Add(_currentAdId, assesedTask);
             }
             _currentlyAssessed = assesedTask;
-            Instance.BrandIncompatibilityCost.TryGetValue(_currentAdId, out var currentAdWeights);
+            Instance.BrandIncompatibilityCost.TryGetValue(_currentAdInfo.Brand.ID, out var currentAdWeights);
             _currentAdIncompatibilityCosts = currentAdWeights;
+            _currentlyAssessed.TimesAired += 1;
+
+            if(position == 0)
+            {
+                _currentlyAssessed.NumberOfStarts += 1;
+            }
+
+            if(position == _currentBreakOrder.Count)
+            {
+                _currentlyAssessed.NumberOfEnds += 1;
+            }
+
+            success = Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(_currentAdInfo.Type.ID, out var incompatibleBreaks);
+            if (success && incompatibleBreaks.ContainsKey(_currentBreak.ID))
+            {
+                _currentlyAssessed.BreakTypeConflicts += 1;
+            }
+
+            var viewsFunction = _currentBreak.MainViewsFunction;
+            if(_currentBreak.TypeViewsFunctions.TryGetValue(_currentAdInfo.Type.ID, out var function))
+            {
+                viewsFunction = function;
+            }
+
+            _currentlyAssessed.Vievership += viewsFunction.GetViewers(_unitsFromStart);
 
             for (int i = 0; i < _currentBreakOrder.Count; i++)
             {
@@ -100,9 +127,11 @@ namespace InstanceSolvers
             _currentBreakOrder = orderedAds;
             _currentBreak = tvBreak;
             _temporaryTaskData = new Dictionary<int, TaskData>();
+            _unitsFromStart = 0;
             for(int i = 0; i < orderedAds.Count; i++)
             {
                 CalculateAdConstraints(orderedAds[i], i);
+                _unitsFromStart += _currentAdInfo.AdSpanUnits;
             }
             return _temporaryTaskData;
         }
