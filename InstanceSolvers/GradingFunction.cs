@@ -15,5 +15,10 @@ namespace InstanceSolvers
         public Solution Solution { get; set; }
         public Instance Instance { get; set; }
         public string Description { get; set; }
+
+        public void CalculateBreakDifferences(List<int> breakBefore, List<int> breakAfter, IMove moveResponsible)
+        {
+
+        }
     }
 }
