@@ -18,6 +18,7 @@ namespace InstanceGenerator.DataAccess
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
     [XmlRoot("dictionary")]
+    [Serializable]
     public class SerializableDictionary<TKey, TValue>
         : Dictionary<TKey, TValue>, IXmlSerializable
     {

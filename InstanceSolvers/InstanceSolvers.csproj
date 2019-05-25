@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="GradingFunction.cs" />
     <Compile Include="GreedyHeuristicSolver.cs" />
+    <Compile Include="Moves\InsertAtEnd.cs" />
+    <Compile Include="Moves\InsertAtStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,6 @@ namespace InstanceGenerator.Interfaces
         Instance Instance { get; set; }
         void Execute();
         void RollBack();
-        
+        void Asses();
     }
 }

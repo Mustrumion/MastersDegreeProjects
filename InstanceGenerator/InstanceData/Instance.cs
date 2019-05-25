@@ -39,7 +39,7 @@ namespace InstanceGenerator.InstanceData
 
         [JsonProperty(Order = 3)]
         [Description("Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight")]
-        public Dictionary<int, Dictionary<int, double>> BrandConflictMatrix { get; set; } = new Dictionary<int, Dictionary<int, double>>();
+        public Dictionary<int, Dictionary<int, double>> BrandIncompatibilityCost { get; set; } = new Dictionary<int, Dictionary<int, double>>();
 
         [JsonProperty(Order = 4)]
         [Description("Tasks - advertisements to schedule with their constraints.")]
@@ -109,21 +109,21 @@ namespace InstanceGenerator.InstanceData
 
         public void AddBrandCompatibilityIfNotExists(int brand1, int brand2, double incompatibilityScore)
         {
-            if (!BrandConflictMatrix.ContainsKey(brand1))
+            if (!BrandIncompatibilityCost.ContainsKey(brand1))
             {
-                BrandConflictMatrix.Add(brand1, new Dictionary<int, double>());
+                BrandIncompatibilityCost.Add(brand1, new Dictionary<int, double>());
             }
-            if (!BrandConflictMatrix.ContainsKey(brand2))
+            if (!BrandIncompatibilityCost.ContainsKey(brand2))
             {
-                BrandConflictMatrix.Add(brand2, new Dictionary<int, double>());
+                BrandIncompatibilityCost.Add(brand2, new Dictionary<int, double>());
             }
-            if (!BrandConflictMatrix[brand2].ContainsKey(brand1))
+            if (!BrandIncompatibilityCost[brand2].ContainsKey(brand1))
             {
-                BrandConflictMatrix[brand2][brand1] = incompatibilityScore;
+                BrandIncompatibilityCost[brand2][brand1] = incompatibilityScore;
             }
-            if (!BrandConflictMatrix[brand1].ContainsKey(brand2))
+            if (!BrandIncompatibilityCost[brand1].ContainsKey(brand2))
             {
-                BrandConflictMatrix[brand1][brand2] = incompatibilityScore;
+                BrandIncompatibilityCost[brand1][brand2] = incompatibilityScore;
             }
         }
 

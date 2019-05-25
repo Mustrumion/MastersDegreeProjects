@@ -18,7 +18,7 @@ namespace InstanceGenerator.SolutionObjects
         /// Dictionary of where in the solution are instances of AdOrders. Outer key - orderID. Inner key - break ID, inner value - ad position
         /// </summary>
         [JsonIgnore]
-        public Dictionary<int, AdOrder> AdOrderInstances { get; set; } = new Dictionary<int, AdOrder>();
+        public Dictionary<int, TaskData> AdOrderInstances { get; set; } = new Dictionary<int, TaskData>();
 
         [JsonIgnore]
         public Instance Instance { get; set; }
@@ -26,8 +26,17 @@ namespace InstanceGenerator.SolutionObjects
         [JsonIgnore]
         public IScoringFunction GradingFunction { get; set; }
 
-        [Description("Objective function score.")]
-        public double Score { get; set; }
+        [Description("Overall solution score.")]
+        public double WeightedLoss { get; set; }
+
+        [Description("Loss from late ad contract completion.")]
+        public double OverdueAdsLoss { get; set; }
+
+        [Description("Loss form scheduling soft-incompatible ads on the same break.")]
+        public double MildIncompatibilityLoss { get; set; }
+
+        [Description("Loss form overextending breaks.")]
+        public double ExtendedBreakLoss { get; set; }
 
         [Description("Number of advertisement orders (tasks) with hard constraints met.")]
         public int Integrity { get; set; }
@@ -86,32 +95,113 @@ namespace InstanceGenerator.SolutionObjects
 
         public void RestoreHelperStructures()
         {
-            AdOrderInstances = new Dictionary<int, AdOrder>();
+            AdOrderInstances = new Dictionary<int, TaskData>();
             foreach (var tvBreak in AdvertisementsScheduledOnBreaks)
             {
                 for (int i = 0; i < tvBreak.Value.Count; i++)
                 {
-                    AddAdPositionToOrdersDictionry(tvBreak.Value[i], tvBreak.Key, i);
+                    AddAdToTaskDataDictionry(tvBreak.Value[i], tvBreak.Key, i);
                 }
             }
         }
 
 
-        private void AddAdPositionToOrdersDictionry(int orderId, int breakId, int position)
+        /// <summary>
+        /// Adds an advertisement instance to the break in the task data helper structure.
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="breakId"></param>
+        /// <param name="position"></param>
+        private void AddAdToTaskDataDictionry(int orderId, int breakId, int position)
         {
-            bool success = AdOrderInstances.TryGetValue(orderId, out var adOrder);
+            bool success = AdOrderInstances.TryGetValue(orderId, out var taskData);
             if (!success)
             {
-                adOrder = new AdOrder() { ID = orderId, AdvertisementOrderConstraints = Instance.AdOrders[orderId] };
-                AdOrderInstances.Add(orderId, adOrder);
+                taskData = new TaskData() { ID = orderId, AdvertisementOrderConstraints = Instance.AdOrders[orderId] };
+                AdOrderInstances.Add(orderId, taskData);
             }
-            success = adOrder.BreaksPositions.TryGetValue(breakId, out var breakPositions);
+            success = taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions);
             if (!success)
             {
                 breakPositions = new List<int>();
-                adOrder.BreaksPositions.Add(breakId, breakPositions);
+                taskData.BreaksPositions.Add(breakId, breakPositions);
             }
             breakPositions.Add(position);
+        }
+
+
+        /// <summary>
+        /// Removes an advertisement instance from the break in the task data helper structure.
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="breakId"></param>
+        /// <param name="position"></param>
+        private void RemoveAdFromTaskDataDictionary(int orderId, int breakId, int position)
+        {
+            var taskData = AdOrderInstances[orderId];
+            var breakPositions = taskData.BreaksPositions[breakId];
+            breakPositions.Remove(position);
+            if (breakPositions.Count == 0)
+            {
+                taskData.BreaksPositions.Remove(breakId);
+            }
+            if (taskData.BreaksPositions.Count == 0)
+            {
+                AdOrderInstances.Remove(orderId);
+            }
+        }
+
+
+        /// <summary>
+        /// Adds an advertisement instance to the solution.
+        /// </summary>
+        /// <param name="ad"></param>
+        /// <param name="tvBreak"></param>
+        /// <param name="position"></param>
+        public void AddAdToBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
+        {
+            List<int> adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID];
+            //Move positions by one in helper structure.
+            for (int i = position; i < adsInBreak.Count; i++)
+            {
+                int adId = adsInBreak[i];
+                var positionsInBreak = AdOrderInstances[adId].BreaksPositions[tvBreak.ID];
+                for (int j = 0; j < positionsInBreak.Count; i++)
+                {
+                    if (positionsInBreak[j] >= position)
+                    {
+                        positionsInBreak[j] += 1;
+                    }
+                }
+            }
+            AddAdToTaskDataDictionry(ad.ID, tvBreak.ID, position);
+            _advertisementsScheduledOnBreaks[tvBreak.ID].Insert(position, ad.ID);
+        }
+
+        /// <summary>
+        /// Removes an advertisement instance from the solution.
+        /// </summary>
+        /// <param name="ad"></param>
+        /// <param name="tvBreak"></param>
+        /// <param name="position"></param>
+        public void RemoveAdFromBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
+        {
+            List<int> adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID];
+            //Move positions by one in helper structure.
+            for (int i = position + 1; i < adsInBreak.Count; i++)
+            {
+                int adId = adsInBreak[i];
+                var positionsInBreak = AdOrderInstances[adId].BreaksPositions[tvBreak.ID];
+                for (int j = 0; j < positionsInBreak.Count; i++)
+                {
+                    if (positionsInBreak[j] >= position)
+                    {
+                        positionsInBreak[j] -= 1;
+                    }
+                }
+            }
+            RemoveAdFromTaskDataDictionary(ad.ID, tvBreak.ID, position);
+            _advertisementsScheduledOnBreaks[tvBreak.ID].RemoveAt(position);
         }
     }
 }
