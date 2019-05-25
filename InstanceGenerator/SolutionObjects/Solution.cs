@@ -26,8 +26,17 @@ namespace InstanceGenerator.SolutionObjects
         [JsonIgnore]
         public IScoringFunction GradingFunction { get; set; }
 
-        [Description("Objective function score.")]
-        public double Score { get; set; }
+        [Description("Overall solution score.")]
+        public double WeightedLoss { get; set; }
+
+        [Description("Loss from late ad contract completion.")]
+        public double OverdueAdsLoss { get; set; }
+
+        [Description("Loss form scheduling soft-incompatible ads on the same break.")]
+        public double MildIncompatibilityLoss { get; set; }
+
+        [Description("Loss form overextending breaks.")]
+        public double ExtendedBreakLoss { get; set; }
 
         [Description("Number of advertisement orders (tasks) with hard constraints met.")]
         public int Integrity { get; set; }
