@@ -12,7 +12,7 @@ namespace InstanceGenerator.Interfaces
     {
         Solution Solution { get; set; }
         Instance Instance { get; set; }
-        string Description { get; set; }
+        string Description { get; }
 
         /// <summary>
         /// Function to grade a break. 
@@ -21,8 +21,8 @@ namespace InstanceGenerator.Interfaces
         /// <param name="tvBreak">problem data for the break</param>
         /// <returns>assesment for each task present in the sequence of advertisements</returns>
         Dictionary<int, TaskData> AssesBreak(List<int> orderedAds, TvBreak tvBreak);
-
-
+        
         void AssesSolution();
+        void RecalculateOverdueLoss(TaskData taskData);
     }
 }

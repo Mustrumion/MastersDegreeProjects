@@ -1,4 +1,5 @@
 ﻿using InstanceGenerator.InstanceData;
+using InstanceGenerator.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace InstanceGenerator.SolutionObjects
     /// </summary>
     public class TaskData
     {
-        public int ID { get; set; }
+        public int TaskID { get; set; }
 
-        public double Vievership { get; set; }
+        public double Viewership { get; set; }
         public int TimesAired { get; set; }
         public int NumberOfStarts { get; set; }
         public int NumberOfEnds { get; set; }
@@ -48,6 +49,8 @@ namespace InstanceGenerator.SolutionObjects
         public int SelfSpacingConflicts { get; set; }
         public int SelfIncompatibilityConflicts { get; set; }
 
+        public IScoringFunction ScoringFunction { get; set; }
+
         [JsonIgnore]
         public AdvertisementOrder AdvertisementOrderConstraints { get; set; }
 
@@ -69,6 +72,7 @@ namespace InstanceGenerator.SolutionObjects
             }
         }
 
+
         public double EndsProportionUnderMin
         {
             get
@@ -77,12 +81,43 @@ namespace InstanceGenerator.SolutionObjects
             }
         }
 
+
         public bool EndsSatisfied
         {
             get
             {
                 return EndsProportionUnderMin <= 0;
             }
+        }
+
+
+        public void MergeOtherDataIntoThis(TaskData taskData)
+        {
+            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+            Viewership += taskData.Viewership;
+            TimesAired += taskData.TimesAired;
+            NumberOfEnds += taskData.NumberOfEnds;
+            NumberOfStarts += taskData.NumberOfStarts;
+            if (taskData.LastAdTime > LastAdTime)
+            {
+                LastAdTime = taskData.LastAdTime;
+            }
+
+            foreach(var tvBreak in taskData.BreaksPositions)
+            {
+                if(BreaksPositions.TryGetValue(tvBreak.Key, out var list))
+                {
+                    list.AddRange(list);
+                }
+                else
+                {
+                    BreaksPositions.Add(tvBreak.Key, tvBreak.Value);
+                }
+            }
+
+            MildIncompatibilityLoss += taskData.MildIncompatibilityLoss;
+            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+
         }
     }
 }

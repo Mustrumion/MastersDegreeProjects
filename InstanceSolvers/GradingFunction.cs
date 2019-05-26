@@ -12,9 +12,24 @@ namespace InstanceSolvers
 {
     public class GradingFunction : IScoringFunction
     {
+        public double OverdueTasksLossWeight { get; set; } = 1;
+        public double BreakExtensionLossWeight { get; set; } = 1;
+        public double MildIncompatibilityLossWeight { get; set; } = 1;
+
         public Solution Solution { get; set; }
         public Instance Instance { get; set; }
-        public string Description { get; set; } = "Grading function 0.0.2";
+        public string Description
+        {
+            get =>
+$@"Grading function 0.1.0. 
+Task delay loss is counted as a task weight multiplied by delay in days (rounded up).
+Break extension loss is counted as break extension in seconds.
+Soft incompatibility between owners of the same advertisement is a sum of occurece weights multiplied by the corresponding tasks weights.
+Weights for the loss function components:
+OverdueTasksLossWeight = {OverdueTasksLossWeight}
+BreakExtensionLossWeight = {BreakExtensionLossWeight}
+MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
+        }
 
         private Dictionary<int, TaskData> _temporaryTaskData;
         private List<int> _currentBreakOrder;
@@ -76,7 +91,12 @@ namespace InstanceSolvers
             bool success = _temporaryTaskData.TryGetValue(_currentAdId, out TaskData assesedTask);
             if (!success)
             {
-                assesedTask = new TaskData() { ID = _currentAdId };
+                assesedTask = new TaskData()
+                {
+                    TaskID = _currentAdId,
+                    AdvertisementOrderConstraints = _currentAdInfo,
+                    ScoringFunction = this,
+                };
                 _temporaryTaskData.Add(_currentAdId, assesedTask);
             }
             _currentlyAssessed = assesedTask;
@@ -106,7 +126,7 @@ namespace InstanceSolvers
                 viewsFunction = function;
             }
 
-            _currentlyAssessed.Vievership += viewsFunction.GetViewers(_unitsFromStart);
+            _currentlyAssessed.Viewership += viewsFunction.GetViewers(_unitsFromStart);
 
             for (int i = 0; i < _currentBreakOrder.Count; i++)
             {
@@ -140,6 +160,19 @@ namespace InstanceSolvers
         public void AssesSolution()
         {
             throw new NotImplementedException();
+        }
+
+        public void RecalculateOverdueLoss(TaskData taskData)
+        {
+            var timeDifference = taskData.LastAdTime - taskData.AdvertisementOrderConstraints.DueTime;
+            if (timeDifference.TotalMilliseconds > 0)
+            {
+                taskData.OverdueAdsLoss = Math.Ceiling(timeDifference.TotalDays) * taskData.AdvertisementOrderConstraints.Gain / 10;
+            }
+            else
+            {
+                taskData.OverdueAdsLoss = 0;
+            }
         }
     }
 }

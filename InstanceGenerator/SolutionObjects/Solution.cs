@@ -117,7 +117,7 @@ namespace InstanceGenerator.SolutionObjects
             bool success = AdOrderInstances.TryGetValue(orderId, out var taskData);
             if (!success)
             {
-                taskData = new TaskData() { ID = orderId, AdvertisementOrderConstraints = Instance.AdOrders[orderId] };
+                taskData = new TaskData() { TaskID = orderId, AdvertisementOrderConstraints = Instance.AdOrders[orderId] };
                 AdOrderInstances.Add(orderId, taskData);
             }
             success = taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions);
