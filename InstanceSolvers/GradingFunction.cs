@@ -166,7 +166,10 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
         public void AssesSolution()
         {
-            throw new NotImplementedException();
+            foreach(var tvBreak in Solution.AdvertisementsScheduledOnBreaks)
+            {
+
+            }
         }
 
         public void RecalculateOverdueLoss(TaskData taskData)
@@ -197,6 +200,19 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             taskData.WeightedLoss = taskData.ExtendedBreakLoss * BreakExtensionLossWeight 
                 + taskData.OverdueAdsLoss * OverdueTasksLossWeight 
                 + taskData.MildIncompatibilityLoss * MildIncompatibilityLossWeight;
+        }
+
+        public void RecalculateIntegrityLoss(TaskData taskData)
+        {
+            taskData.IntegrityLossScore =
+                1 - taskData.StartsCompletion
+                + 1 - taskData.EndsCompletion
+                + 1 - taskData.ViewsCompletion
+                + 1 - taskData.TimesAiredCompletion
+                + taskData.SelfIncompatibilityConflictsProportion
+                + taskData.SelfSpacingConflictsProportion
+                + taskData.OwnerConflictsProportion
+                + taskData.BreakTypeConflictsProportion;
         }
     }
 }
