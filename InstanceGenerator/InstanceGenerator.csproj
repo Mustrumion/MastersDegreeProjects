@@ -75,6 +75,7 @@
     <Compile Include="DataAcces\InstanceJsonSerializer.cs" />
     <Compile Include="DataAcces\SerializableDictionary.cs" />
     <Compile Include="InstanceModification\RealInstanceToProblemConverter.cs" />
+    <Compile Include="SolutionObjects\TaskCompletionDifference.cs" />
     <Compile Include="SolutionObjects\TaskData.cs" />
     <Compile Include="SolutionObjects\Solution.cs" />
   </ItemGroup>

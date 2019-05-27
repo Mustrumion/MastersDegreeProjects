@@ -27,5 +27,6 @@ namespace InstanceGenerator.Interfaces
         void RecalculateMildIncompatibilityLoss(TaskData taskData);
         void RecalculateExtendedBreakLoss(TaskData taskData);
         void RecalculateWeightedLoss(TaskData taskData);
+        void RecalculateIntegrityLoss(TaskData taskData);
     }
 }
