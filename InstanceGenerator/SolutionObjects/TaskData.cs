@@ -37,6 +37,7 @@ namespace InstanceGenerator.SolutionObjects
         /// Loss form scheduling soft-incompatible ads on the same break.
         /// </summary>
         public double MildIncompatibilityLoss { get; set; }
+        public double MildIncompatibilitySumOfOccurenceWeights { get; set; }
 
         /// <summary>
         /// Loss form overextending breaks.
@@ -52,7 +53,7 @@ namespace InstanceGenerator.SolutionObjects
         public IScoringFunction ScoringFunction { get; set; }
 
         [JsonIgnore]
-        public AdvertisementOrder AdvertisementOrderConstraints { get; set; }
+        public AdvertisementOrder AdvertisementOrderData { get; set; }
 
         public Dictionary<int, List<int>> BreaksPositions { get; set; } = new Dictionary<int, List<int>>();
 
@@ -60,7 +61,7 @@ namespace InstanceGenerator.SolutionObjects
         {
             get
             {
-                return Math.Max(AdvertisementOrderConstraints.MinBeginingsProportion - (double)NumberOfStarts / TimesAired, 0);
+                return Math.Max(AdvertisementOrderData.MinBeginingsProportion - (double)NumberOfStarts / TimesAired, 0);
             }
         }
 
@@ -77,7 +78,7 @@ namespace InstanceGenerator.SolutionObjects
         {
             get
             {
-                return Math.Max(AdvertisementOrderConstraints.MinEndsProportion - (double)NumberOfEnds / TimesAired, 0);
+                return Math.Max(AdvertisementOrderData.MinEndsProportion - (double)NumberOfEnds / TimesAired, 0);
             }
         }
 
@@ -103,9 +104,17 @@ namespace InstanceGenerator.SolutionObjects
                 LastAdTime = taskData.LastAdTime;
             }
 
-            foreach(var tvBreak in taskData.BreaksPositions)
+            MildIncompatibilityLoss += taskData.MildIncompatibilityLoss;
+            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+            ScoringFunction.RecalculateOverdueLoss(this);
+            ScoringFunction.RecalculateMildIncompatibilityLoss(this);
+            ScoringFunction.RecalculateExtendedBreakLoss(this);
+
+            ScoringFunction.RecalculateWeightedLoss(this);
+
+            foreach (var tvBreak in taskData.BreaksPositions)
             {
-                if(BreaksPositions.TryGetValue(tvBreak.Key, out var list))
+                if (BreaksPositions.TryGetValue(tvBreak.Key, out var list))
                 {
                     list.AddRange(list);
                 }
@@ -114,10 +123,6 @@ namespace InstanceGenerator.SolutionObjects
                     BreaksPositions.Add(tvBreak.Key, tvBreak.Value);
                 }
             }
-
-            MildIncompatibilityLoss += taskData.MildIncompatibilityLoss;
-            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
-
         }
     }
 }
