@@ -24,5 +24,9 @@ namespace InstanceGenerator.Interfaces
         
         void AssesSolution();
         void RecalculateOverdueLoss(TaskData taskData);
+        void RecalculateMildIncompatibilityLoss(TaskData taskData);
+        void RecalculateExtendedBreakLoss(TaskData taskData);
+        void RecalculateWeightedLoss(TaskData taskData);
+        void RecalculateIntegrityLoss(TaskData taskData);
     }
 }

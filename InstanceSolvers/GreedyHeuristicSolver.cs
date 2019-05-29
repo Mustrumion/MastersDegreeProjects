@@ -33,7 +33,9 @@ namespace InstanceSolvers
 
         public void Solve()
         {
-            foreach(AdvertisementOrder order in Instance.AdOrders.Values)
+            //due earlier are scheduled first
+            //heftier are scheduled first if due at the same time
+            foreach(AdvertisementOrder order in Instance.AdOrders.Values.OrderByDescending(order => order.AdSpanUnits).OrderBy(order => order.DueTime))
             {
                 ScheduleOrder(order);
             }

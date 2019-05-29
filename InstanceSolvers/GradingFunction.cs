@@ -71,7 +71,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                     }
                     if(incompatibilityWeight != null)
                     {
-                        _currentlyAssessed.MildIncompatibilityLoss += incompatibilityWeight.Value * _currentAdInfo.Gain;
+                        _currentlyAssessed.MildIncompatibilitySumOfOccurenceWeights += incompatibilityWeight.Value;
                     }
                     else
                     {
@@ -94,7 +94,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 assesedTask = new TaskData()
                 {
                     TaskID = _currentAdId,
-                    AdvertisementOrderConstraints = _currentAdInfo,
+                    AdvertisementOrderData = _currentAdInfo,
                     ScoringFunction = this,
                 };
                 _temporaryTaskData.Add(_currentAdId, assesedTask);
@@ -128,6 +128,13 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
             _currentlyAssessed.Viewership += viewsFunction.GetViewers(_unitsFromStart);
 
+            DateTime adEnd = _currentBreak.StartTime.AddSeconds(Instance.UnitSizeInSeconds *
+                (_unitsFromStart + _currentAdInfo.AdSpanUnits));
+            if(_currentlyAssessed.LastAdTime == default(DateTime) || adEnd > _currentlyAssessed.LastAdTime)
+            {
+                _currentlyAssessed.LastAdTime = adEnd;
+            }
+
             for (int i = 0; i < _currentBreakOrder.Count; i++)
             {
                 if(i != _currentAdPosition)
@@ -159,20 +166,53 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
         public void AssesSolution()
         {
-            throw new NotImplementedException();
+            foreach(var tvBreak in Solution.AdvertisementsScheduledOnBreaks)
+            {
+
+            }
         }
 
         public void RecalculateOverdueLoss(TaskData taskData)
         {
-            var timeDifference = taskData.LastAdTime - taskData.AdvertisementOrderConstraints.DueTime;
+            var timeDifference = taskData.LastAdTime - taskData.AdvertisementOrderData.DueTime;
             if (timeDifference.TotalMilliseconds > 0)
             {
-                taskData.OverdueAdsLoss = Math.Ceiling(timeDifference.TotalDays) * taskData.AdvertisementOrderConstraints.Gain / 10;
+                taskData.OverdueAdsLoss = Math.Ceiling(timeDifference.TotalDays) * taskData.AdvertisementOrderData.Gain / 10;
             }
             else
             {
                 taskData.OverdueAdsLoss = 0;
             }
+        }
+
+        public void RecalculateMildIncompatibilityLoss(TaskData taskData)
+        {
+            taskData.MildIncompatibilityLoss = taskData.MildIncompatibilitySumOfOccurenceWeights * taskData.AdvertisementOrderData.Gain;
+        }
+
+        public void RecalculateExtendedBreakLoss(TaskData taskData)
+        {
+            taskData.ExtendedBreakLoss = taskData.ExtendedBreakSeconds;
+        }
+
+        public void RecalculateWeightedLoss(TaskData taskData)
+        {
+            taskData.WeightedLoss = taskData.ExtendedBreakLoss * BreakExtensionLossWeight 
+                + taskData.OverdueAdsLoss * OverdueTasksLossWeight 
+                + taskData.MildIncompatibilityLoss * MildIncompatibilityLossWeight;
+        }
+
+        public void RecalculateIntegrityLoss(TaskData taskData)
+        {
+            taskData.IntegrityLossScore =
+                1 - taskData.StartsCompletion
+                + 1 - taskData.EndsCompletion
+                + 1 - taskData.ViewsCompletion
+                + 1 - taskData.TimesAiredCompletion
+                + taskData.SelfIncompatibilityConflictsProportion
+                + taskData.SelfSpacingConflictsProportion
+                + taskData.OwnerConflictsProportion
+                + taskData.BreakTypeConflictsProportion;
         }
     }
 }

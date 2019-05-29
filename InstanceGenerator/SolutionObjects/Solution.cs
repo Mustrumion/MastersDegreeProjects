@@ -38,8 +38,11 @@ namespace InstanceGenerator.SolutionObjects
         [Description("Loss form overextending breaks.")]
         public double ExtendedBreakLoss { get; set; }
 
+        [Description("Detailed integrity score.")]
+        public double IntegrityLossScore { get; set; }
+
         [Description("Number of advertisement orders (tasks) with hard constraints met.")]
-        public int Integrity { get; set; }
+        public int Completion { get; set; }
         
         [JsonProperty(Order = 1)]
         [Description("Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.")]
@@ -54,17 +57,17 @@ namespace InstanceGenerator.SolutionObjects
         }
 
         [Description("Fraction of tasks with hard constraints met.")]
-        public double IntegrityScore
+        public double CompletionScore
         {
             get
             {
-                return (double)Integrity / MaxIntegrity;
+                return (double)Completion / MaxCompletion;
             }
             set { }
         }
 
         [Description("Number of tasks.")]
-        public int MaxIntegrity
+        public int MaxCompletion
         {
             get
             {
@@ -117,7 +120,7 @@ namespace InstanceGenerator.SolutionObjects
             bool success = AdOrderInstances.TryGetValue(orderId, out var taskData);
             if (!success)
             {
-                taskData = new TaskData() { TaskID = orderId, AdvertisementOrderConstraints = Instance.AdOrders[orderId] };
+                taskData = new TaskData() { TaskID = orderId, AdvertisementOrderData = Instance.AdOrders[orderId] };
                 AdOrderInstances.Add(orderId, taskData);
             }
             success = taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions);

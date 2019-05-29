@@ -37,6 +37,7 @@ namespace InstanceGenerator.SolutionObjects
         /// Loss form scheduling soft-incompatible ads on the same break.
         /// </summary>
         public double MildIncompatibilityLoss { get; set; }
+        public double MildIncompatibilitySumOfOccurenceWeights { get; set; }
 
         /// <summary>
         /// Loss form overextending breaks.
@@ -49,46 +50,101 @@ namespace InstanceGenerator.SolutionObjects
         public int SelfSpacingConflicts { get; set; }
         public int SelfIncompatibilityConflicts { get; set; }
 
+        public double IntegrityLossScore { get; set; }
+
         public IScoringFunction ScoringFunction { get; set; }
 
         [JsonIgnore]
-        public AdvertisementOrder AdvertisementOrderConstraints { get; set; }
+        public AdvertisementOrder AdvertisementOrderData { get; set; }
 
         public Dictionary<int, List<int>> BreaksPositions { get; set; } = new Dictionary<int, List<int>>();
 
-        public double StartsProportionUnderMin
-        {
-            get
-            {
-                return Math.Max(AdvertisementOrderConstraints.MinBeginingsProportion - (double)NumberOfStarts / TimesAired, 0);
-            }
-        }
 
+        #region CalculatedProperties
+
+        public double StartsProportion
+        {
+            get => (double)NumberOfStarts / TimesAired;
+        }
+        public double StartsCompletion
+        {
+            get => Math.Min(StartsProportion / AdvertisementOrderData.MinBeginingsProportion, 1);
+        }
         public bool StartsSatisfied
         {
-            get
-            {
-                return StartsProportionUnderMin <= 0;
-            }
+            get => AdvertisementOrderData.MinBeginingsProportion <= StartsProportion;
         }
 
 
-        public double EndsProportionUnderMin
+        public double EndsProportion
         {
-            get
-            {
-                return Math.Max(AdvertisementOrderConstraints.MinEndsProportion - (double)NumberOfEnds / TimesAired, 0);
-            }
+            get => (double)NumberOfEnds / TimesAired;
         }
-
-
+        public double EndsCompletion
+        {
+            get => Math.Min(EndsProportion / AdvertisementOrderData.MinEndsProportion, 1);
+        }
         public bool EndsSatisfied
         {
+            get => AdvertisementOrderData.MinEndsProportion <= EndsProportion;
+        }
+
+
+        public double ViewsCompletion
+        {
+            get => Math.Min(Viewership / AdvertisementOrderData.MinViewership, 1);
+        }
+        public bool ViewsSatisfied
+        {
+            get => Viewership >= AdvertisementOrderData.MinViewership;
+        }
+
+
+        public double TimesAiredCompletion
+        {
+            get => Math.Min((double)TimesAired / AdvertisementOrderData.MinTimesAired, 1);
+        }
+        public bool TimesAiredSatisfied
+        {
+            get => TimesAired >= AdvertisementOrderData.MinTimesAired;
+        }
+
+
+        public double OwnerConflictsProportion
+        {
+            get => (double)OwnerConflicts / AdvertisementOrderData.MinTimesAired;
+        }
+        public double BreakTypeConflictsProportion
+        {
+            get => (double)BreakTypeConflicts / AdvertisementOrderData.MinTimesAired;
+        }
+        public double SelfSpacingConflictsProportion
+        {
+            get => (double)SelfSpacingConflicts / AdvertisementOrderData.MinTimesAired;
+        }
+        public double SelfIncompatibilityConflictsProportion
+        {
+            get => (double)SelfIncompatibilityConflicts / AdvertisementOrderData.MinTimesAired;
+        }
+
+
+        public bool Completed
+        {
             get
             {
-                return EndsProportionUnderMin <= 0;
+                if (!StartsSatisfied) return false;
+                if (!EndsSatisfied) return false;
+                if (!ViewsSatisfied) return false;
+                if (!TimesAiredSatisfied) return false;
+                if (OwnerConflicts > 0) return false;
+                if (BreakTypeConflicts > 0) return false;
+                if (SelfSpacingConflicts > 0) return false;
+                if (SelfIncompatibilityConflicts > 0) return false;
+                return true;
             }
         }
+
+        #endregion CalculatedProperties
 
 
         public void MergeOtherDataIntoThis(TaskData taskData)
@@ -103,9 +159,18 @@ namespace InstanceGenerator.SolutionObjects
                 LastAdTime = taskData.LastAdTime;
             }
 
-            foreach(var tvBreak in taskData.BreaksPositions)
+            MildIncompatibilityLoss += taskData.MildIncompatibilityLoss;
+            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+            ScoringFunction.RecalculateOverdueLoss(this);
+            ScoringFunction.RecalculateMildIncompatibilityLoss(this);
+            ScoringFunction.RecalculateExtendedBreakLoss(this);
+
+            ScoringFunction.RecalculateWeightedLoss(this);
+            ScoringFunction.RecalculateIntegrityLoss(this);
+
+            foreach (var tvBreak in taskData.BreaksPositions)
             {
-                if(BreaksPositions.TryGetValue(tvBreak.Key, out var list))
+                if (BreaksPositions.TryGetValue(tvBreak.Key, out var list))
                 {
                     list.AddRange(list);
                 }
@@ -114,10 +179,6 @@ namespace InstanceGenerator.SolutionObjects
                     BreaksPositions.Add(tvBreak.Key, tvBreak.Value);
                 }
             }
-
-            MildIncompatibilityLoss += taskData.MildIncompatibilityLoss;
-            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
-
         }
     }
 }
