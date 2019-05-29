@@ -2,6 +2,7 @@
 using InstanceGenerator.DataAccess;
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.InstanceModification;
+using InstanceGenerator.SolutionObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
@@ -36,7 +37,7 @@ namespace SystemTestsProject
             var file = Properties.Resources.week_DS_D_DH_inst;
             var reader = new InstanceJsonSerializer();
             reader.Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8);
-            Instance instance = reader.Deserialize();
+            Instance instance = reader.DeserializeInstance();
             Assert.IsNotNull(instance);
         }
 
@@ -70,23 +71,26 @@ namespace SystemTestsProject
             instanceGenerator.GenerateInstance();
         }
 
-
         [TestMethod]
-        public void GenerateMonth3ChannelsInstanceBasedOnRealData()
+        public void GenerateWeek3ChannelSolutionBasedsOnRealData()
         {
             Generator instanceGenerator = new Generator();
-            instanceGenerator.DataSource = new StringReader(Properties.Resources.month_DS_D_DH);
-            instanceGenerator.OutputFilename = @"results\month_DS_D_DH_inst.json";
-            instanceGenerator.GenerateInstance();
+            instanceGenerator.DataSource = new StringReader(Properties.Resources.week_DS_D_DH);
+            instanceGenerator.OutputFilename = @"results\week_DS_D_DH_sol.json";
+            instanceGenerator.GenerateSolution();
         }
 
         [TestMethod]
-        public void GenerateMonth3ChannelSolutionBasenOnRealData()
+        public void GradeWeek3ChannelSolutionFromSavedFiles()
         {
-            Generator instanceGenerator = new Generator();
-            instanceGenerator.DataSource = new StringReader(Properties.Resources.month_DS_D_DH);
-            instanceGenerator.OutputFilename = @"results\month_DS_D_DH_sol.json";
-            instanceGenerator.GenerateSolution();
+            var file = Properties.Resources.week_DS_D_DH_inst;
+            var deserializer = new InstanceJsonSerializer();
+            deserializer.Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8);
+            Instance instance = deserializer.DeserializeInstance();
+            deserializer.Reader = new StreamReader(new MemoryStream(Properties.Resources.week_DS_D_DH_sol), Encoding.UTF8);
+            Solution solution = deserializer.DeserializeSolution(instance);
+            Assert.IsNotNull(instance);
+            Assert.IsNotNull(solution);
         }
 
         [TestMethod]

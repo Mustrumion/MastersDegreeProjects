@@ -50,14 +50,29 @@ namespace InstanceGenerator.DataAccess
             Writer.FlushAsync();
         }
 
-        public Instance Deserialize()
+        public Instance DeserializeInstance()
         {
-            if(Reader == null)
+            if (Reader == null)
             {
                 Reader = new StreamReader(Path);
             }
             Instance instance = JsonConvert.DeserializeObject<Instance>(Reader.ReadToEnd());
             return instance;
+        }
+
+        public Solution DeserializeSolution(Instance instance = null)
+        {
+            if (Reader == null)
+            {
+                Reader = new StreamReader(Path);
+            }
+            Solution solution = JsonConvert.DeserializeObject<Solution>(Reader.ReadToEnd());
+            if(instance != null)
+            {
+                solution.Instance = instance;
+                solution.RestoreHelperStructures();
+            }
+            return solution;
         }
     }
 }

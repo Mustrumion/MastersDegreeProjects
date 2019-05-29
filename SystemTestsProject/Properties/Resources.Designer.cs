@@ -150,41 +150,11 @@ namespace SystemTestsProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 58 32 68
-        ///5.5.2014 0:0:0
-        ///5.6.2014 0:0:0
-        ///%
-        ///3
-        ///26654
-        ///51241
-        ///%
-        ///58
-        ///2014-05-04 23:59:48
-        ///R 3 bgd 10622 161005 1225 5 4328 644 0.0 0.0
-        ///A 38
-        ///P 711 bgd 4592.71 0 19525 7492.28 4592.71 0 19525 7492.28
-        ///A 33
-        ///R 20 bgd 10623 100402 1152 0 3125 441 0.0 0.0
-        ///R 15 bgd 10623 111303 896 0 590 554 0.0 0.0
-        ///R 30 bgd 10623 141900 1280 0 2953 694 0.0 0.0
-        ///R 20 bgd 10623 191103 1152 0 3519 1665 0.0 0.0
-        ///R 20 bgd 10623 161007 1152 0 231 1536 0.0 0.0
-        ///R 15 bgd 10623 191000 896 0 3499 1665 0.0 0.0
-        ///A 64
-        ///P 442 bgd 0.0 0 0  [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string month_DS_D_DH {
-            get {
-                return ResourceManager.GetString("month_DS_D_DH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] month_DS_D_DH_inst {
+        internal static byte[] solution_schema {
             get {
-                object obj = ResourceManager.GetObject("month_DS_D_DH_inst", resourceCulture);
+                object obj = ResourceManager.GetObject("solution_schema", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -225,6 +195,16 @@ namespace SystemTestsProject.Properties {
         internal static byte[] week_DS_D_DH_inst {
             get {
                 object obj = ResourceManager.GetObject("week_DS_D_DH_inst", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] week_DS_D_DH_sol {
+            get {
+                object obj = ResourceManager.GetObject("week_DS_D_DH_sol", resourceCulture);
                 return ((byte[])(obj));
             }
         }
