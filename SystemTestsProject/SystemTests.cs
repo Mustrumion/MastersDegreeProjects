@@ -24,8 +24,10 @@ namespace SystemTestsProject
             var file = Properties.Resources.week_DS_D_DH;
             using (var reader = new StringReader(file))
             {
-                RealInstanceDataLoader loader = new RealInstanceDataLoader();
-                loader.Reader = reader;
+                RealInstanceDataLoader loader = new RealInstanceDataLoader
+                {
+                    Reader = reader
+                };
                 Instance instance = loader.LoadInstanceFile();
                 Assert.IsNotNull(instance);
             }
@@ -35,8 +37,10 @@ namespace SystemTestsProject
         public void DeserializeWeek3ChannelTest()
         {
             var file = Properties.Resources.week_DS_D_DH_inst;
-            var reader = new InstanceJsonSerializer();
-            reader.Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8);
+            var reader = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
             Instance instance = reader.DeserializeInstance();
             Assert.IsNotNull(instance);
         }
@@ -45,9 +49,11 @@ namespace SystemTestsProject
         [TestMethod]
         public void GenerateDay3ChannelsInstanceBasedOnRealData()
         {
-            Generator instanceGenerator = new Generator();
-            instanceGenerator.DataSource = new StringReader(Properties.Resources.day_DS_D_DH);
-            instanceGenerator.OutputFilename = @"results\day_DS_D_DH_inst.json";
+            Generator instanceGenerator = new Generator
+            {
+                DataSource = new StringReader(Properties.Resources.day_DS_D_DH),
+                OutputFilename = @"results\day_DS_D_DH_inst.json"
+            };
             instanceGenerator.GenerateInstance();
         }
 
@@ -55,9 +61,11 @@ namespace SystemTestsProject
         [TestMethod]
         public void GenerateWeek3ChannelsInstanceBasedOnRealData()
         {
-            Generator instanceGenerator = new Generator();
-            instanceGenerator.DataSource = new StringReader(Properties.Resources.week_DS_D_DH);
-            instanceGenerator.OutputFilename = @"results\week_DS_D_DH_inst.json";
+            Generator instanceGenerator = new Generator
+            {
+                DataSource = new StringReader(Properties.Resources.week_DS_D_DH),
+                OutputFilename = @"results\week_DS_D_DH_inst.json"
+            };
             instanceGenerator.GenerateInstance();
         }
 
@@ -65,18 +73,22 @@ namespace SystemTestsProject
         [TestMethod]
         public void GenerateHour3ChannelsInstanceBasedOnRealData()
         {
-            Generator instanceGenerator = new Generator();
-            instanceGenerator.DataSource = new StringReader(Properties.Resources.hour_DS_D_DH);
-            instanceGenerator.OutputFilename = @"results\hour_DS_D_DH_inst.json";
+            Generator instanceGenerator = new Generator
+            {
+                DataSource = new StringReader(Properties.Resources.hour_DS_D_DH),
+                OutputFilename = @"results\hour_DS_D_DH_inst.json"
+            };
             instanceGenerator.GenerateInstance();
         }
 
         [TestMethod]
         public void GenerateWeek3ChannelSolutionBasedsOnRealData()
         {
-            Generator instanceGenerator = new Generator();
-            instanceGenerator.DataSource = new StringReader(Properties.Resources.week_DS_D_DH);
-            instanceGenerator.OutputFilename = @"results\week_DS_D_DH_sol.json";
+            Generator instanceGenerator = new Generator
+            {
+                DataSource = new StringReader(Properties.Resources.week_DS_D_DH),
+                OutputFilename = @"results\week_DS_D_DH_sol.json"
+            };
             instanceGenerator.GenerateSolution();
         }
 
@@ -84,8 +96,10 @@ namespace SystemTestsProject
         public void GradeWeek3ChannelSolutionFromSavedFiles()
         {
             var file = Properties.Resources.week_DS_D_DH_inst;
-            var deserializer = new InstanceJsonSerializer();
-            deserializer.Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8);
+            var deserializer = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
             Instance instance = deserializer.DeserializeInstance();
             deserializer.Reader = new StreamReader(new MemoryStream(Properties.Resources.week_DS_D_DH_sol), Encoding.UTF8);
             Solution solution = deserializer.DeserializeSolution(instance);
@@ -96,16 +110,20 @@ namespace SystemTestsProject
         [TestMethod]
         public void GenerateInstanceJsonSchemaForInstance()
         {
-            Generator instanceGenerator = new Generator();
-            instanceGenerator.OutputFilename = @"results\instance_schema.json";
+            Generator instanceGenerator = new Generator
+            {
+                OutputFilename = @"results\instance_schema.json"
+            };
             instanceGenerator.GenerateInstanceSchema();
         }
 
         [TestMethod]
         public void GenerateSolutionJsonSchemaForInstance()
         {
-            Generator instanceGenerator = new Generator();
-            instanceGenerator.OutputFilename = @"results\solution_schema.json";
+            Generator instanceGenerator = new Generator
+            {
+                OutputFilename = @"results\solution_schema.json"
+            };
             instanceGenerator.GenerateSolutionSchema();
         }
     }
