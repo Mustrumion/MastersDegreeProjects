@@ -147,26 +147,37 @@ namespace InstanceGenerator.SolutionObjects
         #endregion CalculatedProperties
 
 
+        public void RecalculateLoss()
+        {
+            if(ScoringFunction != null)
+            {
+                ScoringFunction.RecalculateOverdueLoss(this);
+                ScoringFunction.RecalculateMildIncompatibilityLoss(this);
+                ScoringFunction.RecalculateExtendedBreakLoss(this);
+
+                ScoringFunction.RecalculateWeightedLoss(this);
+                ScoringFunction.RecalculateIntegrityLoss(this);
+            }
+        }
+
         public void MergeOtherDataIntoThis(TaskData taskData)
         {
-            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
             Viewership += taskData.Viewership;
             TimesAired += taskData.TimesAired;
             NumberOfEnds += taskData.NumberOfEnds;
             NumberOfStarts += taskData.NumberOfStarts;
+
             if (taskData.LastAdTime > LastAdTime)
             {
                 LastAdTime = taskData.LastAdTime;
             }
-
-            MildIncompatibilityLoss += taskData.MildIncompatibilityLoss;
+            MildIncompatibilitySumOfOccurenceWeights += taskData.MildIncompatibilitySumOfOccurenceWeights;
             ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
-            ScoringFunction.RecalculateOverdueLoss(this);
-            ScoringFunction.RecalculateMildIncompatibilityLoss(this);
-            ScoringFunction.RecalculateExtendedBreakLoss(this);
 
-            ScoringFunction.RecalculateWeightedLoss(this);
-            ScoringFunction.RecalculateIntegrityLoss(this);
+            OwnerConflicts += taskData.OwnerConflicts;
+            BreakTypeConflicts += taskData.BreakTypeConflicts;
+            SelfSpacingConflicts += taskData.SelfSpacingConflicts;
+            SelfIncompatibilityConflicts += taskData.SelfIncompatibilityConflicts;
 
             foreach (var tvBreak in taskData.BreaksPositions)
             {
@@ -179,6 +190,27 @@ namespace InstanceGenerator.SolutionObjects
                     BreaksPositions.Add(tvBreak.Key, tvBreak.Value);
                 }
             }
+            RecalculateLoss();
+        }
+
+        public void OverwriteStatsWith(TaskData taskData)
+        {
+            Viewership = taskData.Viewership;
+            TimesAired = taskData.TimesAired;
+            NumberOfEnds = taskData.NumberOfEnds;
+            NumberOfStarts = taskData.NumberOfStarts;
+            LastAdTime = taskData.LastAdTime;
+            MildIncompatibilitySumOfOccurenceWeights = taskData.MildIncompatibilitySumOfOccurenceWeights;
+            ExtendedBreakSeconds = taskData.ExtendedBreakSeconds;
+            OwnerConflicts = taskData.OwnerConflicts;
+            BreakTypeConflicts = taskData.BreakTypeConflicts;
+            SelfSpacingConflicts = taskData.SelfSpacingConflicts;
+            SelfIncompatibilityConflicts = taskData.SelfIncompatibilityConflicts;
+            ExtendedBreakLoss = taskData.ExtendedBreakLoss;
+            MildIncompatibilityLoss = taskData.MildIncompatibilityLoss;
+            OverdueAdsLoss = taskData.OverdueAdsLoss;
+            IntegrityLossScore = taskData.IntegrityLossScore;
+            WeightedLoss = taskData.WeightedLoss;
         }
     }
 }

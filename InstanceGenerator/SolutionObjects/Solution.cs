@@ -13,6 +13,7 @@ namespace InstanceGenerator.SolutionObjects
     public class Solution
     {
         private Dictionary<int, List<int>> _advertisementsScheduledOnBreaks = new Dictionary<int, List<int>>();
+        private IScoringFunction _gradingFunction;
 
         /// <summary>
         /// Dictionary of where in the solution are instances of AdOrders. Outer key - orderID. Inner key - break ID, inner value - ad position
@@ -24,7 +25,16 @@ namespace InstanceGenerator.SolutionObjects
         public Instance Instance { get; set; }
 
         [JsonIgnore]
-        public IScoringFunction GradingFunction { get; set; }
+        public IScoringFunction GradingFunction
+        {
+            get => _gradingFunction;
+            set
+            {
+                _gradingFunction = value;
+                _gradingFunction.Instance = Instance;
+                _gradingFunction.Solution = this;
+            }
+        }
 
         [Description("Overall solution score.")]
         public double WeightedLoss { get; set; }
@@ -43,7 +53,7 @@ namespace InstanceGenerator.SolutionObjects
 
         [Description("Number of advertisement orders (tasks) with hard constraints met.")]
         public int Completion { get; set; }
-        
+
         [JsonProperty(Order = 1)]
         [Description("Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.")]
         public Dictionary<int, List<int>> AdvertisementsScheduledOnBreaks

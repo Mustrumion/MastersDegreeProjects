@@ -57,6 +57,7 @@ namespace InstanceGenerator.DataAccess
                 Reader = new StreamReader(Path);
             }
             Instance instance = JsonConvert.DeserializeObject<Instance>(Reader.ReadToEnd());
+            instance.RestoreStructuresAfterDeserialization();
             return instance;
         }
 

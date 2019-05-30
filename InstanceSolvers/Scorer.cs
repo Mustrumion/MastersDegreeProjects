@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class GradingFunction : IScoringFunction
+    public class Scorer : IScoringFunction
     {
         public double OverdueTasksLossWeight { get; set; } = 1;
         public double BreakExtensionLossWeight { get; set; } = 1;
@@ -82,6 +82,43 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
 
+        private void UpdateSimpleStatsForCurrentAd(int position)
+        {
+            _currentlyAssessed.TimesAired += 1;
+
+            if (position == 0)
+            {
+                _currentlyAssessed.NumberOfStarts += 1;
+            }
+
+            if (position == _currentBreakOrder.Count)
+            {
+                _currentlyAssessed.NumberOfEnds += 1;
+            }
+
+            bool success = Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(_currentAdInfo.Type.ID, out var incompatibleBreaks);
+            if (success && incompatibleBreaks.ContainsKey(_currentBreak.ID))
+            {
+                _currentlyAssessed.BreakTypeConflicts += 1;
+            }
+
+            var viewsFunction = _currentBreak.MainViewsFunction;
+            if (_currentBreak.TypeViewsFunctions.TryGetValue(_currentAdInfo.Type.ID, out var function))
+            {
+                viewsFunction = function;
+            }
+
+            _currentlyAssessed.Viewership += viewsFunction.GetViewers(_unitsFromStart);
+
+            DateTime adEnd = _currentBreak.StartTime.AddSeconds(Instance.UnitSizeInSeconds *
+                (_unitsFromStart + _currentAdInfo.AdSpanUnits));
+            if (_currentlyAssessed.LastAdTime == default(DateTime) || adEnd > _currentlyAssessed.LastAdTime)
+            {
+                _currentlyAssessed.LastAdTime = adEnd;
+            }
+        }
+
+
         private void CalculateAdConstraints(int orderId, int position)
         {
             _currentAdId = orderId;
@@ -102,38 +139,8 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             _currentlyAssessed = assesedTask;
             Instance.BrandIncompatibilityCost.TryGetValue(_currentAdInfo.Brand.ID, out var currentAdWeights);
             _currentAdIncompatibilityCosts = currentAdWeights;
-            _currentlyAssessed.TimesAired += 1;
 
-            if(position == 0)
-            {
-                _currentlyAssessed.NumberOfStarts += 1;
-            }
-
-            if(position == _currentBreakOrder.Count)
-            {
-                _currentlyAssessed.NumberOfEnds += 1;
-            }
-
-            success = Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(_currentAdInfo.Type.ID, out var incompatibleBreaks);
-            if (success && incompatibleBreaks.ContainsKey(_currentBreak.ID))
-            {
-                _currentlyAssessed.BreakTypeConflicts += 1;
-            }
-
-            var viewsFunction = _currentBreak.MainViewsFunction;
-            if(_currentBreak.TypeViewsFunctions.TryGetValue(_currentAdInfo.Type.ID, out var function))
-            {
-                viewsFunction = function;
-            }
-
-            _currentlyAssessed.Viewership += viewsFunction.GetViewers(_unitsFromStart);
-
-            DateTime adEnd = _currentBreak.StartTime.AddSeconds(Instance.UnitSizeInSeconds *
-                (_unitsFromStart + _currentAdInfo.AdSpanUnits));
-            if(_currentlyAssessed.LastAdTime == default(DateTime) || adEnd > _currentlyAssessed.LastAdTime)
-            {
-                _currentlyAssessed.LastAdTime = adEnd;
-            }
+            UpdateSimpleStatsForCurrentAd(position);
 
             for (int i = 0; i < _currentBreakOrder.Count; i++)
             {
@@ -164,13 +171,44 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
 
-        public void AssesSolution()
+        public void AssesSolution(Solution solution)
         {
-            foreach(var tvBreak in Solution.AdvertisementsScheduledOnBreaks)
+            Solution = solution;
+            Dictionary<int, TaskData> statsData = new Dictionary<int, TaskData>();
+            foreach (var tvBreak in Solution.AdvertisementsScheduledOnBreaks)
             {
-
+                Dictionary<int, TaskData> dataToMerge = AssesBreak(tvBreak.Value, Instance.Breaks[tvBreak.Key]);
+                foreach(var taskData in dataToMerge)
+                {
+                    if(statsData.TryGetValue(taskData.Key, out var found))
+                    {
+                        found.MergeOtherDataIntoThis(taskData.Value);
+                    }
+                    else
+                    {
+                        statsData[taskData.Key] = taskData.Value;
+                    }
+                }
+            }
+            foreach(var taskData in Solution.AdOrderInstances)
+            {
+                if(statsData.TryGetValue(taskData.Key, out var found))
+                {
+                    taskData.Value.OverwriteStatsWith(found);
+                }
+                else
+                {
+                    taskData.Value.RecalculateLoss();
+                }
             }
         }
+
+
+        public void RecalculateScoresBasedOnTaskData()
+        {
+
+        }
+
 
         public void RecalculateOverdueLoss(TaskData taskData)
         {

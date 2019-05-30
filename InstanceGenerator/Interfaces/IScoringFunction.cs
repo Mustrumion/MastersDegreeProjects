@@ -22,7 +22,7 @@ namespace InstanceGenerator.Interfaces
         /// <returns>assesment for each task present in the sequence of advertisements</returns>
         Dictionary<int, TaskData> AssesBreak(List<int> orderedAds, TvBreak tvBreak);
         
-        void AssesSolution();
+        void AssesSolution(Solution solution);
         void RecalculateOverdueLoss(TaskData taskData);
         void RecalculateMildIncompatibilityLoss(TaskData taskData);
         void RecalculateExtendedBreakLoss(TaskData taskData);

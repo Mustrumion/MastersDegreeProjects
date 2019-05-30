@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace InstanceGenerator.InstanceData
 {
-    public class Instance: ISpannedObject
+    public class Instance : ISpannedObject
     {
+        private Dictionary<string, Channel> _channels = new Dictionary<string, Channel>();
+
         [Description("Instance begining in ISO 8601 UTC format.")]
         public DateTime StartTime { get; set; }
         [Description("Instance end in ISO 8601 UTC format.")]
@@ -22,7 +24,7 @@ namespace InstanceGenerator.InstanceData
         public int SpanUnits { get; set; }
         [Description("Chosen unit size in seconds.")]
         public double UnitSizeInSeconds { get; set; }
-        
+
         public int ChannelAmountChecksum { get; set; }
         [JsonIgnore]
         public int ProgramAmountChecksum { get; set; }
@@ -42,7 +44,7 @@ namespace InstanceGenerator.InstanceData
         [JsonProperty(Order = 2)]
         [Description("Dictionary declaring brands present in the instance.")]
         public Dictionary<int, Brand> Brands { get; set; } = new Dictionary<int, Brand>();
-        
+
         /// <summary>
         /// Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight
         /// </summary>
@@ -62,9 +64,15 @@ namespace InstanceGenerator.InstanceData
         /// </summary>
         [Description("Channels - 'machines' on which we schedule the tasks.")]
         [JsonProperty(Order = 5)]
-
-        public Dictionary<string, Channel> Channels { get; set; } = new Dictionary<string, Channel>();
-
+        public Dictionary<string, Channel> Channels
+        {
+            get => _channels;
+            set
+            {
+                _channels = value;
+                RestoreBreakDictionary();
+            }
+        }
         /// <summary>
         /// Type to break sparse compatibility matrix (values not present are compatible). Possible values: 1 - incompatible.
         /// </summary>
@@ -72,8 +80,11 @@ namespace InstanceGenerator.InstanceData
         [Description("Type to break sparse compatibility matrix (values not present are compatible). Possible values: 1 - incompatible.")]
         public Dictionary<int, Dictionary<int, byte>> TypeToBreakIncompatibilityMatrix { get; set; } = new Dictionary<int, Dictionary<int, byte>>();
 
-
-
+        /// <summary>
+        /// All breaks in instance mapped by their ID
+        /// </summary>
+        [JsonIgnore]
+        public Dictionary<int, TvBreak> Breaks { get; set; } = new Dictionary<int, TvBreak>();
 
         public IEnumerable<Channel> GetChannelList()
         {
@@ -157,6 +168,22 @@ namespace InstanceGenerator.InstanceData
             };
             Brands[ownerId] = owner;
             return owner;
+        }
+
+        public void RestoreBreakDictionary()
+        {
+            foreach (var channel in _channels)
+            {
+                foreach (var tvBreak in channel.Value.Breaks)
+                {
+                    Breaks[tvBreak.ID] = tvBreak;
+                }
+            }
+        }
+
+        public void RestoreStructuresAfterDeserialization()
+        {
+            RestoreBreakDictionary();
         }
     }
 }

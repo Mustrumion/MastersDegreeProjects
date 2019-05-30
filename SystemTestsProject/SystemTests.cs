@@ -3,6 +3,7 @@ using InstanceGenerator.DataAccess;
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.InstanceModification;
 using InstanceGenerator.SolutionObjects;
+using InstanceSolvers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
@@ -103,6 +104,14 @@ namespace SystemTestsProject
             Instance instance = deserializer.DeserializeInstance();
             deserializer.Reader = new StreamReader(new MemoryStream(Properties.Resources.week_DS_D_DH_sol), Encoding.UTF8);
             Solution solution = deserializer.DeserializeSolution(instance);
+            solution.GradingFunction = new Scorer();
+            solution.GradingFunction.AssesSolution(solution);
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = @"results\week_DS_D_DH_sol_scored.json"
+            };
+            serializer.SerializeSolution(solution);
+
             Assert.IsNotNull(instance);
             Assert.IsNotNull(solution);
         }
