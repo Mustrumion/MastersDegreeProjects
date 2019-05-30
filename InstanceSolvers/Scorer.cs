@@ -91,7 +91,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 _currentlyAssessed.NumberOfStarts += 1;
             }
 
-            if (position == _currentBreakOrder.Count)
+            if (position == _currentBreakOrder.Count - 1)
             {
                 _currentlyAssessed.NumberOfEnds += 1;
             }
@@ -190,7 +190,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                     }
                 }
             }
-            foreach(var taskData in Solution.AdOrderInstances)
+            foreach(var taskData in Solution.AdOrderData)
             {
                 if(statsData.TryGetValue(taskData.Key, out var found))
                 {
@@ -207,12 +207,12 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
         public void RecalculateSolutionScoresBasedOnTaskData(Solution solution)
         {
-            solution.Completion = solution.AdOrderInstances.Values.Count(v => v.Completed);
-            solution.WeightedLoss = solution.AdOrderInstances.Values.Sum(v => v.WeightedLoss);
-            solution.IntegrityLossScore = solution.AdOrderInstances.Values.Sum(v => v.IntegrityLossScore);
-            solution.ExtendedBreakLoss = solution.AdOrderInstances.Values.Sum(v => v.ExtendedBreakLoss);
-            solution.MildIncompatibilityLoss = solution.AdOrderInstances.Values.Sum(v => v.MildIncompatibilityLoss);
-            solution.OverdueAdsLoss = solution.AdOrderInstances.Values.Sum(v => v.OverdueAdsLoss);
+            solution.Completion = solution.AdOrderData.Values.Count(v => v.Completed);
+            solution.WeightedLoss = solution.AdOrderData.Values.Sum(v => v.WeightedLoss);
+            solution.IntegrityLossScore = solution.AdOrderData.Values.Sum(v => v.IntegrityLossScore);
+            solution.ExtendedBreakLoss = solution.AdOrderData.Values.Sum(v => v.ExtendedBreakLoss);
+            solution.MildIncompatibilityLoss = solution.AdOrderData.Values.Sum(v => v.MildIncompatibilityLoss);
+            solution.OverdueAdsLoss = solution.AdOrderData.Values.Sum(v => v.OverdueAdsLoss);
         }
 
 

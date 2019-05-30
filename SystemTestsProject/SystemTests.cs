@@ -110,7 +110,7 @@ namespace SystemTestsProject
             {
                 Path = @"results\week_DS_D_DH_sol_scored.json"
             };
-            serializer.SerializeSolution(solution);
+            serializer.SerializeSolution(solution, SolutionSerializationMode.DebugTaskData);
 
             Assert.IsNotNull(instance);
             Assert.IsNotNull(solution);

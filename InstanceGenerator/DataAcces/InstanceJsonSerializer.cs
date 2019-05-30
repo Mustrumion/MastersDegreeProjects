@@ -1,4 +1,5 @@
-﻿using InstanceGenerator.InstanceData;
+﻿using InstanceGenerator.DataAcces;
+using InstanceGenerator.InstanceData;
 using InstanceGenerator.SolutionObjects;
 using Newtonsoft.Json;
 using System;
@@ -10,6 +11,26 @@ using System.Threading.Tasks;
 
 namespace InstanceGenerator.DataAccess
 {
+    public enum SolutionSerializationMode
+    {
+        /// <summary>
+        /// No stats nor loss data will be included. Only the pure schedule order data. Files will not be indented by default.
+        /// </summary>
+        Bare = 1,
+        /// <summary>
+        /// Bare + information about solution scores. Files will not be indented by default.
+        /// </summary>
+        Basic = 2,
+        /// <summary>
+        /// Basic + intermediate score for each task. Files will be indented by default.
+        /// </summary>
+        DebugTaskData = 3,
+        /// <summary>
+        /// TaskData + position of scheduled tasks. Files will be indented by default.
+        /// </summary>
+        DebugFull = 4,
+    }
+
     public class InstanceJsonSerializer
     {
         public string Path { get; set; }
@@ -33,7 +54,7 @@ namespace InstanceGenerator.DataAccess
             Writer.FlushAsync();
         }
 
-        public void SerializeSolution(Solution solution)
+        public void SerializeSolution(Solution solution, SolutionSerializationMode solutionSerializationMode = SolutionSerializationMode.Basic)
         {
             if (Writer == null)
             {
@@ -42,10 +63,34 @@ namespace InstanceGenerator.DataAccess
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 PreserveReferencesHandling = PreserveReferencesHandling.None,
-                Formatting = Formatting.Indented,
+                Formatting = (int)solutionSerializationMode > 2 ? Formatting.Indented : Formatting.None,
             };
 
+            var jsonResolver = new PropertyRenameAndIgnoreSerializerContractResolver();
+            if (solutionSerializationMode == SolutionSerializationMode.DebugTaskData)
+            {
+                jsonResolver.IgnoreProperty(typeof(TaskData), nameof(TaskData.BreaksPositions));
+            }
+            if (solutionSerializationMode == SolutionSerializationMode.Basic)
+            {
+                jsonResolver.IgnoreProperty(typeof(Solution), nameof(Solution.AdOrderData));
+            }
+            if (solutionSerializationMode == SolutionSerializationMode.Bare)
+            {
+                jsonResolver.IgnoreProperty(typeof(Solution), 
+                    nameof(Solution.AdOrderData), 
+                    nameof(Solution.Completion),
+                    nameof(Solution.CompletionScore),
+                    nameof(Solution.MaxCompletion),
+                    nameof(Solution.MildIncompatibilityLoss),
+                    nameof(Solution.IntegrityLossScore),
+                    nameof(Solution.OverdueAdsLoss),
+                    nameof(Solution.WeightedLoss),
+                    nameof(Solution.GradingFunctionDescription));
+            }
+
             JsonSerializer ser = JsonSerializer.Create(settings);
+            ser.ContractResolver = jsonResolver;
             ser.Serialize(Writer, solution);
             Writer.FlushAsync();
         }

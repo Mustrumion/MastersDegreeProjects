@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAcces\PropertyRenameAndIgnoreSerializerContractResolver.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Interfaces\IScoringFunction.cs" />
     <Compile Include="Interfaces\IActivitiesSequence.cs" />
@@ -73,7 +74,6 @@
     <Compile Include="InstanceModification\InstanceCorrector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAcces\InstanceJsonSerializer.cs" />
-    <Compile Include="DataAcces\SerializableDictionary.cs" />
     <Compile Include="InstanceModification\RealInstanceToProblemConverter.cs" />
     <Compile Include="SolutionObjects\TaskCompletionDifference.cs" />
     <Compile Include="SolutionObjects\TaskData.cs" />

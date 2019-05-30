@@ -15,12 +15,6 @@ namespace InstanceGenerator.SolutionObjects
         private Dictionary<int, List<int>> _advertisementsScheduledOnBreaks = new Dictionary<int, List<int>>();
         private IScoringFunction _gradingFunction;
 
-        /// <summary>
-        /// Dictionary of where in the solution are instances of AdOrders. Outer key - orderID. Inner key - break ID, inner value - ad position
-        /// </summary>
-        [JsonIgnore]
-        public Dictionary<int, TaskData> AdOrderInstances { get; set; } = new Dictionary<int, TaskData>();
-
         [JsonIgnore]
         public Instance Instance { get; set; }
 
@@ -36,25 +30,53 @@ namespace InstanceGenerator.SolutionObjects
             }
         }
 
+        /// <summary>
+        /// Overall solution score.
+        /// </summary>
         [Description("Overall solution score.")]
         public double WeightedLoss { get; set; }
 
+        /// <summary>
+        /// Loss from late ad contract completion.
+        /// </summary>
         [Description("Loss from late ad contract completion.")]
         public double OverdueAdsLoss { get; set; }
 
+        /// <summary>
+        /// Loss form scheduling soft-incompatible ads on the same break.
+        /// </summary>
         [Description("Loss form scheduling soft-incompatible ads on the same break.")]
         public double MildIncompatibilityLoss { get; set; }
 
+        /// <summary>
+        /// Loss form overextending breaks.
+        /// </summary>
         [Description("Loss form overextending breaks.")]
         public double ExtendedBreakLoss { get; set; }
 
+        /// <summary>
+        /// Detailed integrity score. Subjective, depends on grading object.
+        /// </summary>
         [Description("Detailed integrity score.")]
         public double IntegrityLossScore { get; set; }
 
+        /// <summary>
+        /// Number of advertisement orders (tasks) with hard constraints met.
+        /// </summary>
         [Description("Number of advertisement orders (tasks) with hard constraints met.")]
         public int Completion { get; set; }
 
+        /// <summary>
+        /// Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).
+        /// </summary>
+        [Description("Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).")]
         [JsonProperty(Order = 1)]
+        public Dictionary<int, TaskData> AdOrderData { get; set; } = new Dictionary<int, TaskData>();
+
+        /// <summary>
+        /// Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.
+        /// </summary>
+        [JsonProperty(Order = 2)]
         [Description("Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.")]
         public Dictionary<int, List<int>> AdvertisementsScheduledOnBreaks
         {
@@ -66,6 +88,9 @@ namespace InstanceGenerator.SolutionObjects
             }
         }
 
+        /// <summary>
+        /// Fraction of tasks with hard constraints met.
+        /// </summary>
         [Description("Fraction of tasks with hard constraints met.")]
         public double CompletionScore
         {
@@ -76,6 +101,9 @@ namespace InstanceGenerator.SolutionObjects
             set { }
         }
 
+        /// <summary>
+        /// Number of tasks.
+        /// </summary>
         [Description("Number of tasks.")]
         public int MaxCompletion
         {
@@ -108,7 +136,7 @@ namespace InstanceGenerator.SolutionObjects
 
         public void RestoreHelperStructures()
         {
-            AdOrderInstances = new Dictionary<int, TaskData>();
+            AdOrderData = new Dictionary<int, TaskData>();
             foreach (var tvBreak in AdvertisementsScheduledOnBreaks)
             {
                 for (int i = 0; i < tvBreak.Value.Count; i++)
@@ -127,11 +155,11 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         private void AddAdToTaskDataDictionry(int orderId, int breakId, int position)
         {
-            bool success = AdOrderInstances.TryGetValue(orderId, out var taskData);
+            bool success = AdOrderData.TryGetValue(orderId, out var taskData);
             if (!success)
             {
                 taskData = new TaskData() { TaskID = orderId, AdvertisementOrderData = Instance.AdOrders[orderId] };
-                AdOrderInstances.Add(orderId, taskData);
+                AdOrderData.Add(orderId, taskData);
             }
             success = taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions);
             if (!success)
@@ -151,7 +179,7 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         private void RemoveAdFromTaskDataDictionary(int orderId, int breakId, int position)
         {
-            var taskData = AdOrderInstances[orderId];
+            var taskData = AdOrderData[orderId];
             var breakPositions = taskData.BreaksPositions[breakId];
             breakPositions.Remove(position);
             if (breakPositions.Count == 0)
@@ -160,7 +188,7 @@ namespace InstanceGenerator.SolutionObjects
             }
             if (taskData.BreaksPositions.Count == 0)
             {
-                AdOrderInstances.Remove(orderId);
+                AdOrderData.Remove(orderId);
             }
         }
 
@@ -178,7 +206,7 @@ namespace InstanceGenerator.SolutionObjects
             for (int i = position; i < adsInBreak.Count; i++)
             {
                 int adId = adsInBreak[i];
-                var positionsInBreak = AdOrderInstances[adId].BreaksPositions[tvBreak.ID];
+                var positionsInBreak = AdOrderData[adId].BreaksPositions[tvBreak.ID];
                 for (int j = 0; j < positionsInBreak.Count; i++)
                 {
                     if (positionsInBreak[j] >= position)
@@ -204,7 +232,7 @@ namespace InstanceGenerator.SolutionObjects
             for (int i = position + 1; i < adsInBreak.Count; i++)
             {
                 int adId = adsInBreak[i];
-                var positionsInBreak = AdOrderInstances[adId].BreaksPositions[tvBreak.ID];
+                var positionsInBreak = AdOrderData[adId].BreaksPositions[tvBreak.ID];
                 for (int j = 0; j < positionsInBreak.Count; i++)
                 {
                     if (positionsInBreak[j] >= position)
