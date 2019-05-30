@@ -52,6 +52,7 @@ namespace InstanceGenerator.SolutionObjects
 
         public double IntegrityLossScore { get; set; }
 
+        [JsonIgnore]
         public IScoringFunction ScoringFunction { get; set; }
 
         [JsonIgnore]
@@ -64,11 +65,19 @@ namespace InstanceGenerator.SolutionObjects
 
         public double StartsProportion
         {
-            get => (double)NumberOfStarts / TimesAired;
+            get
+            {
+                if(TimesAired == 0) return 0;
+                return (double)NumberOfStarts / TimesAired;
+            }
         }
         public double StartsCompletion
         {
-            get => Math.Min(StartsProportion / AdvertisementOrderData.MinBeginingsProportion, 1);
+            get
+            {
+                if (AdvertisementOrderData.MinBeginingsProportion == 0) return 1;
+                return Math.Min(StartsProportion / AdvertisementOrderData.MinBeginingsProportion, 1);
+            }
         }
         public bool StartsSatisfied
         {
@@ -78,11 +87,19 @@ namespace InstanceGenerator.SolutionObjects
 
         public double EndsProportion
         {
-            get => (double)NumberOfEnds / TimesAired;
+            get
+            {
+                if (TimesAired == 0) return 0;
+                return (double)NumberOfEnds / TimesAired;
+            }
         }
         public double EndsCompletion
         {
-            get => Math.Min(EndsProportion / AdvertisementOrderData.MinEndsProportion, 1);
+            get
+            {
+                if (AdvertisementOrderData.MinEndsProportion == 0) return 1;
+                return Math.Min(EndsProportion / AdvertisementOrderData.MinEndsProportion, 1);
+            }
         }
         public bool EndsSatisfied
         {
@@ -92,7 +109,11 @@ namespace InstanceGenerator.SolutionObjects
 
         public double ViewsCompletion
         {
-            get => Math.Min(Viewership / AdvertisementOrderData.MinViewership, 1);
+            get
+            {
+                if (AdvertisementOrderData.MinViewership == 0) return 1;
+                return Math.Min(Viewership / AdvertisementOrderData.MinViewership, 1);
+            }
         }
         public bool ViewsSatisfied
         {
@@ -102,7 +123,11 @@ namespace InstanceGenerator.SolutionObjects
 
         public double TimesAiredCompletion
         {
-            get => Math.Min((double)TimesAired / AdvertisementOrderData.MinTimesAired, 1);
+            get
+            {
+                if (AdvertisementOrderData.MinTimesAired == 0) return 1;
+                return Math.Min((double)TimesAired / AdvertisementOrderData.MinTimesAired, 1);
+            }
         }
         public bool TimesAiredSatisfied
         {
@@ -112,19 +137,19 @@ namespace InstanceGenerator.SolutionObjects
 
         public double OwnerConflictsProportion
         {
-            get => (double)OwnerConflicts / AdvertisementOrderData.MinTimesAired;
+            get => (double)OwnerConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, 1);
         }
         public double BreakTypeConflictsProportion
         {
-            get => (double)BreakTypeConflicts / AdvertisementOrderData.MinTimesAired;
+            get => (double)BreakTypeConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, 1);
         }
         public double SelfSpacingConflictsProportion
         {
-            get => (double)SelfSpacingConflicts / AdvertisementOrderData.MinTimesAired;
+            get => (double)SelfSpacingConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, 1);
         }
         public double SelfIncompatibilityConflictsProportion
         {
-            get => (double)SelfIncompatibilityConflicts / AdvertisementOrderData.MinTimesAired;
+            get => (double)SelfIncompatibilityConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, 1);
         }
 
 
