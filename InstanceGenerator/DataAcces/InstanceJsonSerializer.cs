@@ -83,9 +83,10 @@ namespace InstanceGenerator.DataAccess
                     nameof(Solution.CompletionScore),
                     nameof(Solution.MaxCompletion),
                     nameof(Solution.MildIncompatibilityLoss),
-                    nameof(Solution.IntegrityLossScore),
                     nameof(Solution.OverdueAdsLoss),
+                    nameof(Solution.ExtendedBreakLoss),
                     nameof(Solution.WeightedLoss),
+                    nameof(Solution.IntegrityLossScore),
                     nameof(Solution.GradingFunctionDescription));
             }
 

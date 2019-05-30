@@ -90,7 +90,7 @@ namespace SystemTestsProject
                 DataSource = new StringReader(Properties.Resources.week_DS_D_DH),
                 OutputFilename = @"results\week_DS_D_DH_sol.json"
             };
-            instanceGenerator.GenerateSolution();
+            instanceGenerator.GenerateSolution(SolutionSerializationMode.Bare);
         }
 
         [TestMethod]

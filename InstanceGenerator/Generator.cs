@@ -49,7 +49,7 @@ namespace InstanceGenerator
             serializer.SerializeInstance(instance);
         }
 
-        public void GenerateSolution()
+        public void GenerateSolution(SolutionSerializationMode serializationMode = SolutionSerializationMode.Bare)
         {
             if (DataSource == null)
             {
@@ -72,7 +72,7 @@ namespace InstanceGenerator
             serializer.Path = OutputFilename;
             FileInfo file = new FileInfo(OutputFilename);
             file.Directory.Create();
-            serializer.SerializeSolution(solution);
+            serializer.SerializeSolution(solution, serializationMode);
         }
 
         public void GenerateInstanceSchema()
