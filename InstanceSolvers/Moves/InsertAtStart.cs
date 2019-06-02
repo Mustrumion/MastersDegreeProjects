@@ -11,8 +11,8 @@ namespace InstanceSolvers.Moves
 {
     public class InsertAtStart : IMove
     {
-        public int IntegrityChange { get; set; }
-        public double ScoreChange { get; set; }
+        public int IntegrityLossChange { get; set; }
+        public double WeightedLossChange { get; set; }
         public Instance Instance { get; set; }
         public Solution Solution { get; set; }
 
@@ -21,7 +21,6 @@ namespace InstanceSolvers.Moves
 
         public void Asses()
         {
-            throw new NotImplementedException();
         }
 
         public void Execute()

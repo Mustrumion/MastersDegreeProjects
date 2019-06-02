@@ -12,6 +12,8 @@ namespace InstanceGenerator.InstanceData
 {
     public class Instance : ISpannedObject
     {
+        public string Description { get; set; }
+
         private Dictionary<string, Channel> _channels = new Dictionary<string, Channel>();
 
         [Description("Instance begining in ISO 8601 UTC format.")]

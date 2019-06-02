@@ -26,7 +26,7 @@ namespace InstanceGenerator
         /// </summary>
         public string SourcePath { get; set; }
         public string OutputFilename { get; set; }
-        public RealInstanceToProblemConverter InstanceCoverter { get; set; } = new RealInstanceToProblemConverter();
+        public RealInstanceToProblemConverter InstanceConverter { get; set; } = new RealInstanceToProblemConverter();
 
         public void GenerateInstance()
         {
@@ -36,8 +36,8 @@ namespace InstanceGenerator
             }
             InstanceLoader.Reader = DataSource;
             var instance = InstanceLoader.LoadInstanceFile();
-            InstanceCoverter.Instance = instance;
-            InstanceCoverter.ConvertToProblem();
+            InstanceConverter.Instance = instance;
+            InstanceConverter.ConvertToProblem();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer();
             if (OutputFilename == null)
             {
@@ -57,8 +57,8 @@ namespace InstanceGenerator
             }
             InstanceLoader.Reader = DataSource;
             Instance instance = InstanceLoader.LoadInstanceFile();
-            InstanceCoverter.Instance = instance;
-            InstanceCoverter.ConvertToProblem();
+            InstanceConverter.Instance = instance;
+            InstanceConverter.ConvertToProblem();
             Solution solution = new Solution()
             {
                 Instance = instance,

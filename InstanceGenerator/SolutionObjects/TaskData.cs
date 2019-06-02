@@ -15,7 +15,7 @@ namespace InstanceGenerator.SolutionObjects
     /// </summary>
     public class TaskData
     {
-        public int TaskID { get; set; }
+        public int TaskID { get => AdvertisementOrderData.ID; }
 
         public double Viewership { get; set; }
         public int TimesAired { get; set; }
@@ -218,6 +218,55 @@ namespace InstanceGenerator.SolutionObjects
             }
             RecalculateLoss();
         }
+
+
+        public void RemoveOtherDataFromThis(TaskData taskData)
+        {
+            Viewership -= taskData.Viewership;
+            TimesAired -= taskData.TimesAired;
+            NumberOfEnds -= taskData.NumberOfEnds;
+            NumberOfStarts -= taskData.NumberOfStarts;
+
+            MildIncompatibilitySumOfOccurenceWeights -= taskData.MildIncompatibilitySumOfOccurenceWeights;
+            ExtendedBreakSeconds -= taskData.ExtendedBreakSeconds;
+
+            OwnerConflicts -= taskData.OwnerConflicts;
+            BreakTypeConflicts -= taskData.BreakTypeConflicts;
+            SelfSpacingConflicts -= taskData.SelfSpacingConflicts;
+            SelfIncompatibilityConflicts -= taskData.SelfIncompatibilityConflicts;
+
+            foreach (var tvBreak in taskData.BreaksPositions)
+            {
+                if (BreaksPositions.TryGetValue(tvBreak.Key, out var list))
+                {
+                    list = list.Except(tvBreak.Value).ToList();
+                    if(list.Count == 0)
+                    {
+                        BreaksPositions.Remove(tvBreak.Key);
+                    }
+                    else
+                    {
+                        BreaksPositions[tvBreak.Key] = list;
+                    }
+                }
+                else
+                {
+                    throw new Exception("Something went wrong. This data was not a part of this task.");
+                }
+            }
+            if (taskData.LastAdTime == LastAdTime)
+            {
+                RecalculateLastAdTime();
+            }
+            RecalculateLoss();
+        }
+
+
+        private void RecalculateLastAdTime()
+        {
+            ScoringFunction.RecalculateLastAdTime(this);
+        }
+
 
         public void OverwriteStatsWith(TaskData taskData)
         {

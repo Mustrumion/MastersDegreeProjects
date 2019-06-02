@@ -19,6 +19,8 @@ namespace InstanceGenerator.InstanceModification
         public int MinAdsInBetweenSameOffset { get; set; } = -1;
         public int MinTimesAiredOffset { get; set; } = 0;
         public TimeSpan DueTimeOffset { get; set; } = new TimeSpan(0, 0, 0, 0);
+        public string InstanceDescription { get; set; }
+        public bool RoundDueTimeUpToDays { get; set; } = false;
 
 
         private Dictionary<int, int> nightTypesCount;
@@ -42,6 +44,7 @@ namespace InstanceGenerator.InstanceModification
             RemoveUnnecessaryActivities();
             GenerateAllAdOrdersData();
             GenerateBreakToTypeCompatibilityMatrix();
+            Instance.Description = InstanceDescription;
         }
 
         public void CreateBreaks()
@@ -327,6 +330,10 @@ namespace InstanceGenerator.InstanceModification
         {
             order.Gain = order.AdvertisementInstances.Sum(a => a.Profit);
             order.DueTime = order.AdvertisementInstances.OrderBy(a => a.EndTime).Last().EndTime + DueTimeOffset;
+            if (RoundDueTimeUpToDays)
+            {
+                order.DueTime = order.DueTime.AddDays(1).Date;
+            }
             order.MinViewership = order.AdvertisementInstances.Sum(a => a.Viewers);
             //Ads with same advertisement ID had different spans in real data, we choose the most frequent one here
             var modeSpanGroup = order.AdvertisementInstances.ToLookup(a => a.SpanUnits).OrderBy(cat => cat.Count()).Last();

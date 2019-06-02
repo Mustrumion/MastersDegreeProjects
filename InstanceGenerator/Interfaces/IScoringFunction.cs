@@ -30,5 +30,6 @@ namespace InstanceGenerator.Interfaces
         void RecalculateExtendedBreakLoss(TaskData taskData);
         void RecalculateWeightedLoss(TaskData taskData);
         void RecalculateIntegrityLoss(TaskData taskData);
+        void RecalculateLastAdTime(TaskData taskData);
     }
 }

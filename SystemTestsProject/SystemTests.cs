@@ -53,7 +53,11 @@ namespace SystemTestsProject
             Generator instanceGenerator = new Generator
             {
                 DataSource = new StringReader(Properties.Resources.day_DS_D_DH),
-                OutputFilename = @"results\day_DS_D_DH_inst.json"
+                OutputFilename = @"results\day_DS_D_DH_inst.json",
+                InstanceConverter = new RealInstanceToProblemConverter()
+                {
+                    InstanceDescription = "3 scientific channels belonging to the same company."
+                }
             };
             instanceGenerator.GenerateInstance();
         }
@@ -65,7 +69,11 @@ namespace SystemTestsProject
             Generator instanceGenerator = new Generator
             {
                 DataSource = new StringReader(Properties.Resources.week_DS_D_DH),
-                OutputFilename = @"results\week_DS_D_DH_inst.json"
+                OutputFilename = @"results\week_DS_D_DH_inst.json",
+                InstanceConverter = new RealInstanceToProblemConverter()
+                {
+                    InstanceDescription = "3 scientific channels belonging to the same company."
+                }
             };
             instanceGenerator.GenerateInstance();
         }
@@ -77,7 +85,11 @@ namespace SystemTestsProject
             Generator instanceGenerator = new Generator
             {
                 DataSource = new StringReader(Properties.Resources.hour_DS_D_DH),
-                OutputFilename = @"results\hour_DS_D_DH_inst.json"
+                OutputFilename = @"results\hour_DS_D_DH_inst.json",
+                InstanceConverter = new RealInstanceToProblemConverter()
+                {
+                    InstanceDescription = "3 scientific channels belonging to the same company."
+                }
             };
             instanceGenerator.GenerateInstance();
         }

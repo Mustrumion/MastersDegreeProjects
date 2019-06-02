@@ -130,7 +130,6 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             {
                 assesedTask = new TaskData()
                 {
-                    TaskID = _currentAdId,
                     AdvertisementOrderData = _currentAdInfo,
                     ScoringFunction = this,
                 };
@@ -257,6 +256,15 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 + taskData.SelfSpacingConflictsProportion
                 + taskData.OwnerConflictsProportion
                 + taskData.BreakTypeConflictsProportion;
+        }
+
+        public void RecalculateLastAdTime(TaskData taskData)
+        {
+            foreach(var tvBreak in taskData.BreaksPositions)
+            {
+                var position = tvBreak.Value.Max();
+                // TODO: finish this
+            }
         }
     }
 }

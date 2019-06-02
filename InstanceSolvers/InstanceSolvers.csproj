@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Moves\Insert.cs" />
     <Compile Include="Scorer.cs" />
     <Compile Include="GreedyHeuristicSolver.cs" />
     <Compile Include="Moves\InsertAtEnd.cs" />
