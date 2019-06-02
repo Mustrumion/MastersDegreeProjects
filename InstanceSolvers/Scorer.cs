@@ -152,15 +152,15 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
 
-        public Dictionary<int, TaskData> AssesBreak(List<AdvertisementOrder> orderedAds, TvBreak tvBreak)
+        public Dictionary<int, TaskData> AssesBreak(BreakSchedule schedule)
         {
-            _currentBreakOrder = orderedAds;
-            _currentBreak = tvBreak;
+            _currentBreakOrder = schedule.Order;
+            _currentBreak = schedule.BreakData;
             _temporaryTaskData = new Dictionary<int, TaskData>();
             _unitsFromStart = 0;
-            for(int i = 0; i < orderedAds.Count; i++)
+            for(int i = 0; i < _currentBreakOrder.Count; i++)
             {
-                CalculateAdConstraints(orderedAds[i], i);
+                CalculateAdConstraints(_currentBreakOrder[i], i);
                 _unitsFromStart += _currentAd.AdSpanUnits;
             }
             return _temporaryTaskData;
@@ -173,7 +173,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             Dictionary<int, TaskData> statsData = new Dictionary<int, TaskData>();
             foreach (var tvBreak in Solution.AdvertisementsScheduledOnBreaks)
             {
-                Dictionary<int, TaskData> dataToMerge = AssesBreak(tvBreak.Value, Instance.Breaks[tvBreak.Key]);
+                Dictionary<int, TaskData> dataToMerge = AssesBreak(tvBreak.Value);
                 foreach(var taskData in dataToMerge)
                 {
                     if(statsData.TryGetValue(taskData.Key, out var found))

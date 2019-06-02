@@ -12,7 +12,7 @@ namespace InstanceGenerator.SolutionObjects
 {
     public class Solution
     {
-        private Dictionary<int, List<AdvertisementOrder>> _advertisementsScheduledOnBreaks = new Dictionary<int, List<AdvertisementOrder>>();
+        private Dictionary<int, BreakSchedule> _advertisementsScheduledOnBreaks = new Dictionary<int, BreakSchedule>();
         private IScoringFunction _gradingFunction;
 
         [JsonIgnore]
@@ -34,7 +34,7 @@ namespace InstanceGenerator.SolutionObjects
         /// Dictionary of lists. Dictionary keys represent break IDs. Lists contain job objects in order scheduled for a break given by the key.
         /// </summary>
         [JsonIgnore]
-        public Dictionary<int, List<AdvertisementOrder>> AdvertisementsScheduledOnBreaks
+        public Dictionary<int, BreakSchedule> AdvertisementsScheduledOnBreaks
         {
             get => _advertisementsScheduledOnBreaks;
             set
@@ -88,7 +88,7 @@ namespace InstanceGenerator.SolutionObjects
         public Dictionary<int, TaskData> AdOrderData { get; set; } = new Dictionary<int, TaskData>();
 
         /// <summary>
-        /// View on the current solution state. Created for serialization purpose. 
+        /// Simplified view on the current solution state. Created for serialization purpose. 
         /// Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.
         /// </summary>
         [JsonProperty(Order = 2)]
@@ -133,10 +133,13 @@ namespace InstanceGenerator.SolutionObjects
 
         public void GenerateSolutionFromRealData()
         {
-            _advertisementsScheduledOnBreaks = new Dictionary<int, List<AdvertisementOrder>>();
+            _advertisementsScheduledOnBreaks = new Dictionary<int, BreakSchedule>();
             foreach (var tvBreak in Instance.Channels.Values.SelectMany(c => c.Breaks))
             {
-                _advertisementsScheduledOnBreaks.Add(tvBreak.ID, tvBreak.Advertisements.Select(a => a.AdvertisementOrder).ToList());
+                _advertisementsScheduledOnBreaks.Add(tvBreak.ID, new BreakSchedule(tvBreak)
+                {
+                    Order = tvBreak.Advertisements.Select(a => a.AdvertisementOrder).ToList(),
+                });
             }
         }
 
@@ -144,14 +147,17 @@ namespace InstanceGenerator.SolutionObjects
         {
             AdvertisementIdsScheduledOnBreaks = _advertisementsScheduledOnBreaks.ToDictionary(
                 b => b.Key,
-                b => b.Value.Select(a => a.ID).ToList());
+                b => b.Value.Order.Select(a => a.ID).ToList());
         }
 
         public void RestoreStructures()
         {
             _advertisementsScheduledOnBreaks = AdvertisementIdsScheduledOnBreaks.ToDictionary(
                 b => b.Key,
-                b => b.Value.Select(a => Instance.AdOrders[a]).ToList());
+                b => new BreakSchedule(Instance.Breaks[b.Key])
+                {
+                    Order = b.Value.Select(a => Instance.AdOrders[a]).ToList(),
+                });
             RestoreTaskView();
         }
 
@@ -160,9 +166,10 @@ namespace InstanceGenerator.SolutionObjects
             AdOrderData = new Dictionary<int, TaskData>();
             foreach (var tvBreak in _advertisementsScheduledOnBreaks)
             {
-                for (int i = 0; i < tvBreak.Value.Count; i++)
+                var listOfAds = tvBreak.Value.Order;
+                for (int i = 0; i < listOfAds.Count; i++)
                 {
-                    AddAdToTaskDataDictionry(tvBreak.Value[i].ID, tvBreak.Key, i);
+                    AddAdToTaskDataDictionry(listOfAds[i].ID, tvBreak.Key, i);
                 }
             }
         }
@@ -222,7 +229,11 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         public void AddAdToBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
         {
-            var adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID];
+            if(!_advertisementsScheduledOnBreaks.TryGetValue(tvBreak.ID, out var breakSchedule))
+            {
+                breakSchedule = new BreakSchedule(tvBreak);
+            }
+            var adsInBreak = breakSchedule.Order;
             //Move positions by one in helper structure.
             for (int i = position; i < adsInBreak.Count; i++)
             {
@@ -237,7 +248,7 @@ namespace InstanceGenerator.SolutionObjects
                 }
             }
             AddAdToTaskDataDictionry(ad.ID, tvBreak.ID, position);
-            _advertisementsScheduledOnBreaks[tvBreak.ID].Insert(position, ad);
+            adsInBreak.Insert(position, ad);
         }
 
         /// <summary>
@@ -248,7 +259,7 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         public void RemoveAdFromBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
         {
-            var adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID];
+            var adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID].Order;
             //Move positions by one in helper structure.
             for (int i = position + 1; i < adsInBreak.Count; i++)
             {
@@ -263,7 +274,7 @@ namespace InstanceGenerator.SolutionObjects
                 }
             }
             RemoveAdFromTaskDataDictionary(ad.ID, tvBreak.ID, position);
-            _advertisementsScheduledOnBreaks[tvBreak.ID].RemoveAt(position);
+            adsInBreak.RemoveAt(position);
         }
     }
 }
