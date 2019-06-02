@@ -20,7 +20,7 @@ namespace InstanceGenerator.Interfaces
         /// <param name="orderedAds">list of order IDs in order they are aired</param>
         /// <param name="tvBreak">problem data for the break</param>
         /// <returns>assesment for each task present in the sequence of advertisements</returns>
-        Dictionary<int, TaskData> AssesBreak(List<int> orderedAds, TvBreak tvBreak);
+        Dictionary<int, TaskData> AssesBreak(List<AdvertisementOrder> orderedAds, TvBreak tvBreak);
         void AssesSolution(Solution solution);
         void RecalculateSolutionScoresBasedOnTaskData(Solution solution);
 

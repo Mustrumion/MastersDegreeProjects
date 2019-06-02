@@ -32,38 +32,36 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
         private Dictionary<int, TaskData> _temporaryTaskData;
-        private List<int> _currentBreakOrder;
+        private List<AdvertisementOrder> _currentBreakOrder;
         private TvBreak _currentBreak;
         private int _unitsFromStart;
 
         private TaskData _currentlyAssessed;
-        private int _currentAdId;
         private int _currentAdPosition;
-        private AdvertisementOrder _currentAdInfo;
+        private AdvertisementOrder _currentAd;
         private int _currentAdCount;
         private Dictionary<int, double> _currentAdIncompatibilityCosts;
 
 
-        private void CheckAdToAdCompatibility(int otherId, int otherPosition)
+        private void CheckAdToAdCompatibility(AdvertisementOrder other, int otherPosition)
         {
-            if(_currentAdId == otherId)
+            if(_currentAd == other)
             {
                 _currentAdCount += 1;
                 int distance = Math.Abs(_currentAdPosition - otherPosition);
-                if(distance <= _currentAdInfo.MinJobsBetweenSame)
+                if(distance <= _currentAd.MinJobsBetweenSame)
                 {
                     _currentlyAssessed.SelfSpacingConflicts += 1;
                 }
             }
             else
             {
-                AdvertisementOrder otherAdInfo = Instance.AdOrders[otherId];
-                if(otherAdInfo.Type == _currentAdInfo.Type)
+                if(other.Type == _currentAd.Type)
                 {
                     double? incompatibilityWeight = null;
                     if(_currentAdIncompatibilityCosts != null)
                     {
-                        bool success = _currentAdIncompatibilityCosts.TryGetValue(otherAdInfo.Brand.ID, out double weight);
+                        bool success = _currentAdIncompatibilityCosts.TryGetValue(other.Brand.ID, out double weight);
                         if (success)
                         {
                             incompatibilityWeight = weight;
@@ -96,14 +94,14 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 _currentlyAssessed.NumberOfEnds += 1;
             }
 
-            bool success = Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(_currentAdInfo.Type.ID, out var incompatibleBreaks);
+            bool success = Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(_currentAd.Type.ID, out var incompatibleBreaks);
             if (success && incompatibleBreaks.ContainsKey(_currentBreak.ID))
             {
                 _currentlyAssessed.BreakTypeConflicts += 1;
             }
 
             var viewsFunction = _currentBreak.MainViewsFunction;
-            if (_currentBreak.TypeViewsFunctions.TryGetValue(_currentAdInfo.Type.ID, out var function))
+            if (_currentBreak.TypeViewsFunctions.TryGetValue(_currentAd.Type.ID, out var function))
             {
                 viewsFunction = function;
             }
@@ -111,7 +109,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             _currentlyAssessed.Viewership += viewsFunction.GetViewers(_unitsFromStart);
 
             DateTime adEnd = _currentBreak.StartTime.AddSeconds(Instance.UnitSizeInSeconds *
-                (_unitsFromStart + _currentAdInfo.AdSpanUnits));
+                (_unitsFromStart + _currentAd.AdSpanUnits));
             if (_currentlyAssessed.LastAdTime == default(DateTime) || adEnd > _currentlyAssessed.LastAdTime)
             {
                 _currentlyAssessed.LastAdTime = adEnd;
@@ -119,24 +117,23 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
 
-        private void CalculateAdConstraints(int orderId, int position)
+        private void CalculateAdConstraints(AdvertisementOrder order, int position)
         {
-            _currentAdId = orderId;
             _currentAdPosition = position;
             _currentAdCount = 1;
-            _currentAdInfo = Instance.AdOrders[_currentAdId];
-            bool success = _temporaryTaskData.TryGetValue(_currentAdId, out TaskData assesedTask);
+            _currentAd = order;
+            bool success = _temporaryTaskData.TryGetValue(order.ID, out TaskData assesedTask);
             if (!success)
             {
                 assesedTask = new TaskData()
                 {
-                    AdvertisementOrderData = _currentAdInfo,
+                    AdvertisementOrderData = _currentAd,
                     ScoringFunction = this,
                 };
-                _temporaryTaskData.Add(_currentAdId, assesedTask);
+                _temporaryTaskData.Add(order.ID, assesedTask);
             }
             _currentlyAssessed = assesedTask;
-            Instance.BrandIncompatibilityCost.TryGetValue(_currentAdInfo.Brand.ID, out var currentAdWeights);
+            Instance.BrandIncompatibilityCost.TryGetValue(_currentAd.Brand.ID, out var currentAdWeights);
             _currentAdIncompatibilityCosts = currentAdWeights;
 
             UpdateSimpleStatsForCurrentAd(position);
@@ -148,14 +145,14 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                     CheckAdToAdCompatibility(_currentBreakOrder[i], i);
                 }
             }
-            if(_currentAdCount > _currentAdInfo.MaxPerBlock)
+            if(_currentAdCount > _currentAd.MaxPerBlock)
             {
                 _currentlyAssessed.SelfIncompatibilityConflicts += 1;
             }
         }
 
 
-        public Dictionary<int, TaskData> AssesBreak(List<int> orderedAds, TvBreak tvBreak)
+        public Dictionary<int, TaskData> AssesBreak(List<AdvertisementOrder> orderedAds, TvBreak tvBreak)
         {
             _currentBreakOrder = orderedAds;
             _currentBreak = tvBreak;
@@ -164,7 +161,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             for(int i = 0; i < orderedAds.Count; i++)
             {
                 CalculateAdConstraints(orderedAds[i], i);
-                _unitsFromStart += _currentAdInfo.AdSpanUnits;
+                _unitsFromStart += _currentAd.AdSpanUnits;
             }
             return _temporaryTaskData;
         }

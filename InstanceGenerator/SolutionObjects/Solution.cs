@@ -12,7 +12,7 @@ namespace InstanceGenerator.SolutionObjects
 {
     public class Solution
     {
-        private Dictionary<int, List<int>> _advertisementsScheduledOnBreaks = new Dictionary<int, List<int>>();
+        private Dictionary<int, List<AdvertisementOrder>> _advertisementsScheduledOnBreaks = new Dictionary<int, List<AdvertisementOrder>>();
         private IScoringFunction _gradingFunction;
 
         [JsonIgnore]
@@ -27,6 +27,20 @@ namespace InstanceGenerator.SolutionObjects
                 _gradingFunction = value;
                 _gradingFunction.Instance = Instance;
                 _gradingFunction.Solution = this;
+            }
+        }
+
+        /// <summary>
+        /// Dictionary of lists. Dictionary keys represent break IDs. Lists contain job objects in order scheduled for a break given by the key.
+        /// </summary>
+        [JsonIgnore]
+        public Dictionary<int, List<AdvertisementOrder>> AdvertisementsScheduledOnBreaks
+        {
+            get => _advertisementsScheduledOnBreaks;
+            set
+            {
+                _advertisementsScheduledOnBreaks = value;
+                RestoreTaskView();
             }
         }
 
@@ -74,19 +88,12 @@ namespace InstanceGenerator.SolutionObjects
         public Dictionary<int, TaskData> AdOrderData { get; set; } = new Dictionary<int, TaskData>();
 
         /// <summary>
+        /// View on the current solution state. Created for serialization purpose. 
         /// Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.
         /// </summary>
         [JsonProperty(Order = 2)]
         [Description("Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.")]
-        public Dictionary<int, List<int>> AdvertisementsScheduledOnBreaks
-        {
-            get => _advertisementsScheduledOnBreaks;
-            set
-            {
-                _advertisementsScheduledOnBreaks = value;
-                RestoreHelperStructures();
-            }
-        }
+        public Dictionary<int, List<int>> AdvertisementIdsScheduledOnBreaks { get; set; } = new Dictionary<int, List<int>>();
 
         /// <summary>
         /// Fraction of tasks with hard constraints met.
@@ -126,22 +133,36 @@ namespace InstanceGenerator.SolutionObjects
 
         public void GenerateSolutionFromRealData()
         {
-            AdvertisementsScheduledOnBreaks = new Dictionary<int, List<int>>();
+            _advertisementsScheduledOnBreaks = new Dictionary<int, List<AdvertisementOrder>>();
             foreach (var tvBreak in Instance.Channels.Values.SelectMany(c => c.Breaks))
             {
-                AdvertisementsScheduledOnBreaks.Add(tvBreak.ID, tvBreak.Advertisements.Select(a => a.AdOrderID).ToList());
+                _advertisementsScheduledOnBreaks.Add(tvBreak.ID, tvBreak.Advertisements.Select(a => a.AdvertisementOrder).ToList());
             }
         }
 
+        public void PrepareForSerialization()
+        {
+            AdvertisementIdsScheduledOnBreaks = _advertisementsScheduledOnBreaks.ToDictionary(
+                b => b.Key,
+                b => b.Value.Select(a => a.ID).ToList());
+        }
 
-        public void RestoreHelperStructures()
+        public void RestoreStructures()
+        {
+            _advertisementsScheduledOnBreaks = AdvertisementIdsScheduledOnBreaks.ToDictionary(
+                b => b.Key,
+                b => b.Value.Select(a => Instance.AdOrders[a]).ToList());
+            RestoreTaskView();
+        }
+
+        public void RestoreTaskView()
         {
             AdOrderData = new Dictionary<int, TaskData>();
-            foreach (var tvBreak in AdvertisementsScheduledOnBreaks)
+            foreach (var tvBreak in _advertisementsScheduledOnBreaks)
             {
                 for (int i = 0; i < tvBreak.Value.Count; i++)
                 {
-                    AddAdToTaskDataDictionry(tvBreak.Value[i], tvBreak.Key, i);
+                    AddAdToTaskDataDictionry(tvBreak.Value[i].ID, tvBreak.Key, i);
                 }
             }
         }
@@ -201,11 +222,11 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         public void AddAdToBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
         {
-            List<int> adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID];
+            var adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID];
             //Move positions by one in helper structure.
             for (int i = position; i < adsInBreak.Count; i++)
             {
-                int adId = adsInBreak[i];
+                int adId = adsInBreak[i].ID;
                 var positionsInBreak = AdOrderData[adId].BreaksPositions[tvBreak.ID];
                 for (int j = 0; j < positionsInBreak.Count; i++)
                 {
@@ -216,7 +237,7 @@ namespace InstanceGenerator.SolutionObjects
                 }
             }
             AddAdToTaskDataDictionry(ad.ID, tvBreak.ID, position);
-            _advertisementsScheduledOnBreaks[tvBreak.ID].Insert(position, ad.ID);
+            _advertisementsScheduledOnBreaks[tvBreak.ID].Insert(position, ad);
         }
 
         /// <summary>
@@ -227,11 +248,11 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         public void RemoveAdFromBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
         {
-            List<int> adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID];
+            var adsInBreak = _advertisementsScheduledOnBreaks[tvBreak.ID];
             //Move positions by one in helper structure.
             for (int i = position + 1; i < adsInBreak.Count; i++)
             {
-                int adId = adsInBreak[i];
+                int adId = adsInBreak[i].ID;
                 var positionsInBreak = AdOrderData[adId].BreaksPositions[tvBreak.ID];
                 for (int j = 0; j < positionsInBreak.Count; i++)
                 {

@@ -56,7 +56,7 @@ namespace SystemTestsProject
                 OutputFilename = @"results\day_DS_D_DH_inst.json",
                 InstanceConverter = new RealInstanceToProblemConverter()
                 {
-                    InstanceDescription = "3 scientific channels belonging to the same company."
+                    InstanceDescription = "3 mildly educational channels belonging to the same company."
                 }
             };
             instanceGenerator.GenerateInstance();
@@ -72,7 +72,7 @@ namespace SystemTestsProject
                 OutputFilename = @"results\week_DS_D_DH_inst.json",
                 InstanceConverter = new RealInstanceToProblemConverter()
                 {
-                    InstanceDescription = "3 scientific channels belonging to the same company."
+                    InstanceDescription = "3 mildly educational channels belonging to the same company."
                 }
             };
             instanceGenerator.GenerateInstance();
@@ -88,7 +88,7 @@ namespace SystemTestsProject
                 OutputFilename = @"results\hour_DS_D_DH_inst.json",
                 InstanceConverter = new RealInstanceToProblemConverter()
                 {
-                    InstanceDescription = "3 scientific channels belonging to the same company."
+                    InstanceDescription = "3 mildly educational channels belonging to the same company."
                 }
             };
             instanceGenerator.GenerateInstance();

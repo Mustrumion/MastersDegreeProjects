@@ -70,6 +70,7 @@
     <None Include="Resources\solution_schema.json" />
     <None Include="Resources\week_DS_D_DH_inst.json" />
     <None Include="Resources\week_DS_D_DH_sol.json" />
+    <None Include="Resources\week_DS_D_DH_sol_scored.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

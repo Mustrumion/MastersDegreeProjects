@@ -18,15 +18,19 @@
       "description": "Loss form overextending breaks.",
       "type": "number"
     },
-    "Integrity": {
+    "IntegrityLossScore": {
+      "description": "Detailed integrity score.",
+      "type": "number"
+    },
+    "Completion": {
       "description": "Number of advertisement orders (tasks) with hard constraints met.",
       "type": "integer"
     },
-    "IntegrityScore": {
+    "CompletionScore": {
       "description": "Fraction of tasks with hard constraints met.",
       "type": "number"
     },
-    "MaxIntegrity": {
+    "MaxCompletion": {
       "description": "Number of tasks.",
       "type": "integer"
     },
@@ -36,21 +40,143 @@
         "null"
       ]
     },
-    "AdvertisementsScheduledOnBreaks": {
+    "AdOrderData": {
+      "description": "Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$id": "InstanceGenerator.SolutionObjects.TaskData",
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "TaskID": {
+            "type": "integer"
+          },
+          "Viewership": {
+            "type": "number"
+          },
+          "TimesAired": {
+            "type": "integer"
+          },
+          "NumberOfStarts": {
+            "type": "integer"
+          },
+          "NumberOfEnds": {
+            "type": "integer"
+          },
+          "WeightedLoss": {
+            "type": "number"
+          },
+          "OverdueAdsLoss": {
+            "type": "number"
+          },
+          "LastAdTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "MildIncompatibilityLoss": {
+            "type": "number"
+          },
+          "MildIncompatibilitySumOfOccurenceWeights": {
+            "type": "number"
+          },
+          "ExtendedBreakLoss": {
+            "type": "number"
+          },
+          "ExtendedBreakSeconds": {
+            "type": "integer"
+          },
+          "OwnerConflicts": {
+            "type": "integer"
+          },
+          "BreakTypeConflicts": {
+            "type": "integer"
+          },
+          "SelfSpacingConflicts": {
+            "type": "integer"
+          },
+          "SelfIncompatibilityConflicts": {
+            "type": "integer"
+          },
+          "IntegrityLossScore": {
+            "type": "number"
+          },
+          "StartsProportion": {
+            "type": "number"
+          },
+          "StartsCompletion": {
+            "type": "number"
+          },
+          "StartsSatisfied": {
+            "type": "boolean"
+          },
+          "EndsProportion": {
+            "type": "number"
+          },
+          "EndsCompletion": {
+            "type": "number"
+          },
+          "EndsSatisfied": {
+            "type": "boolean"
+          },
+          "ViewsCompletion": {
+            "type": "number"
+          },
+          "ViewsSatisfied": {
+            "type": "boolean"
+          },
+          "TimesAiredCompletion": {
+            "type": "number"
+          },
+          "TimesAiredSatisfied": {
+            "type": "boolean"
+          },
+          "OwnerConflictsProportion": {
+            "type": "number"
+          },
+          "BreakTypeConflictsProportion": {
+            "type": "number"
+          },
+          "SelfSpacingConflictsProportion": {
+            "type": "number"
+          },
+          "SelfIncompatibilityConflictsProportion": {
+            "type": "number"
+          },
+          "Completed": {
+            "type": "boolean"
+          },
+          "BreaksPositions": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": {
+              "$id": "System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "AdvertisementIdsScheduledOnBreaks": {
       "description": "Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.",
       "type": [
         "object",
         "null"
       ],
       "additionalProperties": {
-        "$id": "System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",
-        "type": [
-          "array",
-          "null"
-        ],
-        "items": {
-          "type": "integer"
-        }
+        "$ref": "System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
       }
     }
   }

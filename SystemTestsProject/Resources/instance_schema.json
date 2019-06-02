@@ -2,6 +2,12 @@
   "$id": "InstanceGenerator.InstanceData.Instance",
   "type": "object",
   "properties": {
+    "Description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "StartTime": {
       "description": "Instance begining in ISO 8601 UTC format.",
       "type": "string",

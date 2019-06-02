@@ -56,6 +56,7 @@ namespace InstanceGenerator.DataAccess
 
         public void SerializeSolution(Solution solution, SolutionSerializationMode solutionSerializationMode = SolutionSerializationMode.Basic)
         {
+            solution.PrepareForSerialization();
             if (Writer == null)
             {
                 Writer = new StreamWriter(Path);
@@ -117,7 +118,7 @@ namespace InstanceGenerator.DataAccess
             if(instance != null)
             {
                 solution.Instance = instance;
-                solution.RestoreHelperStructures();
+                solution.RestoreStructures();
             }
             return solution;
         }
