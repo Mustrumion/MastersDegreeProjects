@@ -972,7 +972,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:58:54",
+      "DueTime": "2014-05-05T18:58:57",
       "OverdueCostParameter": 9340.0,
       "Type": {
         "$ref": "3"
@@ -993,7 +993,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:10:54",
+      "DueTime": "2014-05-05T18:10:57",
       "OverdueCostParameter": 1400.0,
       "Type": {
         "$ref": "4"
@@ -1014,7 +1014,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:27:35",
+      "DueTime": "2014-05-05T18:27:48",
       "OverdueCostParameter": 3759.0,
       "Type": {
         "$ref": "5"
@@ -1035,7 +1035,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:26:09",
+      "DueTime": "2014-05-05T18:26:12",
       "OverdueCostParameter": 1960.0,
       "Type": {
         "$ref": "3"
@@ -1056,7 +1056,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:11:39",
+      "DueTime": "2014-05-05T18:11:42",
       "OverdueCostParameter": 980.0,
       "Type": {
         "$ref": "6"
@@ -1077,7 +1077,7 @@
       "MinEndsProportion": 0.4,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:26:50",
+      "DueTime": "2014-05-05T18:27:03",
       "OverdueCostParameter": 2779.0,
       "Type": {
         "$ref": "7"
@@ -1098,7 +1098,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:57:54",
+      "DueTime": "2014-05-05T18:57:57",
       "OverdueCostParameter": 3157.0,
       "Type": {
         "$ref": "8"
@@ -1119,7 +1119,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:26:35",
+      "DueTime": "2014-05-05T18:26:48",
       "OverdueCostParameter": 6850.0,
       "Type": {
         "$ref": "9"
@@ -1161,7 +1161,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:48:11",
+      "DueTime": "2014-05-05T18:48:24",
       "OverdueCostParameter": 2813.0,
       "Type": {
         "$ref": "8"
@@ -1203,7 +1203,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:46:27",
+      "DueTime": "2014-05-05T18:46:30",
       "OverdueCostParameter": 2800.0,
       "Type": {
         "$ref": "11"
@@ -1224,7 +1224,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:28:39",
+      "DueTime": "2014-05-05T18:28:42",
       "OverdueCostParameter": 1710.0,
       "Type": {
         "$ref": "12"
@@ -1245,7 +1245,7 @@
       "MinEndsProportion": 0.4,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:29:09",
+      "DueTime": "2014-05-05T18:29:12",
       "OverdueCostParameter": 6850.0,
       "Type": {
         "$ref": "13"
@@ -1287,7 +1287,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:43:39",
+      "DueTime": "2014-05-05T18:43:42",
       "OverdueCostParameter": 1400.0,
       "Type": {
         "$ref": "8"
@@ -1308,7 +1308,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:59:09",
+      "DueTime": "2014-05-05T18:59:12",
       "OverdueCostParameter": 1960.0,
       "Type": {
         "$ref": "15"
@@ -1329,7 +1329,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:44:54",
+      "DueTime": "2014-05-05T18:44:57",
       "OverdueCostParameter": 1400.0,
       "Type": {
         "$ref": "8"
@@ -1350,7 +1350,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:45:24",
+      "DueTime": "2014-05-05T18:45:27",
       "OverdueCostParameter": 1400.0,
       "Type": {
         "$ref": "16"
@@ -1371,7 +1371,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:45:39",
+      "DueTime": "2014-05-05T18:45:42",
       "OverdueCostParameter": 980.0,
       "Type": {
         "$ref": "17"
@@ -1392,7 +1392,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:45:48",
+      "DueTime": "2014-05-05T18:45:51",
       "OverdueCostParameter": 770.0,
       "Type": {
         "$ref": "18"
@@ -1413,7 +1413,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:59:09",
+      "DueTime": "2014-05-05T18:59:21",
       "OverdueCostParameter": 2183.0,
       "Type": {
         "$ref": "7"
@@ -1434,7 +1434,7 @@
       "MinEndsProportion": 0.8,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:46:42",
+      "DueTime": "2014-05-05T18:46:45",
       "OverdueCostParameter": 980.0,
       "Type": {
         "$ref": "19"
@@ -1455,7 +1455,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:58:24",
+      "DueTime": "2014-05-05T18:58:27",
       "OverdueCostParameter": 1400.0,
       "Type": {
         "$ref": "12"
@@ -1497,7 +1497,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T17:59:50",
+      "DueTime": "2014-05-05T18:00:03",
       "OverdueCostParameter": 1165.0,
       "Type": {
         "$ref": "5"
@@ -1518,7 +1518,7 @@
       "MinEndsProportion": 0.53333333333333333,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:57:00",
+      "DueTime": "2014-05-05T18:57:12",
       "OverdueCostParameter": 3735.0,
       "Type": {
         "$ref": "21"
@@ -1539,7 +1539,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:13:05",
+      "DueTime": "2014-05-05T18:13:18",
       "OverdueCostParameter": 2570.0,
       "Type": {
         "$ref": "22"
@@ -1560,7 +1560,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:28:05",
+      "DueTime": "2014-05-05T18:28:18",
       "OverdueCostParameter": 4369.0,
       "Type": {
         "$ref": "23"
@@ -1602,7 +1602,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:24:11",
+      "DueTime": "2014-05-05T18:24:24",
       "OverdueCostParameter": 1285.0,
       "Type": {
         "$ref": "24"
@@ -1623,7 +1623,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:25:35",
+      "DueTime": "2014-05-05T18:25:48",
       "OverdueCostParameter": 2570.0,
       "Type": {
         "$ref": "25"
@@ -1644,7 +1644,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:48:41",
+      "DueTime": "2014-05-05T18:48:54",
       "OverdueCostParameter": 5450.0,
       "Type": {
         "$ref": "26"
@@ -1665,7 +1665,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:28:35",
+      "DueTime": "2014-05-05T18:28:48",
       "OverdueCostParameter": 2570.0,
       "Type": {
         "$ref": "22"
@@ -1686,7 +1686,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:47:02",
+      "DueTime": "2014-05-05T18:47:15",
       "OverdueCostParameter": 2570.0,
       "Type": {
         "$ref": "27"
@@ -1728,7 +1728,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:47:47",
+      "DueTime": "2014-05-05T18:48:00",
       "OverdueCostParameter": 2570.0,
       "Type": {
         "$ref": "22"
@@ -1749,7 +1749,7 @@
       "MinEndsProportion": 0.4,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:48:02",
+      "DueTime": "2014-05-05T18:48:15",
       "OverdueCostParameter": 2016.0,
       "Type": {
         "$ref": "8"
@@ -1770,7 +1770,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:49:26",
+      "DueTime": "2014-05-05T18:49:39",
       "OverdueCostParameter": 1799.0,
       "Type": {
         "$ref": "20"
@@ -1791,7 +1791,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:49:56",
+      "DueTime": "2014-05-05T18:50:09",
       "OverdueCostParameter": 2570.0,
       "Type": {
         "$ref": "29"
@@ -1812,7 +1812,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:50:11",
+      "DueTime": "2014-05-05T18:50:24",
       "OverdueCostParameter": 2016.0,
       "Type": {
         "$ref": "14"
@@ -1833,7 +1833,7 @@
       "MinEndsProportion": 0.4,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:59:30",
+      "DueTime": "2014-05-05T18:59:42",
       "OverdueCostParameter": 4626.0,
       "Type": {
         "$ref": "30"
@@ -1854,7 +1854,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:58:09",
+      "DueTime": "2014-05-05T18:58:21",
       "OverdueCostParameter": 3190.0,
       "Type": {
         "$ref": "22"
@@ -1875,7 +1875,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:58:30",
+      "DueTime": "2014-05-05T18:58:42",
       "OverdueCostParameter": 2313.0,
       "Type": {
         "$ref": "31"
@@ -1896,7 +1896,7 @@
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:59:00",
+      "DueTime": "2014-05-05T18:59:12",
       "OverdueCostParameter": 2570.0,
       "Type": {
         "$ref": "25"
@@ -1917,7 +1917,7 @@
       "MinEndsProportion": 0.8,
       "MaxPerBlock": 1,
       "MinJobsBetweenSame": 999999,
-      "DueTime": "2014-05-05T18:59:39",
+      "DueTime": "2014-05-05T18:59:51",
       "OverdueCostParameter": 1413.0,
       "Type": {
         "$ref": "32"
@@ -2247,16 +2247,16 @@
     "58": {
       "$id": "214",
       "ID": "58",
-      "StartTime": "2014-05-05T17:59:56",
-      "EndTime": "2014-05-05T19:00:00",
-      "Span": "01:00:04",
+      "StartTime": "2014-05-05T18:00:00",
+      "EndTime": "2014-05-05T19:00:03",
+      "Span": "01:00:03",
       "SpanUnits": 1201,
       "Breaks": [
         {
           "$id": "215",
           "ID": 0,
-          "StartTime": "2014-05-05T18:09:24",
-          "EndTime": "2014-05-05T18:11:54",
+          "StartTime": "2014-05-05T18:09:27",
+          "EndTime": "2014-05-05T18:11:57",
           "Span": "00:02:30",
           "SpanUnits": 50,
           "MainViewsFunction": {
@@ -2264,32 +2264,32 @@
             "TimeIntervals": [
               {
                 "$id": "217",
-                "StartTime": "2014-05-05T18:09:24",
-                "EndTime": "2014-05-05T18:10:24",
+                "StartTime": "2014-05-05T18:09:27",
+                "EndTime": "2014-05-05T18:10:27",
                 "Span": "00:01:00",
                 "SpanUnits": 20,
                 "Viewers": 33766.0
               },
               {
                 "$id": "218",
-                "StartTime": "2014-05-05T18:10:24",
-                "EndTime": "2014-05-05T18:10:54",
+                "StartTime": "2014-05-05T18:10:27",
+                "EndTime": "2014-05-05T18:10:57",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 36217.0
               },
               {
                 "$id": "219",
-                "StartTime": "2014-05-05T18:10:54",
-                "EndTime": "2014-05-05T18:11:09",
+                "StartTime": "2014-05-05T18:10:57",
+                "EndTime": "2014-05-05T18:11:12",
                 "Span": "00:00:15",
                 "SpanUnits": 5,
                 "Viewers": 36203.67
               },
               {
                 "$id": "220",
-                "StartTime": "2014-05-05T18:11:09",
-                "EndTime": "2014-05-05T18:12:06",
+                "StartTime": "2014-05-05T18:11:12",
+                "EndTime": "2014-05-05T18:12:09",
                 "Span": "00:00:57",
                 "SpanUnits": 19,
                 "Viewers": 39873.5
@@ -2304,8 +2304,8 @@
         {
           "$id": "222",
           "ID": 1,
-          "StartTime": "2014-05-05T18:24:27",
-          "EndTime": "2014-05-05T18:29:09",
+          "StartTime": "2014-05-05T18:24:30",
+          "EndTime": "2014-05-05T18:29:12",
           "Span": "00:04:42",
           "SpanUnits": 94,
           "MainViewsFunction": {
@@ -2313,64 +2313,64 @@
             "TimeIntervals": [
               {
                 "$id": "224",
-                "StartTime": "2014-05-05T18:24:27",
-                "EndTime": "2014-05-05T18:25:54",
+                "StartTime": "2014-05-05T18:24:30",
+                "EndTime": "2014-05-05T18:25:57",
                 "Span": "00:01:27",
                 "SpanUnits": 29,
                 "Viewers": 39910.0
               },
               {
                 "$id": "225",
-                "StartTime": "2014-05-05T18:25:54",
-                "EndTime": "2014-05-05T18:26:09",
+                "StartTime": "2014-05-05T18:25:57",
+                "EndTime": "2014-05-05T18:26:12",
                 "Span": "00:00:15",
                 "SpanUnits": 5,
                 "Viewers": 33763.33
               },
               {
                 "$id": "226",
-                "StartTime": "2014-05-05T18:26:09",
-                "EndTime": "2014-05-05T18:26:54",
+                "StartTime": "2014-05-05T18:26:12",
+                "EndTime": "2014-05-05T18:26:57",
                 "Span": "00:00:45",
                 "SpanUnits": 15,
                 "Viewers": 30690.0
               },
               {
                 "$id": "227",
-                "StartTime": "2014-05-05T18:26:54",
-                "EndTime": "2014-05-05T18:27:24",
+                "StartTime": "2014-05-05T18:26:57",
+                "EndTime": "2014-05-05T18:27:27",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 27616.67
               },
               {
                 "$id": "228",
-                "StartTime": "2014-05-05T18:27:24",
-                "EndTime": "2014-05-05T18:27:39",
+                "StartTime": "2014-05-05T18:27:27",
+                "EndTime": "2014-05-05T18:27:42",
                 "Span": "00:00:15",
                 "SpanUnits": 5,
                 "Viewers": 21470.0
               },
               {
                 "$id": "229",
-                "StartTime": "2014-05-05T18:27:39",
-                "EndTime": "2014-05-05T18:28:09",
+                "StartTime": "2014-05-05T18:27:42",
+                "EndTime": "2014-05-05T18:28:12",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 27739.33
               },
               {
                 "$id": "230",
-                "StartTime": "2014-05-05T18:28:09",
-                "EndTime": "2014-05-05T18:28:39",
+                "StartTime": "2014-05-05T18:28:12",
+                "EndTime": "2014-05-05T18:28:42",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 30874.0
               },
               {
                 "$id": "231",
-                "StartTime": "2014-05-05T18:28:39",
-                "EndTime": "2014-05-05T18:29:21",
+                "StartTime": "2014-05-05T18:28:42",
+                "EndTime": "2014-05-05T18:29:24",
                 "Span": "00:00:42",
                 "SpanUnits": 14,
                 "Viewers": 34008.67
@@ -2385,8 +2385,8 @@
         {
           "$id": "233",
           "ID": 2,
-          "StartTime": "2014-05-05T18:42:03",
-          "EndTime": "2014-05-05T18:46:42",
+          "StartTime": "2014-05-05T18:42:06",
+          "EndTime": "2014-05-05T18:46:45",
           "Span": "00:04:39",
           "SpanUnits": 93,
           "MainViewsFunction": {
@@ -2394,40 +2394,40 @@
             "TimeIntervals": [
               {
                 "$id": "235",
-                "StartTime": "2014-05-05T18:42:03",
-                "EndTime": "2014-05-05T18:43:00",
+                "StartTime": "2014-05-05T18:42:06",
+                "EndTime": "2014-05-05T18:43:03",
                 "Span": "00:00:57",
                 "SpanUnits": 19,
                 "Viewers": 58126.0
               },
               {
                 "$id": "236",
-                "StartTime": "2014-05-05T18:43:00",
-                "EndTime": "2014-05-05T18:43:09",
+                "StartTime": "2014-05-05T18:43:03",
+                "EndTime": "2014-05-05T18:43:12",
                 "Span": "00:00:09",
                 "SpanUnits": 3,
                 "Viewers": 45726.0
               },
               {
                 "$id": "237",
-                "StartTime": "2014-05-05T18:43:09",
-                "EndTime": "2014-05-05T18:43:54",
+                "StartTime": "2014-05-05T18:43:12",
+                "EndTime": "2014-05-05T18:43:57",
                 "Span": "00:00:45",
                 "SpanUnits": 15,
                 "Viewers": 39526.0
               },
               {
                 "$id": "238",
-                "StartTime": "2014-05-05T18:43:54",
-                "EndTime": "2014-05-05T18:44:24",
+                "StartTime": "2014-05-05T18:43:57",
+                "EndTime": "2014-05-05T18:44:27",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 33326.0
               },
               {
                 "$id": "239",
-                "StartTime": "2014-05-05T18:44:24",
-                "EndTime": "2014-05-05T18:46:54",
+                "StartTime": "2014-05-05T18:44:27",
+                "EndTime": "2014-05-05T18:46:57",
                 "Span": "00:02:30",
                 "SpanUnits": 50,
                 "Viewers": 20926.0
@@ -2442,8 +2442,8 @@
         {
           "$id": "241",
           "ID": 3,
-          "StartTime": "2014-05-05T18:56:42",
-          "EndTime": "2014-05-05T18:59:39",
+          "StartTime": "2014-05-05T18:56:45",
+          "EndTime": "2014-05-05T18:59:42",
           "Span": "00:02:57",
           "SpanUnits": 59,
           "MainViewsFunction": {
@@ -2451,8 +2451,8 @@
             "TimeIntervals": [
               {
                 "$id": "243",
-                "StartTime": "2014-05-05T18:56:42",
-                "EndTime": "2014-05-05T19:00:00",
+                "StartTime": "2014-05-05T18:56:45",
+                "EndTime": "2014-05-05T19:00:03",
                 "Span": "00:03:18",
                 "SpanUnits": 66,
                 "Viewers": 12978.0
@@ -2469,16 +2469,16 @@
     "32": {
       "$id": "245",
       "ID": "32",
-      "StartTime": "2014-05-05T17:59:47",
-      "EndTime": "2014-05-05T18:59:48",
-      "Span": "01:00:01",
+      "StartTime": "2014-05-05T18:00:00",
+      "EndTime": "2014-05-05T19:00:00",
+      "Span": "01:00:00",
       "SpanUnits": 1200,
       "Breaks": [
         {
           "$id": "246",
           "ID": 4,
-          "StartTime": "2014-05-05T17:59:47",
-          "EndTime": "2014-05-05T17:59:59",
+          "StartTime": "2014-05-05T18:00:00",
+          "EndTime": "2014-05-05T18:00:12",
           "Span": "00:00:12",
           "SpanUnits": 4,
           "MainViewsFunction": {
@@ -2486,16 +2486,16 @@
             "TimeIntervals": [
               {
                 "$id": "248",
-                "StartTime": "2014-05-05T17:59:47",
-                "EndTime": "2014-05-05T17:59:50",
+                "StartTime": "2014-05-05T18:00:00",
+                "EndTime": "2014-05-05T18:00:03",
                 "Span": "00:00:03",
                 "SpanUnits": 1,
                 "Viewers": 70444.67
               },
               {
                 "$id": "249",
-                "StartTime": "2014-05-05T17:59:50",
-                "EndTime": "2014-05-05T17:59:59",
+                "StartTime": "2014-05-05T18:00:03",
+                "EndTime": "2014-05-05T18:00:12",
                 "Span": "00:00:09",
                 "SpanUnits": 3,
                 "Viewers": 72096.0
@@ -2510,8 +2510,8 @@
         {
           "$id": "251",
           "ID": 5,
-          "StartTime": "2014-05-05T18:11:41",
-          "EndTime": "2014-05-05T18:14:05",
+          "StartTime": "2014-05-05T18:11:54",
+          "EndTime": "2014-05-05T18:14:18",
           "Span": "00:02:24",
           "SpanUnits": 48,
           "MainViewsFunction": {
@@ -2519,24 +2519,24 @@
             "TimeIntervals": [
               {
                 "$id": "253",
-                "StartTime": "2014-05-05T18:11:41",
-                "EndTime": "2014-05-05T18:13:35",
+                "StartTime": "2014-05-05T18:11:54",
+                "EndTime": "2014-05-05T18:13:48",
                 "Span": "00:01:54",
                 "SpanUnits": 38,
                 "Viewers": 140859.0
               },
               {
                 "$id": "254",
-                "StartTime": "2014-05-05T18:13:35",
-                "EndTime": "2014-05-05T18:13:50",
+                "StartTime": "2014-05-05T18:13:48",
+                "EndTime": "2014-05-05T18:14:03",
                 "Span": "00:00:15",
                 "SpanUnits": 5,
                 "Viewers": 122832.67
               },
               {
                 "$id": "255",
-                "StartTime": "2014-05-05T18:13:50",
-                "EndTime": "2014-05-05T18:14:08",
+                "StartTime": "2014-05-05T18:14:03",
+                "EndTime": "2014-05-05T18:14:21",
                 "Span": "00:00:18",
                 "SpanUnits": 6,
                 "Viewers": 113819.5
@@ -2551,8 +2551,8 @@
         {
           "$id": "257",
           "ID": 6,
-          "StartTime": "2014-05-05T18:23:53",
-          "EndTime": "2014-05-05T18:28:56",
+          "StartTime": "2014-05-05T18:24:06",
+          "EndTime": "2014-05-05T18:29:09",
           "Span": "00:05:03",
           "SpanUnits": 101,
           "MainViewsFunction": {
@@ -2560,64 +2560,64 @@
             "TimeIntervals": [
               {
                 "$id": "259",
-                "StartTime": "2014-05-05T18:23:53",
-                "EndTime": "2014-05-05T18:24:35",
+                "StartTime": "2014-05-05T18:24:06",
+                "EndTime": "2014-05-05T18:24:48",
                 "Span": "00:00:42",
                 "SpanUnits": 14,
                 "Viewers": 95347.0
               },
               {
                 "$id": "260",
-                "StartTime": "2014-05-05T18:24:35",
-                "EndTime": "2014-05-05T18:25:05",
+                "StartTime": "2014-05-05T18:24:48",
+                "EndTime": "2014-05-05T18:25:18",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 98177.67
               },
               {
                 "$id": "261",
-                "StartTime": "2014-05-05T18:25:05",
-                "EndTime": "2014-05-05T18:25:35",
+                "StartTime": "2014-05-05T18:25:18",
+                "EndTime": "2014-05-05T18:25:48",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 99593.0
               },
               {
                 "$id": "262",
-                "StartTime": "2014-05-05T18:25:35",
-                "EndTime": "2014-05-05T18:26:05",
+                "StartTime": "2014-05-05T18:25:48",
+                "EndTime": "2014-05-05T18:26:18",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 81004.0
               },
               {
                 "$id": "263",
-                "StartTime": "2014-05-05T18:26:05",
-                "EndTime": "2014-05-05T18:26:50",
+                "StartTime": "2014-05-05T18:26:18",
+                "EndTime": "2014-05-05T18:27:03",
                 "Span": "00:00:45",
                 "SpanUnits": 15,
                 "Viewers": 73832.5
               },
               {
                 "$id": "264",
-                "StartTime": "2014-05-05T18:26:50",
-                "EndTime": "2014-05-05T18:27:35",
+                "StartTime": "2014-05-05T18:27:03",
+                "EndTime": "2014-05-05T18:27:48",
                 "Span": "00:00:45",
                 "SpanUnits": 15,
                 "Viewers": 31427.5
               },
               {
                 "$id": "265",
-                "StartTime": "2014-05-05T18:27:35",
-                "EndTime": "2014-05-05T18:28:05",
+                "StartTime": "2014-05-05T18:27:48",
+                "EndTime": "2014-05-05T18:28:18",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 27294.67
               },
               {
                 "$id": "266",
-                "StartTime": "2014-05-05T18:28:05",
-                "EndTime": "2014-05-05T18:28:56",
+                "StartTime": "2014-05-05T18:28:18",
+                "EndTime": "2014-05-05T18:29:09",
                 "Span": "00:00:51",
                 "SpanUnits": 17,
                 "Viewers": 19029.0
@@ -2632,8 +2632,8 @@
         {
           "$id": "268",
           "ID": 7,
-          "StartTime": "2014-05-05T18:46:02",
-          "EndTime": "2014-05-05T18:50:32",
+          "StartTime": "2014-05-05T18:46:15",
+          "EndTime": "2014-05-05T18:50:45",
           "Span": "00:04:30",
           "SpanUnits": 90,
           "MainViewsFunction": {
@@ -2641,64 +2641,64 @@
             "TimeIntervals": [
               {
                 "$id": "270",
-                "StartTime": "2014-05-05T18:46:02",
-                "EndTime": "2014-05-05T18:47:02",
+                "StartTime": "2014-05-05T18:46:15",
+                "EndTime": "2014-05-05T18:47:15",
                 "Span": "00:01:00",
                 "SpanUnits": 20,
                 "Viewers": 108550.33
               },
               {
                 "$id": "271",
-                "StartTime": "2014-05-05T18:47:02",
-                "EndTime": "2014-05-05T18:47:47",
+                "StartTime": "2014-05-05T18:47:15",
+                "EndTime": "2014-05-05T18:48:00",
                 "Span": "00:00:45",
                 "SpanUnits": 15,
                 "Viewers": 107797.5
               },
               {
                 "$id": "272",
-                "StartTime": "2014-05-05T18:47:47",
-                "EndTime": "2014-05-05T18:48:02",
+                "StartTime": "2014-05-05T18:48:00",
+                "EndTime": "2014-05-05T18:48:15",
                 "Span": "00:00:15",
                 "SpanUnits": 5,
                 "Viewers": 108550.33
               },
               {
                 "$id": "273",
-                "StartTime": "2014-05-05T18:48:02",
-                "EndTime": "2014-05-05T18:48:41",
+                "StartTime": "2014-05-05T18:48:15",
+                "EndTime": "2014-05-05T18:48:54",
                 "Span": "00:00:39",
                 "SpanUnits": 13,
                 "Viewers": 107797.5
               },
               {
                 "$id": "274",
-                "StartTime": "2014-05-05T18:48:41",
-                "EndTime": "2014-05-05T18:49:11",
+                "StartTime": "2014-05-05T18:48:54",
+                "EndTime": "2014-05-05T18:49:24",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 108550.33
               },
               {
                 "$id": "275",
-                "StartTime": "2014-05-05T18:49:11",
-                "EndTime": "2014-05-05T18:49:26",
+                "StartTime": "2014-05-05T18:49:24",
+                "EndTime": "2014-05-05T18:49:39",
                 "Span": "00:00:15",
                 "SpanUnits": 5,
                 "Viewers": 110056.0
               },
               {
                 "$id": "276",
-                "StartTime": "2014-05-05T18:49:26",
-                "EndTime": "2014-05-05T18:49:56",
+                "StartTime": "2014-05-05T18:49:39",
+                "EndTime": "2014-05-05T18:50:09",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 114218.33
               },
               {
                 "$id": "277",
-                "StartTime": "2014-05-05T18:49:56",
-                "EndTime": "2014-05-05T18:51:02",
+                "StartTime": "2014-05-05T18:50:09",
+                "EndTime": "2014-05-05T18:51:15",
                 "Span": "00:01:06",
                 "SpanUnits": 22,
                 "Viewers": 116299.5
@@ -2713,8 +2713,8 @@
         {
           "$id": "279",
           "ID": 8,
-          "StartTime": "2014-05-05T18:56:41",
-          "EndTime": "2014-05-05T18:59:38",
+          "StartTime": "2014-05-05T18:56:54",
+          "EndTime": "2014-05-05T18:59:51",
           "Span": "00:02:57",
           "SpanUnits": 59,
           "MainViewsFunction": {
@@ -2722,40 +2722,40 @@
             "TimeIntervals": [
               {
                 "$id": "281",
-                "StartTime": "2014-05-05T18:56:42",
-                "EndTime": "2014-05-05T18:57:39",
+                "StartTime": "2014-05-05T18:56:54",
+                "EndTime": "2014-05-05T18:57:51",
                 "Span": "00:00:57",
                 "SpanUnits": 19,
                 "Viewers": 79811.0
               },
               {
                 "$id": "282",
-                "StartTime": "2014-05-05T18:57:39",
-                "EndTime": "2014-05-05T18:58:09",
+                "StartTime": "2014-05-05T18:57:51",
+                "EndTime": "2014-05-05T18:58:21",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 76875.33
               },
               {
                 "$id": "283",
-                "StartTime": "2014-05-05T18:58:09",
-                "EndTime": "2014-05-05T18:58:30",
+                "StartTime": "2014-05-05T18:58:21",
+                "EndTime": "2014-05-05T18:58:42",
                 "Span": "00:00:21",
                 "SpanUnits": 7,
                 "Viewers": 73126.5
               },
               {
                 "$id": "284",
-                "StartTime": "2014-05-05T18:58:30",
-                "EndTime": "2014-05-05T18:59:00",
+                "StartTime": "2014-05-05T18:58:42",
+                "EndTime": "2014-05-05T18:59:12",
                 "Span": "00:00:30",
                 "SpanUnits": 10,
                 "Viewers": 72419.0
               },
               {
                 "$id": "285",
-                "StartTime": "2014-05-05T18:59:00",
-                "EndTime": "2014-05-05T18:59:48",
+                "StartTime": "2014-05-05T18:59:12",
+                "EndTime": "2014-05-05T19:00:00",
                 "Span": "00:00:48",
                 "SpanUnits": 16,
                 "Viewers": 71004.0
@@ -2772,16 +2772,16 @@
     "68": {
       "$id": "287",
       "ID": "68",
-      "StartTime": "2014-05-05T17:59:59",
+      "StartTime": "2014-05-05T18:00:00",
       "EndTime": "2014-05-05T19:00:02",
-      "Span": "01:00:03",
+      "Span": "01:00:02",
       "SpanUnits": 1201,
       "Breaks": [
         {
           "$id": "288",
           "ID": 9,
-          "StartTime": "2014-05-05T18:09:23",
-          "EndTime": "2014-05-05T18:12:59",
+          "StartTime": "2014-05-05T18:09:24",
+          "EndTime": "2014-05-05T18:13:00",
           "Span": "00:03:36",
           "SpanUnits": 72,
           "MainViewsFunction": {

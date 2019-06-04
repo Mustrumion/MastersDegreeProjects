@@ -48,16 +48,9 @@ namespace InstanceGenerator.InstanceData
         public Dictionary<int, Brand> Brands { get; set; } = new Dictionary<int, Brand>();
 
         /// <summary>
-        /// Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight
-        /// </summary>
-        [JsonProperty(Order = 3)]
-        [Description("Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight")]
-        public Dictionary<int, Dictionary<int, double>> BrandIncompatibilityCost { get; set; } = new Dictionary<int, Dictionary<int, double>>();
-
-        /// <summary>
         /// Tasks - advertisements to schedule with their constraints
         /// </summary>
-        [JsonProperty(Order = 4)]
+        [JsonProperty(Order = 3)]
         [Description("Tasks - advertisements to schedule with their constraints.")]
         public Dictionary<int, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<int, AdvertisementOrder>();
 
@@ -65,7 +58,7 @@ namespace InstanceGenerator.InstanceData
         /// Channels - 'machines' on which we schedule the tasks.
         /// </summary>
         [Description("Channels - 'machines' on which we schedule the tasks.")]
-        [JsonProperty(Order = 5)]
+        [JsonProperty(Order = 4)]
         public Dictionary<string, Channel> Channels
         {
             get => _channels;
@@ -75,6 +68,16 @@ namespace InstanceGenerator.InstanceData
                 RestoreBreakDictionary();
             }
         }
+
+
+        /// <summary>
+        /// Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight
+        /// </summary>
+        [JsonProperty(Order = 5)]
+        [Description("Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight")]
+        public Dictionary<int, Dictionary<int, double>> BrandIncompatibilityCost { get; set; } = new Dictionary<int, Dictionary<int, double>>();
+        
+
         /// <summary>
         /// Type to break sparse compatibility matrix (values not present are compatible). Possible values: 1 - incompatible.
         /// </summary>

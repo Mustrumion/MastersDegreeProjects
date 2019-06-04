@@ -19,16 +19,40 @@ namespace InstanceGenerator.InstanceModification
         {
             foreach(var channel in Instance.Channels.Values)
             {
+                AdjustStartTime(channel, Instance.StartTime);
                 AdjustLengthAndActivities(channel);
                 foreach(var tvBreak in channel.Breaks)
                 {
+                    AdjustStartTime(tvBreak, channel.StartTime);
                     AdjustLengthAndActivities(tvBreak);
                 }
             }
         }
 
+
+        private void AdjustStartTime(IActivitiesSequence activitiesContainer, DateTime earliestPossibleStart)
+        {
+            if (activitiesContainer.StartTime < earliestPossibleStart)
+            {
+                activitiesContainer.StartTime = earliestPossibleStart;
+            }
+
+            TimeSpan span = activitiesContainer.StartTime - earliestPossibleStart;
+            double spanSeconds = Helpers.NearestDivisibleBy(span.TotalSeconds, Instance.UnitSizeInSeconds, out int number);
+            TimeSpan timeAfterStart = new TimeSpan(0, 0, Convert.ToInt32(spanSeconds));
+            activitiesContainer.StartTime = earliestPossibleStart + timeAfterStart;
+            var activity = activitiesContainer.Activities.FirstOrDefault();
+            if(activity != null)
+            {
+                activity.StartTime = activitiesContainer.StartTime;
+                activity.EndTime = activity.StartTime + activity.Span;
+            }
+        }
+
         private void AdjustLengthAndActivities(IActivitiesSequence activitiesContainer)
         {
+            // adjust channel start times to be equal or later to instance/channel start and 
+            activitiesContainer.Activities[0].StartTime = activitiesContainer.StartTime;
             for (int i = 1; i < activitiesContainer.Activities.Count; i++)
             {
                 var firstActiv = activitiesContainer.Activities[i - 1];
