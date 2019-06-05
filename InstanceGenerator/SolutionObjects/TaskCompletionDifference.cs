@@ -23,5 +23,6 @@ namespace InstanceGenerator.SolutionObjects
         public int BreakTypeConflicts { get; set; }
         public int SelfSpacingConflicts { get; set; }
         public int SelfIncompatibilityConflicts { get; set; }
+        public double IntegrityLossScore { get; set; }
     }
 }

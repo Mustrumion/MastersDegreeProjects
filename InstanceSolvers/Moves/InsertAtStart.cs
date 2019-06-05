@@ -21,15 +21,17 @@ namespace InstanceSolvers.Moves
 
         public void Asses()
         {
+
         }
 
         public void Execute()
         {
+            Solution.AddAdToBreak(AdvertisementOrder, TvBreak, 0);
         }
 
         public void RollBack()
         {
-            throw new NotImplementedException();
+            Solution.RemoveAdFromBreak(AdvertisementOrder, TvBreak, 0);
         }
     }
 }

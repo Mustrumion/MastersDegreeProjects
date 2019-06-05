@@ -287,5 +287,59 @@ namespace InstanceGenerator.SolutionObjects
             IntegrityLossScore = taskData.IntegrityLossScore;
             WeightedLoss = taskData.WeightedLoss;
         }
+
+        /// <summary>
+        /// Creates a deep clone of TaskData
+        /// </summary>
+        /// <returns></returns>
+        public TaskData Clone()
+        {
+            TaskData clone = new TaskData()
+            {
+                Viewership = Viewership,
+                TimesAired = TimesAired,
+                NumberOfEnds = NumberOfEnds,
+                NumberOfStarts = NumberOfStarts,
+                LastAdTime = LastAdTime,
+                MildIncompatibilitySumOfOccurenceWeights = MildIncompatibilitySumOfOccurenceWeights,
+                ExtendedBreakSeconds = ExtendedBreakSeconds,
+                OwnerConflicts = OwnerConflicts,
+                BreakTypeConflicts = BreakTypeConflicts,
+                SelfSpacingConflicts = SelfSpacingConflicts,
+                SelfIncompatibilityConflicts = SelfIncompatibilityConflicts,
+                ExtendedBreakLoss = ExtendedBreakLoss,
+                MildIncompatibilityLoss = MildIncompatibilityLoss,
+                OverdueAdsLoss = OverdueAdsLoss,
+                IntegrityLossScore = IntegrityLossScore,
+                WeightedLoss = WeightedLoss,
+                AdvertisementOrderData = AdvertisementOrderData,
+                ScoringFunction = ScoringFunction,
+                BreaksPositions = BreaksPositions.ToDictionary(b => b.Key, b => b.Value.ToList()),
+            };
+            return clone;
+        }
+
+        public TaskCompletionDifference CalculateDifference(TaskData taskData)
+        {
+            return new TaskCompletionDifference()
+            {
+                Viewership = Viewership - taskData.Viewership,
+                TimesAired = TimesAired - taskData.TimesAired,
+                NumberOfEnds = NumberOfEnds - taskData.NumberOfEnds,
+                NumberOfStarts = NumberOfStarts - taskData.NumberOfStarts,
+                LastAdTime = LastAdTime - taskData.LastAdTime,
+                MildIncompatibilitySumOfOccurenceWeights = MildIncompatibilitySumOfOccurenceWeights - taskData.MildIncompatibilitySumOfOccurenceWeights,
+                ExtendedBreakSeconds = ExtendedBreakSeconds - taskData.ExtendedBreakSeconds,
+                OwnerConflicts = OwnerConflicts - taskData.OwnerConflicts,
+                BreakTypeConflicts = BreakTypeConflicts - taskData.BreakTypeConflicts,
+                SelfSpacingConflicts = SelfSpacingConflicts - taskData.SelfSpacingConflicts,
+                SelfIncompatibilityConflicts = SelfIncompatibilityConflicts - taskData.SelfIncompatibilityConflicts,
+                ExtendedBreakLoss = ExtendedBreakLoss - taskData.ExtendedBreakLoss,
+                MildIncompatibilityLoss = MildIncompatibilityLoss - taskData.MildIncompatibilityLoss,
+                OverdueAdsLoss = OverdueAdsLoss - taskData.OverdueAdsLoss,
+                IntegrityLossScore = IntegrityLossScore - taskData.IntegrityLossScore,
+                WeightedLoss = WeightedLoss - taskData.WeightedLoss,
+            };
+        }
     }
 }

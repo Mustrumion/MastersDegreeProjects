@@ -170,7 +170,13 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         public void AssesSolution(Solution solution)
         {
             Solution = solution;
-            Dictionary<int, TaskData> statsData = new Dictionary<int, TaskData>();
+            Dictionary<int, TaskData> statsData = Instance.AdOrders.ToDictionary(
+                    a => a.Key, 
+                    a => new TaskData() { AdvertisementOrderData = a.Value, ScoringFunction = this });
+            foreach(var taskData in statsData.Values)
+            {
+                taskData.RecalculateLoss();
+            }
             foreach (var tvBreak in Solution.AdvertisementsScheduledOnBreaks)
             {
                 Dictionary<int, TaskData> dataToMerge = AssesBreak(tvBreak.Value);
