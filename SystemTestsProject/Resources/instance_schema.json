@@ -71,22 +71,6 @@
         }
       }
     },
-    "BrandIncompatibilityCost": {
-      "description": "Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight",
-      "type": [
-        "object",
-        "null"
-      ],
-      "additionalProperties": {
-        "type": [
-          "object",
-          "null"
-        ],
-        "additionalProperties": {
-          "type": "number"
-        }
-      }
-    },
     "AdOrders": {
       "description": "Tasks - advertisements to schedule with their constraints.",
       "type": [
@@ -269,6 +253,22 @@
               }
             }
           }
+        }
+      }
+    },
+    "BrandIncompatibilityCost": {
+      "description": "Brand compatibility matrix in sparse form (values not present are fully incompatible - hard constraint). Possible values: 0.0 - fully compatible, >0.0 - not preferred, acts as a loss function weight",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "additionalProperties": {
+          "type": "number"
         }
       }
     },

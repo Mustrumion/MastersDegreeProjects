@@ -129,6 +129,17 @@ namespace SystemTestsProject
         }
 
         [TestMethod]
+        public void DeserializeHandmadeEasyInstance()
+        {
+            var file = Properties.Resources.handmade_extra_easy_inst;
+            var deserializer = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = deserializer.DeserializeInstance();
+        }
+
+        [TestMethod]
         public void GenerateInstanceJsonSchemaForInstance()
         {
             Generator instanceGenerator = new Generator

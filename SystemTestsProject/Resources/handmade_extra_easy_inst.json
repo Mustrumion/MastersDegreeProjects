@@ -1,0 +1,327 @@
+{
+  "$id": "1",
+  "Description": "Handmade supereasy instance. All tasks have the same length. No incompatibility.",
+  "StartTime": "2014-05-05T18:00:00",
+  "EndTime": "2014-05-05T18:15:00",
+  "Span": "00:15:00",
+  "SpanUnits": 300,
+  "UnitSizeInSeconds": 3.0,
+  "ChannelAmountChecksum": 3,
+  "TypesOfAds": {
+    "$id": "2",
+    "1": {
+      "$id": "3",
+      "ID": 1
+    },
+    "2": {
+      "$id": "4",
+      "ID": 2
+    },
+    "3": {
+      "$id": "5",
+      "ID": 3
+    }
+  },
+  "Brands": {
+    "$id": "38",
+    "1": {
+      "$id": "39",
+      "ID": 1
+    },
+    "2": {
+      "$id": "40",
+      "ID": 2
+    },
+    "3": {
+      "$id": "41",
+      "ID": 3
+    },
+    "4": {
+      "$id": "42",
+      "ID": 4
+    }
+  },
+  "AdOrders": {
+    "$id": "95",
+    "1": {
+      "$id": "96",
+      "ID": 1,
+      "AdSpanUnits": 10,
+      "AdSpan": "00:00:30",
+      "Gain": 100.0,
+      "MinViewership": 200.0,
+      "MinTimesAired": 5,
+      "MinBeginingsProportion": 0.1,
+      "MinEndsProportion": 0.1,
+      "MaxPerBlock": 2,
+      "MinJobsBetweenSame": 2,
+      "DueTime": "2014-05-05T18:15:00",
+      "OverdueCostParameter": 100.0,
+      "Type": {
+        "$ref": "3"
+      },
+      "Brand": {
+        "$ref": "39"
+      }
+    },
+    "2": {
+      "$id": "97",
+      "ID": 2,
+      "AdSpanUnits": 10,
+      "AdSpan": "00:00:30",
+      "Gain": 100.0,
+      "MinViewership": 200.0,
+      "MinTimesAired": 3,
+      "MinBeginingsProportion": 0.5,
+      "MinEndsProportion": 0.0,
+      "MaxPerBlock": 1,
+      "MinJobsBetweenSame": 999999,
+      "DueTime": "2014-05-05T18:10:57",
+      "OverdueCostParameter": 100.0,
+      "Type": {
+        "$ref": "4"
+      },
+      "Brand": {
+        "$ref": "40"
+      }
+    },
+    "3": {
+      "$id": "98",
+      "ID": 3,
+      "AdSpanUnits": 5,
+      "AdSpan": "00:00:15",
+      "Gain": 300.0,
+      "MinViewership": 400.00,
+      "MinTimesAired": 3,
+      "MinBeginingsProportion": 0.0,
+      "MinEndsProportion": 0.0,
+      "MaxPerBlock": 10,
+      "MinJobsBetweenSame": 0,
+      "DueTime": "2014-05-05T18:27:48",
+      "OverdueCostParameter": 3759.0,
+      "Type": {
+        "$ref": "5"
+      },
+      "Brand": {
+        "$ref": "41"
+      }
+    }
+  },
+  "Channels": {
+    "$id": "157",
+    "1": {
+      "$id": "158",
+      "ID": "1",
+      "StartTime": "2014-05-05T18:00:00",
+      "EndTime": "2014-05-05T18:15:00",
+      "Span": "00:15:00",
+      "SpanUnits": 300,
+      "Breaks": [
+        {
+          "$id": "159",
+          "ID": 0,
+          "StartTime": "2014-05-05T18:00:00",
+          "EndTime": "2014-05-05T18:05:00",
+          "Span": "00:05:00",
+          "SpanUnits": 100,
+          "MainViewsFunction": {
+            "$id": "160",
+            "TimeIntervals": [
+              {
+                "$id": "161",
+                "StartTime": "2014-05-05T18:00:00",
+                "EndTime": "2014-05-05T18:05:00",
+                "Span": "00:05:00",
+                "SpanUnits": 100,
+                "Viewers": 50.0
+              }
+            ],
+            "TypeID": null
+          },
+          "TypeViewsFunctions": {
+            "$id": "165"
+          }
+        },
+        {
+          "$id": "166",
+          "ID": 1,
+          "StartTime": "2014-05-05T18:10:00",
+          "EndTime": "2014-05-05T18:15:00",
+          "Span": "00:05:00",
+          "SpanUnits": 100,
+          "MainViewsFunction": {
+            "$id": "167",
+            "TimeIntervals": [
+              {
+                "$id": "168",
+                "StartTime": "2014-05-05T18:10:00",
+                "EndTime": "2014-05-05T18:15:00",
+                "Span": "00:05:00",
+                "SpanUnits": 100,
+                "Viewers": 50.0
+              }
+            ],
+            "TypeID": null
+          },
+          "TypeViewsFunctions": {
+            "$id": "169"
+          }
+        }
+      ]
+    },
+    "2": {
+      "$id": "189",
+      "ID": "2",
+      "StartTime": "2014-05-05T18:00:00",
+      "EndTime": "2014-05-05T18:15:00",
+      "Span": "00:15:00",
+      "SpanUnits": 300,
+      "Breaks": [
+        {
+          "$id": "190",
+          "ID": 4,
+          "StartTime": "2014-05-05T18:00:00",
+          "EndTime": "2014-05-05T18:05:00",
+          "Span": "00:05:00",
+          "SpanUnits": 100,
+          "MainViewsFunction": {
+            "$id": "191",
+            "TimeIntervals": [
+              {
+                "$id": "192",
+                "StartTime": "2014-05-05T18:00:00",
+                "EndTime": "2014-05-05T18:05:00",
+                "Span": "00:05:00",
+                "SpanUnits": 100,
+                "Viewers": 200.0
+              }
+            ],
+            "TypeID": null
+          },
+          "TypeViewsFunctions": {
+            "$id": "194"
+          }
+        },
+        {
+          "$id": "195",
+          "ID": 5,
+          "StartTime": "2014-05-05T18:10:00",
+          "EndTime": "2014-05-05T18:15:00",
+          "Span": "00:05:00",
+          "SpanUnits": 100,
+          "MainViewsFunction": {
+            "$id": "196",
+            "TimeIntervals": [
+              {
+                "$id": "197",
+                "StartTime": "2014-05-05T18:10:00",
+                "EndTime": "2014-05-05T18:15:00",
+                "Span": "00:05:00",
+                "SpanUnits": 100,
+                "Viewers": 200.0
+              }
+            ],
+            "TypeID": null
+          },
+          "TypeViewsFunctions": {
+            "$id": "200"
+          }
+        }
+      ]
+    },
+    "3": {
+      "$id": "231",
+      "ID": "3",
+      "StartTime": "2014-05-05T18:00:00",
+      "EndTime": "2014-05-05T18:15:00",
+      "Span": "01:00:02",
+      "SpanUnits": 300,
+      "Breaks": [
+        {
+          "$id": "232",
+          "ID": 9,
+          "StartTime": "2014-05-05T18:00:00",
+          "EndTime": "2014-05-05T18:05:00",
+          "Span": "00:05:00",
+          "SpanUnits": 100,
+          "MainViewsFunction": {
+            "$id": "233",
+            "TimeIntervals": [
+              {
+                "$id": "234",
+                "StartTime": "2014-05-05T18:00:00",
+                "EndTime": "2014-05-05T18:05:00",
+                "Span": "00:04:09",
+                "SpanUnits": 100,
+                "Viewers": 20.0
+              }
+            ],
+            "TypeID": null
+          },
+          "TypeViewsFunctions": {
+            "$id": "235"
+          }
+        },
+        {
+          "$id": "236",
+          "ID": 10,
+          "StartTime": "2014-05-05T18:10:00",
+          "EndTime": "2014-05-05T18:15:00",
+          "Span": "00:05:00",
+          "SpanUnits": 100,
+          "MainViewsFunction": {
+            "$id": "237",
+            "TimeIntervals": [
+              {
+                "$id": "238",
+                "StartTime": "2014-05-05T18:10:00",
+                "EndTime": "2014-05-05T18:15:00",
+                "Span": "00:05:00",
+                "SpanUnits": 100,
+                "Viewers": 50.5
+              }
+            ],
+            "TypeID": null
+          },
+          "TypeViewsFunctions": {
+            "$id": "241"
+          }
+        }
+      ]
+    }
+  },
+  "BrandIncompatibilityCost": {
+    "$id": "253",
+    "1": {
+      "$id": "254",
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+    },
+    "2": {
+      "$id": "255",
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+    },
+    "3": {
+      "$id": "256",
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+    },
+    "4": {
+      "$id": "257",
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+    }
+  },
+  "TypeToBreakIncompatibilityMatrix": {
+    "$id": "309"
+  }
+}
