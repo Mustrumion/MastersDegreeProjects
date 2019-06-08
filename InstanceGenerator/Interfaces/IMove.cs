@@ -10,8 +10,7 @@ namespace InstanceGenerator.Interfaces
 {
     public interface IMove
     {
-        int IntegrityLossChange { get; }
-        double WeightedLossChange { get; }
+        TaskCompletionDifference OverallDifference { get; set; }
         Solution Solution { get; set; }
         Instance Instance { get; set; }
         void Execute();

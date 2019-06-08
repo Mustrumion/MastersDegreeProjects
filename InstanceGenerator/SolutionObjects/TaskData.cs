@@ -323,22 +323,19 @@ namespace InstanceGenerator.SolutionObjects
         {
             return new TaskCompletionDifference()
             {
-                Viewership = Viewership - taskData.Viewership,
-                TimesAired = TimesAired - taskData.TimesAired,
-                NumberOfEnds = NumberOfEnds - taskData.NumberOfEnds,
-                NumberOfStarts = NumberOfStarts - taskData.NumberOfStarts,
-                LastAdTime = LastAdTime - taskData.LastAdTime,
-                MildIncompatibilitySumOfOccurenceWeights = MildIncompatibilitySumOfOccurenceWeights - taskData.MildIncompatibilitySumOfOccurenceWeights,
-                ExtendedBreakSeconds = ExtendedBreakSeconds - taskData.ExtendedBreakSeconds,
-                OwnerConflicts = OwnerConflicts - taskData.OwnerConflicts,
-                BreakTypeConflicts = BreakTypeConflicts - taskData.BreakTypeConflicts,
-                SelfSpacingConflicts = SelfSpacingConflicts - taskData.SelfSpacingConflicts,
-                SelfIncompatibilityConflicts = SelfIncompatibilityConflicts - taskData.SelfIncompatibilityConflicts,
                 ExtendedBreakLoss = ExtendedBreakLoss - taskData.ExtendedBreakLoss,
                 MildIncompatibilityLoss = MildIncompatibilityLoss - taskData.MildIncompatibilityLoss,
                 OverdueAdsLoss = OverdueAdsLoss - taskData.OverdueAdsLoss,
                 IntegrityLossScore = IntegrityLossScore - taskData.IntegrityLossScore,
                 WeightedLoss = WeightedLoss - taskData.WeightedLoss,
+                TimesAiredCompletion = TimesAiredCompletion - taskData.TimesAiredCompletion,
+                EndsCompletion = EndsCompletion - taskData.EndsCompletion,
+                StartsCompletion = StartsCompletion - taskData.StartsCompletion,
+                ViewsCompletion = ViewsCompletion - taskData.ViewsCompletion,
+                BreakTypeConflictsProportion = BreakTypeConflictsProportion - taskData.BreakTypeConflictsProportion,
+                OwnerConflictsProportion = OwnerConflictsProportion - taskData.OwnerConflictsProportion,
+                SelfIncompatibilityConflictsProportion = SelfIncompatibilityConflictsProportion - taskData.SelfIncompatibilityConflictsProportion,
+                SelfSpacingConflictsProportion = SelfSpacingConflictsProportion - taskData.SelfSpacingConflictsProportion,
             };
         }
     }

@@ -31,19 +31,28 @@ namespace InstanceSolvers
             }
         }
 
+        private bool _movePerformed;
         public void Solve()
         {
+            ScoringFunction.AssesSolution(Solution);
             //due earlier are scheduled first
             //heftier are scheduled first if due at the same time
-            foreach(AdvertisementOrder order in Instance.AdOrders.Values.OrderByDescending(order => order.AdSpanUnits).OrderBy(order => order.DueTime))
+            while (Solution.CompletionScore <= 1 && _movePerformed)
             {
-                ScheduleOrder(order);
+                foreach (AdvertisementOrder order in Instance.AdOrders.Values.OrderByDescending(order => order.AdSpanUnits).OrderBy(order => order.DueTime))
+                {
+                    TryToScheduleOrder(order);
+                }
             }
         }
 
-        private void ScheduleOrder(AdvertisementOrder order)
+        private void TryToScheduleOrder(AdvertisementOrder order)
         {
-            throw new NotImplementedException();
+            var orderData = Solution.AdOrderData[order.ID];
+            if (orderData.Completed)
+            {
+                return;
+            }
         }
     }
 }

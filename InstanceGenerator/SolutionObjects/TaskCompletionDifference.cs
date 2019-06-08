@@ -8,21 +8,37 @@ namespace InstanceGenerator.SolutionObjects
 {
     public class TaskCompletionDifference
     {
-        public double Viewership { get; set; }
-        public int TimesAired { get; set; }
-        public int NumberOfStarts { get; set; }
-        public int NumberOfEnds { get; set; }
         public double WeightedLoss { get; set; }
         public double OverdueAdsLoss { get; set; }
-        public TimeSpan LastAdTime { get; set; }
         public double MildIncompatibilityLoss { get; set; }
-        public double MildIncompatibilitySumOfOccurenceWeights { get; set; }
         public double ExtendedBreakLoss { get; set; }
-        public long ExtendedBreakSeconds { get; set; }
-        public int OwnerConflicts { get; set; }
-        public int BreakTypeConflicts { get; set; }
-        public int SelfSpacingConflicts { get; set; }
-        public int SelfIncompatibilityConflicts { get; set; }
         public double IntegrityLossScore { get; set; }
+
+        public double EndsCompletion { get; set; }
+        public double StartsCompletion { get; set; }
+        public double ViewsCompletion { get; set; }
+        public double TimesAiredCompletion { get; set; }
+
+        public double SelfIncompatibilityConflictsProportion { get; set; }
+        public double SelfSpacingConflictsProportion { get; set; }
+        public double OwnerConflictsProportion { get; set; }
+        public double BreakTypeConflictsProportion { get; set; }
+
+        public void Add(TaskCompletionDifference other)
+        {
+            WeightedLoss += other.WeightedLoss;
+            OverdueAdsLoss += other.OverdueAdsLoss;
+            MildIncompatibilityLoss += other.MildIncompatibilityLoss;
+            ExtendedBreakLoss += other.ExtendedBreakLoss;
+            IntegrityLossScore += other.IntegrityLossScore;
+            EndsCompletion += other.EndsCompletion;
+            StartsCompletion += other.StartsCompletion;
+            ViewsCompletion += other.ViewsCompletion;
+            TimesAiredCompletion += other.TimesAiredCompletion;
+            SelfIncompatibilityConflictsProportion += other.SelfIncompatibilityConflictsProportion;
+            SelfSpacingConflictsProportion += other.SelfSpacingConflictsProportion;
+            OwnerConflictsProportion += other.OwnerConflictsProportion;
+            BreakTypeConflictsProportion += other.BreakTypeConflictsProportion;
+        }
     }
 }

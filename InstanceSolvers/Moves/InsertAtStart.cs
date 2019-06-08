@@ -11,13 +11,12 @@ namespace InstanceSolvers.Moves
 {
     public class InsertAtStart : IMove
     {
-        public int IntegrityLossChange { get; set; }
-        public double WeightedLossChange { get; set; }
         public Instance Instance { get; set; }
         public Solution Solution { get; set; }
 
         public AdvertisementOrder AdvertisementOrder { get; set; }
         public TvBreak TvBreak { get; set; }
+        public TaskCompletionDifference OverallDifference { get; set; }
 
         public void Asses()
         {
