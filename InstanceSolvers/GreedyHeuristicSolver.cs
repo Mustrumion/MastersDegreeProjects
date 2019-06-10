@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class GreedyHeuristicSolver
+    public class GreedyHeuristicSolver : ISolver
     {
         private Instance _instance;
         public Solution Solution { get; set; }
@@ -24,11 +24,18 @@ namespace InstanceSolvers
             set
             {
                 _instance = value;
-                Solution = new Solution()
+                if(Solution == null)
                 {
-                    Instance = Instance,
-                };
+                    Solution = new Solution(value);
+                }
             }
+        }
+
+        public string Description { get; set; }
+        public int Seed
+        {
+            get => 0;
+            set{ }
         }
 
         private bool _movePerformed;

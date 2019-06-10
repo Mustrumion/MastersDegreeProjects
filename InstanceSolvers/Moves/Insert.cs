@@ -40,7 +40,7 @@ namespace InstanceSolvers.Moves
                 }
                 if(assessmentAfterMove.TryGetValue(taskData.Key, out var newBreakData))
                 {
-                    taskData.Value.RemoveOtherDataFromThis(newBreakData);
+                    taskData.Value.MergeOtherDataIntoThis(newBreakData);
                 }
             }
             CompletionDifferences = TaskDataAfterMove.ToDictionary(d => d.Key, d => d.Value.CalculateDifference(TaskDataBeforeMove[d.Key]));

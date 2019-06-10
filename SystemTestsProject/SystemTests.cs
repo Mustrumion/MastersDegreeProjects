@@ -2,6 +2,7 @@
 using InstanceGenerator.DataAccess;
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.InstanceModification;
+using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -44,6 +45,29 @@ namespace SystemTestsProject
             };
             Instance instance = reader.DeserializeInstance();
             Assert.IsNotNull(instance);
+        }
+
+        [TestMethod]
+        public void RandomSolverSolveWeek3ChannelInstance()
+        {
+            var file = Properties.Resources.week_DS_D_DH_inst;
+            var reader = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = reader.DeserializeInstance();
+            ISolver solver = new RandomSolver()
+            {
+                Instance = instance,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+            };
+            solver.Solve();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = @"results\week_DS_D_DH_sol_random.json"
+            };
+            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
         }
 
 

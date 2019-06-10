@@ -16,5 +16,7 @@ namespace InstanceGenerator.SolutionObjects
 
         public TvBreak BreakData { get; set; }
         public List<AdvertisementOrder> Order { get; set; } = new List<AdvertisementOrder>();
+
+        public int UnitFill => Order.Sum(a => a.AdSpanUnits);
     }
 }

@@ -95,6 +95,20 @@ namespace InstanceGenerator.SolutionObjects
         [Description("Dictionary of lists. Dictionary keys represent break IDs. Lists contain job IDs in order scheduled for a break given by the key.")]
         public Dictionary<int, List<int>> AdvertisementIdsScheduledOnBreaks { get; set; } = new Dictionary<int, List<int>>();
 
+
+        public Solution(){}
+
+        public Solution(Instance instance) : base() 
+        {
+            Instance = instance;
+            _advertisementsScheduledOnBreaks = new Dictionary<int, BreakSchedule>();
+            foreach (var tvBreak in Instance.Channels.Values.SelectMany(c => c.Breaks))
+            {
+                _advertisementsScheduledOnBreaks.Add(tvBreak.ID, new BreakSchedule(tvBreak));
+            }
+        }
+
+
         /// <summary>
         /// Fraction of tasks with hard constraints met.
         /// </summary>
@@ -235,13 +249,13 @@ namespace InstanceGenerator.SolutionObjects
             }
             var adsInBreak = breakSchedule.Order;
             //Move positions by one in helper structure.
-            for (int i = position; i < adsInBreak.Count; i++)
+            for (int i = adsInBreak.Count - 1; i >= position; i--)
             {
                 int adId = adsInBreak[i].ID;
                 var positionsInBreak = AdOrderData[adId].BreaksPositions[tvBreak.ID];
-                for (int j = 0; j < positionsInBreak.Count; i++)
+                for (int j = 0; j < positionsInBreak.Count; j++)
                 {
-                    if (positionsInBreak[j] >= position)
+                    if (positionsInBreak[j] == i)
                     {
                         positionsInBreak[j] += 1;
                     }
@@ -265,9 +279,9 @@ namespace InstanceGenerator.SolutionObjects
             {
                 int adId = adsInBreak[i].ID;
                 var positionsInBreak = AdOrderData[adId].BreaksPositions[tvBreak.ID];
-                for (int j = 0; j < positionsInBreak.Count; i++)
+                for (int j = 0; j < positionsInBreak.Count; j++)
                 {
-                    if (positionsInBreak[j] >= position)
+                    if (positionsInBreak[j] == i)
                     {
                         positionsInBreak[j] -= 1;
                     }

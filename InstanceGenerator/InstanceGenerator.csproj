@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\IScoringFunction.cs" />
     <Compile Include="Interfaces\IActivitiesSequence.cs" />
     <Compile Include="Interfaces\IMove.cs" />
+    <Compile Include="Interfaces\ISolver.cs" />
     <Compile Include="Interfaces\ISpannedObject.cs" />
     <Compile Include="InstanceData\Brand.cs" />
     <Compile Include="InstanceData\ViewershipFunction.cs" />

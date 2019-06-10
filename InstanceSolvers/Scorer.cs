@@ -130,8 +130,10 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                     AdvertisementOrderData = _currentAd,
                     ScoringFunction = this,
                 };
+                assesedTask.BreaksPositions.Add(_currentBreak.ID, new List<int>());
                 _temporaryTaskData.Add(order.ID, assesedTask);
             }
+            assesedTask.BreaksPositions[_currentBreak.ID].Add(position);
             _currentlyAssessed = assesedTask;
             Instance.BrandIncompatibilityCost.TryGetValue(_currentAd.Brand.ID, out var currentAdWeights);
             _currentAdIncompatibilityCosts = currentAdWeights;
@@ -192,17 +194,18 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                     }
                 }
             }
-            foreach(var taskData in Solution.AdOrderData)
-            {
-                if(statsData.TryGetValue(taskData.Key, out var found))
-                {
-                    taskData.Value.OverwriteStatsWith(found);
-                }
-                else
-                {
-                    taskData.Value.RecalculateLoss();
-                }
-            }
+            solution.AdOrderData = statsData;
+            //foreach (var taskData in Solution.AdOrderData)
+            //{
+            //    if(statsData.TryGetValue(taskData.Key, out var found))
+            //    {
+            //        taskData.Value.OverwriteStatsWith(found);
+            //    }
+            //    else
+            //    {
+            //        taskData.Value.RecalculateLoss();
+            //    }
+            //}
             RecalculateSolutionScoresBasedOnTaskData(solution);
         }
 
