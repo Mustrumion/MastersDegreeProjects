@@ -102,7 +102,7 @@ namespace InstanceSolvers
             }
             int breakNum = _random.Next(breaksWithEnoughSpace.Count);
             BreakSchedule schedule = breaksWithEnoughSpace[breakNum];
-            int position = _random.Next(schedule.Order.Count + 1);
+            int position = _random.Next(schedule.Count + 1);
             Insert insert = new Insert()
             {
                 TvBreak = schedule.BreakData,
@@ -120,7 +120,7 @@ namespace InstanceSolvers
             int breakNum = _random.Next(Instance.Breaks.Count);
             TvBreak tvBreak = Instance.Breaks.Values.ToList()[breakNum];
             BreakSchedule schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
-            int position = _random.Next(schedule.Order.Count + 1);
+            int position = _random.Next(schedule.Count + 1);
             Insert insert = new Insert()
             {
                 TvBreak = schedule.BreakData,

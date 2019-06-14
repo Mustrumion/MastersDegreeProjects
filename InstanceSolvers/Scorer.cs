@@ -32,7 +32,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
         private Dictionary<int, TaskData> _temporaryTaskData;
-        private List<AdvertisementOrder> _currentBreakOrder;
+        private IReadOnlyList<AdvertisementOrder> _currentBreakOrder;
         private TvBreak _currentBreak;
         private int _unitsFromStart;
 

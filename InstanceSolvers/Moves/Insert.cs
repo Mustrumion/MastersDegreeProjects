@@ -77,9 +77,9 @@ namespace InstanceSolvers.Moves
         {
             var currentSchedule = Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID];
             _currentBreakAssesment = Solution.GradingFunction.AssesBreak(currentSchedule);
-            var orderPostMove = currentSchedule.Order.ToList();
+            var orderPostMove = currentSchedule.GetOrderCopy();
             orderPostMove.Insert(Position, AdvertisementOrder);
-            _afterMoveAssesment = Solution.GradingFunction.AssesBreak(new BreakSchedule(TvBreak) { BreakData = TvBreak, Order = orderPostMove });
+            _afterMoveAssesment = Solution.GradingFunction.AssesBreak(new BreakSchedule(TvBreak, orderPostMove));
         }
 
         public void Asses()

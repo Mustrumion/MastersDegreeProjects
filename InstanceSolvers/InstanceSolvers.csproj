@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="MoveFactory.cs" />
     <Compile Include="Moves\Insert.cs" />
+    <Compile Include="RandomFastSolver.cs" />
     <Compile Include="RandomSolver.cs" />
     <Compile Include="Scorer.cs" />
     <Compile Include="GreedyHeuristicSolver.cs" />
