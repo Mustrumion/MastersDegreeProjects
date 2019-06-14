@@ -14,14 +14,14 @@ namespace InstanceGenerator.SolutionObjects
             BreakData = tvBreak;
         }
 
-        public BreakSchedule(TvBreak tvBreak, List<AdvertisementOrder> order)
+        public BreakSchedule(TvBreak tvBreak, List<AdvertisementOrder> order) : this(tvBreak)
         {
-            BreakData = tvBreak;
-            _order = order;
+            SubsituteOrder(order);
         }
 
         public TvBreak BreakData { get; set; }
         private List<AdvertisementOrder> _order = new List<AdvertisementOrder>();
+        private int _unitFill;
 
         public IReadOnlyList<AdvertisementOrder> Order => _order.AsReadOnly();
 
@@ -38,30 +38,35 @@ namespace InstanceGenerator.SolutionObjects
         public void AddAd(AdvertisementOrder ad)
         {
             _order.Add(ad);
+            _unitFill += ad.AdSpanUnits;
         }
 
         public void AddAdRange(IEnumerable<AdvertisementOrder> ads)
         {
             _order.AddRange(ads);
+            _unitFill += ads.Sum(a => a.AdSpanUnits);
         }
 
         public void SubsituteOrder(List<AdvertisementOrder> ads)
         {
             _order = ads;
+            _unitFill = ads.Sum(a => a.AdSpanUnits);
         }
 
         public void RemoveAt(int position)
         {
+            _unitFill -= _order[position].AdSpanUnits;
             _order.RemoveAt(position);
         }
 
         public void Insert(int position, AdvertisementOrder ad)
         {
             _order.Insert(position, ad);
+            _unitFill += ad.AdSpanUnits;
         }
 
         public int Count => _order.Count;
 
-        public int UnitFill => _order.Sum(a => a.AdSpanUnits);
+        public int UnitFill => _unitFill;
     }
 }

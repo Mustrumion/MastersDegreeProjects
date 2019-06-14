@@ -92,21 +92,31 @@ namespace InstanceSolvers
 
         public void Solve()
         {
+            _order = new List<AdvertisementOrder>();
             foreach(var adInfo in Instance.AdOrders.Values)
             {
                 for(int i = 0; i< adInfo.MinTimesAired; i++)
                 {
                     _order.Add(adInfo);
                 }
-                _order.Shuffle(_random);
-                foreach(var tvBreak in Instance.Breaks.Values)
+            }
+            _order.Shuffle(_random);
+            int curr = 0;
+            foreach (var schedule in Solution.AdvertisementsScheduledOnBreaks.Values)
+            {
+                int currentSize = 0;
+                while (curr < _order.Count)
                 {
-                    for(int i = 0; i < _order.Count; i++)
+                    if ((currentSize += _order[curr].AdSpanUnits) >= schedule.BreakData.SpanUnits)
                     {
-
+                        break;
                     }
+                    schedule.AddAd(_order[curr]);
+                    curr++;
                 }
             }
+            Solution.RestoreTaskView();
+            ScoringFunction.AssesSolution(Solution);
         }
     }
 }

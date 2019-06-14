@@ -56,7 +56,7 @@ namespace SystemTestsProject
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
             };
             Instance instance = reader.DeserializeInstance();
-            ISolver solver = new RandomSolver()
+            RandomSolver solver = new RandomSolver()
             {
                 Instance = instance,
                 Seed = 10,
@@ -66,6 +66,29 @@ namespace SystemTestsProject
             InstanceJsonSerializer serializer = new InstanceJsonSerializer()
             {
                 Path = @"results\week_DS_D_DH_sol_random.json"
+            };
+            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+        }
+
+        [TestMethod]
+        public void RandomFastSolverSolveWeek3ChannelInstance()
+        {
+            var file = Properties.Resources.week_DS_D_DH_inst;
+            var reader = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = reader.DeserializeInstance();
+            RandomFastSolver solver = new RandomFastSolver()
+            {
+                Instance = instance,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+            };
+            solver.Solve();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = @"results\week_DS_D_DH_sol_randomfast.json"
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
         }
