@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MoveFactory.cs" />
+    <Compile Include="InsertMoveFactory.cs" />
     <Compile Include="Moves\Insert.cs" />
     <Compile Include="RandomFastSolver.cs" />
     <Compile Include="RandomSolver.cs" />

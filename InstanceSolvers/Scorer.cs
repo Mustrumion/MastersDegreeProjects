@@ -56,7 +56,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             }
             else
             {
-                if(other.Type == _currentAd.Type)
+                if(other.Type == _currentAd.Type && other.Brand != _currentAd.Brand)
                 {
                     double? incompatibilityWeight = null;
                     if(_currentAdIncompatibilityCosts != null)

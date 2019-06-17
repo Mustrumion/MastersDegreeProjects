@@ -21,6 +21,7 @@ namespace InstanceGenerator.InstanceModification
         public TimeSpan DueTimeOffset { get; set; } = new TimeSpan(0, 0, 0, 0);
         public string InstanceDescription { get; set; }
         public bool RoundDueTimeUpToDays { get; set; } = false;
+        public bool MinTimesAiredWeighted { get; set; } = false;
 
 
         private Dictionary<int, int> nightTypesCount;
@@ -203,7 +204,11 @@ namespace InstanceGenerator.InstanceModification
             {
                 sumSpan += ad.Span;
             }
-            int requiredAmount = (int)(sumSpan.TotalMilliseconds / order.AdSpan.TotalMilliseconds);
+            int requiredAmount = order.AdvertisementInstances.Count;
+            if (MinTimesAiredWeighted)
+            {
+                requiredAmount = (int)(sumSpan.TotalMilliseconds / order.AdSpan.TotalMilliseconds);
+            }
             order.MinTimesAired = Math.Max(requiredAmount + MinTimesAiredOffset, 0);
         }
 
@@ -259,7 +264,7 @@ namespace InstanceGenerator.InstanceModification
 
         private void GenerateMatrixFromData()
         {
-            double cutoffTreshold = 0.95d;
+            double cutoffTreshold = 1d;
             foreach(var type in Instance.TypesOfAds.Values)
             {
                 if (dayTypesCount.ContainsKey(type.ID) && nightlyBreaks.Count > 0)

@@ -69,7 +69,7 @@ namespace InstanceGenerator.SolutionObjects
             get
             {
                 if(TimesAired == 0) return 0;
-                return (double)NumberOfStarts / TimesAired;
+                return (double)NumberOfStarts / Math.Max(TimesAired, AdvertisementOrderData.MinTimesAired);
             }
         }
         public double StartsCompletion
@@ -82,7 +82,7 @@ namespace InstanceGenerator.SolutionObjects
         }
         public bool StartsSatisfied
         {
-            get => AdvertisementOrderData.MinBeginingsProportion <= StartsProportion;
+            get => StartsCompletion >= 1;
         }
 
 
@@ -91,7 +91,7 @@ namespace InstanceGenerator.SolutionObjects
             get
             {
                 if (TimesAired == 0) return 0;
-                return (double)NumberOfEnds / TimesAired;
+                return (double)NumberOfEnds / Math.Max(TimesAired, AdvertisementOrderData.MinTimesAired);
             }
         }
         public double EndsCompletion
@@ -104,7 +104,7 @@ namespace InstanceGenerator.SolutionObjects
         }
         public bool EndsSatisfied
         {
-            get => AdvertisementOrderData.MinEndsProportion <= EndsProportion;
+            get => EndsCompletion >= 1;
         }
 
 
@@ -138,19 +138,19 @@ namespace InstanceGenerator.SolutionObjects
 
         public double OwnerConflictsProportion
         {
-            get => (double)OwnerConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, 1);
+            get => (double)OwnerConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, Math.Max(TimesAired, 1));
         }
         public double BreakTypeConflictsProportion
         {
-            get => (double)BreakTypeConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, 1);
+            get => (double)BreakTypeConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, Math.Max(TimesAired, 1));
         }
         public double SelfSpacingConflictsProportion
         {
-            get => (double)SelfSpacingConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, 1);
+            get => (double)SelfSpacingConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, Math.Max(TimesAired, 1));
         }
         public double SelfIncompatibilityConflictsProportion
         {
-            get => (double)SelfIncompatibilityConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, 1);
+            get => (double)SelfIncompatibilityConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, Math.Max(TimesAired, 1));
         }
 
 

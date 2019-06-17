@@ -45,19 +45,21 @@ namespace InstanceSolvers.Moves
             foreach (var taskData in _currentBreakAssesment.Values)
             {
                 TaskData statsCopy = new TaskData() { AdvertisementOrderData = taskData.AdvertisementOrderData };
-                statsCopy.OverwriteStatsWith(taskData);
+                TaskData currentStatsForTask = Solution.AdOrderData[taskData.TaskID];
+                statsCopy.OverwriteStatsWith(currentStatsForTask);
                 _changedOrderStatsBefore.Add(statsCopy.TaskID, statsCopy);
-                Solution.AdOrderData[taskData.TaskID].RemoveOtherDataFromThis(taskData);
+                currentStatsForTask.RemoveOtherDataFromThis(taskData);
             }
             foreach (var taskData in _afterMoveAssesment.Values)
             {
-                if(!_changedOrderStatsBefore.TryGetValue(taskData.TaskID, out TaskData statsCopy))
+                TaskData currentStatsForTask = Solution.AdOrderData[taskData.TaskID];
+                if (!_changedOrderStatsBefore.TryGetValue(taskData.TaskID, out TaskData statsCopy))
                 {
                     statsCopy = new TaskData() { AdvertisementOrderData = taskData.AdvertisementOrderData };
-                    statsCopy.OverwriteStatsWith(taskData);
+                    statsCopy.OverwriteStatsWith(currentStatsForTask);
                     _changedOrderStatsBefore.Add(statsCopy.TaskID, statsCopy);
                 }
-                Solution.AdOrderData[taskData.TaskID].MergeOtherDataIntoThis(taskData);
+                currentStatsForTask.MergeOtherDataIntoThis(taskData);
             }
             foreach(var statsBefore in _changedOrderStatsBefore.Values)
             {
