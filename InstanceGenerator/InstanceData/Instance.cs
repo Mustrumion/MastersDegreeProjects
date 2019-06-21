@@ -141,24 +141,20 @@ namespace InstanceGenerator.InstanceData
             return Brands.Values;
         }
 
-        public void AddBrandCompatibilityIfNotExists(int brand1, int brand2, double incompatibilityScore)
+        public void AddBrandCompatibility(int brand1, int brand2, double incompatibilityScore)
         {
-            if (!BrandIncompatibilityCost.ContainsKey(brand1))
+            if (!BrandIncompatibilityCost.TryGetValue(brand1, out var brand1Dict))
             {
-                BrandIncompatibilityCost.Add(brand1, new Dictionary<int, double>());
+                brand1Dict = new Dictionary<int, double>();
+                BrandIncompatibilityCost.Add(brand1, brand1Dict);
             }
-            if (!BrandIncompatibilityCost.ContainsKey(brand2))
+            if (!BrandIncompatibilityCost.TryGetValue(brand2, out var brand2Dict))
             {
-                BrandIncompatibilityCost.Add(brand2, new Dictionary<int, double>());
+                brand2Dict = new Dictionary<int, double>();
+                BrandIncompatibilityCost.Add(brand2, brand2Dict);
             }
-            if (!BrandIncompatibilityCost[brand2].ContainsKey(brand1))
-            {
-                BrandIncompatibilityCost[brand2][brand1] = incompatibilityScore;
-            }
-            if (!BrandIncompatibilityCost[brand1].ContainsKey(brand2))
-            {
-                BrandIncompatibilityCost[brand1][brand2] = incompatibilityScore;
-            }
+            brand2Dict[brand1] = incompatibilityScore;
+            brand1Dict[brand2] = incompatibilityScore;
         }
 
         public Brand GetOrAddBrand(int ownerId)

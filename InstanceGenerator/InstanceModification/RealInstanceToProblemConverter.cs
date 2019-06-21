@@ -15,6 +15,7 @@ namespace InstanceGenerator.InstanceModification
         public double TimeUnitInSeconds { get; set; } = 3.0d;
         public double MinBeginingsProportionMultiplier { get; set; } = 0.8d;
         public double MinEndsProportionMultiplier { get; set; } = 0.8d;
+        public double MinViewsMultiplier { get; set; } = 0.999d;
         public int MaxAdsPerBreakOffset { get; set; } = 1;
         public int MinAdsInBetweenSameOffset { get; set; } = -1;
         public int MinTimesAiredOffset { get; set; } = 0;
@@ -41,11 +42,35 @@ namespace InstanceGenerator.InstanceModification
             InstanceCorrector corrector = new InstanceCorrector() { Instance = Instance };
             corrector.AdjustTimestampsToDuration();
             CreateBreaks();
+            Instance.RestoreBreakDictionary();
             AddViewershipFunctions();
             RemoveUnnecessaryActivities();
             GenerateAllAdOrdersData();
+            corrector.AdjustAdLengthToChosenOrderLength();
+            corrector.AdjustAdViewsToCurrentPositionViews();
+            corrector.AdjustTimestampsToDuration();
+            RecalculateAdOrderViewership();
             GenerateBreakToTypeCompatibilityMatrix();
+            //AssureBrandToBrandCompatibility();
             Instance.Description = InstanceDescription;
+        }
+
+
+        public void AssureBrandToBrandCompatibility()
+        {
+            foreach(var tvBreak in Instance.Breaks.Values)
+            {
+                int startingPos = 0;
+                for(int i = startingPos; i < tvBreak.Advertisements.Count - 1; i++)
+                {
+                    Instance.AddBrandCompatibility(tvBreak.Advertisements[i].AdOrderID, tvBreak.Advertisements[i + 1].AdOrderID, 0);
+                    for(int j = i + 2; j < tvBreak.Advertisements.Count; j++)
+                    {
+                        Instance.AddBrandCompatibility(tvBreak.Advertisements[i].AdOrderID, tvBreak.Advertisements[j].AdOrderID, 1.0);
+                    }
+                }
+                startingPos += 1;
+            }
         }
 
         public void CreateBreaks()
@@ -148,9 +173,7 @@ namespace InstanceGenerator.InstanceModification
                 }
             }
         }
-
         
-
         public void ConvertToUnits()
         {
             Instance.UnitSizeInSeconds = TimeUnitInSeconds;
@@ -331,6 +354,14 @@ namespace InstanceGenerator.InstanceModification
             }
         }
 
+        private void RecalculateAdOrderViewership()
+        {
+            foreach(var order in Instance.AdOrders.Values)
+            {
+                order.MinViewership = order.AdvertisementInstances.Sum(a => a.Viewers) * MinViewsMultiplier;
+            }
+        }
+
         private void GenerateAdOrderData(AdvertisementOrder order)
         {
             order.Gain = order.AdvertisementInstances.Sum(a => a.Profit);
@@ -339,7 +370,7 @@ namespace InstanceGenerator.InstanceModification
             {
                 order.DueTime = order.DueTime.AddDays(1).Date;
             }
-            order.MinViewership = order.AdvertisementInstances.Sum(a => a.Viewers);
+            order.MinViewership = order.AdvertisementInstances.Sum(a => a.Viewers) * MinViewsMultiplier;
             //Ads with same advertisement ID had different spans in real data, we choose the most frequent one here
             var modeSpanGroup = order.AdvertisementInstances.ToLookup(a => a.SpanUnits).OrderBy(cat => cat.Count()).Last();
             order.AdSpan = modeSpanGroup.First().Span;

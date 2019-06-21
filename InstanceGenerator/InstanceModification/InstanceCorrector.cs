@@ -29,6 +29,34 @@ namespace InstanceGenerator.InstanceModification
             }
         }
 
+        public void AdjustAdViewsToCurrentPositionViews()
+        {
+            foreach(var tvBreak in Instance.Breaks.Values)
+            {
+                int currentUnit = 0;
+                foreach(var adInstance in tvBreak.Advertisements)
+                {
+                    var function = tvBreak.GetViewsFuntion(adInstance.TypeID);
+                    adInstance.Viewers = function.GetViewers(currentUnit);
+                    currentUnit += adInstance.SpanUnits;
+                }
+            }
+        }
+
+
+        public void AdjustAdLengthToChosenOrderLength()
+        {
+            foreach (var tvBreak in Instance.Breaks.Values)
+            {
+                foreach (var adInstance in tvBreak.Advertisements)
+                {
+                    var function = tvBreak.GetViewsFuntion(adInstance.TypeID);
+                    adInstance.SpanUnits = adInstance.AdvertisementOrder.AdSpanUnits;
+                    adInstance.Span = adInstance.AdvertisementOrder.AdSpan;
+                }
+            }
+        }
+
 
         private void AdjustStartTime(IActivitiesSequence activitiesContainer, DateTime earliestPossibleStart)
         {

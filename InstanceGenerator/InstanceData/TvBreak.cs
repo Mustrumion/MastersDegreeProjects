@@ -25,6 +25,15 @@ namespace InstanceGenerator.InstanceData
         public ViewershipFunction MainViewsFunction { get; set; }
         public Dictionary<int, ViewershipFunction> TypeViewsFunctions { get; set; } = new Dictionary<int, ViewershipFunction>();
 
+        public ViewershipFunction GetViewsFuntion(int typeID)
+        {
+            if(TypeViewsFunctions.TryGetValue(typeID, out var function))
+            {
+                return function;
+            }
+            return MainViewsFunction;
+        }
+
         /// <summary>
         /// Advertisement instances from the real data. Used only for the instance generation.
         /// </summary>

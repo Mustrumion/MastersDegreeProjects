@@ -18,7 +18,7 @@ namespace InstanceGenerator.InstanceData
             foreach(var span in TimeIntervals)
             {
                 unitsPassed += span.SpanUnits;
-                if(unitsFromStart <= unitsPassed)
+                if(unitsFromStart < unitsPassed)
                 {
                     return span.Viewers;
                 }

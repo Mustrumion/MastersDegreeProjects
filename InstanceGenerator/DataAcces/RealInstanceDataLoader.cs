@@ -68,7 +68,7 @@ namespace InstanceGenerator.DataAccess
             while (!(line = Reader.ReadLine()).StartsWith("%"))
             {
                 string[] fields = line.Split(' ');
-                instance.AddBrandCompatibilityIfNotExists(Convert.ToInt32(fields[0]), Convert.ToInt32(fields[1]), 1.0d);
+                instance.AddBrandCompatibility(Convert.ToInt32(fields[0]), Convert.ToInt32(fields[1]), 1.0d);
                 lineNum += 1;
             }
         }
@@ -82,7 +82,7 @@ namespace InstanceGenerator.DataAccess
             while (!(line = Reader.ReadLine()).StartsWith("%"))
             {
                 string[] fields = line.Split(' ');
-                instance.AddBrandCompatibilityIfNotExists(Convert.ToInt32(fields[0]), Convert.ToInt32(fields[1]), 0.0d);
+                instance.AddBrandCompatibility(Convert.ToInt32(fields[0]), Convert.ToInt32(fields[1]), 0.0d);
                 lineNum += 1;
             }
         }
