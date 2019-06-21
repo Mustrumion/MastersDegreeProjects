@@ -176,6 +176,40 @@ namespace SystemTestsProject
         }
 
         [TestMethod]
+        public void GenerateDay3ChannelSolutionBasedsOnRealData()
+        {
+            Generator instanceGenerator = new Generator
+            {
+                DataSource = new StringReader(Properties.Resources.day_DS_D_DH),
+                OutputFilename = @"results\day_DS_D_DH_sol.json"
+            };
+            instanceGenerator.GenerateSolution(SolutionSerializationMode.Bare);
+        }
+
+        [TestMethod]
+        public void GradeDay3ChannelSolutionFromSavedFiles()
+        {
+            var file = Properties.Resources.day_DS_D_DH_inst;
+            var deserializer = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = deserializer.DeserializeInstance();
+            deserializer.Reader = new StreamReader(new MemoryStream(Properties.Resources.day_DS_D_DH_sol), Encoding.UTF8);
+            Solution solution = deserializer.DeserializeSolution(instance);
+            solution.GradingFunction = new Scorer();
+            solution.GradingFunction.AssesSolution(solution);
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = @"results\day_DS_D_DH_sol_scored.json"
+            };
+            serializer.SerializeSolution(solution, SolutionSerializationMode.DebugTaskData);
+
+            Assert.IsNotNull(instance);
+            Assert.IsNotNull(solution);
+        }
+
+        [TestMethod]
         public void GradeWeek3ChannelSolutionFromSavedFiles()
         {
             var file = Properties.Resources.week_DS_D_DH_inst;

@@ -56,24 +56,18 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             }
             else
             {
-                if(other.Type == _currentAd.Type && other.Brand != _currentAd.Brand)
+                if(other.Type.ID == _currentAd.Type.ID && other.Brand.ID != _currentAd.Brand.ID)
                 {
-                    double? incompatibilityWeight = null;
                     if(_currentAdIncompatibilityCosts != null)
                     {
-                        bool success = _currentAdIncompatibilityCosts.TryGetValue(other.Brand.ID, out double weight);
-                        if (success)
+                        if(_currentAdIncompatibilityCosts.TryGetValue(other.Brand.ID, out double weight))
                         {
-                            incompatibilityWeight = weight;
+                            _currentlyAssessed.MildIncompatibilitySumOfOccurenceWeights += weight;
                         }
-                    }
-                    if(incompatibilityWeight != null)
-                    {
-                        _currentlyAssessed.MildIncompatibilitySumOfOccurenceWeights += incompatibilityWeight.Value;
-                    }
-                    else
-                    {
-                        _currentlyAssessed.OwnerConflicts += 1;
+                        else
+                        {
+                            _currentlyAssessed.OwnerConflicts += 1;
+                        }
                     }
                 }
             }

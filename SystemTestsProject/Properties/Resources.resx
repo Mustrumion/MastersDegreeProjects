@@ -124,6 +124,9 @@
   <data name="day_DS_D_DH_inst" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\day_ds_d_dh_inst.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="day_DS_D_DH_sol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\day_ds_d_dh_sol.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="handmade_extra_easy_inst" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\handmade_extra_easy_inst.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

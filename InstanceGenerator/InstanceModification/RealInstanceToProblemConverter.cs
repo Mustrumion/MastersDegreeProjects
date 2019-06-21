@@ -51,7 +51,7 @@ namespace InstanceGenerator.InstanceModification
             corrector.AdjustTimestampsToDuration();
             RecalculateAdOrderViewership();
             GenerateBreakToTypeCompatibilityMatrix();
-            //AssureBrandToBrandCompatibility();
+            AssureBrandToBrandCompatibility();
             Instance.Description = InstanceDescription;
         }
 
@@ -63,10 +63,10 @@ namespace InstanceGenerator.InstanceModification
                 int startingPos = 0;
                 for(int i = startingPos; i < tvBreak.Advertisements.Count - 1; i++)
                 {
-                    Instance.AddBrandCompatibility(tvBreak.Advertisements[i].AdOrderID, tvBreak.Advertisements[i + 1].AdOrderID, 0);
+                    Instance.AddBrandCompatibility(tvBreak.Advertisements[i].OwnerID, tvBreak.Advertisements[i + 1].OwnerID, 0);
                     for(int j = i + 2; j < tvBreak.Advertisements.Count; j++)
                     {
-                        Instance.AddBrandCompatibility(tvBreak.Advertisements[i].AdOrderID, tvBreak.Advertisements[j].AdOrderID, 1.0);
+                        Instance.AddBrandCompatibility(tvBreak.Advertisements[i].OwnerID, tvBreak.Advertisements[j].OwnerID, 1.0);
                     }
                 }
                 startingPos += 1;

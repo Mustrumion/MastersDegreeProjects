@@ -65,6 +65,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\day_DS_D_DH_inst.json" />
+    <None Include="Resources\day_DS_D_DH_sol.json" />
     <None Include="Resources\handmade_extra_easy_inst.json" />
     <None Include="Resources\hour_DS_D_DH_inst.json" />
     <None Include="Resources\instance_schema.json" />

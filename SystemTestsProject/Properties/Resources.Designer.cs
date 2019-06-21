@@ -103,6 +103,16 @@ namespace SystemTestsProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] day_DS_D_DH_sol {
+            get {
+                object obj = ResourceManager.GetObject("day_DS_D_DH_sol", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] handmade_extra_easy_inst {
             get {
                 object obj = ResourceManager.GetObject("handmade_extra_easy_inst", resourceCulture);
