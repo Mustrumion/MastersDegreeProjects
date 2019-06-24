@@ -1,6 +1,7 @@
 ﻿using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
+using InstanceSolvers.MoveFactories;
 using InstanceSolvers.Moves;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,7 @@ namespace InstanceSolvers
         private int _seed;
         private Random _random;
 
-        public int PositionsTakenIntoConsideration { get; set; } = 0;
-        public int BreaksTakednIntoConsideration { get; set; } = 0;
-        public int OrdersTakenIntoConsideration { get; set; } = 0;
+        public IEnumerable<IMoveFactory> MoveFactories { get; set; }
 
         private List<TvBreak> _breakInOrder { get; set; }
         public string Description { get; set; }
@@ -97,28 +96,53 @@ namespace InstanceSolvers
 
         public void Solve()
         {
+            CreateMoveFactoriesIfEmpty();
             ScoringFunction.AssesSolution(Solution);
-            //due earlier are scheduled first
-            //heftier are scheduled first if due at the same time
-            var ordersInOrder = Instance.AdOrders.Values.OrderByDescending(order => order.AdSpanUnits).OrderBy(order => order.DueTime).ToList();
-            _breakInOrder = Instance.Breaks.Values.OrderBy(b => b.StartTime).ToList();
-
             _movePerformed = true;
-            while (Solution.CompletionScore < 1 && _movePerformed)
+            while (_movePerformed)
             {
                 _movePerformed = false;
+                List<IMove> moves = new List<IMove>();
+                foreach(IMoveFactory factory in MoveFactories)
+                {
+                    moves.AddRange(factory.GenerateMoves().ToList());
+                }
+                ChooseMoveToPerform(moves);
             }
         }
 
-
-        private void ChooseMoveToPerform(List<Insert> moves)
+        private void CreateMoveFactoriesIfEmpty()
         {
+            if (MoveFactories == null)
+            {
+                MoveFactories = new List<IMoveFactory>
+                {
+                    new InsertMoveFactory(Solution)
+                    {
+                        MildlyRandomOrder = true,
+                        PositionsCountLimit = 10,
+                        MaxTasksChecked = 5,
+                        MaxBreaksChecked = 10,
+                        IgnoreWhenUnitOverfillAbove = 10,
+                        IgnoreTasksWithCompletedViews = true,
+                        Random = _random,
+                    }
+                };
+            }
+        }
+
+        private void ChooseMoveToPerform(List<IMove> moves)
+        {
+            if(moves.Count == 0)
+            {
+                return;
+            }
             foreach (var move in moves)
             {
                 move.Asses();
             }
-            var candidate = moves.OrderBy(m => m.OverallDifference.IntegrityLossScore).FirstOrDefault();
-            if (candidate.OverallDifference.IntegrityLossScore < 0)
+            var candidate = moves.OrderBy(m => m.OverallDifference.WeightedLoss).OrderBy(m => m.OverallDifference.IntegrityLossScore).FirstOrDefault();
+            if (candidate.OverallDifference.IntegrityLossScore < 0 || (candidate.OverallDifference.IntegrityLossScore == 0 && candidate.OverallDifference.WeightedLoss < 0))
             {
                 candidate.Execute();
                 Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);

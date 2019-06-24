@@ -1,5 +1,6 @@
 ﻿using InstanceGenerator;
 using InstanceGenerator.InstanceData;
+using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers.Moves;
 using System;
@@ -10,52 +11,138 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.MoveFactories
 {
-    public class InsertMoveFactory
+    public class InsertMoveFactory : IMoveFactory
     {
+        private IEnumerable<TvBreak> _breaks { get; set; }
+        private IEnumerable<AdvertisementOrder> _tasks { get; set; }
+
         public IEnumerable<TvBreak> Breaks { get; set; }
         public IEnumerable<AdvertisementOrder> Tasks { get; set; }
         public Random Random { get; set; }
         public bool MildlyRandomOrder { get; set; }
         public Instance Instance { get; set; }
         public Solution Solution { get; set; }
+        public int IgnoreWhenUnitOverfillAbove { get; set; }
+        public bool IgnoreTasksWithCompletedViews { get; set; }
+
         public int PositionsCountLimit { get; set; }
+
+        public int MaxBreaksChecked { get; set; }
+        public int MaxTasksChecked { get; set; }
 
         public InsertMoveFactory(Solution solution)
         {
             Solution = solution;
             Instance = solution.Instance;
         }
-        
-        private void PrepareStructures()
+
+        private void PrepareInitialLists()
         {
-            if( MildlyRandomOrder && Random == null)
+            if (MildlyRandomOrder && Random == null)
             {
                 Random = new Random();
             }
             if (Breaks == null)
             {
-                Breaks = Instance.Breaks.Values;
+                _breaks = Instance.Breaks.Values;
+            }
+            else
+            {
+                _breaks = Breaks;
+            }
+            if (IgnoreWhenUnitOverfillAbove > 0)
+            {
+                _breaks = _breaks.Where(b => Solution.AdvertisementsScheduledOnBreaks[b.ID].UnitFill - IgnoreWhenUnitOverfillAbove < b.SpanUnits);
             }
             if (Tasks == null)
             {
-                Tasks = Instance.AdOrders.Values;
+                _tasks = Instance.AdOrders.Values;
             }
+            else
+            {
+                _tasks = Tasks;
+            }
+            if (IgnoreTasksWithCompletedViews)
+            {
+                _tasks = _tasks.Where(t =>
+                {
+                    var orderData = Solution.AdOrderData[t.ID];
+                    return !orderData.ViewsSatisfied || !orderData.TimesAiredSatisfied;
+                });
+            }
+        }
+
+        private void Reorder()
+        {
             if (MildlyRandomOrder)
             {
-                Breaks = Breaks.ToList();
-                (Breaks as IList<TvBreak>).Shuffle(Random);
-                Tasks = Tasks.ToList();
-                (Tasks as IList<AdvertisementOrder>).Shuffle(Random);
+                _breaks = _breaks.ToList();
+                (_breaks as IList<TvBreak>).Shuffle(Random);
+                _tasks = _tasks.ToList();
+                (_tasks as IList<AdvertisementOrder>).Shuffle(Random);
+            }
+        }
+
+        private void Select()
+        {
+            if (MaxBreaksChecked > 0)
+            {
+                _breaks = _breaks.Take(MaxBreaksChecked);
+            }
+            if (MaxTasksChecked > 0)
+            {
+                _tasks = _tasks.Take(MaxTasksChecked);
+            }
+        }
+
+        private void PrepareStructures()
+        {
+            PrepareInitialLists();
+            Reorder();
+            Select();
+        }
+
+
+        public IEnumerable<IMove> GenerateMoves()
+        {
+            PrepareStructures();
+            foreach (var tvBreak in _breaks)
+            {
+                BreakSchedule schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
+                foreach (var task in _tasks)
+                {
+                    IEnumerable<int> positionList = Enumerable.Range(0, schedule.Count + 1);
+                    if (MildlyRandomOrder)
+                    {
+                        positionList = positionList.ToList();
+                        (positionList as IList<int>).Shuffle(Random);
+                    }
+                    if (PositionsCountLimit != 0)
+                    {
+                        positionList = positionList.Take(PositionsCountLimit);
+                    }
+                    foreach (int position in positionList)
+                    {
+                        yield return new Insert()
+                        {
+                            Solution = Solution,
+                            Instance = Instance,
+                            Position = position,
+                            AdvertisementOrder = task,
+                            TvBreak = tvBreak
+                        };
+                    }
+                }
             }
         }
 
 
-        public IEnumerable<Insert> GenerateMoves()
+        public IEnumerable<Insert> GenerateInsertMoves()
         {
-            foreach(var tvBreak in Breaks)
+            foreach (var tvBreak in _breaks)
             {
                 BreakSchedule schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
-                foreach(var task in Tasks)
+                foreach (var task in _tasks)
                 {
                     IEnumerable<int> positionList = Enumerable.Range(0, schedule.Count + 1);
                     if (MildlyRandomOrder)

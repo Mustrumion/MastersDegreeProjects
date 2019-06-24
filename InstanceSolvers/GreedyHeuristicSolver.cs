@@ -115,7 +115,7 @@ namespace InstanceSolvers
         }
 
 
-        private void ChooseMoveToPerform(List<Insert> moves)
+        private void ChooseMoveToPerform(List<IMove> moves)
         {
             foreach(var move in moves)
             {
@@ -148,7 +148,7 @@ namespace InstanceSolvers
                     PositionsCountLimit = PositionsPerBreakTakenIntoConsideration,
                     Random = _random,
                 };
-                List<Insert> moves = factory.GenerateMoves().ToList();
+                List<IMove> moves = factory.GenerateMoves().ToList();
                 ChooseMoveToPerform(moves);
             }
         }
