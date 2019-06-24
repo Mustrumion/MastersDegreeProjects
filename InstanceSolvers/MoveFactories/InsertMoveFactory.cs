@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceSolvers
+namespace InstanceSolvers.MoveFactories
 {
     public class InsertMoveFactory
     {

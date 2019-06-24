@@ -1,7 +1,6 @@
 ﻿using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
-using InstanceSolvers.MoveFactories;
 using InstanceSolvers.Moves;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class GreedyHeuristicSolver : ISolver
+    public class LocalRandomSearch : ISolver
     {
         private Instance _instance;
         private IScoringFunction _scoringFunction;
@@ -20,13 +19,14 @@ namespace InstanceSolvers
         private int _seed;
         private Random _random;
 
-        public int PositionsPerBreakTakenIntoConsideration { get; set; } = 0;
-        public int MaxBreakExtensionUnits { get; set; } = 20;
+        public int PositionsTakenIntoConsideration { get; set; } = 0;
+        public int BreaksTakednIntoConsideration { get; set; } = 0;
+        public int OrdersTakenIntoConsideration { get; set; } = 0;
 
         private List<TvBreak> _breakInOrder { get; set; }
         public string Description { get; set; }
 
-        public GreedyHeuristicSolver()
+        public LocalRandomSearch()
         {
             Random rnd = new Random();
             _seed = rnd.Next();
@@ -107,49 +107,22 @@ namespace InstanceSolvers
             while (Solution.CompletionScore < 1 && _movePerformed)
             {
                 _movePerformed = false;
-                foreach (AdvertisementOrder order in ordersInOrder)
-                {
-                    TryToScheduleOrder(order);
-                }
             }
         }
 
 
         private void ChooseMoveToPerform(List<Insert> moves)
         {
-            foreach(var move in moves)
+            foreach (var move in moves)
             {
                 move.Asses();
             }
             var candidate = moves.OrderBy(m => m.OverallDifference.IntegrityLossScore).FirstOrDefault();
-            if(candidate.OverallDifference.IntegrityLossScore < 0)
+            if (candidate.OverallDifference.IntegrityLossScore < 0)
             {
                 candidate.Execute();
                 Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
                 _movePerformed = true;
-            }
-        }
-
-
-        private void TryToScheduleOrder(AdvertisementOrder order)
-        {
-            foreach(var tvBreak in _breakInOrder)
-            {
-                var schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
-                if(schedule.UnitFill - MaxBreakExtensionUnits > tvBreak.SpanUnits)
-                {
-                    continue;
-                }
-                InsertMoveFactory factory = new InsertMoveFactory(Solution)
-                {
-                    Breaks = new[] { tvBreak },
-                    Tasks = new[] { order },
-                    MildlyRandomOrder = false,
-                    PositionsCountLimit = PositionsPerBreakTakenIntoConsideration,
-                    Random = _random,
-                };
-                List<Insert> moves = factory.GenerateMoves().ToList();
-                ChooseMoveToPerform(moves);
             }
         }
     }
