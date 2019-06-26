@@ -5,6 +5,7 @@ using InstanceGenerator.InstanceModification;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers;
+using InstanceSolvers.MoveFactories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
@@ -135,6 +136,37 @@ namespace SystemTestsProject
             InstanceJsonSerializer serializer = new InstanceJsonSerializer()
             {
                 Path = @"results\day_DS_D_DH_sol_localrandom.json"
+            };
+            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+        }
+
+        [TestMethod]
+        public void LocalSteepSolveHour3ChannelInstance()
+        {
+            var file = Properties.Resources.hour_DS_D_DH_inst;
+            var reader = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = reader.DeserializeInstance();
+            LocalRandomSearch solver = new LocalRandomSearch()
+            {
+                Instance = instance,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory(solver.Solution)
+                {
+                    IgnoreWhenUnitOverfillAbove = 20,
+                    Random = solver.Random,
+                }
+            };
+            solver.Solve();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = @"results\hour_DS_D_DH_sol_localsteep.json"
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
         }

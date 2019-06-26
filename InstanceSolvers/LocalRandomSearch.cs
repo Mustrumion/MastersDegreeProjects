@@ -18,7 +18,7 @@ namespace InstanceSolvers
         private Solution _solution;
         private bool _movePerformed;
         private int _seed;
-        private Random _random;
+        public Random Random { get; set; }
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
 
@@ -29,7 +29,7 @@ namespace InstanceSolvers
         {
             Random rnd = new Random();
             _seed = rnd.Next();
-            _random = new Random(_seed);
+            Random = new Random(_seed);
         }
 
         public int Seed
@@ -37,7 +37,7 @@ namespace InstanceSolvers
             get => _seed;
             set
             {
-                _random = new Random(value);
+                Random = new Random(value);
                 _seed = value;
             }
         }
@@ -125,7 +125,7 @@ namespace InstanceSolvers
                         MaxBreaksChecked = 10,
                         IgnoreWhenUnitOverfillAbove = 10,
                         IgnoreTasksWithCompletedViews = true,
-                        Random = _random,
+                        Random = Random,
                     }
                 };
             }
