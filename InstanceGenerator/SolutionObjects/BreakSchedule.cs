@@ -20,6 +20,9 @@ namespace InstanceGenerator.SolutionObjects
         }
 
         public TvBreak BreakData { get; set; }
+        public Dictionary<int, TaskData> Scores { get; set; }
+
+
         private List<AdvertisementOrder> _order = new List<AdvertisementOrder>();
         private int _unitFill;
 
