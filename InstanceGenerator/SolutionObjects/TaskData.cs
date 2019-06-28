@@ -186,7 +186,7 @@ namespace InstanceGenerator.SolutionObjects
             }
         }
 
-        public void MergeOtherDataIntoThis(TaskData taskData)
+        public void MergeOtherDataIntoThis(TaskData taskData, bool mergeStatsOnly = false)
         {
             Viewership += taskData.Viewership;
             TimesAired += taskData.TimesAired;
@@ -205,15 +205,18 @@ namespace InstanceGenerator.SolutionObjects
             SelfSpacingConflicts += taskData.SelfSpacingConflicts;
             SelfIncompatibilityConflicts += taskData.SelfIncompatibilityConflicts;
 
-            foreach (var tvBreak in taskData.BreaksPositions)
+            if (!mergeStatsOnly)
             {
-                if (BreaksPositions.TryGetValue(tvBreak.Key, out var list))
+                foreach (var tvBreak in taskData.BreaksPositions)
                 {
-                    list.AddRange(list);
-                }
-                else
-                {
-                    BreaksPositions.Add(tvBreak.Key, tvBreak.Value);
+                    if (BreaksPositions.TryGetValue(tvBreak.Key, out var list))
+                    {
+                        list.AddRange(list);
+                    }
+                    else
+                    {
+                        BreaksPositions.Add(tvBreak.Key, tvBreak.Value);
+                    }
                 }
             }
             RecalculateLoss();
@@ -292,7 +295,7 @@ namespace InstanceGenerator.SolutionObjects
         /// Creates a deep clone of TaskData
         /// </summary>
         /// <returns></returns>
-        public TaskData Clone()
+        public TaskData Clone(bool copyStatsOnly = false)
         {
             TaskData clone = new TaskData()
             {
@@ -314,8 +317,11 @@ namespace InstanceGenerator.SolutionObjects
                 WeightedLoss = WeightedLoss,
                 AdvertisementOrderData = AdvertisementOrderData,
                 ScoringFunction = ScoringFunction,
-                BreaksPositions = BreaksPositions.ToDictionary(b => b.Key, b => b.Value.ToList()),
             };
+            if (!copyStatsOnly)
+            {
+                clone.BreaksPositions = BreaksPositions.ToDictionary(b => b.Key, b => b.Value.ToList());
+            }
             return clone;
         }
 

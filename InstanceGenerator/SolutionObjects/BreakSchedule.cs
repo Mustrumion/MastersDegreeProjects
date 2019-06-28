@@ -33,6 +33,14 @@ namespace InstanceGenerator.SolutionObjects
             return _order.ToList();
         }
 
+        public BreakSchedule DeepClone()
+        {
+            return new BreakSchedule(BreakData, Order.ToList())
+            {
+                Scores = Scores,
+            };
+        }
+
         public List<int> GetOrderIdsCopy()
         {
             return _order.Select(a => a.ID).ToList();

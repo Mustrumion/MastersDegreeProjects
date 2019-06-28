@@ -232,6 +232,7 @@ namespace InstanceGenerator.SolutionObjects
 
         /// <summary>
         /// Adds an advertisement instance to the solution.
+        /// Does not update scores.
         /// </summary>
         /// <param name="ad"></param>
         /// <param name="tvBreak"></param>
@@ -258,6 +259,7 @@ namespace InstanceGenerator.SolutionObjects
             }
             AddAdToTaskDataDictionry(ad.ID, tvBreak.ID, position);
             breakSchedule.Insert(position, ad);
+            breakSchedule.Scores = null;
         }
 
         /// <summary>

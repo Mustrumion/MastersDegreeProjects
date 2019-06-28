@@ -148,7 +148,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
 
-        public Dictionary<int, TaskData> AssesBreak(BreakSchedule schedule)
+        public void AssesBreak(BreakSchedule schedule)
         {
             _currentBreakOrder = schedule.Order;
             _currentBreak = schedule.BreakData;
@@ -159,7 +159,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 CalculateAdConstraints(_currentBreakOrder[i], i);
                 _unitsFromStart += _currentAd.AdSpanUnits;
             }
-            return _temporaryTaskData;
+            schedule.Scores = _temporaryTaskData;
         }
 
 
@@ -173,10 +173,14 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             {
                 taskData.RecalculateLoss();
             }
-            foreach (var tvBreak in Solution.AdvertisementsScheduledOnBreaks)
+            foreach (var tvBreak in Solution.AdvertisementsScheduledOnBreaks.Values)
             {
-                Dictionary<int, TaskData> dataToMerge = AssesBreak(tvBreak.Value);
-                foreach(var taskData in dataToMerge)
+                if(tvBreak.Scores == null)
+                {
+                    AssesBreak(tvBreak);
+                }
+                Dictionary<int, TaskData> dataToMerge = tvBreak.Scores;
+                foreach (var taskData in dataToMerge)
                 {
                     if(statsData.TryGetValue(taskData.Key, out var found))
                     {
@@ -189,17 +193,6 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 }
             }
             solution.AdOrderData = statsData;
-            //foreach (var taskData in Solution.AdOrderData)
-            //{
-            //    if(statsData.TryGetValue(taskData.Key, out var found))
-            //    {
-            //        taskData.Value.OverwriteStatsWith(found);
-            //    }
-            //    else
-            //    {
-            //        taskData.Value.RecalculateLoss();
-            //    }
-            //}
             RecalculateSolutionScoresBasedOnTaskData(solution);
         }
 

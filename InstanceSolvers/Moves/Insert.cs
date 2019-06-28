@@ -11,6 +11,7 @@ namespace InstanceSolvers.Moves
 {
     public class Insert : IMove
     {
+
         public TaskCompletionDifference OverallDifference { get; set; }
         public Solution Solution { get; set; }
         public Instance Instance { get; set; }
@@ -19,19 +20,21 @@ namespace InstanceSolvers.Moves
         public AdvertisementOrder AdvertisementOrder { get; set; }
         public int Position { get; set; }
 
-        private Dictionary<int, TaskData> _changedOrderStatsBefore { get; set; }
-        private Dictionary<int, TaskData> _changedOrderStatsAfter { get; set; }
-        private Dictionary<int, TaskData> _currentBreakAssesment { get; set; }
-        private Dictionary<int, TaskData> _afterMoveAssesment { get; set; }
+        private Dictionary<int, TaskData> _changedOrderStatsBefore;
+        private Dictionary<int, TaskData> _changedOrderStatsAfter;
+        private Dictionary<int, TaskData> _oldBreakScores;
+        private Dictionary<int, TaskData> _newBreakScores;
+        private BreakSchedule _oldSchedule;
+        private BreakSchedule _newSchedule;
         public Dictionary<int, TaskCompletionDifference> CompletionDifferences { get; set; }
 
         private void RollBackSolutionScores()
         {
-            foreach (var taskData in _afterMoveAssesment.Values)
+            foreach (var taskData in _newSchedule.Scores.Values)
             {
                 Solution.AdOrderData[taskData.TaskID].RemoveOtherDataFromThis(taskData);
             }
-            foreach (var taskData in _currentBreakAssesment.Values)
+            foreach (var taskData in _oldSchedule.Scores.Values)
             {
                 Solution.AdOrderData[taskData.TaskID].MergeOtherDataIntoThis(taskData);
             }
@@ -42,7 +45,7 @@ namespace InstanceSolvers.Moves
             _changedOrderStatsBefore = new Dictionary<int, TaskData>();
             _changedOrderStatsAfter = new Dictionary<int, TaskData>();
             CompletionDifferences = new Dictionary<int, TaskCompletionDifference>();
-            foreach (var taskData in _currentBreakAssesment.Values)
+            foreach (var taskData in _oldSchedule.Scores.Values)
             {
                 TaskData statsCopy = new TaskData() { AdvertisementOrderData = taskData.AdvertisementOrderData };
                 TaskData currentStatsForTask = Solution.AdOrderData[taskData.TaskID];
@@ -50,7 +53,7 @@ namespace InstanceSolvers.Moves
                 _changedOrderStatsBefore.Add(statsCopy.TaskID, statsCopy);
                 currentStatsForTask.RemoveOtherDataFromThis(taskData);
             }
-            foreach (var taskData in _afterMoveAssesment.Values)
+            foreach (var taskData in _newSchedule.Scores.Values)
             {
                 TaskData currentStatsForTask = Solution.AdOrderData[taskData.TaskID];
                 if (!_changedOrderStatsBefore.TryGetValue(taskData.TaskID, out TaskData statsCopy))
@@ -77,11 +80,16 @@ namespace InstanceSolvers.Moves
 
         private void CountBreakTaskChanges()
         {
-            var currentSchedule = Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID];
-            _currentBreakAssesment = Solution.GradingFunction.AssesBreak(currentSchedule);
-            var orderPostMove = currentSchedule.GetOrderCopy();
-            orderPostMove.Insert(Position, AdvertisementOrder);
-            _afterMoveAssesment = Solution.GradingFunction.AssesBreak(new BreakSchedule(TvBreak, orderPostMove));
+            _oldSchedule = Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID];
+            if(_oldSchedule.Scores == null)
+            {
+                Solution.GradingFunction.AssesBreak(_oldSchedule);
+            }
+            _oldBreakScores = _oldSchedule.Scores;
+            _newSchedule = _oldSchedule.DeepClone();
+            _newSchedule.Insert(Position, AdvertisementOrder);
+            Solution.GradingFunction.AssesBreak(_newSchedule);
+            _newBreakScores = _newSchedule.Scores;
         }
 
         public void Asses()
@@ -98,6 +106,7 @@ namespace InstanceSolvers.Moves
                 Asses();
             }
             Solution.AddAdToBreak(AdvertisementOrder, TvBreak, Position);
+            Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newBreakScores;
             foreach (var statsAfter in _changedOrderStatsAfter.Values)
             {
                 Solution.AdOrderData[statsAfter.TaskID].OverwriteStatsWith(statsAfter);
