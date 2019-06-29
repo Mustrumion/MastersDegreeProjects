@@ -19,7 +19,7 @@ namespace InstanceSolvers
         private Solution _solution;
 
         public string Description { get; set; }
-        private List<AdvertisementOrder> _order { get; set; }
+        private List<AdvertisementTask> _order { get; set; }
 
         public RandomFastSolver()
         {
@@ -92,7 +92,7 @@ namespace InstanceSolvers
 
         public void Solve()
         {
-            _order = new List<AdvertisementOrder>();
+            _order = new List<AdvertisementTask>();
             foreach(var adInfo in Instance.AdOrders.Values)
             {
                 for(int i = 0; i< adInfo.MinTimesAired; i++)

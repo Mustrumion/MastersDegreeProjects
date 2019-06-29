@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 namespace InstanceGenerator.InstanceData
 {
     [Serializable]
-    public class AdvertisementOrder
+    public class AdvertisementTask
     {
-        //[JsonProperty(Order = 1)]
+        /// <summary>
+        /// Instances of advertisement from real data. Not used outside of instance creation.
+        /// </summary>
         [JsonIgnore]
         public HashSet<AdvertisementInstance> AdvertisementInstances { get; set; } = new HashSet<AdvertisementInstance>();
 

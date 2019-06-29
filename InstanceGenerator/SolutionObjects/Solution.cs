@@ -237,7 +237,7 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="ad"></param>
         /// <param name="tvBreak"></param>
         /// <param name="position"></param>
-        public void AddAdToBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
+        public void AddAdToBreak(AdvertisementTask ad, TvBreak tvBreak, int position)
         {
             if(!_advertisementsScheduledOnBreaks.TryGetValue(tvBreak.ID, out var breakSchedule))
             {
@@ -285,7 +285,7 @@ namespace InstanceGenerator.SolutionObjects
                     }
                 }
             }
-            AdvertisementOrder order = schedule.Order[position];
+            AdvertisementTask order = schedule.Order[position];
             RemoveAdFromTaskDataDictionary(order.ID, tvBreak.ID, position);
             schedule.RemoveAt(position);
         }

@@ -14,7 +14,7 @@ namespace InstanceGenerator.SolutionObjects
             BreakData = tvBreak;
         }
 
-        public BreakSchedule(TvBreak tvBreak, List<AdvertisementOrder> order) : this(tvBreak)
+        public BreakSchedule(TvBreak tvBreak, List<AdvertisementTask> order) : this(tvBreak)
         {
             SubsituteOrder(order);
         }
@@ -23,12 +23,12 @@ namespace InstanceGenerator.SolutionObjects
         public Dictionary<int, TaskData> Scores { get; set; }
 
 
-        private List<AdvertisementOrder> _order = new List<AdvertisementOrder>();
+        private List<AdvertisementTask> _order = new List<AdvertisementTask>();
         private int _unitFill;
 
-        public IReadOnlyList<AdvertisementOrder> Order => _order.AsReadOnly();
+        public IReadOnlyList<AdvertisementTask> Order => _order.AsReadOnly();
 
-        public List<AdvertisementOrder> GetOrderCopy()
+        public List<AdvertisementTask> GetOrderCopy()
         {
             return _order.ToList();
         }
@@ -46,19 +46,19 @@ namespace InstanceGenerator.SolutionObjects
             return _order.Select(a => a.ID).ToList();
         }
 
-        public void AddAd(AdvertisementOrder ad)
+        public void AddAd(AdvertisementTask ad)
         {
             _order.Add(ad);
             _unitFill += ad.AdSpanUnits;
         }
 
-        public void AddAdRange(IEnumerable<AdvertisementOrder> ads)
+        public void AddAdRange(IEnumerable<AdvertisementTask> ads)
         {
             _order.AddRange(ads);
             _unitFill += ads.Sum(a => a.AdSpanUnits);
         }
 
-        public void SubsituteOrder(List<AdvertisementOrder> ads)
+        public void SubsituteOrder(List<AdvertisementTask> ads)
         {
             _order = ads;
             _unitFill = ads.Sum(a => a.AdSpanUnits);
@@ -70,7 +70,7 @@ namespace InstanceGenerator.SolutionObjects
             _order.RemoveAt(position);
         }
 
-        public void Insert(int position, AdvertisementOrder ad)
+        public void Insert(int position, AdvertisementTask ad)
         {
             _order.Insert(position, ad);
             _unitFill += ad.AdSpanUnits;

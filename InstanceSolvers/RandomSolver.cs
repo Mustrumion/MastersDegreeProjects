@@ -137,7 +137,7 @@ namespace InstanceSolvers
             ScoringFunction.AssesSolution(Solution);
             while (Solution.AdOrderData.Values.Any(a => !a.TimesAiredSatisfied))
             {
-                foreach (AdvertisementOrder advertisementOrder in Instance.AdOrders.Values)
+                foreach (AdvertisementTask advertisementOrder in Instance.AdOrders.Values)
                 {
                     var taskData = Solution.AdOrderData[advertisementOrder.ID];
                     if (taskData.TimesAiredSatisfied)

@@ -14,10 +14,10 @@ namespace InstanceSolvers.MoveFactories
     public class SwapMoveFactory : IMoveFactory
     {
         private IEnumerable<TvBreak> _breaks { get; set; }
-        private IEnumerable<AdvertisementOrder> _tasks { get; set; }
+        private IEnumerable<AdvertisementTask> _tasks { get; set; }
 
         public IEnumerable<TvBreak> Breaks { get; set; }
-        public IEnumerable<AdvertisementOrder> Tasks { get; set; }
+        public IEnumerable<AdvertisementTask> Tasks { get; set; }
         public Random Random { get; set; }
         public bool MildlyRandomOrder { get; set; }
         public Instance Instance { get; set; }
@@ -79,7 +79,7 @@ namespace InstanceSolvers.MoveFactories
                 _breaks = _breaks.ToList();
                 (_breaks as IList<TvBreak>).Shuffle(Random);
                 _tasks = _tasks.ToList();
-                (_tasks as IList<AdvertisementOrder>).Shuffle(Random);
+                (_tasks as IList<AdvertisementTask>).Shuffle(Random);
             }
         }
 

@@ -126,9 +126,17 @@ namespace SystemTestsProject
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
             };
             Instance instance = reader.DeserializeInstance();
+            //RandomFastSolver randomSolver = new RandomFastSolver()
+            //{
+            //    Instance = instance,
+            //    Seed = 10,
+            //    ScoringFunction = new Scorer(),
+            //};
+            //randomSolver.Solve();
             LocalRandomSearch solver = new LocalRandomSearch()
             {
                 Instance = instance,
+                //Solution = randomSolver.Solution,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
             };

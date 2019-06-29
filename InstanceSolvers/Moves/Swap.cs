@@ -16,7 +16,7 @@ namespace InstanceSolvers.Moves
         public Instance Instance { get; set; }
 
         public TvBreak TvBreak { get; set; }
-        public AdvertisementOrder AdvertisementOrder { get; set; }
+        public AdvertisementTask AdvertisementOrder { get; set; }
         public int Position { get; set; }
 
         private Dictionary<int, TaskData> _changedOrderStatsBefore;
