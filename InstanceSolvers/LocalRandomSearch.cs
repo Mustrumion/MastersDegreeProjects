@@ -126,7 +126,22 @@ namespace InstanceSolvers
                         IgnoreWhenUnitOverfillAbove = 10,
                         IgnoreTasksWithCompletedViews = true,
                         Random = Random,
-                    }
+                    },
+                    new DeleteMoveFactory(Solution)
+                    {
+                        MildlyRandomOrder = true,
+                        PositionsCountLimit = 10,
+                        MaxBreaksChecked = 10,
+                        Random = Random,
+                    },
+                    new SwapMoveFactory(Solution)
+                    {
+                        MildlyRandomOrder = true,
+                        PositionsCountLimit = 10,
+                        MaxTasksChecked = 5,
+                        MaxBreaksChecked = 10,
+                        Random = Random,
+                    },
                 };
             }
         }

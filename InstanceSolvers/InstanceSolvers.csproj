@@ -41,15 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MoveFactories\IMoveFactory.cs" />
+    <Compile Include="MoveFactories\SwapMoveFactory.cs" />
     <Compile Include="MoveFactories\InsertMoveFactory.cs" />
+    <Compile Include="MoveFactories\DeleteMoveFactory.cs" />
     <Compile Include="LocalRandomSearch.cs" />
+    <Compile Include="Moves\Delete.cs" />
+    <Compile Include="Moves\Swap.cs" />
     <Compile Include="Moves\Insert.cs" />
     <Compile Include="RandomFastSolver.cs" />
     <Compile Include="RandomSolver.cs" />
     <Compile Include="Scorer.cs" />
     <Compile Include="GreedyHeuristicSolver.cs" />
-    <Compile Include="Moves\InsertAtEnd.cs" />
-    <Compile Include="Moves\InsertAtStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

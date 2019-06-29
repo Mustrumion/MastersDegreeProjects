@@ -9,15 +9,13 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.Moves
 {
-    public class Insert : IMove
+    public class Delete : IMove
     {
+        public TvBreak TvBreak { get; set; }
+        public int Position { get; set; }
         public TaskCompletionDifference OverallDifference { get; set; }
         public Solution Solution { get; set; }
         public Instance Instance { get; set; }
-
-        public TvBreak TvBreak { get; set; }
-        public AdvertisementOrder AdvertisementOrder { get; set; }
-        public int Position { get; set; }
 
         private Dictionary<int, TaskData> _changedOrderStatsBefore;
         private Dictionary<int, TaskData> _changedOrderStatsAfter;
@@ -26,6 +24,7 @@ namespace InstanceSolvers.Moves
         private BreakSchedule _oldSchedule;
         private BreakSchedule _newSchedule;
         public Dictionary<int, TaskCompletionDifference> CompletionDifferences { get; set; }
+
 
         private void RollBackSolutionScores()
         {
@@ -63,7 +62,7 @@ namespace InstanceSolvers.Moves
                 }
                 currentStatsForTask.MergeOtherDataIntoThis(taskData);
             }
-            foreach(var statsBefore in _changedOrderStatsBefore.Values)
+            foreach (var statsBefore in _changedOrderStatsBefore.Values)
             {
                 TaskData statsCopy = new TaskData() { AdvertisementOrderData = statsBefore.AdvertisementOrderData };
                 statsCopy.OverwriteStatsWith(Solution.AdOrderData[statsBefore.TaskID]);
@@ -80,13 +79,13 @@ namespace InstanceSolvers.Moves
         private void CountBreakTaskChanges()
         {
             _oldSchedule = Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID];
-            if(_oldSchedule.Scores == null)
+            if (_oldSchedule.Scores == null)
             {
                 Solution.GradingFunction.AssesBreak(_oldSchedule);
             }
             _oldBreakScores = _oldSchedule.Scores;
             _newSchedule = _oldSchedule.DeepClone();
-            _newSchedule.Insert(Position, AdvertisementOrder);
+            _newSchedule.RemoveAt(Position);
             Solution.GradingFunction.AssesBreak(_newSchedule);
             _newBreakScores = _newSchedule.Scores;
         }
@@ -104,7 +103,7 @@ namespace InstanceSolvers.Moves
             {
                 Asses();
             }
-            Solution.AddAdToBreak(AdvertisementOrder, TvBreak, Position);
+            Solution.RemoveAdFromBreak(TvBreak, Position);
             Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newBreakScores;
             foreach (var statsAfter in _changedOrderStatsAfter.Values)
             {
@@ -114,11 +113,7 @@ namespace InstanceSolvers.Moves
 
         public void RollBack()
         {
-            Solution.RemoveAdFromBreak(TvBreak, Position);
-            foreach (var statsBefore in _changedOrderStatsBefore.Values)
-            {
-                Solution.AdOrderData[statsBefore.TaskID].OverwriteStatsWith(statsBefore);
-            }
+            throw new NotImplementedException();
         }
     }
 }

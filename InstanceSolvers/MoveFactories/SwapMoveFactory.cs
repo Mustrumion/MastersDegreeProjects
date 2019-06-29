@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.MoveFactories
 {
-    public class InsertMoveFactory : IMoveFactory
+    public class SwapMoveFactory : IMoveFactory
     {
         private IEnumerable<TvBreak> _breaks { get; set; }
         private IEnumerable<AdvertisementOrder> _tasks { get; set; }
@@ -30,7 +30,7 @@ namespace InstanceSolvers.MoveFactories
         public int MaxBreaksChecked { get; set; }
         public int MaxTasksChecked { get; set; }
 
-        public InsertMoveFactory(Solution solution)
+        public SwapMoveFactory(Solution solution)
         {
             Solution = solution;
             Instance = solution.Instance;
@@ -105,11 +105,11 @@ namespace InstanceSolvers.MoveFactories
 
         public IEnumerable<IMove> GenerateMoves()
         {
-            return GenerateInsertMoves();
+            return GenerateSwapMoves();
         }
 
 
-        public IEnumerable<Insert> GenerateInsertMoves()
+        public IEnumerable<Swap> GenerateSwapMoves()
         {
             PrepareStructures();
             foreach (var tvBreak in _breaks)
@@ -117,7 +117,7 @@ namespace InstanceSolvers.MoveFactories
                 BreakSchedule schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
                 foreach (var task in _tasks)
                 {
-                    IEnumerable<int> positionList = Enumerable.Range(0, schedule.Count + 1);
+                    IEnumerable<int> positionList = Enumerable.Range(0, schedule.Count);
                     if (MildlyRandomOrder)
                     {
                         positionList = positionList.ToList();
@@ -129,7 +129,7 @@ namespace InstanceSolvers.MoveFactories
                     }
                     foreach (int position in positionList)
                     {
-                        yield return new Insert()
+                        yield return new Swap()
                         {
                             Solution = Solution,
                             Instance = Instance,

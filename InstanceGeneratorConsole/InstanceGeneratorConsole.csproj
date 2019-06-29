@@ -49,5 +49,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InstanceGenerator\InstanceGenerator.csproj">
+      <Project>{ce30ff74-7a54-43ec-9485-2ba365aaa3e7}</Project>
+      <Name>InstanceGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InstanceSolvers\InstanceSolvers.csproj">
+      <Project>{67df512b-4ec8-4ede-8c92-a0f3fe9c4fdf}</Project>
+      <Name>InstanceSolvers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
