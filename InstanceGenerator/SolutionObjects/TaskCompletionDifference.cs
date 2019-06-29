@@ -40,5 +40,10 @@ namespace InstanceGenerator.SolutionObjects
             OwnerConflictsProportion += other.OwnerConflictsProportion;
             BreakTypeConflictsProportion += other.BreakTypeConflictsProportion;
         }
+
+        public bool HasScoreWorsened()
+        {
+            return IntegrityLossScore > 0 || (IntegrityLossScore == 0 && WeightedLoss > 0);
+        }
     }
 }

@@ -5,6 +5,7 @@ using InstanceSolvers.MoveFactories;
 using InstanceSolvers.Moves;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,16 @@ namespace InstanceSolvers
         private bool _movePerformed;
         private int _seed;
         public Random Random { get; set; }
+        public Stopwatch Stopwatch { get; set; } = new Stopwatch();
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
 
         private List<TvBreak> _breakInOrder { get; set; }
         public string Description { get; set; }
+
+        public bool StopWhenCompleted { get; set; } = true;
+        public bool StopWhenStepScoreDecrease { get; set; }
+        public TimeSpan MaxTime { get; set; } = new TimeSpan(0, 0, 10);
 
         public LocalRandomSearch()
         {
@@ -96,6 +102,7 @@ namespace InstanceSolvers
 
         public void Solve()
         {
+            Stopwatch.Start();
             CreateMoveFactoriesIfEmpty();
             ScoringFunction.AssesSolution(Solution);
             _movePerformed = true;
@@ -109,6 +116,7 @@ namespace InstanceSolvers
                 }
                 ChooseMoveToPerform(moves);
             }
+            Stopwatch.Stop();
         }
 
         private void CreateMoveFactoriesIfEmpty()
@@ -120,10 +128,10 @@ namespace InstanceSolvers
                     new InsertMoveFactory(Solution)
                     {
                         MildlyRandomOrder = true,
-                        PositionsCountLimit = 10,
+                        PositionsCountLimit = 5,
                         MaxTasksChecked = 5,
-                        MaxBreaksChecked = 10,
-                        IgnoreWhenUnitOverfillAbove = 10,
+                        MaxBreaksChecked = 5,
+                        IgnoreWhenUnitOverfillAbove = 20,
                         IgnoreTasksWithCompletedViews = true,
                         Random = Random,
                     },
@@ -137,27 +145,44 @@ namespace InstanceSolvers
                     new SwapMoveFactory(Solution)
                     {
                         MildlyRandomOrder = true,
-                        PositionsCountLimit = 10,
+                        PositionsCountLimit = 5,
                         MaxTasksChecked = 5,
-                        MaxBreaksChecked = 10,
+                        MaxBreaksChecked = 5,
                         Random = Random,
                     },
                 };
             }
         }
 
+        private bool TimeToEnd()
+        {
+            if(Solution.CompletionScore >= 1 && StopWhenCompleted)
+            {
+                return true;
+            }
+            if(MaxTime != default(TimeSpan) && Stopwatch.Elapsed > MaxTime)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void ChooseMoveToPerform(List<IMove> moves)
         {
-            if(moves.Count == 0)
+            if(moves.Count == 0 || TimeToEnd())
             {
                 return;
             }
             foreach (var move in moves)
             {
+                if (TimeToEnd())
+                {
+                    return;
+                }
                 move.Asses();
             }
             var candidate = moves.OrderBy(m => m.OverallDifference.WeightedLoss).OrderBy(m => m.OverallDifference.IntegrityLossScore).FirstOrDefault();
-            if (candidate.OverallDifference.IntegrityLossScore < 0 || (candidate.OverallDifference.IntegrityLossScore == 0 && candidate.OverallDifference.WeightedLoss < 0))
+            if (!candidate.OverallDifference.HasScoreWorsened() || !StopWhenStepScoreDecrease)
             {
                 candidate.Execute();
                 Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
