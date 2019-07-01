@@ -56,7 +56,7 @@ namespace InstanceGenerator.SolutionObjects
         public IScoringFunction ScoringFunction { get; set; }
 
         [JsonIgnore]
-        public AdvertisementOrder AdvertisementOrderData { get; set; }
+        public AdvertisementTask AdvertisementOrderData { get; set; }
 
         [JsonProperty(Order = 1)]
         public Dictionary<int, List<int>> BreaksPositions { get; set; } = new Dictionary<int, List<int>>();

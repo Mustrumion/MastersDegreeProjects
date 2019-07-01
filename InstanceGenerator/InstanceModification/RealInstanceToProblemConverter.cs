@@ -217,13 +217,13 @@ namespace InstanceGenerator.InstanceModification
 
         public void GenerateAllAdOrdersData()
         {
-            foreach(AdvertisementOrder order in Instance.AdOrders.Values)
+            foreach(AdvertisementTask order in Instance.AdOrders.Values)
             {
                 GenerateAdOrderData(order);
             }
         }
 
-        private void CountMinTimesAired(AdvertisementOrder order)
+        private void CountMinTimesAired(AdvertisementTask order)
         {
             TimeSpan sumSpan = new TimeSpan(0, 0, 0);
             foreach(AdvertisementInstance ad in order.AdvertisementInstances)
@@ -238,7 +238,7 @@ namespace InstanceGenerator.InstanceModification
             order.MinTimesAired = Math.Max(requiredAmount + MinTimesAiredOffset, 0);
         }
 
-        private void GenerateSelfIncompatibilityData(AdvertisementOrder order)
+        private void GenerateSelfIncompatibilityData(AdvertisementTask order)
         {
             int minSelfInterval = DefaultAdsInBetweenSame;
             int maxAiredInBlock = 0;
@@ -365,7 +365,7 @@ namespace InstanceGenerator.InstanceModification
             }
         }
 
-        private void GenerateAdOrderData(AdvertisementOrder order)
+        private void GenerateAdOrderData(AdvertisementTask order)
         {
             order.Gain = order.AdvertisementInstances.Sum(a => a.Profit);
             order.DueTime = order.AdvertisementInstances.OrderBy(a => a.EndTime).Last().EndTime + DueTimeOffset;

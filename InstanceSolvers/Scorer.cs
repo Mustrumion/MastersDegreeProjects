@@ -32,18 +32,18 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
         private Dictionary<int, TaskData> _temporaryTaskData;
-        private IReadOnlyList<AdvertisementOrder> _currentBreakOrder;
+        private IReadOnlyList<AdvertisementTask> _currentBreakOrder;
         private TvBreak _currentBreak;
         private int _unitsFromStart;
 
         private TaskData _currentlyAssessed;
         private int _currentAdPosition;
-        private AdvertisementOrder _currentAd;
+        private AdvertisementTask _currentAd;
         private int _currentAdCount;
         private Dictionary<int, double> _currentAdIncompatibilityCosts;
 
 
-        private void CheckAdToAdCompatibility(AdvertisementOrder other, int otherPosition)
+        private void CheckAdToAdCompatibility(AdvertisementTask other, int otherPosition)
         {
             if(_currentAd == other)
             {
@@ -111,7 +111,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
 
-        private void CalculateAdConstraints(AdvertisementOrder order, int position)
+        private void CalculateAdConstraints(AdvertisementTask order, int position)
         {
             _currentAdPosition = position;
             _currentAdCount = 1;

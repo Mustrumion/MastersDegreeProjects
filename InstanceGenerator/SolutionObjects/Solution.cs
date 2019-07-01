@@ -173,6 +173,10 @@ namespace InstanceGenerator.SolutionObjects
         public void RestoreTaskView()
         {
             AdOrderData = new Dictionary<int, TaskData>();
+            foreach (var task in Instance.AdOrders.Values)
+            {
+                AdOrderData.Add(task.ID, new TaskData() { AdvertisementOrderData = task });
+            }
             foreach (var tvBreak in _advertisementsScheduledOnBreaks.Values)
             {
                 var listOfAds = tvBreak.Order;
@@ -223,10 +227,10 @@ namespace InstanceGenerator.SolutionObjects
             {
                 taskData.BreaksPositions.Remove(breakId);
             }
-            if (taskData.BreaksPositions.Count == 0)
-            {
-                AdOrderData.Remove(orderId);
-            }
+            //if (taskData.BreaksPositions.Count == 0)
+            //{
+            //    AdOrderData.Remove(orderId);
+            //}
         }
 
 
@@ -237,7 +241,7 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="ad"></param>
         /// <param name="tvBreak"></param>
         /// <param name="position"></param>
-        public void AddAdToBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
+        public void AddAdToBreak(AdvertisementTask ad, TvBreak tvBreak, int position)
         {
             if(!_advertisementsScheduledOnBreaks.TryGetValue(tvBreak.ID, out var breakSchedule))
             {
@@ -268,7 +272,7 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="ad"></param>
         /// <param name="tvBreak"></param>
         /// <param name="position"></param>
-        public void RemoveAdFromBreak(AdvertisementOrder ad, TvBreak tvBreak, int position)
+        public void RemoveAdFromBreak(TvBreak tvBreak, int position)
         {
             var schedule = _advertisementsScheduledOnBreaks[tvBreak.ID];
             var adsInBreak = schedule.Order;
@@ -285,7 +289,8 @@ namespace InstanceGenerator.SolutionObjects
                     }
                 }
             }
-            RemoveAdFromTaskDataDictionary(ad.ID, tvBreak.ID, position);
+            AdvertisementTask order = schedule.Order[position];
+            RemoveAdFromTaskDataDictionary(order.ID, tvBreak.ID, position);
             schedule.RemoveAt(position);
         }
     }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.Moves
 {
-    public class Insert : IMove
+    public class Swap : IMove
     {
         public TaskCompletionDifference OverallDifference { get; set; }
         public Solution Solution { get; set; }
@@ -86,6 +86,7 @@ namespace InstanceSolvers.Moves
             }
             _oldBreakScores = _oldSchedule.Scores;
             _newSchedule = _oldSchedule.DeepClone();
+            _newSchedule.RemoveAt(Position);
             _newSchedule.Insert(Position, AdvertisementOrder);
             Solution.GradingFunction.AssesBreak(_newSchedule);
             _newBreakScores = _newSchedule.Scores;
@@ -104,6 +105,7 @@ namespace InstanceSolvers.Moves
             {
                 Asses();
             }
+            Solution.RemoveAdFromBreak(TvBreak, Position);
             Solution.AddAdToBreak(AdvertisementOrder, TvBreak, Position);
             Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newBreakScores;
             foreach (var statsAfter in _changedOrderStatsAfter.Values)

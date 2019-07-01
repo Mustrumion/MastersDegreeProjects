@@ -10,7 +10,7 @@ namespace InstanceGenerator.InstanceData.Activities
 {
     public class AdvertisementInstance : BaseActivity
     {
-        private AdvertisementOrder _adOrder;
+        private AdvertisementTask _adOrder;
         private TypeOfAd _type;
         private Brand _brand;
 
@@ -20,7 +20,7 @@ namespace InstanceGenerator.InstanceData.Activities
         public double Viewers { get; set; }
 
         [XmlIgnore]
-        public AdvertisementOrder AdvertisementOrder
+        public AdvertisementTask AdvertisementOrder
         {
             get => _adOrder;
             set

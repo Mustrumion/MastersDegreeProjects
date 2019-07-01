@@ -66,7 +66,7 @@
     <Compile Include="InstanceData\Activities\Autopromotion.cs" />
     <Compile Include="InstanceData\Activities\BaseActivity.cs" />
     <Compile Include="InstanceData\Activities\TvProgram.cs" />
-    <Compile Include="InstanceData\AdvertisementOrder.cs" />
+    <Compile Include="InstanceData\AdvertisementTask.cs" />
     <Compile Include="InstanceData\TvBreak.cs" />
     <Compile Include="InstanceData\Channel.cs" />
     <Compile Include="InstanceData\Instance.cs" />

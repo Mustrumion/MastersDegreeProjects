@@ -52,7 +52,7 @@ namespace InstanceGenerator.InstanceData
         /// </summary>
         [JsonProperty(Order = 3)]
         [Description("Tasks - advertisements to schedule with their constraints.")]
-        public Dictionary<int, AdvertisementOrder> AdOrders { get; set; } = new Dictionary<int, AdvertisementOrder>();
+        public Dictionary<int, AdvertisementTask> AdOrders { get; set; } = new Dictionary<int, AdvertisementTask>();
 
         /// <summary>
         /// Channels - 'machines' on which we schedule the tasks.
@@ -97,18 +97,18 @@ namespace InstanceGenerator.InstanceData
         }
 
 
-        public IEnumerable<AdvertisementOrder> GetBlocksOfAdsList()
+        public IEnumerable<AdvertisementTask> GetBlocksOfAdsList()
         {
             return AdOrders.Values;
         }
 
-        public AdvertisementOrder GetOrAddOrderOfAds(int advertisementId)
+        public AdvertisementTask GetOrAddOrderOfAds(int advertisementId)
         {
             if (AdOrders.ContainsKey(advertisementId))
             {
                 return AdOrders[advertisementId];
             }
-            AdvertisementOrder advert = new AdvertisementOrder()
+            AdvertisementTask advert = new AdvertisementTask()
             {
                 ID = advertisementId,
             };

@@ -107,7 +107,7 @@ namespace InstanceSolvers
             while (Solution.CompletionScore < 1 && _movePerformed)
             {
                 _movePerformed = false;
-                foreach (AdvertisementOrder order in ordersInOrder)
+                foreach (AdvertisementTask order in ordersInOrder)
                 {
                     TryToScheduleOrder(order);
                 }
@@ -131,7 +131,7 @@ namespace InstanceSolvers
         }
 
 
-        private void TryToScheduleOrder(AdvertisementOrder order)
+        private void TryToScheduleOrder(AdvertisementTask order)
         {
             foreach(var tvBreak in _breakInOrder)
             {
