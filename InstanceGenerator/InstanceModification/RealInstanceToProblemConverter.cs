@@ -14,15 +14,18 @@ namespace InstanceGenerator.InstanceModification
         public Instance Instance { get; set; }
         public double TimeUnitInSeconds { get; set; } = 3.0d;
         public double MinBeginingsProportionMultiplier { get; set; } = 0.8d;
+        public int MinBeginingsProportionOffset { get; set; } = -1;
         public double MinEndsProportionMultiplier { get; set; } = 0.8d;
+        public int MinEndsProportionOffset { get; set; } = -1;
         public double MinViewsMultiplier { get; set; } = 0.999d;
         public int MaxAdsPerBreakOffset { get; set; } = 1;
+        public int DefaultAdsInBetweenSame { get; set; } = 99999;
         public int MinAdsInBetweenSameOffset { get; set; } = -1;
         public int MinTimesAiredOffset { get; set; } = 0;
         public TimeSpan DueTimeOffset { get; set; } = new TimeSpan(0, 0, 0, 0);
         public string InstanceDescription { get; set; }
         public bool RoundDueTimeUpToDays { get; set; } = false;
-        public bool MinTimesAiredWeighted { get; set; } = false;
+        public bool MinTimesAiredWeighted { get; set; } = false; //changing to true will often result in solution based on real data being not acceptable
 
 
         private Dictionary<int, int> nightTypesCount;
@@ -237,7 +240,7 @@ namespace InstanceGenerator.InstanceModification
 
         private void GenerateSelfIncompatibilityData(AdvertisementOrder order)
         {
-            int minSelfInterval = 999999 - MinAdsInBetweenSameOffset;
+            int minSelfInterval = DefaultAdsInBetweenSame;
             int maxAiredInBlock = 0;
             foreach(var ad in order.AdvertisementInstances)
             {
@@ -292,14 +295,14 @@ namespace InstanceGenerator.InstanceModification
             {
                 if (dayTypesCount.ContainsKey(type.ID) && nightlyBreaks.Count > 0)
                 {
-                    if(dayTypesCount[type.ID]/type.Ads.Count > cutoffTreshold)
+                    if(dayTypesCount[type.ID]/type.Ads.Count >= cutoffTreshold)
                     {
                         AddIncompatibility(type, nightlyBreaks);
                     }
                 }
                 if (nightTypesCount.ContainsKey(type.ID) && dailyBreaks.Count > 0)
                 {
-                    if (nightTypesCount[type.ID] / type.Ads.Count > cutoffTreshold)
+                    if (nightTypesCount[type.ID] / type.Ads.Count >= cutoffTreshold)
                     {
                         AddIncompatibility(type, dailyBreaks);
                     }
@@ -377,10 +380,12 @@ namespace InstanceGenerator.InstanceModification
             order.AdSpanUnits = modeSpanGroup.First().SpanUnits;
             //As a consequence we count the times aired requirements based on total span and above chosen single ad span
             CountMinTimesAired(order);
-            order.MinBeginingsProportion = order.AdvertisementInstances.Where(a => a.Break.Advertisements.First() == a).Count();
+            int minBeginingsCount = order.AdvertisementInstances.Where(a => a.Break.Advertisements.First() == a).Count();
+            order.MinBeginingsProportion = Math.Max(0, minBeginingsCount + MinBeginingsProportionOffset);
             order.MinBeginingsProportion /= order.AdvertisementInstances.Count();
             order.MinBeginingsProportion *= MinBeginingsProportionMultiplier;
-            order.MinEndsProportion = order.AdvertisementInstances.Where(a => a.Break.Advertisements.Last() == a).Count();
+            int minEndsCount = order.AdvertisementInstances.Where(a => a.Break.Advertisements.Last() == a).Count();
+            order.MinEndsProportion = Math.Max(0, minEndsCount + MinEndsProportionOffset);
             order.MinEndsProportion /= order.AdvertisementInstances.Count();
             order.MinEndsProportion *= MinEndsProportionMultiplier;
             order.Type = order.AdvertisementInstances.First().Type;

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace InstanceGenerator.DataAccess
@@ -41,6 +42,11 @@ namespace InstanceGenerator.DataAccess
         {
             if (Writer == null)
             {
+                FileInfo file = new FileInfo(Path);
+                if (!file.Directory.Exists)
+                {
+                    file.Directory.Create();
+                }
                 Writer = new StreamWriter(Path);
             }
             JsonSerializerSettings settings = new JsonSerializerSettings
@@ -51,7 +57,8 @@ namespace InstanceGenerator.DataAccess
 
             JsonSerializer ser = JsonSerializer.Create(settings);
             ser.Serialize(Writer, instance);
-            Writer.FlushAsync();
+            Writer.Flush();
+            Writer.Close();
         }
 
         public void SerializeSolution(Solution solution, SolutionSerializationMode solutionSerializationMode = SolutionSerializationMode.Basic)
@@ -59,6 +66,11 @@ namespace InstanceGenerator.DataAccess
             solution.PrepareForSerialization();
             if (Writer == null)
             {
+                FileInfo file = new FileInfo(Path);
+                if (!file.Directory.Exists)
+                {
+                    file.Directory.Create();
+                }
                 Writer = new StreamWriter(Path);
             }
             JsonSerializerSettings settings = new JsonSerializerSettings
@@ -94,25 +106,48 @@ namespace InstanceGenerator.DataAccess
             JsonSerializer ser = JsonSerializer.Create(settings);
             ser.ContractResolver = jsonResolver;
             ser.Serialize(Writer, solution);
-            Writer.FlushAsync();
+            Writer.Flush();
+            Writer.Close();
         }
 
         public Instance DeserializeInstance()
         {
             if (Reader == null)
             {
-                Reader = new StreamReader(Path);
+                Reader = WaitForFile(Path);
             }
             Instance instance = JsonConvert.DeserializeObject<Instance>(Reader.ReadToEnd());
             instance.RestoreStructuresAfterDeserialization();
             return instance;
         }
 
+        private StreamReader WaitForFile(string fullPath)
+        {
+            for (int numTries = 0; numTries < 40; numTries++)
+            {
+                StreamReader fs = null;
+                try
+                {
+                    fs = new StreamReader(fullPath);
+                    return fs;
+                }
+                catch (IOException)
+                {
+                    if (fs != null)
+                    {
+                        fs.Dispose();
+                    }
+                    Thread.Sleep(50);
+                }
+            }
+            return null;
+        }
+
         public Solution DeserializeSolution(Instance instance = null)
         {
             if (Reader == null)
             {
-                Reader = new StreamReader(Path);
+                Reader = WaitForFile(Path);
             }
             Solution solution = JsonConvert.DeserializeObject<Solution>(Reader.ReadToEnd());
             if(instance != null)
