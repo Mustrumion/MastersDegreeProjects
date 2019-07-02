@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class RandomFastSolver : ISolver
+    public class FastGreedyHeuristic : ISolver
     {
         private Instance _instance;
         private Random _random;
@@ -19,9 +19,10 @@ namespace InstanceSolvers
         private Solution _solution;
 
         public string Description { get; set; }
+        public int MaxOverfillUnits { get; set; } = 10;
         private List<AdvertisementTask> _order { get; set; }
 
-        public RandomFastSolver()
+        public FastGreedyHeuristic()
         {
             Random rnd = new Random();
             _seed = rnd.Next();
@@ -76,7 +77,6 @@ namespace InstanceSolvers
             }
         }
 
-
         public Solution Solution
         {
             get => _solution;
@@ -92,33 +92,52 @@ namespace InstanceSolvers
 
         public void Solve()
         {
-            _order = new List<AdvertisementTask>();
-            foreach(var adInfo in Instance.AdOrders.Values)
-            {
-                for(int i = 0; i< adInfo.MinTimesAired; i++)
-                {
-                    _order.Add(adInfo);
-                }
-            }
-            _order.Shuffle(_random);
-            int curr = 0;
+            Solution.RestoreTaskView();
             var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.ToList();
             breakList.Shuffle(_random);
             foreach (var schedule in breakList)
             {
-                int currentSize = 0;
-                while (curr < _order.Count)
+                CreateSchedule(schedule);
+            }
+            ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+        }
+
+        private void AddToSolutionScores(Dictionary<int, TaskData> addedScores)
+        {
+            foreach (var taskData in addedScores.Values)
+            {
+                TaskData currentStatsForTask = Solution.AdOrderData[taskData.TaskID];
+                currentStatsForTask.MergeOtherDataIntoThis(taskData);
+            }
+        }
+
+
+        private void CreateSchedule(BreakSchedule schedule)
+        {
+            var advertisementDataList = Solution.AdOrderData.Values.Where(t => !t.TimesAiredSatisfied || t.ViewsSatisfied).ToList();
+            advertisementDataList.Shuffle(_random);
+            foreach(var ad in advertisementDataList)
+            {
+                if (Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(ad.AdvertisementOrderData.ID, out var incompatibleBreaks))
                 {
-                    if ((currentSize += _order[curr].AdSpanUnits) >= schedule.BreakData.SpanUnits)
+                    if (incompatibleBreaks.ContainsKey(schedule.BreakData.ID))
                     {
-                        break;
+                        continue;
                     }
-                    schedule.AddAd(_order[curr]);
-                    curr++;
+                }
+                Instance.BrandIncompatibilityCost.TryGetValue(ad.AdvertisementOrderData.Type.ID, out var brandCompatibility);
+                if(schedule.Order.Any(a => a.Type.ID == ad.AdvertisementOrderData.Type.ID && (brandCompatibility == null || !brandCompatibility.ContainsKey(a.Brand.ID))))
+                {
+                    continue;
+                }
+                schedule.Append(ad.AdvertisementOrderData);
+                if(schedule.UnitFill > schedule.BreakData.SpanUnits + MaxOverfillUnits)
+                {
+                    break;
                 }
             }
-            Solution.RestoreTaskView();
-            ScoringFunction.AssesSolution(Solution);
+            ScoringFunction.AssesBreak(schedule);
+            AddToSolutionScores(schedule.Scores);
         }
     }
 }

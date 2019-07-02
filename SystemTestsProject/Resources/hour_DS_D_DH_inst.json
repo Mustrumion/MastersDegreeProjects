@@ -387,10 +387,10 @@
       "Gain": 9340.0,
       "MinViewership": 291952.92483,
       "MinTimesAired": 5,
-      "MinBeginingsProportion": 0.16000000000000003,
+      "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:58:57",
       "OverdueCostParameter": 9340.0,
       "Type": {
@@ -411,7 +411,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:10:57",
       "OverdueCostParameter": 1400.0,
       "Type": {
@@ -432,7 +432,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:27:48",
       "OverdueCostParameter": 3759.0,
       "Type": {
@@ -453,7 +453,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:26:12",
       "OverdueCostParameter": 1960.0,
       "Type": {
@@ -474,7 +474,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:11:42",
       "OverdueCostParameter": 980.0,
       "Type": {
@@ -493,9 +493,9 @@
       "MinViewership": 120756.6225,
       "MinTimesAired": 2,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.4,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:27:03",
       "OverdueCostParameter": 2779.0,
       "Type": {
@@ -513,10 +513,10 @@
       "Gain": 3157.0,
       "MinViewership": 110902.986,
       "MinTimesAired": 4,
-      "MinBeginingsProportion": 0.8,
+      "MinBeginingsProportion": 0.60000000000000009,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:57:57",
       "OverdueCostParameter": 3157.0,
       "Type": {
@@ -537,7 +537,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:26:48",
       "OverdueCostParameter": 6850.0,
       "Type": {
@@ -558,7 +558,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:45:53",
       "OverdueCostParameter": 1710.0,
       "Type": {
@@ -579,7 +579,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:48:24",
       "OverdueCostParameter": 2813.0,
       "Type": {
@@ -600,7 +600,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:46:38",
       "OverdueCostParameter": 1197.0,
       "Type": {
@@ -621,7 +621,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:46:30",
       "OverdueCostParameter": 2800.0,
       "Type": {
@@ -642,7 +642,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:28:42",
       "OverdueCostParameter": 1710.0,
       "Type": {
@@ -660,10 +660,10 @@
       "Gain": 6850.0,
       "MinViewership": 257418.324,
       "MinTimesAired": 4,
-      "MinBeginingsProportion": 0.2,
-      "MinEndsProportion": 0.4,
+      "MinBeginingsProportion": 0.0,
+      "MinEndsProportion": 0.2,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:29:12",
       "OverdueCostParameter": 6850.0,
       "Type": {
@@ -684,7 +684,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:58:47",
       "OverdueCostParameter": 940.0,
       "Type": {
@@ -705,7 +705,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:43:42",
       "OverdueCostParameter": 1400.0,
       "Type": {
@@ -726,7 +726,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:59:12",
       "OverdueCostParameter": 1960.0,
       "Type": {
@@ -747,7 +747,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:44:57",
       "OverdueCostParameter": 1400.0,
       "Type": {
@@ -768,7 +768,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:45:27",
       "OverdueCostParameter": 1400.0,
       "Type": {
@@ -789,7 +789,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:45:42",
       "OverdueCostParameter": 980.0,
       "Type": {
@@ -810,7 +810,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:45:51",
       "OverdueCostParameter": 770.0,
       "Type": {
@@ -831,7 +831,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:59:21",
       "OverdueCostParameter": 2183.0,
       "Type": {
@@ -850,9 +850,9 @@
       "MinViewership": 20905.074,
       "MinTimesAired": 1,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.8,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:46:45",
       "OverdueCostParameter": 980.0,
       "Type": {
@@ -873,7 +873,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:58:27",
       "OverdueCostParameter": 1400.0,
       "Type": {
@@ -892,9 +892,9 @@
       "MinViewership": 19875.105,
       "MinTimesAired": 2,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.4,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:59:56",
       "OverdueCostParameter": 1710.0,
       "Type": {
@@ -912,10 +912,10 @@
       "Gain": 1165.0,
       "MinViewership": 70374.22533,
       "MinTimesAired": 1,
-      "MinBeginingsProportion": 0.8,
+      "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:00:03",
       "OverdueCostParameter": 1165.0,
       "Type": {
@@ -933,10 +933,10 @@
       "Gain": 3735.0,
       "MinViewership": 179022.46832999997,
       "MinTimesAired": 3,
-      "MinBeginingsProportion": 0.26666666666666666,
-      "MinEndsProportion": 0.53333333333333333,
+      "MinBeginingsProportion": 0.0,
+      "MinEndsProportion": 0.26666666666666666,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:57:12",
       "OverdueCostParameter": 3735.0,
       "Type": {
@@ -957,7 +957,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:13:18",
       "OverdueCostParameter": 2570.0,
       "Type": {
@@ -978,7 +978,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:28:18",
       "OverdueCostParameter": 4369.0,
       "Type": {
@@ -997,9 +997,9 @@
       "MinViewership": 136301.23232999997,
       "MinTimesAired": 2,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.4,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:25:28",
       "OverdueCostParameter": 2016.0,
       "Type": {
@@ -1017,10 +1017,10 @@
       "Gain": 1285.0,
       "MinViewership": 95251.653,
       "MinTimesAired": 1,
-      "MinBeginingsProportion": 0.8,
+      "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:24:24",
       "OverdueCostParameter": 1285.0,
       "Type": {
@@ -1041,7 +1041,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:25:48",
       "OverdueCostParameter": 2570.0,
       "Type": {
@@ -1062,7 +1062,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:48:54",
       "OverdueCostParameter": 5450.0,
       "Type": {
@@ -1083,7 +1083,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:28:48",
       "OverdueCostParameter": 2570.0,
       "Type": {
@@ -1101,10 +1101,10 @@
       "Gain": 2570.0,
       "MinViewership": 108441.77967,
       "MinTimesAired": 1,
-      "MinBeginingsProportion": 0.8,
+      "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:47:15",
       "OverdueCostParameter": 2570.0,
       "Type": {
@@ -1125,7 +1125,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:58:38",
       "OverdueCostParameter": 2419.0,
       "Type": {
@@ -1146,7 +1146,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:48:00",
       "OverdueCostParameter": 2570.0,
       "Type": {
@@ -1165,9 +1165,9 @@
       "MinViewership": 111144.744,
       "MinTimesAired": 2,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.4,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:48:15",
       "OverdueCostParameter": 2016.0,
       "Type": {
@@ -1188,7 +1188,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:49:39",
       "OverdueCostParameter": 1799.0,
       "Type": {
@@ -1209,7 +1209,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:50:09",
       "OverdueCostParameter": 2570.0,
       "Type": {
@@ -1230,7 +1230,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:50:24",
       "OverdueCostParameter": 2016.0,
       "Type": {
@@ -1249,9 +1249,9 @@
       "MinViewership": 189236.574,
       "MinTimesAired": 2,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.4,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:59:42",
       "OverdueCostParameter": 4626.0,
       "Type": {
@@ -1269,10 +1269,10 @@
       "Gain": 3190.0,
       "MinViewership": 93436.9695,
       "MinTimesAired": 3,
-      "MinBeginingsProportion": 0.53333333333333333,
+      "MinBeginingsProportion": 0.26666666666666666,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:58:21",
       "OverdueCostParameter": 3190.0,
       "Type": {
@@ -1293,7 +1293,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:58:42",
       "OverdueCostParameter": 2313.0,
       "Type": {
@@ -1314,7 +1314,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:59:12",
       "OverdueCostParameter": 2570.0,
       "Type": {
@@ -1333,9 +1333,9 @@
       "MinViewership": 72346.581,
       "MinTimesAired": 1,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.8,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:59:51",
       "OverdueCostParameter": 1413.0,
       "Type": {
@@ -1356,7 +1356,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:44:59",
       "OverdueCostParameter": 434.0,
       "Type": {
@@ -1377,7 +1377,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:11:00",
       "OverdueCostParameter": 310.0,
       "Type": {
@@ -1398,7 +1398,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:11:30",
       "OverdueCostParameter": 310.0,
       "Type": {
@@ -1419,7 +1419,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:24:43",
       "OverdueCostParameter": 217.0,
       "Type": {
@@ -1440,7 +1440,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:25:13",
       "OverdueCostParameter": 310.0,
       "Type": {
@@ -1459,9 +1459,9 @@
       "MinViewership": 13591.395,
       "MinTimesAired": 1,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.8,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:26:28",
       "OverdueCostParameter": 310.0,
       "Type": {
@@ -1479,10 +1479,10 @@
       "Gain": 217.0,
       "MinViewership": 2303.36433,
       "MinTimesAired": 1,
-      "MinBeginingsProportion": 0.8,
+      "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:44:44",
       "OverdueCostParameter": 217.0,
       "Type": {
@@ -1503,7 +1503,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:45:08",
       "OverdueCostParameter": 170.0,
       "Type": {
@@ -1524,7 +1524,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:45:23",
       "OverdueCostParameter": 217.0,
       "Type": {
@@ -1545,7 +1545,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:46:23",
       "OverdueCostParameter": 310.0,
       "Type": {
@@ -1566,7 +1566,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:46:44",
       "OverdueCostParameter": 124.0,
       "Type": {
@@ -1587,7 +1587,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:46:59",
       "OverdueCostParameter": 217.0,
       "Type": {
@@ -1608,7 +1608,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:59:17",
       "OverdueCostParameter": 310.0,
       "Type": {
@@ -1629,7 +1629,7 @@
       "MinBeginingsProportion": 0.0,
       "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T18:59:26",
       "OverdueCostParameter": 170.0,
       "Type": {
@@ -1648,9 +1648,9 @@
       "MinViewership": 6910.083,
       "MinTimesAired": 1,
       "MinBeginingsProportion": 0.0,
-      "MinEndsProportion": 0.8,
+      "MinEndsProportion": 0.0,
       "MaxPerBlock": 1,
-      "MinJobsBetweenSame": 999999,
+      "MinJobsBetweenSame": 99998,
       "DueTime": "2014-05-05T19:00:02",
       "OverdueCostParameter": 310.0,
       "Type": {

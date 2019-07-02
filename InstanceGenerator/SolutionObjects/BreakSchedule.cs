@@ -76,6 +76,12 @@ namespace InstanceGenerator.SolutionObjects
             _unitFill += ad.AdSpanUnits;
         }
 
+        public void Append(AdvertisementTask ad)
+        {
+            _order.Add(ad);
+            _unitFill += ad.AdSpanUnits;
+        }
+
         public int Count => _order.Count;
 
         public int UnitFill => _unitFill;

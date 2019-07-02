@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FastGreedyHeuristic.cs" />
     <Compile Include="MoveFactories\IMoveFactory.cs" />
     <Compile Include="MoveFactories\SwapMoveFactory.cs" />
     <Compile Include="MoveFactories\InsertMoveFactory.cs" />

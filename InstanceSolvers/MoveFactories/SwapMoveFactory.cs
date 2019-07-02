@@ -24,6 +24,7 @@ namespace InstanceSolvers.MoveFactories
         public Solution Solution { get; set; }
         public int IgnoreWhenUnitOverfillAbove { get; set; }
         public bool IgnoreTasksWithCompletedViews { get; set; }
+        public bool AlwaysReturnStartsAndEnds { get; set; } = true;
 
         public int PositionsCountLimit { get; set; }
 
@@ -123,9 +124,22 @@ namespace InstanceSolvers.MoveFactories
                         positionList = positionList.ToList();
                         (positionList as IList<int>).Shuffle(Random);
                     }
+                    
                     if (PositionsCountLimit != 0)
                     {
-                        positionList = positionList.Take(PositionsCountLimit);
+                        if (AlwaysReturnStartsAndEnds)
+                        {
+                            if(positionList.Count() > 2)
+                            {
+                                var newList = new List<int> { positionList.First(), positionList.Last() };
+                                newList.AddRange(positionList.Take(PositionsCountLimit - 2));
+                                positionList = newList;
+                            }
+                        }
+                        else
+                        {
+                            positionList = positionList.Take(PositionsCountLimit);
+                        }
                     }
                     foreach (int position in positionList)
                     {

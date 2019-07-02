@@ -132,7 +132,7 @@ Proportion of starts/ends required gets multiplied by 0.7.";
             conv.MinEndsProportionMultiplier = 0.7;
             conv.MinViewsMultiplier = 0.7;
             GenerateInstancesForDifficulty("medium", conv);
-            
+
             Console.WriteLine("easy difficulty start");
             conv.InstanceDescription =
 @"Easy difficulty. Changed parameters from medium:
@@ -144,6 +144,13 @@ Number of times aired gets offset by -5.";
             conv.MinViewsMultiplier = 0.5;
             conv.MinTimesAiredOffset = -5;
             GenerateInstancesForDifficulty("easy", conv);
+
+            Console.WriteLine("trivial difficulty start");
+            conv.InstanceDescription =
+@"Trivial difficulty. Changed parameters from easy:
+All advertisements are fully compatible with one another and breaks.";
+            conv.MakeEverythingCompatible = true;
+            GenerateInstancesForDifficulty("trivial", conv);
         }
     }
 }

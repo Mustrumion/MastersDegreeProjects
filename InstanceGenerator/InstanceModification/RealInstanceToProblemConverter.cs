@@ -26,7 +26,7 @@ namespace InstanceGenerator.InstanceModification
         public string InstanceDescription { get; set; }
         public bool RoundDueTimeUpToDays { get; set; } = false;
         public bool MinTimesAiredWeighted { get; set; } = false; //changing to true will often result in solution based on real data being not acceptable
-
+        public bool MakeEverythingCompatible { get; set; } = false;
 
         private Dictionary<int, int> nightTypesCount;
         private Dictionary<int, int> dayTypesCount;

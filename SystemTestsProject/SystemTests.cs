@@ -118,6 +118,30 @@ namespace SystemTestsProject
         }
 
         [TestMethod]
+        public void GreedyFastHeuristicSolveDay3ChannelInstance()
+        {
+            var file = Properties.Resources.day_DS_D_DH_inst;
+            var reader = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = reader.DeserializeInstance();
+            FastGreedyHeuristic solver = new FastGreedyHeuristic()
+            {
+                Instance = instance,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                MaxOverfillUnits = 10,
+            };
+            solver.Solve();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = @"results\day_DS_D_DH_sol_greedyfastheur.json"
+            };
+            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+        }
+
+        [TestMethod]
         public void LocalRandomSolveDay3ChannelInstance()
         {
             var file = Properties.Resources.day_DS_D_DH_inst;
@@ -139,43 +163,13 @@ namespace SystemTestsProject
                 Solution = randomSolver.Solution,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
+                MaxTime = new TimeSpan(0, 0, 15),
 
             };
             solver.Solve();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer()
             {
                 Path = @"results\day_DS_D_DH_sol_localrandom.json"
-            };
-            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
-        }
-
-        [TestMethod]
-        public void LocalSteepSolveHour3ChannelInstance()
-        {
-            var file = Properties.Resources.hour_DS_D_DH_inst;
-            var reader = new InstanceJsonSerializer
-            {
-                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
-            };
-            Instance instance = reader.DeserializeInstance();
-            LocalRandomSearch solver = new LocalRandomSearch()
-            {
-                Instance = instance,
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-            };
-            solver.MoveFactories = new List<IMoveFactory>
-            {
-                new InsertMoveFactory(solver.Solution)
-                {
-                    IgnoreWhenUnitOverfillAbove = 20,
-                    Random = solver.Random,
-                }
-            };
-            solver.Solve();
-            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
-            {
-                Path = @"results\hour_DS_D_DH_sol_localsteep.json"
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
         }

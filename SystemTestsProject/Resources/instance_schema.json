@@ -78,7 +78,7 @@
         "null"
       ],
       "additionalProperties": {
-        "$id": "InstanceGenerator.InstanceData.AdvertisementOrder",
+        "$id": "InstanceGenerator.InstanceData.AdvertisementTask",
         "type": [
           "object",
           "null"
