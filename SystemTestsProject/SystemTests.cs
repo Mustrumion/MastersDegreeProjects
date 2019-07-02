@@ -162,7 +162,8 @@ namespace SystemTestsProject
                 Solution = randomSolver.Solution,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
-                StopWhenStepScoreDecrease = true,
+                StopWhenCompleted = true,
+                MaxTime = new TimeSpan(0, 0, 60),
             };
             solver.Solve();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer()

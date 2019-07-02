@@ -13,15 +13,15 @@ namespace InstanceSolvers.MoveFactories
 {
     public class InsertMoveFactory : IMoveFactory
     {
-        private IEnumerable<TvBreak> _breaks { get; set; }
-        private IEnumerable<AdvertisementTask> _tasks { get; set; }
+        private Solution _solution;
+        private IEnumerable<TvBreak> _breaks;
+        private IEnumerable<AdvertisementTask> _tasks;
 
         public IEnumerable<TvBreak> Breaks { get; set; }
         public IEnumerable<AdvertisementTask> Tasks { get; set; }
         public Random Random { get; set; }
         public bool MildlyRandomOrder { get; set; }
         public Instance Instance { get; set; }
-        public Solution Solution { get; set; }
         public int IgnoreWhenUnitOverfillAbove { get; set; }
         public bool IgnoreTasksWithCompletedViews { get; set; }
         public bool AlwaysReturnStartsAndEnds { get; set; } = true;
@@ -31,10 +31,26 @@ namespace InstanceSolvers.MoveFactories
         public int MaxBreaksChecked { get; set; }
         public int MaxTasksChecked { get; set; }
 
+        public InsertMoveFactory()
+        {
+        }
+        
         public InsertMoveFactory(Solution solution)
         {
             Solution = solution;
-            Instance = solution.Instance;
+        }
+
+        public Solution Solution
+        {
+            get => _solution;
+            set
+            {
+                _solution = value;
+                if (_solution != null && Instance != _solution.Instance)
+                {
+                    Instance = Solution.Instance;
+                }
+            }
         }
 
         private void PrepareInitialLists()

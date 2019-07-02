@@ -29,7 +29,8 @@ namespace InstanceSolvers
 
         public bool StopWhenCompleted { get; set; } = true;
         public bool StopWhenStepScoreDecrease { get; set; }
-        public TimeSpan MaxTime { get; set; } = new TimeSpan(0, 0, 10);
+        public TimeSpan MaxTime { get; set; }
+        public bool PropagateRandomSeed { get; set; }
 
         public ISolver InitialSolver { get; set; }
 
@@ -108,17 +109,21 @@ namespace InstanceSolvers
 
         public void Solve()
         {
+            Stopwatch = new Stopwatch();
             Stopwatch.Start();
             if(InitialSolver != null)
             {
                 InitialSolver.Instance = Instance;
-                InitialSolver.Seed = Random.Next();
+                if (PropagateRandomSeed)
+                {
+                    InitialSolver.Seed = Random.Next();
+                }
                 InitialSolver.ScoringFunction = ScoringFunction;
                 InitialSolver.Solve();
+                Solution = InitialSolver.Solution;
             }
-            Solution = InitialSolver.Solution;
 
-            CreateMoveFactoriesIfEmpty();
+            InitializeMoveFactories();
             ScoringFunction.AssesSolution(Solution);
             _movePerformed = true;
             while (_movePerformed)
@@ -134,38 +139,43 @@ namespace InstanceSolvers
             Stopwatch.Stop();
         }
 
-        private void CreateMoveFactoriesIfEmpty()
+        private void InitializeMoveFactories()
         {
             if (MoveFactories == null)
             {
                 MoveFactories = new List<IMoveFactory>
                 {
-                    new InsertMoveFactory(Solution)
+                    new InsertMoveFactory()
                     {
                         MildlyRandomOrder = true,
                         PositionsCountLimit = 5,
                         MaxTasksChecked = 5,
                         MaxBreaksChecked = 5,
-                        IgnoreWhenUnitOverfillAbove = 20,
-                        IgnoreTasksWithCompletedViews = true,
-                        Random = Random,
+                        IgnoreWhenUnitOverfillAbove = 60,
+                        IgnoreTasksWithCompletedViews = false,
                     },
-                    new DeleteMoveFactory(Solution)
+                    new DeleteMoveFactory()
                     {
                         MildlyRandomOrder = true,
                         PositionsCountLimit = 10,
                         MaxBreaksChecked = 10,
-                        Random = Random,
                     },
-                    new SwapMoveFactory(Solution)
+                    new SwapMoveFactory()
                     {
                         MildlyRandomOrder = true,
-                        PositionsCountLimit = 5,
+                        PositionsCountLimit = 10,
                         MaxTasksChecked = 5,
                         MaxBreaksChecked = 5,
-                        Random = Random,
                     },
                 };
+            }
+            foreach (var moveFactory in MoveFactories)
+            {
+                if (PropagateRandomSeed)
+                {
+                    moveFactory.Random = new Random(Random.Next());
+                }
+                moveFactory.Solution = Solution;
             }
         }
 

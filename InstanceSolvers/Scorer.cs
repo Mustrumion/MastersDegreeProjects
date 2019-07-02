@@ -254,9 +254,13 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         {
             taskData.IntegrityLossScore =
                 1 - taskData.StartsCompletion
+                + (taskData.StartsSatisfied ? 0 : 0.01)
                 + 1 - taskData.EndsCompletion
+                + (taskData.EndsSatisfied ? 0 : 0.01)
                 + 1 - taskData.ViewsCompletion
+                + (taskData.ViewsSatisfied ? 0 : 0.01)
                 + 1 - taskData.TimesAiredCompletion
+                + (taskData.TimesAiredSatisfied ? 0 : 0.01)
                 + taskData.SelfIncompatibilityConflictsProportion
                 + taskData.SelfSpacingConflictsProportion
                 + taskData.OwnerConflictsProportion

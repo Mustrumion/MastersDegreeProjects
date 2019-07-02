@@ -13,22 +13,38 @@ namespace InstanceSolvers.MoveFactories
 {
     public class DeleteMoveFactory : IMoveFactory
     {
-        private IEnumerable<TvBreak> _breaks { get; set; }
+        private IEnumerable<TvBreak> _breaks;
+        private Solution _solution;
 
         public IEnumerable<TvBreak> Breaks { get; set; }
         public Random Random { get; set; }
         public bool MildlyRandomOrder { get; set; }
         public Instance Instance { get; set; }
-        public Solution Solution { get; set; }
 
         public int PositionsCountLimit { get; set; }
         public bool AlwaysReturnStartsAndEnds { get; set; } = true;
         public int MaxBreaksChecked { get; set; }
 
+        public DeleteMoveFactory()
+        {
+        }
+
         public DeleteMoveFactory(Solution solution)
         {
             Solution = solution;
-            Instance = solution.Instance;
+        }
+
+        public Solution Solution
+        {
+            get => _solution;
+            set
+            {
+                _solution = value;
+                if (_solution != null && Instance != _solution.Instance)
+                {
+                    Instance = Solution.Instance;
+                }
+            }
         }
 
         private void PrepareInitialLists()

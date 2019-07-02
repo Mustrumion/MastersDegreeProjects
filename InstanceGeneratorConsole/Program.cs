@@ -30,19 +30,15 @@ namespace InstanceGeneratorConsole
             //};
             //bulkInstanceGenerator.GenerateAllInstances();
 
-            RandomFastSolver randomSolver = new RandomFastSolver()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-            };
+            RandomFastSolver randomSolver = new RandomFastSolver();
             LocalRandomSearch solver = new LocalRandomSearch()
             {
                 InitialSolver = randomSolver,
                 Solution = randomSolver.Solution,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
-                MaxTime = new TimeSpan(0, 0, 30),
                 StopWhenCompleted = true,
+                MaxTime = new TimeSpan(0, 0, 60),
             };
             SolveEverything("local_random", solver);
         }
@@ -71,7 +67,7 @@ namespace InstanceGeneratorConsole
             foreach (var file in directory.GetFiles())
             {
                 string solutionName = Path.Combine(MAIN_DIRECTORY, solverDir, file.Name);
-                Solve(file.Name, solutionName, solver);
+                Solve(file.FullName, solutionName, solver);
             }
         }
 
