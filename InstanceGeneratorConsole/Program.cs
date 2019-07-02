@@ -24,11 +24,27 @@ namespace InstanceGeneratorConsole
 
         static void Main(string[] args)
         {
-            BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
+            //BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
+            //{
+            //    MainDirectory = MAIN_DIRECTORY,
+            //};
+            //bulkInstanceGenerator.GenerateAllInstances();
+
+            RandomFastSolver randomSolver = new RandomFastSolver()
             {
-                MainDirectory = MAIN_DIRECTORY,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
             };
-            bulkInstanceGenerator.GenerateAllInstances();
+            LocalRandomSearch solver = new LocalRandomSearch()
+            {
+                InitialSolver = randomSolver,
+                Solution = randomSolver.Solution,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                MaxTime = new TimeSpan(0, 0, 30),
+                StopWhenCompleted = true,
+            };
+            SolveEverything("local_random", solver);
         }
 
 
@@ -55,6 +71,7 @@ namespace InstanceGeneratorConsole
             foreach (var file in directory.GetFiles())
             {
                 string solutionName = Path.Combine(MAIN_DIRECTORY, solverDir, file.Name);
+                Solve(file.Name, solutionName, solver);
             }
         }
 

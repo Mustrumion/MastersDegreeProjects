@@ -13,11 +13,11 @@ namespace InstanceSolvers
     public class RandomFastSolver : ISolver
     {
         private Instance _instance;
-        private Random _random;
         private int _seed;
         private IScoringFunction _scoringFunction;
         private Solution _solution;
 
+        public Random Random { get; set; }
         public string Description { get; set; }
         private List<AdvertisementTask> _order { get; set; }
 
@@ -25,7 +25,7 @@ namespace InstanceSolvers
         {
             Random rnd = new Random();
             _seed = rnd.Next();
-            _random = new Random(_seed);
+            Random = new Random(_seed);
         }
 
         public int Seed
@@ -33,7 +33,7 @@ namespace InstanceSolvers
             get => _seed;
             set
             {
-                _random = new Random(value);
+                Random = new Random(value);
                 _seed = value;
             }
         }
@@ -50,6 +50,10 @@ namespace InstanceSolvers
                 if (Solution == null || Solution.Instance != Instance)
                 {
                     Solution = new Solution(Instance);
+                }
+                if (ScoringFunction != null && ScoringFunction.Instance != Instance)
+                {
+                    ScoringFunction.Instance = Instance;
                 }
             }
         }
@@ -100,10 +104,10 @@ namespace InstanceSolvers
                     _order.Add(adInfo);
                 }
             }
-            _order.Shuffle(_random);
+            _order.Shuffle(Random);
             int curr = 0;
             var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.ToList();
-            breakList.Shuffle(_random);
+            breakList.Shuffle(Random);
             foreach (var schedule in breakList)
             {
                 int currentSize = 0;

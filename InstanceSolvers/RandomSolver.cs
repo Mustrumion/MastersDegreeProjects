@@ -13,18 +13,18 @@ namespace InstanceSolvers
     public class RandomSolver : ISolver
     {
         private Instance _instance;
-        private Random _random;
         private int _seed;
         private IScoringFunction _scoringFunction;
         private Solution _solution;
 
+        public Random Random { get; set; }
         public string Description { get; set; }
 
         public RandomSolver()
         {
             Random rnd = new Random();
             _seed = rnd.Next();
-            _random = new Random(_seed);
+            Random = new Random(_seed);
         }
 
         public int Seed
@@ -32,7 +32,7 @@ namespace InstanceSolvers
             get => _seed;
             set
             {
-                _random = new Random(value);
+                Random = new Random(value);
                 _seed = value;
             }
         }
@@ -49,6 +49,10 @@ namespace InstanceSolvers
                 if (Solution == null || Solution.Instance != Instance)
                 {
                     Solution = new Solution(Instance);
+                }
+                if (ScoringFunction != null && ScoringFunction.Instance != Instance)
+                {
+                    ScoringFunction.Instance = Instance;
                 }
             }
         }
@@ -100,9 +104,9 @@ namespace InstanceSolvers
             {
                 return false;
             }
-            int breakNum = _random.Next(breaksWithEnoughSpace.Count);
+            int breakNum = Random.Next(breaksWithEnoughSpace.Count);
             BreakSchedule schedule = breaksWithEnoughSpace[breakNum];
-            int position = _random.Next(schedule.Count + 1);
+            int position = Random.Next(schedule.Count + 1);
             Insert insert = new Insert()
             {
                 TvBreak = schedule.BreakData,
@@ -117,10 +121,10 @@ namespace InstanceSolvers
 
         private void InsertInRandomBreak(TaskData taskData)
         {
-            int breakNum = _random.Next(Instance.Breaks.Count);
+            int breakNum = Random.Next(Instance.Breaks.Count);
             TvBreak tvBreak = Instance.Breaks.Values.ToList()[breakNum];
             BreakSchedule schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
-            int position = _random.Next(schedule.Count + 1);
+            int position = Random.Next(schedule.Count + 1);
             Insert insert = new Insert()
             {
                 TvBreak = schedule.BreakData,

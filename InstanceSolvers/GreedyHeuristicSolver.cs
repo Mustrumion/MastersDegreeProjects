@@ -18,8 +18,8 @@ namespace InstanceSolvers
         private Solution _solution;
         private bool _movePerformed;
         private int _seed;
-        private Random _random;
 
+        public Random Random { get; set; }
         public int PositionsPerBreakTakenIntoConsideration { get; set; } = 0;
         public int MaxBreakExtensionUnits { get; set; } = 20;
 
@@ -30,7 +30,7 @@ namespace InstanceSolvers
         {
             Random rnd = new Random();
             _seed = rnd.Next();
-            _random = new Random(_seed);
+            Random = new Random(_seed);
         }
 
         public int Seed
@@ -38,7 +38,7 @@ namespace InstanceSolvers
             get => _seed;
             set
             {
-                _random = new Random(value);
+                Random = new Random(value);
                 _seed = value;
             }
         }
@@ -56,6 +56,10 @@ namespace InstanceSolvers
                 if (Solution == null || Solution.Instance != Instance)
                 {
                     Solution = new Solution(Instance);
+                }
+                if (ScoringFunction != null && ScoringFunction.Instance != Instance)
+                {
+                    ScoringFunction.Instance = Instance;
                 }
             }
         }
@@ -147,7 +151,7 @@ namespace InstanceSolvers
                     Tasks = new[] { order },
                     MildlyRandomOrder = false,
                     PositionsCountLimit = PositionsPerBreakTakenIntoConsideration,
-                    Random = _random,
+                    Random = Random,
                 };
                 List<IMove> moves = factory.GenerateMoves().ToList();
                 ChooseMoveToPerform(moves);

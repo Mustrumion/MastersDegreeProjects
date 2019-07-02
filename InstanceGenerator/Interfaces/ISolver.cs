@@ -15,6 +15,7 @@ namespace InstanceGenerator.Interfaces
         Solution Solution { get; set; }
         IScoringFunction ScoringFunction { get; set; }
         Instance Instance { get; set; }
+        Random Random { get; set; }
         void Solve();
     }
 }

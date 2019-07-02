@@ -59,9 +59,13 @@ namespace InstanceSolvers
             set
             {
                 _instance = value;
-                if (Solution == null)
+                if (Solution == null || Solution.Instance != Instance)
                 {
                     Solution = new Solution(Instance);
+                }
+                if (ScoringFunction != null && ScoringFunction.Instance != Instance)
+                {
+                    ScoringFunction.Instance = Instance;
                 }
             }
         }
@@ -73,7 +77,7 @@ namespace InstanceSolvers
             set
             {
                 _scoringFunction = value;
-                if (_scoringFunction.Instance == null)
+                if (_scoringFunction.Instance != Instance)
                 {
                     _scoringFunction.Instance = Instance;
                 }
@@ -108,8 +112,11 @@ namespace InstanceSolvers
             if(InitialSolver != null)
             {
                 InitialSolver.Instance = Instance;
+                InitialSolver.Seed = Random.Next();
+                InitialSolver.ScoringFunction = ScoringFunction;
                 InitialSolver.Solve();
             }
+            Solution = InitialSolver.Solution;
 
             CreateMoveFactoriesIfEmpty();
             ScoringFunction.AssesSolution(Solution);

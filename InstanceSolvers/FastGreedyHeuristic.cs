@@ -13,11 +13,11 @@ namespace InstanceSolvers
     public class FastGreedyHeuristic : ISolver
     {
         private Instance _instance;
-        private Random _random;
         private int _seed;
         private IScoringFunction _scoringFunction;
         private Solution _solution;
 
+        public Random Random { get; set; }
         public string Description { get; set; }
         public int MaxOverfillUnits { get; set; } = 10;
         private List<AdvertisementTask> _order { get; set; }
@@ -26,7 +26,7 @@ namespace InstanceSolvers
         {
             Random rnd = new Random();
             _seed = rnd.Next();
-            _random = new Random(_seed);
+            Random = new Random(_seed);
         }
 
         public int Seed
@@ -34,7 +34,7 @@ namespace InstanceSolvers
             get => _seed;
             set
             {
-                _random = new Random(value);
+                Random = new Random(value);
                 _seed = value;
             }
         }
@@ -51,6 +51,10 @@ namespace InstanceSolvers
                 if (Solution == null || Solution.Instance != Instance)
                 {
                     Solution = new Solution(Instance);
+                }
+                if (ScoringFunction != null && ScoringFunction.Instance != Instance)
+                {
+                    ScoringFunction.Instance = Instance;
                 }
             }
         }
@@ -94,7 +98,7 @@ namespace InstanceSolvers
         {
             Solution.RestoreTaskView();
             var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.ToList();
-            breakList.Shuffle(_random);
+            breakList.Shuffle(Random);
             foreach (var schedule in breakList)
             {
                 CreateSchedule(schedule);
@@ -115,7 +119,7 @@ namespace InstanceSolvers
         private void CreateSchedule(BreakSchedule schedule)
         {
             var advertisementDataList = Solution.AdOrderData.Values.Where(t => !t.TimesAiredSatisfied || t.ViewsSatisfied).ToList();
-            advertisementDataList.Shuffle(_random);
+            advertisementDataList.Shuffle(Random);
             foreach(var ad in advertisementDataList)
             {
                 if (Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(ad.AdvertisementOrderData.ID, out var incompatibleBreaks))

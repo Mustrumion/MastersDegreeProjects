@@ -154,7 +154,6 @@ namespace SystemTestsProject
             {
                 Instance = instance,
                 Seed = 10,
-                ScoringFunction = new Scorer(),
             };
             LocalRandomSearch solver = new LocalRandomSearch()
             {
