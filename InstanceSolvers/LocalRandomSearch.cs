@@ -31,6 +31,8 @@ namespace InstanceSolvers
         public bool StopWhenStepScoreDecrease { get; set; }
         public TimeSpan MaxTime { get; set; } = new TimeSpan(0, 0, 10);
 
+        public ISolver InitialSolver { get; set; }
+
         public LocalRandomSearch()
         {
             Random rnd = new Random();
@@ -103,6 +105,12 @@ namespace InstanceSolvers
         public void Solve()
         {
             Stopwatch.Start();
+            if(InitialSolver != null)
+            {
+                InitialSolver.Instance = Instance;
+                InitialSolver.Solve();
+            }
+
             CreateMoveFactoriesIfEmpty();
             ScoringFunction.AssesSolution(Solution);
             _movePerformed = true;

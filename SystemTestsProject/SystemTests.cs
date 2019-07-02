@@ -156,15 +156,14 @@ namespace SystemTestsProject
                 Seed = 10,
                 ScoringFunction = new Scorer(),
             };
-            randomSolver.Solve();
             LocalRandomSearch solver = new LocalRandomSearch()
             {
+                InitialSolver = randomSolver,
                 Instance = instance,
                 Solution = randomSolver.Solution,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
-                MaxTime = new TimeSpan(0, 0, 15),
-
+                StopWhenStepScoreDecrease = true,
             };
             solver.Solve();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer()

@@ -43,6 +43,7 @@ namespace InstanceSolvers
             }
         }
 
+
         public Instance Instance
         {
             get
@@ -52,7 +53,7 @@ namespace InstanceSolvers
             set
             {
                 _instance = value;
-                if (Solution == null)
+                if (Solution == null || Solution.Instance != Instance)
                 {
                     Solution = new Solution(Instance);
                 }
@@ -66,7 +67,7 @@ namespace InstanceSolvers
             set
             {
                 _scoringFunction = value;
-                if (_scoringFunction.Instance == null)
+                if (_scoringFunction.Instance != Instance)
                 {
                     _scoringFunction.Instance = Instance;
                 }
