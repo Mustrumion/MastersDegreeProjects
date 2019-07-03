@@ -12,14 +12,9 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class LocalSearchSolver : ISolver
+    public class LocalSearchSolver : BaseSolver, ISolver
     {
-        private Instance _instance;
-        private IScoringFunction _scoringFunction;
-        private Solution _solution;
         private bool _movePerformed;
-        private int _seed;
-        public Random Random { get; set; }
         public Stopwatch Stopwatch { get; set; } = new Stopwatch();
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
@@ -34,77 +29,8 @@ namespace InstanceSolvers
 
         public ISolver InitialSolver { get; set; }
 
-        public LocalSearchSolver()
+        public LocalSearchSolver() : base()
         {
-            Random rnd = new Random();
-            _seed = rnd.Next();
-            Random = new Random(_seed);
-        }
-
-        public int Seed
-        {
-            get => _seed;
-            set
-            {
-                Random = new Random(value);
-                _seed = value;
-            }
-        }
-
-        public Instance Instance
-        {
-            get
-            {
-                return _instance;
-            }
-            set
-            {
-                _instance = value;
-                if (Solution == null || Solution.Instance != Instance)
-                {
-                    Solution = new Solution(Instance);
-                }
-                if (ScoringFunction != null && ScoringFunction.Instance != Instance)
-                {
-                    ScoringFunction.Instance = Instance;
-                }
-            }
-        }
-
-
-        public IScoringFunction ScoringFunction
-        {
-            get => _scoringFunction;
-            set
-            {
-                _scoringFunction = value;
-                if (_scoringFunction.Instance != Instance)
-                {
-                    _scoringFunction.Instance = Instance;
-                }
-                if (_scoringFunction.Solution != _solution)
-                {
-                    _scoringFunction.Solution = _solution;
-                }
-                if (Solution != null && Solution.GradingFunction != ScoringFunction)
-                {
-                    Solution.GradingFunction = ScoringFunction;
-                }
-            }
-        }
-
-
-        public Solution Solution
-        {
-            get => _solution;
-            set
-            {
-                _solution = value;
-                if (_scoringFunction != null && _scoringFunction.Solution != _solution)
-                {
-                    _scoringFunction.Solution = _solution;
-                }
-            }
         }
 
         public void Solve()
@@ -122,6 +48,15 @@ namespace InstanceSolvers
                 InitialSolver.Solve();
                 Solution = InitialSolver.Solution;
             }
+            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            {
+                MaxBreakExtensionUnits = 30,
+            };
+            insertionHeuristic.Instance = Instance;
+            insertionHeuristic.ScoringFunction = ScoringFunction;
+            insertionHeuristic.Solution = Solution;
+            insertionHeuristic.Solve();
+            Solution = insertionHeuristic.Solution;
 
             InitializeMoveFactories();
             ScoringFunction.AssesSolution(Solution);

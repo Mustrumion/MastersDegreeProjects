@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class GreedyHeuristicSolver : BaseSolver, ISolver
+    public class InsertionHeuristic : BaseSolver, ISolver
     {
         private bool _movePerformed;
         
@@ -22,7 +22,7 @@ namespace InstanceSolvers
         private List<TvBreak> _breakInOrder { get; set; }
         public string Description { get; set; }
 
-        public GreedyHeuristicSolver() : base()
+        public InsertionHeuristic() : base()
         {
         }
 
@@ -30,7 +30,11 @@ namespace InstanceSolvers
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            ScoringFunction.AssesSolution(Solution);
+            if (!Solution.Scored)
+            {
+                ScoringFunction.AssesSolution(Solution);
+            }
+            Solution.Scored = false;
             //due earlier are scheduled first
             //heftier are scheduled first if due at the same time
             var ordersInOrder = Instance.AdOrders.Values.OrderByDescending(order => order.AdSpanUnits).OrderBy(order => order.DueTime).ToList();
@@ -40,11 +44,13 @@ namespace InstanceSolvers
             while (Solution.CompletionScore < 1 && _movePerformed)
             {
                 _movePerformed = false;
-                foreach (AdvertisementTask order in ordersInOrder)
+                foreach (AdvertisementTask order in ordersInOrder.Where(o => Solution.AdOrderData[o.ID].Completed))
                 {
                     TryToScheduleOrder(order);
                 }
             }
+            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+            Solution.Scored = true;
             stopwatch.Stop();
             Solution.TimeElapsed += stopwatch.Elapsed;
         }
@@ -55,12 +61,17 @@ namespace InstanceSolvers
             foreach(var move in moves)
             {
                 move.Asses();
+                if(!move.OverallDifference.HasScoreImproved() && !move.OverallDifference.AnyCompatibilityIssuesIncreased())
+                {
+                    move.Execute();
+                    _movePerformed = true;
+                    return;
+                }
             }
             var candidate = moves.OrderBy(m => m.OverallDifference.IntegrityLossScore).FirstOrDefault();
             if(candidate.OverallDifference.IntegrityLossScore < 0)
             {
                 candidate.Execute();
-                Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
                 _movePerformed = true;
             }
         }

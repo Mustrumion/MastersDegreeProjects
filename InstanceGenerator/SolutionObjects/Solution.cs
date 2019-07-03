@@ -156,6 +156,7 @@ namespace InstanceGenerator.SolutionObjects
             set { }
         }
 
+        public bool Scored { get; set; }
 
         public void GenerateSolutionFromRealData()
         {
@@ -304,6 +305,35 @@ namespace InstanceGenerator.SolutionObjects
             AdvertisementTask order = schedule.Order[position];
             RemoveAdFromTaskDataDictionary(order.ID, tvBreak.ID, position);
             schedule.RemoveAt(position);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ad"></param>
+        /// <param name="schedule"></param>
+        /// <returns>0 - compatible, 1 - incompatible</returns>
+        public byte GetTypeToBreakIncompatibility(TaskData ad, BreakSchedule schedule)
+        {
+            return GetTypeToBreakIncompatibility(ad.AdvertisementOrderData.Type.ID, schedule.BreakData.ID);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="typeId"></param>
+        /// <param name="breakId"></param>
+        /// <returns>0 - compatible, 1 - incompatible</returns>
+        public byte GetTypeToBreakIncompatibility(int typeId, int breakId)
+        {
+            if (Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(typeId, out var incompatibleBreaks))
+            {
+                if (incompatibleBreaks.ContainsKey(breakId))
+                {
+                    return 1;
+                }
+            }
+            return 0;
         }
     }
 }

@@ -33,14 +33,14 @@ namespace InstanceGeneratorConsole
             //};
             //bulkInstanceGenerator.GenerateAllInstances();
 
-            SolveEverything("local_fast_heur", GenerateLocalSearchSolver);
+            SolveEverything("local_random", GenerateLocalSearchSolver);
         }
 
         private static ISolver GenerateLocalSearchSolver()
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
             {
-                MaxOverfillUnits = 60,
+               MaxOverfillUnits = 1,
             };
             LocalSearchSolver solver = new LocalSearchSolver()
             {

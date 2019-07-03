@@ -14,6 +14,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace SystemTestsProject
@@ -139,12 +140,17 @@ namespace SystemTestsProject
                 Path = @"results\day_DS_D_DH_sol_greedyfastheur.json"
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+            var taskStats = solver.Solution.AdOrderData;
+            Assert.IsTrue(taskStats.Values.Sum(d => d.SelfIncompatibilityConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.SelfSpacingConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.OwnerConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.BreakTypeConflictsProportion) == 0);
         }
 
         [TestMethod]
-        public void LocalRandomSolveDay3ChannelInstance()
+        public void LocalRandomSolveHour3ChannelInstance()
         {
-            var file = Properties.Resources.day_DS_D_DH_inst;
+            var file = Properties.Resources.hour_DS_D_DH_inst;
             var reader = new InstanceJsonSerializer
             {
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
@@ -168,7 +174,7 @@ namespace SystemTestsProject
             solver.Solve();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer()
             {
-                Path = @"results\day_DS_D_DH_sol_localrandom.json"
+                Path = @"results\hour_DS_D_DH_sol_localrandom.json"
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
         }

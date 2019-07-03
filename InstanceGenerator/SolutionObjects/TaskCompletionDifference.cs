@@ -45,5 +45,19 @@ namespace InstanceGenerator.SolutionObjects
         {
             return IntegrityLossScore > 0 || (IntegrityLossScore == 0 && WeightedLoss > 0);
         }
+
+        public bool HasScoreImproved()
+        {
+            return IntegrityLossScore < 0 || (IntegrityLossScore == 0 && WeightedLoss < 0);
+        }
+
+        public bool AnyCompatibilityIssuesIncreased()
+        {
+            if (SelfIncompatibilityConflictsProportion > 0) return true;
+            if (SelfSpacingConflictsProportion > 0) return true;
+            if (OwnerConflictsProportion > 0) return true;
+            if (BreakTypeConflictsProportion > 0) return true;
+            return false;
+        }
     }
 }
