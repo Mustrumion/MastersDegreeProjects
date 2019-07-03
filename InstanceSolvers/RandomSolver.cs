@@ -4,6 +4,7 @@ using InstanceGenerator.SolutionObjects;
 using InstanceSolvers.Moves;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,6 +139,8 @@ namespace InstanceSolvers
 
         public void Solve()
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             ScoringFunction.AssesSolution(Solution);
             while (Solution.AdOrderData.Values.Any(a => !a.TimesAiredSatisfied))
             {
@@ -155,6 +158,8 @@ namespace InstanceSolvers
                 }
             }
             ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+            stopwatch.Stop();
+            Solution.TimeElapsed += stopwatch.Elapsed;
         }
     }
 }

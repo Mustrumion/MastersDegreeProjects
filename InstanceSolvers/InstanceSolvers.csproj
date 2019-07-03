@@ -45,7 +45,7 @@
     <Compile Include="MoveFactories\SwapMoveFactory.cs" />
     <Compile Include="MoveFactories\InsertMoveFactory.cs" />
     <Compile Include="MoveFactories\DeleteMoveFactory.cs" />
-    <Compile Include="LocalRandomSearch.cs" />
+    <Compile Include="LocalSearchSolver.cs" />
     <Compile Include="Moves\Delete.cs" />
     <Compile Include="Moves\Swap.cs" />
     <Compile Include="Moves\Insert.cs" />

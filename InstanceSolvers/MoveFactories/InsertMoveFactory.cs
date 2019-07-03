@@ -24,6 +24,7 @@ namespace InstanceSolvers.MoveFactories
         public Instance Instance { get; set; }
         public int IgnoreWhenUnitOverfillAbove { get; set; }
         public bool IgnoreTasksWithCompletedViews { get; set; }
+        public bool IgnoreCompletedTasks { get; set; }
         public bool AlwaysReturnStartsAndEnds { get; set; } = true;
 
         public int PositionsCountLimit { get; set; }
@@ -86,6 +87,10 @@ namespace InstanceSolvers.MoveFactories
                     var orderData = Solution.AdOrderData[t.ID];
                     return !orderData.ViewsSatisfied || !orderData.TimesAiredSatisfied;
                 });
+            }
+            if (IgnoreCompletedTasks)
+            {
+                _tasks = _tasks.Where(t => Solution.AdOrderData[t.ID].Completed);
             }
         }
 

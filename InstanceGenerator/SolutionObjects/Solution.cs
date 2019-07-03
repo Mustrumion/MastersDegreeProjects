@@ -45,6 +45,18 @@ namespace InstanceGenerator.SolutionObjects
         }
 
         /// <summary>
+        /// Human readable description.
+        /// </summary>
+        [Description("Human readable description.")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Time spent generating the solution.
+        /// </summary>
+        [Description("Time spent generating the solution.")]
+        public TimeSpan TimeElapsed { get; set; }
+
+        /// <summary>
         /// Overall solution score.
         /// </summary>
         [Description("Overall solution score.")]

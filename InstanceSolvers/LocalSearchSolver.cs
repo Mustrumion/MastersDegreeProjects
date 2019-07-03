@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class LocalRandomSearch : ISolver
+    public class LocalSearchSolver : ISolver
     {
         private Instance _instance;
         private IScoringFunction _scoringFunction;
@@ -34,7 +34,7 @@ namespace InstanceSolvers
 
         public ISolver InitialSolver { get; set; }
 
-        public LocalRandomSearch()
+        public LocalSearchSolver()
         {
             Random rnd = new Random();
             _seed = rnd.Next();
@@ -137,6 +137,7 @@ namespace InstanceSolvers
                 ChooseMoveToPerform(moves);
             }
             Stopwatch.Stop();
+            Solution.TimeElapsed += Stopwatch.Elapsed;
         }
 
         private void InitializeMoveFactories()
@@ -145,6 +146,16 @@ namespace InstanceSolvers
             {
                 MoveFactories = new List<IMoveFactory>
                 {
+                    new InsertMoveFactory()
+                    {
+                        MildlyRandomOrder = true,
+                        PositionsCountLimit = 5,
+                        MaxTasksChecked = 5,
+                        MaxBreaksChecked = 5,
+                        IgnoreWhenUnitOverfillAbove = 60,
+                        IgnoreCompletedTasks = true,
+                        IgnoreTasksWithCompletedViews = false,
+                    },
                     new InsertMoveFactory()
                     {
                         MildlyRandomOrder = true,

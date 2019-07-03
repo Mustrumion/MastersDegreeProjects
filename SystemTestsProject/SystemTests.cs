@@ -155,7 +155,7 @@ namespace SystemTestsProject
                 Instance = instance,
                 Seed = 10,
             };
-            LocalRandomSearch solver = new LocalRandomSearch()
+            LocalSearchSolver solver = new LocalSearchSolver()
             {
                 InitialSolver = randomSolver,
                 Instance = instance,

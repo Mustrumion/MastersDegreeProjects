@@ -16,11 +16,14 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\bartl\Desktop\MDP";
+        private static string MAIN_DIRECTORY = @"C:\MDP";
         private static string PRE_INSTANCE_DIRECTORY => Path.Combine(MAIN_DIRECTORY, "pre_instances");
         private static string INSTANCE_DIRECTORY => Path.Combine(MAIN_DIRECTORY, "instances");
         private static string EXAMPLE_SOLUTION_DIRECTORY => Path.Combine(MAIN_DIRECTORY, "example_solutions");
         private static string EXAMPLE_SOLUTION_SCORED_DIRECTORY => Path.Combine(MAIN_DIRECTORY, "example_solutions_scored");
+
+
+
 
         static void Main(string[] args)
         {
@@ -30,45 +33,52 @@ namespace InstanceGeneratorConsole
             //};
             //bulkInstanceGenerator.GenerateAllInstances();
 
-            RandomFastSolver randomSolver = new RandomFastSolver();
-            LocalRandomSearch solver = new LocalRandomSearch()
+            SolveEverything("local_fast_heur", GenerateLocalSearchSolver);
+        }
+
+        private static ISolver GenerateLocalSearchSolver()
+        {
+            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            {
+                MaxOverfillUnits = 60,
+            };
+            LocalSearchSolver solver = new LocalSearchSolver()
             {
                 InitialSolver = randomSolver,
                 Solution = randomSolver.Solution,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,
-                MaxTime = new TimeSpan(0, 0, 60),
+                MaxTime = new TimeSpan(0, 0, 300),
             };
-            SolveEverything("local_random", solver);
+            return solver;
         }
 
-
-        private static void SolveEverything(string solverName, ISolver solver)
+        private static void SolveEverything(string solverName, Func<ISolver> solverMaker)
         {
             DirectoryInfo initial_dir = new DirectoryInfo(INSTANCE_DIRECTORY);
             var directories = initial_dir.GetDirectories();
-            foreach (var dir in directories)
+            Parallel.ForEach(directories, dir =>
             {
-                SolveParentDirectory(dir, Path.Combine(solverName, dir.Name), solver);
-            }
+                SolveParentDirectory(dir, Path.Combine(solverName, dir.Name), solverMaker);
+            });
         }
 
-        private static void SolveParentDirectory(DirectoryInfo directory, string solverDir, ISolver solver)
+        private static void SolveParentDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
-            foreach (var childDir in directory.GetDirectories())
+            Parallel.ForEach(directory.GetDirectories(), childDir =>
             {
-                SolveFromDirectory(childDir, Path.Combine(solverDir, childDir.Name), solver);
-            }
+                SolveFromDirectory(childDir, Path.Combine(solverDir, childDir.Name), solverMaker);
+            });
         }
 
-        private static void SolveFromDirectory(DirectoryInfo directory, string solverDir, ISolver solver)
+        private static void SolveFromDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
-            foreach (var file in directory.GetFiles())
+            Parallel.ForEach(directory.GetFiles(), file =>
             {
                 string solutionName = Path.Combine(MAIN_DIRECTORY, solverDir, file.Name);
-                Solve(file.FullName, solutionName, solver);
-            }
+                Solve(file.FullName, solutionName, solverMaker());
+            });
         }
 
         private static void Solve(string pathIn, string pathOut, ISolver solver)
@@ -85,7 +95,7 @@ namespace InstanceGeneratorConsole
                 Path = pathOut,
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+            Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed}.");
         }
-
     }
 }

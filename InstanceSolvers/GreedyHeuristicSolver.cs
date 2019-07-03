@@ -5,6 +5,7 @@ using InstanceSolvers.MoveFactories;
 using InstanceSolvers.Moves;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,6 +103,8 @@ namespace InstanceSolvers
 
         public void Solve()
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             ScoringFunction.AssesSolution(Solution);
             //due earlier are scheduled first
             //heftier are scheduled first if due at the same time
@@ -117,6 +120,8 @@ namespace InstanceSolvers
                     TryToScheduleOrder(order);
                 }
             }
+            stopwatch.Stop();
+            Solution.TimeElapsed += stopwatch.Elapsed;
         }
 
 

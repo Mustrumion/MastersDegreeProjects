@@ -4,6 +4,7 @@ using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,6 +97,8 @@ namespace InstanceSolvers
 
         public void Solve()
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             Solution.RestoreTaskView();
             var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.ToList();
             breakList.Shuffle(Random);
@@ -104,6 +107,8 @@ namespace InstanceSolvers
                 CreateSchedule(schedule);
             }
             ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+            stopwatch.Stop();
+            Solution.TimeElapsed += stopwatch.Elapsed;
         }
 
         private void AddToSolutionScores(Dictionary<int, TaskData> addedScores)
