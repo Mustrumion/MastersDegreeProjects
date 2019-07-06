@@ -363,7 +363,7 @@ namespace InstanceGenerator.SolutionObjects
             return GetBrandsIncompatibility(ad1.Brand.ID, ad2.Brand.ID);
         }
 
-        public List<double> GetBulkBrandIncompatibilities(AdvertisementTask ad1, List<AdvertisementTask> otherAds)
+        public List<double> GetBulkBrandIncompatibilities(AdvertisementTask ad1, IEnumerable<AdvertisementTask> otherAds)
         {
             Instance.BrandIncompatibilityCost.TryGetValue(ad1.Brand.ID, out var ad1BrandDict);
             return otherAds.Select(ad2 =>

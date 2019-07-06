@@ -81,6 +81,7 @@ namespace InstanceSolvers
                 {
                     if (s.UnitFill > MaxBreakExtensionUnits + s.BreakData.SpanUnits) return false;
                     if (Solution.GetTypeToBreakIncompatibility(orderData, s) == 1) return false;
+                    if (Solution.GetBulkBrandIncompatibilities(orderData.AdvertisementOrderData, s.Order).Contains(double.PositiveInfinity)) return false;
                     return true;
                 }).ToList();
             schedules.Shuffle(Random);

@@ -59,8 +59,7 @@ namespace InstanceSolvers
                 if (Solution.GetTypeToBreakIncompatibility(ad, schedule) == 1) {
                     continue;
                 }
-                Instance.BrandIncompatibilityCost.TryGetValue(ad.AdvertisementOrderData.Brand.ID, out var brandCompatibility);
-                if(schedule.Order.Any(a => a.Type.ID == ad.AdvertisementOrderData.Type.ID && (brandCompatibility == null || !brandCompatibility.ContainsKey(a.Brand.ID))))
+                if (Solution.GetBulkBrandIncompatibilities(ad.AdvertisementOrderData, schedule.Order).Contains(double.PositiveInfinity))
                 {
                     continue;
                 }
