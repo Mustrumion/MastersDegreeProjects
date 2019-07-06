@@ -196,7 +196,7 @@ namespace InstanceGenerator.SolutionObjects
             AdOrdersScores = new Dictionary<int, TaskData>();
             foreach (var task in Instance.AdOrders.Values)
             {
-                AdOrdersScores.Add(task.ID, new TaskData() { AdvertisementOrderData = task });
+                AdOrdersScores.Add(task.ID, new TaskData() { AdvertisementOrderData = task, ScoringFunction = GradingFunction});
             }
             foreach (var tvBreak in _advertisementsScheduledOnBreaks.Values)
             {

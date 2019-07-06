@@ -43,12 +43,16 @@ namespace InstanceSolvers
             }
             set
             {
+                if (_instance == value || value == null)
+                {
+                    return;
+                }
                 _instance = value;
                 if (Solution == null || Solution.Instance != Instance)
                 {
                     Solution = new Solution(Instance);
                 }
-                if (ScoringFunction != null && ScoringFunction.Instance != Instance)
+                if (ScoringFunction != null)
                 {
                     ScoringFunction.Instance = Instance;
                 }
@@ -61,19 +65,13 @@ namespace InstanceSolvers
             get => _scoringFunction;
             set
             {
+                if(_scoringFunction == value || value == null)
+                {
+                    return;
+                }
                 _scoringFunction = value;
-                if (_scoringFunction.Instance != Instance)
-                {
-                    _scoringFunction.Instance = Instance;
-                }
-                if (_scoringFunction.Solution != _solution)
-                {
-                    _scoringFunction.Solution = _solution;
-                }
-                if (Solution != null && Solution.GradingFunction != ScoringFunction)
-                {
-                    Solution.GradingFunction = ScoringFunction;
-                }
+                _scoringFunction.Instance = _instance;
+                _scoringFunction.Solution = _solution;
             }
         }
 
@@ -82,8 +80,12 @@ namespace InstanceSolvers
             get => _solution;
             set
             {
+                if(_solution == value || value == null)
+                {
+                    return;
+                }
                 _solution = value;
-                if (_scoringFunction != null && _scoringFunction.Solution != _solution)
+                if (_scoringFunction != null)
                 {
                     _scoringFunction.Solution = _solution;
                 }

@@ -47,11 +47,12 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             get => _solution;
             set
             {
-                _solution = value;
-                if(_solution.GradingFunction != this)
+                if(_solution == value || value == null)
                 {
-                    _solution.GradingFunction = this;
+                    return;
                 }
+                _solution = value;
+                _solution.GradingFunction = this;
             }
         }
 
