@@ -217,6 +217,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             solution.ExtendedBreakLoss = solution.AdOrderData.Values.Sum(v => v.ExtendedBreakLoss);
             solution.MildIncompatibilityLoss = solution.AdOrderData.Values.Sum(v => v.MildIncompatibilityLoss);
             solution.OverdueAdsLoss = solution.AdOrderData.Values.Sum(v => v.OverdueAdsLoss);
+            solution.Scored = true;
         }
 
 

@@ -335,6 +335,7 @@ namespace InstanceGenerator.SolutionObjects
             }
             return 0;
         }
+        
 
         public double GetBrandsIncompatibility(int brand1Id, int brand2Id)
         {
@@ -353,21 +354,28 @@ namespace InstanceGenerator.SolutionObjects
             return incompatibilityScore;
         }
 
-        public double GetAdsIncompatibilities(int brand1Id, int brand2Id)
+        public double GetAdsBrandIncompatibilitiy(AdvertisementTask ad1, AdvertisementTask ad2)
         {
-            if (brand1Id == brand2Id)
+            if(ad1.Type.ID != ad2.Type.ID)
             {
                 return 0;
             }
-            if (!Instance.BrandIncompatibilityCost.TryGetValue(brand1Id, out var brandCompatibility))
+            return GetBrandsIncompatibility(ad1.Brand.ID, ad2.Brand.ID);
+        }
+
+        public List<double> GetBulkBrandIncompatibilities(AdvertisementTask ad1, List<AdvertisementTask> otherAds)
+        {
+            Instance.BrandIncompatibilityCost.TryGetValue(ad1.Brand.ID, out var ad1BrandDict);
+            return otherAds.Select(ad2 =>
             {
-                return double.PositiveInfinity;
-            }
-            if (!brandCompatibility.TryGetValue(brand2Id, out var incompatibilityScore))
-            {
-                return double.PositiveInfinity;
-            }
-            return incompatibilityScore;
+                if (ad1.Brand.ID == ad2.Brand.ID) return 0;
+                if (ad1BrandDict == null) return double.PositiveInfinity;
+                if (!ad1BrandDict.TryGetValue(ad2.Brand.ID, out var incompatibilityScore))
+                {
+                    return double.PositiveInfinity;
+                }
+                return incompatibilityScore;
+            }).ToList();
         }
     }
 }

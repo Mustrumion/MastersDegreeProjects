@@ -2,6 +2,17 @@
   "$id": "InstanceGenerator.SolutionObjects.Solution",
   "type": "object",
   "properties": {
+    "Description": {
+      "description": "Human readable description.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "TimeElapsed": {
+      "description": "Time spent generating the solution.",
+      "type": "string"
+    },
     "WeightedLoss": {
       "description": "Overall solution score.",
       "type": "number"
@@ -39,6 +50,9 @@
         "string",
         "null"
       ]
+    },
+    "Scored": {
+      "type": "boolean"
     },
     "AdOrderData": {
       "description": "Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).",
