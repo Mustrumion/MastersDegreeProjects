@@ -34,23 +34,32 @@ namespace InstanceGeneratorConsole
             //bulkInstanceGenerator.GenerateAllInstances();
 
             SolveEverything("local_random", GenerateLocalSearchSolver);
+
+            Console.WriteLine("Press any key.");
+            Console.ReadKey();
         }
 
         private static ISolver GenerateLocalSearchSolver()
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
             {
-               MaxOverfillUnits = 1,
+               MaxOverfillUnits = 30,
+            };
+            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            {
+                MaxBreakExtensionUnits = 30,
+                PositionsPerBreakTakenIntoConsideration = 3,
             };
             LocalSearchSolver solver = new LocalSearchSolver()
             {
-                InitialSolver = randomSolver,
                 Solution = randomSolver.Solution,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,
-                MaxTime = new TimeSpan(0, 0, 300),
+                MaxTime = new TimeSpan(0, 0, 600 ),
             };
+            solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(insertionHeuristic);
             return solver;
         }
 

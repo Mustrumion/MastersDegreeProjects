@@ -22,7 +22,7 @@ namespace InstanceSolvers.MoveFactories
         public Random Random { get; set; }
         public bool MildlyRandomOrder { get; set; }
         public Instance Instance { get; set; }
-        public int IgnoreWhenUnitOverfillAbove { get; set; }
+        public int IgnoreBreaksWhenUnitOverfillAbove { get; set; }
         public bool IgnoreTasksWithCompletedViews { get; set; }
         public bool IgnoreCompletedTasks { get; set; }
         public bool AlwaysReturnStartsAndEnds { get; set; } = true;
@@ -68,9 +68,9 @@ namespace InstanceSolvers.MoveFactories
             {
                 _breaks = Breaks;
             }
-            if (IgnoreWhenUnitOverfillAbove > 0)
+            if (IgnoreBreaksWhenUnitOverfillAbove > 0)
             {
-                _breaks = _breaks.Where(b => Solution.AdvertisementsScheduledOnBreaks[b.ID].UnitFill - IgnoreWhenUnitOverfillAbove < b.SpanUnits);
+                _breaks = _breaks.Where(b => Solution.AdvertisementsScheduledOnBreaks[b.ID].UnitFill - IgnoreBreaksWhenUnitOverfillAbove < b.SpanUnits);
             }
             if (Tasks == null)
             {

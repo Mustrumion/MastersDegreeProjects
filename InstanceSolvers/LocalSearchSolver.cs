@@ -12,6 +12,13 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
+    public enum Action
+    {
+        Perform = 0,
+        Ignore = 1,
+        Stop = 2,
+    }
+
     public class LocalSearchSolver : BaseSolver, ISolver
     {
         private bool _movePerformed;
@@ -23,11 +30,11 @@ namespace InstanceSolvers
         public string Description { get; set; }
 
         public bool StopWhenCompleted { get; set; } = true;
-        public bool StopWhenStepScoreDecrease { get; set; }
+        public Action ActionWhenScoreDecrease { get; set; } = Action.Ignore;
         public TimeSpan MaxTime { get; set; }
         public bool PropagateRandomSeed { get; set; }
 
-        public ISolver InitialSolver { get; set; }
+        public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
 
         public LocalSearchSolver() : base()
         {
@@ -37,26 +44,17 @@ namespace InstanceSolvers
         {
             Stopwatch = new Stopwatch();
             Stopwatch.Start();
-            if(InitialSolver != null)
+            foreach (var solver in InitialSolvers)
             {
-                InitialSolver.Instance = Instance;
+                solver.Instance = Instance;
                 if (PropagateRandomSeed)
                 {
-                    InitialSolver.Seed = Random.Next();
+                    solver.Seed = Random.Next();
                 }
-                InitialSolver.ScoringFunction = ScoringFunction;
-                InitialSolver.Solve();
-                Solution = InitialSolver.Solution;
+                solver.ScoringFunction = ScoringFunction;
+                solver.Solve();
+                Solution = solver.Solution;
             }
-            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
-            {
-                MaxBreakExtensionUnits = 30,
-            };
-            insertionHeuristic.Instance = Instance;
-            insertionHeuristic.ScoringFunction = ScoringFunction;
-            insertionHeuristic.Solution = Solution;
-            insertionHeuristic.Solve();
-            Solution = insertionHeuristic.Solution;
 
             InitializeMoveFactories();
             ScoringFunction.AssesSolution(Solution);
@@ -84,34 +82,35 @@ namespace InstanceSolvers
                     new InsertMoveFactory()
                     {
                         MildlyRandomOrder = true,
-                        PositionsCountLimit = 5,
-                        MaxTasksChecked = 5,
-                        MaxBreaksChecked = 5,
-                        IgnoreWhenUnitOverfillAbove = 60,
+                        PositionsCountLimit = 4,
+                        MaxTasksChecked = 3,
+                        MaxBreaksChecked = 3,
+                        IgnoreBreaksWhenUnitOverfillAbove = 60,
                         IgnoreCompletedTasks = true,
                         IgnoreTasksWithCompletedViews = false,
                     },
                     new InsertMoveFactory()
                     {
                         MildlyRandomOrder = true,
-                        PositionsCountLimit = 5,
-                        MaxTasksChecked = 5,
-                        MaxBreaksChecked = 5,
-                        IgnoreWhenUnitOverfillAbove = 60,
+                        PositionsCountLimit = 4,
+                        MaxTasksChecked = 3,
+                        MaxBreaksChecked = 3,
+                        IgnoreBreaksWhenUnitOverfillAbove = 60,
+                        IgnoreCompletedTasks = false,
                         IgnoreTasksWithCompletedViews = false,
                     },
                     new DeleteMoveFactory()
                     {
                         MildlyRandomOrder = true,
-                        PositionsCountLimit = 10,
-                        MaxBreaksChecked = 10,
+                        PositionsCountLimit = 3,
+                        MaxBreaksChecked = 3,
                     },
                     new SwapMoveFactory()
                     {
                         MildlyRandomOrder = true,
-                        PositionsCountLimit = 10,
-                        MaxTasksChecked = 5,
-                        MaxBreaksChecked = 5,
+                        PositionsCountLimit = 3,
+                        MaxTasksChecked = 3,
+                        MaxBreaksChecked = 3,
                     },
                 };
             }
@@ -153,12 +152,21 @@ namespace InstanceSolvers
                 move.Asses();
             }
             var candidate = moves.OrderBy(m => m.OverallDifference.WeightedLoss).OrderBy(m => m.OverallDifference.IntegrityLossScore).FirstOrDefault();
-            if (!candidate.OverallDifference.HasScoreWorsened() || !StopWhenStepScoreDecrease)
+            if (candidate.OverallDifference.HasScoreWorsened())
             {
-                candidate.Execute();
-                Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-                _movePerformed = true;
+                if(ActionWhenScoreDecrease == Action.Stop)
+                {
+                    return;
+                }
+                else if(ActionWhenScoreDecrease == Action.Ignore)
+                {
+                    _movePerformed = true;
+                    return;
+                }
             }
+            candidate.Execute();
+            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+            _movePerformed = true;
         }
     }
 }

@@ -335,5 +335,39 @@ namespace InstanceGenerator.SolutionObjects
             }
             return 0;
         }
+
+        public double GetBrandsIncompatibility(int brand1Id, int brand2Id)
+        {
+            if (brand1Id == brand2Id)
+            {
+                return 0;
+            }
+            if (!Instance.BrandIncompatibilityCost.TryGetValue(brand1Id, out var brandCompatibility))
+            {
+                return double.PositiveInfinity;
+            }
+            if (!brandCompatibility.TryGetValue(brand2Id, out var incompatibilityScore))
+            {
+                return double.PositiveInfinity;
+            }
+            return incompatibilityScore;
+        }
+
+        public double GetAdsIncompatibilities(int brand1Id, int brand2Id)
+        {
+            if (brand1Id == brand2Id)
+            {
+                return 0;
+            }
+            if (!Instance.BrandIncompatibilityCost.TryGetValue(brand1Id, out var brandCompatibility))
+            {
+                return double.PositiveInfinity;
+            }
+            if (!brandCompatibility.TryGetValue(brand2Id, out var incompatibilityScore))
+            {
+                return double.PositiveInfinity;
+            }
+            return incompatibilityScore;
+        }
     }
 }

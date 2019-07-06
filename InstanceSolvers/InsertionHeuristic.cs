@@ -1,4 +1,5 @@
-﻿using InstanceGenerator.InstanceData;
+﻿using InstanceGenerator;
+using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers.MoveFactories;
@@ -18,8 +19,7 @@ namespace InstanceSolvers
         
         public int PositionsPerBreakTakenIntoConsideration { get; set; } = 0;
         public int MaxBreakExtensionUnits { get; set; } = 20;
-
-        private List<TvBreak> _breakInOrder { get; set; }
+        
         public string Description { get; set; }
 
         public InsertionHeuristic() : base()
@@ -35,16 +35,14 @@ namespace InstanceSolvers
                 ScoringFunction.AssesSolution(Solution);
             }
             Solution.Scored = false;
-            //due earlier are scheduled first
-            //heftier are scheduled first if due at the same time
-            var ordersInOrder = Instance.AdOrders.Values.OrderByDescending(order => order.AdSpanUnits).OrderBy(order => order.DueTime).ToList();
-            _breakInOrder = Instance.Breaks.Values.OrderBy(b => b.StartTime).ToList();
 
             _movePerformed = true;
             while (Solution.CompletionScore < 1 && _movePerformed)
             {
                 _movePerformed = false;
-                foreach (AdvertisementTask order in ordersInOrder.Where(o => Solution.AdOrderData[o.ID].Completed))
+                var orders = Solution.AdOrderData.Values.Where(o => !o.TimesAiredSatisfied || !o.ViewsSatisfied).ToList();
+                orders.Shuffle(Random);
+                foreach (TaskData order in orders)
                 {
                     TryToScheduleOrder(order);
                 }
@@ -77,20 +75,22 @@ namespace InstanceSolvers
         }
 
 
-        private void TryToScheduleOrder(AdvertisementTask order)
+        private void TryToScheduleOrder(TaskData orderData)
         {
-            foreach(var tvBreak in _breakInOrder)
-            {
-                var schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
-                if(schedule.UnitFill - MaxBreakExtensionUnits > tvBreak.SpanUnits)
+            var schedules = Solution.AdvertisementsScheduledOnBreaks.Values.Where(s =>
                 {
-                    continue;
-                }
+                    if (s.UnitFill > MaxBreakExtensionUnits + s.BreakData.SpanUnits) return false;
+                    if (Solution.GetTypeToBreakIncompatibility(orderData, s) == 1) return false;
+                    return true;
+                }).ToList();
+            schedules.Shuffle(Random);
+            foreach(var schedule in schedules)
+            {
                 InsertMoveFactory factory = new InsertMoveFactory(Solution)
                 {
-                    Breaks = new[] { tvBreak },
-                    Tasks = new[] { order },
-                    MildlyRandomOrder = false,
+                    Breaks = new[] { schedule.BreakData },
+                    Tasks = new[] { orderData.AdvertisementOrderData },
+                    MildlyRandomOrder = true,
                     PositionsCountLimit = PositionsPerBreakTakenIntoConsideration,
                     Random = Random,
                 };

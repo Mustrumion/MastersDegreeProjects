@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
+    /// <summary>
+    /// This heurisitc generates compatible break orders filling them with advertisements untill their times aired and views are satisfied
+    /// </summary>
     public class FastGreedyHeuristic : BaseSolver, ISolver
     {
         public string Description { get; set; }
@@ -56,7 +59,7 @@ namespace InstanceSolvers
                 if (Solution.GetTypeToBreakIncompatibility(ad, schedule) == 1) {
                     continue;
                 }
-                Instance.BrandIncompatibilityCost.TryGetValue(ad.AdvertisementOrderData.Type.ID, out var brandCompatibility);
+                Instance.BrandIncompatibilityCost.TryGetValue(ad.AdvertisementOrderData.Brand.ID, out var brandCompatibility);
                 if(schedule.Order.Any(a => a.Type.ID == ad.AdvertisementOrderData.Type.ID && (brandCompatibility == null || !brandCompatibility.ContainsKey(a.Brand.ID))))
                 {
                     continue;

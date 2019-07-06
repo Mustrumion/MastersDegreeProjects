@@ -163,14 +163,15 @@ namespace SystemTestsProject
             };
             LocalSearchSolver solver = new LocalSearchSolver()
             {
-                InitialSolver = randomSolver,
                 Instance = instance,
                 Solution = randomSolver.Solution,
+                PropagateRandomSeed = true,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,
                 MaxTime = new TimeSpan(0, 0, 60),
             };
+            solver.InitialSolvers.Add(randomSolver);
             solver.Solve();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer()
             {
