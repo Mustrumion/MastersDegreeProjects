@@ -24,9 +24,17 @@ namespace InstanceGenerator.SolutionObjects
             get => _gradingFunction;
             set
             {
+                if(_gradingFunction == value)
+                {
+                    return;
+                }
                 _gradingFunction = value;
                 _gradingFunction.Instance = Instance;
                 _gradingFunction.Solution = this;
+                foreach (var taskScore in AdOrdersScores.Values)
+                {
+                    taskScore.ScoringFunction = value;
+                }
             }
         }
 
@@ -97,7 +105,7 @@ namespace InstanceGenerator.SolutionObjects
         /// </summary>
         [Description("Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).")]
         [JsonProperty(Order = 1)]
-        public Dictionary<int, TaskData> AdOrderData { get; set; } = new Dictionary<int, TaskData>();
+        public Dictionary<int, TaskData> AdOrdersScores { get; set; } = new Dictionary<int, TaskData>();
 
         /// <summary>
         /// Simplified view on the current solution state. Created for serialization purpose. 
@@ -185,10 +193,10 @@ namespace InstanceGenerator.SolutionObjects
 
         public void RestoreTaskView()
         {
-            AdOrderData = new Dictionary<int, TaskData>();
+            AdOrdersScores = new Dictionary<int, TaskData>();
             foreach (var task in Instance.AdOrders.Values)
             {
-                AdOrderData.Add(task.ID, new TaskData() { AdvertisementOrderData = task });
+                AdOrdersScores.Add(task.ID, new TaskData() { AdvertisementOrderData = task });
             }
             foreach (var tvBreak in _advertisementsScheduledOnBreaks.Values)
             {
@@ -209,11 +217,11 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         private void AddAdToTaskDataDictionry(int orderId, int breakId, int position)
         {
-            bool success = AdOrderData.TryGetValue(orderId, out var taskData);
+            bool success = AdOrdersScores.TryGetValue(orderId, out var taskData);
             if (!success)
             {
                 taskData = new TaskData() { AdvertisementOrderData = Instance.AdOrders[orderId] };
-                AdOrderData.Add(orderId, taskData);
+                AdOrdersScores.Add(orderId, taskData);
             }
             success = taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions);
             if (!success)
@@ -233,7 +241,7 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         private void RemoveAdFromTaskDataDictionary(int orderId, int breakId, int position)
         {
-            var taskData = AdOrderData[orderId];
+            var taskData = AdOrdersScores[orderId];
             var breakPositions = taskData.BreaksPositions[breakId];
             breakPositions.Remove(position);
             if (breakPositions.Count == 0)
@@ -265,7 +273,7 @@ namespace InstanceGenerator.SolutionObjects
             for (int i = adsInBreak.Count - 1; i >= position; i--)
             {
                 int adId = adsInBreak[i].ID;
-                var positionsInBreak = AdOrderData[adId].BreaksPositions[tvBreak.ID];
+                var positionsInBreak = AdOrdersScores[adId].BreaksPositions[tvBreak.ID];
                 for (int j = 0; j < positionsInBreak.Count; j++)
                 {
                     if (positionsInBreak[j] == i)
@@ -293,7 +301,7 @@ namespace InstanceGenerator.SolutionObjects
             for (int i = position + 1; i < adsInBreak.Count; i++)
             {
                 int adId = adsInBreak[i].ID;
-                var positionsInBreak = AdOrderData[adId].BreaksPositions[tvBreak.ID];
+                var positionsInBreak = AdOrdersScores[adId].BreaksPositions[tvBreak.ID];
                 for (int j = 0; j < positionsInBreak.Count; j++)
                 {
                     if (positionsInBreak[j] == i)

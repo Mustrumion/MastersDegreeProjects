@@ -32,7 +32,7 @@ namespace InstanceSolvers
         public bool StopWhenCompleted { get; set; } = true;
         public Action ActionWhenScoreDecrease { get; set; } = Action.Ignore;
         public TimeSpan MaxTime { get; set; }
-        public bool PropagateRandomSeed { get; set; }
+        public bool PropagateRandomnessSeed { get; set; }
 
         public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
 
@@ -40,14 +40,12 @@ namespace InstanceSolvers
         {
         }
 
-        public void Solve()
+        private void FireInitialSolvers()
         {
-            Stopwatch = new Stopwatch();
-            Stopwatch.Start();
             foreach (var solver in InitialSolvers)
             {
                 solver.Instance = Instance;
-                if (PropagateRandomSeed)
+                if (PropagateRandomnessSeed)
                 {
                     solver.Seed = Random.Next();
                 }
@@ -55,6 +53,14 @@ namespace InstanceSolvers
                 solver.Solve();
                 Solution = solver.Solution;
             }
+        }
+
+        public void Solve()
+        {
+            FireInitialSolvers();
+
+            Stopwatch = new Stopwatch();
+            Stopwatch.Start();
 
             InitializeMoveFactories();
             ScoringFunction.AssesSolution(Solution);
@@ -116,7 +122,7 @@ namespace InstanceSolvers
             }
             foreach (var moveFactory in MoveFactories)
             {
-                if (PropagateRandomSeed)
+                if (PropagateRandomnessSeed)
                 {
                     moveFactory.Random = new Random(Random.Next());
                 }

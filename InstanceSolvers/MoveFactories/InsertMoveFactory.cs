@@ -84,13 +84,13 @@ namespace InstanceSolvers.MoveFactories
             {
                 _tasks = _tasks.Where(t =>
                 {
-                    var orderData = Solution.AdOrderData[t.ID];
+                    var orderData = Solution.AdOrdersScores[t.ID];
                     return !orderData.ViewsSatisfied || !orderData.TimesAiredSatisfied;
                 });
             }
             if (IgnoreCompletedTasks)
             {
-                _tasks = _tasks.Where(t => Solution.AdOrderData[t.ID].Completed);
+                _tasks = _tasks.Where(t => Solution.AdOrdersScores[t.ID].Completed);
             }
         }
 

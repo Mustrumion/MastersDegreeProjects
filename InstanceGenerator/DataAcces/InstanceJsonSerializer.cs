@@ -86,12 +86,12 @@ namespace InstanceGenerator.DataAccess
             }
             if (solutionSerializationMode == SolutionSerializationMode.Basic)
             {
-                jsonResolver.IgnoreProperty(typeof(Solution), nameof(Solution.AdOrderData));
+                jsonResolver.IgnoreProperty(typeof(Solution), nameof(Solution.AdOrdersScores));
             }
             if (solutionSerializationMode == SolutionSerializationMode.Bare)
             {
                 jsonResolver.IgnoreProperty(typeof(Solution), 
-                    nameof(Solution.AdOrderData), 
+                    nameof(Solution.AdOrdersScores), 
                     nameof(Solution.Completion),
                     nameof(Solution.CompletionScore),
                     nameof(Solution.MaxCompletion),

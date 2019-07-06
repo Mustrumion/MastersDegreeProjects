@@ -30,11 +30,11 @@ namespace InstanceSolvers.Moves
         {
             foreach (var taskData in _newSchedule.Scores.Values)
             {
-                Solution.AdOrderData[taskData.TaskID].RemoveOtherDataFromThis(taskData);
+                Solution.AdOrdersScores[taskData.TaskID].RemoveOtherDataFromThis(taskData);
             }
             foreach (var taskData in _oldSchedule.Scores.Values)
             {
-                Solution.AdOrderData[taskData.TaskID].MergeOtherDataIntoThis(taskData);
+                Solution.AdOrdersScores[taskData.TaskID].MergeOtherDataIntoThis(taskData);
             }
         }
 
@@ -46,14 +46,14 @@ namespace InstanceSolvers.Moves
             foreach (var taskData in _oldSchedule.Scores.Values)
             {
                 TaskData statsCopy = new TaskData() { AdvertisementOrderData = taskData.AdvertisementOrderData };
-                TaskData currentStatsForTask = Solution.AdOrderData[taskData.TaskID];
+                TaskData currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
                 statsCopy.OverwriteStatsWith(currentStatsForTask);
                 _changedOrderStatsBefore.Add(statsCopy.TaskID, statsCopy);
                 currentStatsForTask.RemoveOtherDataFromThis(taskData);
             }
             foreach (var taskData in _newSchedule.Scores.Values)
             {
-                TaskData currentStatsForTask = Solution.AdOrderData[taskData.TaskID];
+                TaskData currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
                 if (!_changedOrderStatsBefore.TryGetValue(taskData.TaskID, out TaskData statsCopy))
                 {
                     statsCopy = new TaskData() { AdvertisementOrderData = taskData.AdvertisementOrderData };
@@ -65,7 +65,7 @@ namespace InstanceSolvers.Moves
             foreach (var statsBefore in _changedOrderStatsBefore.Values)
             {
                 TaskData statsCopy = new TaskData() { AdvertisementOrderData = statsBefore.AdvertisementOrderData };
-                statsCopy.OverwriteStatsWith(Solution.AdOrderData[statsBefore.TaskID]);
+                statsCopy.OverwriteStatsWith(Solution.AdOrdersScores[statsBefore.TaskID]);
                 _changedOrderStatsAfter.Add(statsBefore.TaskID, statsCopy);
                 CompletionDifferences.Add(statsBefore.TaskID, statsCopy.CalculateDifference(statsBefore));
             }
@@ -107,7 +107,7 @@ namespace InstanceSolvers.Moves
             Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newBreakScores;
             foreach (var statsAfter in _changedOrderStatsAfter.Values)
             {
-                Solution.AdOrderData[statsAfter.TaskID].OverwriteStatsWith(statsAfter);
+                Solution.AdOrdersScores[statsAfter.TaskID].OverwriteStatsWith(statsAfter);
             }
         }
 

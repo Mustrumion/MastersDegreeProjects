@@ -67,11 +67,11 @@ namespace InstanceSolvers
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             ScoringFunction.AssesSolution(Solution);
-            while (Solution.AdOrderData.Values.Any(a => !a.TimesAiredSatisfied))
+            while (Solution.AdOrdersScores.Values.Any(a => !a.TimesAiredSatisfied))
             {
                 foreach (AdvertisementTask advertisementOrder in Instance.AdOrders.Values)
                 {
-                    var taskData = Solution.AdOrderData[advertisementOrder.ID];
+                    var taskData = Solution.AdOrdersScores[advertisementOrder.ID];
                     if (taskData.TimesAiredSatisfied)
                     {
                         continue;

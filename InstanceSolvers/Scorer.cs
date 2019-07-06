@@ -204,19 +204,19 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                     }
                 }
             }
-            solution.AdOrderData = statsData;
+            solution.AdOrdersScores = statsData;
             RecalculateSolutionScoresBasedOnTaskData(solution);
         }
 
 
         public void RecalculateSolutionScoresBasedOnTaskData(Solution solution)
         {
-            solution.Completion = solution.AdOrderData.Values.Count(v => v.Completed);
-            solution.WeightedLoss = solution.AdOrderData.Values.Sum(v => v.WeightedLoss);
-            solution.IntegrityLossScore = solution.AdOrderData.Values.Sum(v => v.IntegrityLossScore);
-            solution.ExtendedBreakLoss = solution.AdOrderData.Values.Sum(v => v.ExtendedBreakLoss);
-            solution.MildIncompatibilityLoss = solution.AdOrderData.Values.Sum(v => v.MildIncompatibilityLoss);
-            solution.OverdueAdsLoss = solution.AdOrderData.Values.Sum(v => v.OverdueAdsLoss);
+            solution.Completion = solution.AdOrdersScores.Values.Count(v => v.Completed);
+            solution.WeightedLoss = solution.AdOrdersScores.Values.Sum(v => v.WeightedLoss);
+            solution.IntegrityLossScore = solution.AdOrdersScores.Values.Sum(v => v.IntegrityLossScore);
+            solution.ExtendedBreakLoss = solution.AdOrdersScores.Values.Sum(v => v.ExtendedBreakLoss);
+            solution.MildIncompatibilityLoss = solution.AdOrdersScores.Values.Sum(v => v.MildIncompatibilityLoss);
+            solution.OverdueAdsLoss = solution.AdOrdersScores.Values.Sum(v => v.OverdueAdsLoss);
             solution.Scored = true;
         }
 

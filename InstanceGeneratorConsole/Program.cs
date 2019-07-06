@@ -33,17 +33,17 @@ namespace InstanceGeneratorConsole
             //};
             //bulkInstanceGenerator.GenerateAllInstances();
 
-            SolveEverything("local_random", GenerateLocalSearchSolver);
+            SolveEverything("local_random", GenerateInsertionSolverConfiguration);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
         }
-
-        private static ISolver GenerateLocalSearchSolver()
+        
+        private static ISolver GenerateLocalSearchSolverConfiguration1()
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
             {
-               MaxOverfillUnits = 30,
+                MaxOverfillUnits = 30,
             };
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
@@ -56,11 +56,32 @@ namespace InstanceGeneratorConsole
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,
-                MaxTime = new TimeSpan(0, 0, 600 ),
+                PropagateRandomnessSeed = true,
+                MaxTime = new TimeSpan(0, 0, 600),
+                Description = "local_random1",
             };
             solver.InitialSolvers.Add(randomSolver);
             solver.InitialSolvers.Add(insertionHeuristic);
             return solver;
+        }
+
+        private static ISolver GenerateInsertionSolverConfiguration()
+        {
+            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            {
+                MaxOverfillUnits = 30,
+            };
+            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            {
+                MaxBreakExtensionUnits = 30,
+                PositionsPerBreakTakenIntoConsideration = 3,
+                ScoringFunction = new Scorer(),
+                PropagateRandomnessSeed = true,
+                Seed = 10,
+                Description = "insertion_heuristic1",
+            };
+            insertionHeuristic.InitialSolvers.Add(randomSolver);
+            return insertionHeuristic;
         }
 
         private static void SolveEverything(string solverName, Func<ISolver> solverMaker)

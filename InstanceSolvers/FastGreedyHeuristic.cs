@@ -44,7 +44,7 @@ namespace InstanceSolvers
         {
             foreach (var taskData in addedScores.Values)
             {
-                TaskData currentStatsForTask = Solution.AdOrderData[taskData.TaskID];
+                TaskData currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
                 currentStatsForTask.MergeOtherDataIntoThis(taskData);
             }
         }
@@ -52,7 +52,7 @@ namespace InstanceSolvers
 
         private void CreateSchedule(BreakSchedule schedule)
         {
-            var advertisementDataList = Solution.AdOrderData.Values.Where(t => !t.TimesAiredSatisfied || t.ViewsSatisfied).ToList();
+            var advertisementDataList = Solution.AdOrdersScores.Values.Where(t => !t.TimesAiredSatisfied || t.ViewsSatisfied).ToList();
             advertisementDataList.Shuffle(Random);
             foreach(var ad in advertisementDataList)
             {

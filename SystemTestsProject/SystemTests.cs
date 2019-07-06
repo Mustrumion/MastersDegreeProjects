@@ -140,7 +140,7 @@ namespace SystemTestsProject
                 Path = @"results\day_DS_D_DH_sol_greedyfastheur.json"
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
-            var taskStats = solver.Solution.AdOrderData;
+            var taskStats = solver.Solution.AdOrdersScores;
             Assert.IsTrue(taskStats.Values.Sum(d => d.SelfIncompatibilityConflictsProportion) == 0);
             Assert.IsTrue(taskStats.Values.Sum(d => d.SelfSpacingConflictsProportion) == 0);
             Assert.IsTrue(taskStats.Values.Sum(d => d.OwnerConflictsProportion) == 0);
@@ -165,7 +165,7 @@ namespace SystemTestsProject
             {
                 Instance = instance,
                 Solution = randomSolver.Solution,
-                PropagateRandomSeed = true,
+                PropagateRandomnessSeed = true,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,

@@ -16,9 +16,12 @@ namespace InstanceSolvers
     public class InsertionHeuristic : BaseSolver, ISolver
     {
         private bool _movePerformed;
-        
+
+        public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
+
         public int PositionsPerBreakTakenIntoConsideration { get; set; } = 0;
         public int MaxBreakExtensionUnits { get; set; } = 20;
+        public bool PropagateRandomnessSeed { get; set; } = true;
         
         public string Description { get; set; }
 
@@ -26,8 +29,24 @@ namespace InstanceSolvers
         {
         }
 
+        private void FireInitialSolvers()
+        {
+            foreach (var solver in InitialSolvers)
+            {
+                solver.Instance = Instance;
+                if (PropagateRandomnessSeed)
+                {
+                    solver.Seed = Random.Next();
+                }
+                solver.ScoringFunction = ScoringFunction;
+                solver.Solve();
+                Solution = solver.Solution;
+            }
+        }
+
         public void Solve()
         {
+            FireInitialSolvers();
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             if (!Solution.Scored)
@@ -40,7 +59,7 @@ namespace InstanceSolvers
             while (Solution.CompletionScore < 1 && _movePerformed)
             {
                 _movePerformed = false;
-                var orders = Solution.AdOrderData.Values.Where(o => !o.TimesAiredSatisfied || !o.ViewsSatisfied).ToList();
+                var orders = Solution.AdOrdersScores.Values.Where(o => !o.TimesAiredSatisfied || !o.ViewsSatisfied).ToList();
                 orders.Shuffle(Random);
                 foreach (TaskData order in orders)
                 {
