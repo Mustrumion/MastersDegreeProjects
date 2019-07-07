@@ -14,6 +14,7 @@ namespace InstanceGeneratorConsole
     {
         public string MainDirectory { get; set; } = @"C:\Users\bartl\Desktop\MDP";
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
+        private string SolutionsDirectory => Path.Combine(MainDirectory, "solutions");
         public void SolveEverything(Func<ISolver> solverMaker)
         {
             DirectoryInfo initial_dir = new DirectoryInfo(InstanceDirectory);
@@ -37,7 +38,7 @@ namespace InstanceGeneratorConsole
             Parallel.ForEach(directory.GetFiles(), file =>
             {
                 var solver = solverMaker();
-                string solutionName = Path.Combine(MainDirectory, solver.Description, solverDir, file.Name);
+                string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, file.Name);
                 Solve(file.FullName, solutionName, solver);
             });
         }

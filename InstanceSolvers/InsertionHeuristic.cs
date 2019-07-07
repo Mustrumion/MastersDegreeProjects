@@ -20,7 +20,6 @@ namespace InstanceSolvers
         public int MaxInsertedPerBreak { get; set; } = 99999;
         public int MaxLoops { get; set; } = 9999999;
         public int MaxBreakExtensionUnits { get; set; } = 20;
-        public bool PropagateRandomnessSeed { get; set; } = true;
         public int MovesPerformed { get; set; }
         public int LoopsPerformed { get; set; }
         

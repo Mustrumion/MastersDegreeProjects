@@ -167,7 +167,7 @@ namespace SystemTestsProject
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 Instance = instance,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 MaxBreakExtensionUnits = 30,
             };
             solver.InitialSolvers.Add(fastRandomHeur);

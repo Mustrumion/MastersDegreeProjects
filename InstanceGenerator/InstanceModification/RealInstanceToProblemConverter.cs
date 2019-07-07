@@ -13,20 +13,40 @@ namespace InstanceGenerator.InstanceModification
     {
         public Instance Instance { get; set; }
         public double TimeUnitInSeconds { get; set; } = 3.0d;
-        public double MinBeginingsProportionMultiplier { get; set; } = 0.8d;
-        public int MinBeginingsProportionOffset { get; set; } = -1;
-        public double MinEndsProportionMultiplier { get; set; } = 0.8d;
-        public int MinEndsProportionOffset { get; set; } = -1;
-        public double MinViewsMultiplier { get; set; } = 0.999d;
-        public int MaxAdsPerBreakOffset { get; set; } = 1;
+        public double MinBeginingsMultiplier { get; set; } = 0.9d;
+        public int MinBeginingsOffset { get; set; } = -1;
+        public double MinEndsMultiplier { get; set; } = 0.9d;
+        public int MinEndsOffset { get; set; } = -1;
+        public double MinViewsMultiplier { get; set; } = 0.9d;
+        public int MaxAdsPerBreakOffset { get; set; } = 0;
         public int DefaultAdsInBetweenSame { get; set; } = 99999;
-        public int MinAdsInBetweenSameOffset { get; set; } = -1;
+        public int MinAdsInBetweenSameOffset { get; set; } = 0;
         public int MinTimesAiredOffset { get; set; } = 0;
+        public double MinTimesAiredMultiplier { get; set; } = 0.9d;
         public TimeSpan DueTimeOffset { get; set; } = new TimeSpan(0, 0, 0, 0);
         public string InstanceDescription { get; set; }
         public bool RoundDueTimeUpToDays { get; set; } = false;
         public bool MinTimesAiredWeighted { get; set; } = false; //changing to true will often result in solution based on real data being not acceptable
         public bool MakeEverythingCompatible { get; set; } = false;
+
+        public string ParametersDescription()
+        {
+            return
+$@"Parameters used in conversion from real data:
+    MinBeginingsOffset: {MinBeginingsOffset},
+    MinBeginingsMultiplier: {MinBeginingsMultiplier},
+    MinEndsOffset: {MinEndsOffset},
+    MinEndsMultiplier: {MinEndsMultiplier},
+    MinTimesAiredOffset: {MinTimesAiredOffset},
+    MinTimesAiredMultiplier: {MinTimesAiredMultiplier},
+    MinViewsMultiplier: {MinViewsMultiplier},
+    MaxAdsPerBreakOffset: {MaxAdsPerBreakOffset},
+    DefaultMinAdsInBetweenSame: {DefaultAdsInBetweenSame},
+    MinAdsInBetweenSameOffset: {MinAdsInBetweenSameOffset},
+    DueTimeOffset: {DueTimeOffset},
+    RoundDueTimeUpToDays: {RoundDueTimeUpToDays},
+    MakeEverythingCompatible: {MakeEverythingCompatible}.";
+        }
 
         private Dictionary<int, int> nightTypesCount;
         private Dictionary<int, int> dayTypesCount;
@@ -55,7 +75,7 @@ namespace InstanceGenerator.InstanceModification
             RecalculateAdOrderViewership();
             GenerateBreakToTypeCompatibilityMatrix();
             AssureBrandToBrandCompatibility();
-            Instance.Description = InstanceDescription;
+            Instance.Description = InstanceDescription + "\n" + ParametersDescription();
         }
 
 
@@ -235,7 +255,7 @@ namespace InstanceGenerator.InstanceModification
             {
                 requiredAmount = (int)(sumSpan.TotalMilliseconds / order.AdSpan.TotalMilliseconds);
             }
-            order.MinTimesAired = Math.Max(requiredAmount + MinTimesAiredOffset, 0);
+            order.MinTimesAired = Convert.ToInt32(Math.Max(requiredAmount + MinTimesAiredOffset, 0) * MinTimesAiredMultiplier);
         }
 
         private void GenerateSelfIncompatibilityData(AdvertisementTask order)
@@ -381,13 +401,13 @@ namespace InstanceGenerator.InstanceModification
             //As a consequence we count the times aired requirements based on total span and above chosen single ad span
             CountMinTimesAired(order);
             int minBeginingsCount = order.AdvertisementInstances.Where(a => a.Break.Advertisements.First() == a).Count();
-            order.MinBeginingsProportion = Math.Max(0, minBeginingsCount + MinBeginingsProportionOffset);
+            order.MinBeginingsProportion = Math.Max(0, minBeginingsCount + MinBeginingsOffset);
             order.MinBeginingsProportion /= order.AdvertisementInstances.Count();
-            order.MinBeginingsProportion *= MinBeginingsProportionMultiplier;
+            order.MinBeginingsProportion *= MinBeginingsMultiplier;
             int minEndsCount = order.AdvertisementInstances.Where(a => a.Break.Advertisements.Last() == a).Count();
-            order.MinEndsProportion = Math.Max(0, minEndsCount + MinEndsProportionOffset);
+            order.MinEndsProportion = Math.Max(0, minEndsCount + MinEndsOffset);
             order.MinEndsProportion /= order.AdvertisementInstances.Count();
-            order.MinEndsProportion *= MinEndsProportionMultiplier;
+            order.MinEndsProportion *= MinEndsMultiplier;
             order.Type = order.AdvertisementInstances.First().Type;
             order.Brand = order.AdvertisementInstances.First().Brand;
             GenerateSelfIncompatibilityData(order);

@@ -17,9 +17,7 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\MDP";
-
-
+        private static string MAIN_DIRECTORY = @"C:\Users\bartl\Dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -34,7 +32,7 @@ namespace InstanceGeneratorConsole
             {
                 MainDirectory = MAIN_DIRECTORY,
             };
-            bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
+            bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -70,13 +68,13 @@ namespace InstanceGeneratorConsole
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
             {
-                MaxOverfillUnits = 30,
+                MaxOverfillUnits = -10,
             };
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
                 MaxBreakExtensionUnits = 30,
-                TimeLimit = new TimeSpan(0, 0, 30),
                 MaxInsertedPerBreak = 3,
+                TimeLimit = new TimeSpan(0, 0, 30),
             };
             LocalSearchSolver solver = new LocalSearchSolver()
             {
@@ -133,20 +131,34 @@ namespace InstanceGeneratorConsole
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
             {
-                MaxOverfillUnits = 30,
+                MaxOverfillUnits = -10,
             };
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
                 MaxBreakExtensionUnits = 30,
-                MaxInsertedPerBreak = 3,
+                MaxInsertedPerBreak = 4,
                 ScoringFunction = new Scorer(),
-                PropagateRandomnessSeed = true,
+                TimeLimit = new TimeSpan(0, 0, 30),
+                PropagateRandomSeed = true,
                 Seed = 10,
-                Description = "insertion_heuristic1",
+                Description = "insertion_heuristic2",
             };
             insertionHeuristic.InitialSolvers.Add(randomSolver);
             return insertionHeuristic;
         }
 
+        private static ISolver GenerateFastRandomGreedyConfig()
+        {
+            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            {
+                MaxOverfillUnits = -10,
+                ScoringFunction = new Scorer(),
+                TimeLimit = new TimeSpan(0, 0, 30),
+                PropagateRandomSeed = true,
+                Seed = 10,
+                Description = "heuristic_fast_random",
+            };
+            return randomSolver;
+        }
     }
 }

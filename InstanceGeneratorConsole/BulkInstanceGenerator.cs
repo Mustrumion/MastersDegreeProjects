@@ -95,55 +95,41 @@ namespace InstanceGeneratorConsole
             Console.WriteLine("extreme difficulty start");
             RealInstanceToProblemConverter conv = new RealInstanceToProblemConverter()
             {
-                InstanceDescription =
-@"Extreme difficulty. Default instance conversion values. Instance is rigidly based on real data.
-Number of starts/ends before counting proportion gets offset by -1.
-Proportion of starts/ends required gets multiplied by 0.8.",
+                InstanceDescription = @"Extreme difficulty.",
             };
             GenerateInstancesForDifficulty("extreme", conv);
 
             Console.WriteLine("hard difficulty start");
-            conv.InstanceDescription =
-@"Hard difficulty. Changed parameters from extreme:
-Proportion of starts/ends required gets multiplied by 0.8.
-Amount of viewership required gets multiplied by 0.9.
-Number of times aired gets offset by -1.
-Max amount of the same advertisement per break offset by 1.
-Default interval between the same ad set to 10.";
-            conv.MinBeginingsProportionMultiplier = 0.8;
-            conv.MinEndsProportionMultiplier = 0.8;
-            conv.MinViewsMultiplier = 0.9;
+            conv.InstanceDescription = @"Hard difficulty.";
+            conv.MinBeginingsMultiplier = 0.7;
+            conv.MinEndsMultiplier = 0.7;
+            conv.MinViewsMultiplier = 0.7;
+            conv.MinTimesAiredMultiplier = 0.7;
             conv.MinTimesAiredOffset = -1;
             conv.MaxAdsPerBreakOffset = 1;
             conv.DefaultAdsInBetweenSame = 10;
             GenerateInstancesForDifficulty("hard", conv);
 
             Console.WriteLine("medium difficulty start");
-            conv.InstanceDescription =
-@"Medium difficulty. Changed parameters from hard:
-Amount of viewership required gets multiplied by 0.7.
-Proportion of starts/ends required gets multiplied by 0.7.";
-            conv.MinBeginingsProportionMultiplier = 0.7;
-            conv.MinEndsProportionMultiplier = 0.7;
-            conv.MinViewsMultiplier = 0.7;
+            conv.InstanceDescription = @"Medium difficulty.";
+            conv.MinBeginingsOffset = -2;
+            conv.MinBeginingsMultiplier = 0.5;
+            conv.MinEndsOffset = -2;
+            conv.MinEndsMultiplier = 0.5;
+            conv.MinViewsMultiplier = 0.5;
+            conv.MinTimesAiredMultiplier = 0.5;
             GenerateInstancesForDifficulty("medium", conv);
 
             Console.WriteLine("easy difficulty start");
-            conv.InstanceDescription =
-@"Easy difficulty. Changed parameters from medium:
-Amount of viewership required gets multiplied by 0.5.
-Proportion of starts/ends required gets multiplied by 0.5
-Number of times aired gets offset by -5.";
-            conv.MinBeginingsProportionMultiplier = 0.5;
-            conv.MinEndsProportionMultiplier = 0.5;
-            conv.MinViewsMultiplier = 0.5;
-            conv.MinTimesAiredOffset = -5;
+            conv.InstanceDescription = @"Easy difficulty.";
+            conv.MinBeginingsMultiplier = 0.3;
+            conv.MinEndsMultiplier = 0.3;
+            conv.MinViewsMultiplier = 0.3;
+            conv.MinTimesAiredMultiplier = 0.3;
             GenerateInstancesForDifficulty("easy", conv);
 
             Console.WriteLine("trivial difficulty start");
-            conv.InstanceDescription =
-@"Trivial difficulty. Changed parameters from easy:
-All advertisements are fully compatible with one another and breaks.";
+            conv.InstanceDescription = @"Trivial difficulty.";
             conv.MakeEverythingCompatible = true;
             GenerateInstancesForDifficulty("trivial", conv);
         }
