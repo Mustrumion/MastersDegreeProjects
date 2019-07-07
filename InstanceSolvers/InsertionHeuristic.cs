@@ -19,10 +19,12 @@ namespace InstanceSolvers
 
         public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
 
-        public int MaxInsertedPerBreak { get; set; } = 0;
+        public int MaxInsertedPerBreak { get; set; } = 99999;
+        public int MaxLoops { get; set; } = 9999999;
         public int MaxBreakExtensionUnits { get; set; } = 20;
         public bool PropagateRandomnessSeed { get; set; } = true;
         public int MovesPerformed { get; set; }
+        public int LoopsPerformed { get; set; }
         
         public string Description { get; set; }
 
@@ -57,7 +59,7 @@ namespace InstanceSolvers
             Solution.Scored = false;
 
             _movePerformed = true;
-            while (Solution.CompletionScore < 1 && _movePerformed)
+            while (Solution.CompletionScore < 1 && _movePerformed && LoopsPerformed < MaxLoops)
             {
                 _movePerformed = false;
                 var orders = Solution.AdOrdersScores.Values.Where(o => !o.TimesAiredSatisfied || !o.ViewsSatisfied).ToList();
@@ -66,6 +68,7 @@ namespace InstanceSolvers
                 {
                     TryToScheduleOrder(order);
                 }
+                LoopsPerformed += 1;
             }
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
             Solution.Scored = true;
@@ -74,17 +77,27 @@ namespace InstanceSolvers
         }
 
 
-        private void ChooseMoveToPerform(List<IMove> moves)
+        private void ChooseMoveToPerform(List<int> positions, TaskScore taskScore, BreakSchedule breakSchedule)
         {
-            foreach(var move in moves)
+            foreach(var position in positions)
             {
+                Insert move = new Insert()
+                {
+                    Solution = Solution,
+                    Position = position,
+                    TvBreak = breakSchedule.BreakData,
+                    AdvertisementOrder = taskScore.AdConstraints,
+                };
                 move.Asses();
                 if(move.OverallDifference.HasScoreImproved() && !move.OverallDifference.AnyCompatibilityIssuesIncreased())
                 {
                     move.Execute();
                     MovesPerformed += 1;
                     _movePerformed = true;
-                    return;
+                }
+                else
+                {
+                    break;
                 }
             }
         }
@@ -102,6 +115,7 @@ namespace InstanceSolvers
             int arrIndex = 0;
             for(int possiblePos = 0; possiblePos < breakSchedule.Order.Count + 1; )
             {
+                if (added.Count >= MaxInsertedPerBreak) break;
                 if (breakPositions.Count >= taskScore.AdConstraints.MaxPerBlock) break;
                 if (breakSchedule.UnitFill + (added.Count + 1) * taskScore.AdConstraints.AdSpanUnits > breakSchedule.BreakData.SpanUnits + MaxBreakExtensionUnits) break;
                 int nextPos = breakPositions.Count > arrIndex ? breakPositions[arrIndex] : 999999999;
@@ -119,6 +133,7 @@ namespace InstanceSolvers
                 {
                     possiblePos = nextPos + taskScore.AdConstraints.MinJobsBetweenSame + 1;
                 }
+                arrIndex += 1;
             }
             return added;
         }
@@ -137,17 +152,7 @@ namespace InstanceSolvers
             foreach(var schedule in schedules)
             {
                 var possibilities = GetPossibleInserts(orderData, schedule);
-
-                InsertMoveFactory factory = new InsertMoveFactory(Solution)
-                {
-                    Breaks = new[] { schedule.BreakData },
-                    Tasks = new[] { orderData.AdConstraints },
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = MaxInsertedPerBreak,
-                    Random = Random,
-                };
-                List<IMove> moves = factory.GenerateMoves().ToList();
-                ChooseMoveToPerform(moves);
+                ChooseMoveToPerform(possibilities, orderData, schedule);
             }
         }
     }

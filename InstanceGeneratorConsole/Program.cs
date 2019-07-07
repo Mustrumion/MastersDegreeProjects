@@ -33,7 +33,7 @@ namespace InstanceGeneratorConsole
             //};
             //bulkInstanceGenerator.GenerateAllInstances();
 
-            SolveEverything("local_random", GenerateInsertionSolverConfiguration);
+            SolveEverything(GenerateLocalSearchSolverConfiguration1);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -58,7 +58,7 @@ namespace InstanceGeneratorConsole
                 StopWhenCompleted = true,
                 PropagateRandomnessSeed = true,
                 MaxTime = new TimeSpan(0, 0, 600),
-                Description = "local_random1",
+                Description = "local_random2",
             };
             solver.InitialSolvers.Add(randomSolver);
             solver.InitialSolvers.Add(insertionHeuristic);
@@ -84,13 +84,13 @@ namespace InstanceGeneratorConsole
             return insertionHeuristic;
         }
 
-        private static void SolveEverything(string solverName, Func<ISolver> solverMaker)
+        private static void SolveEverything(Func<ISolver> solverMaker)
         {
             DirectoryInfo initial_dir = new DirectoryInfo(INSTANCE_DIRECTORY);
             var directories = initial_dir.GetDirectories();
             Parallel.ForEach(directories, dir =>
             {
-                SolveParentDirectory(dir, Path.Combine(solverName, dir.Name), solverMaker);
+                SolveParentDirectory(dir, dir.Name, solverMaker);
             });
         }
 
@@ -106,8 +106,9 @@ namespace InstanceGeneratorConsole
         {
             Parallel.ForEach(directory.GetFiles(), file =>
             {
-                string solutionName = Path.Combine(MAIN_DIRECTORY, solverDir, file.Name);
-                Solve(file.FullName, solutionName, solverMaker());
+                var solver = solverMaker();    
+                string solutionName = Path.Combine(MAIN_DIRECTORY, solver.Description, solverDir, file.Name);
+                Solve(file.FullName, solutionName, solver);
             });
         }
 
