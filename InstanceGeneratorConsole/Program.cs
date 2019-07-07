@@ -5,6 +5,7 @@ using InstanceGenerator.InstanceModification;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers;
+using InstanceSolvers.MoveFactories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,10 +18,6 @@ namespace InstanceGeneratorConsole
     class Program
     {
         private static string MAIN_DIRECTORY = @"C:\MDP";
-        private static string PRE_INSTANCE_DIRECTORY => Path.Combine(MAIN_DIRECTORY, "pre_instances");
-        private static string INSTANCE_DIRECTORY => Path.Combine(MAIN_DIRECTORY, "instances");
-        private static string EXAMPLE_SOLUTION_DIRECTORY => Path.Combine(MAIN_DIRECTORY, "example_solutions");
-        private static string EXAMPLE_SOLUTION_SCORED_DIRECTORY => Path.Combine(MAIN_DIRECTORY, "example_solutions_scored");
 
 
 
@@ -33,13 +30,17 @@ namespace InstanceGeneratorConsole
             //};
             //bulkInstanceGenerator.GenerateAllInstances();
 
-            SolveEverything(GenerateLocalSearchSolverConfiguration1);
+            BulkSolver bulkSolver = new BulkSolver()
+            {
+                MainDirectory = MAIN_DIRECTORY,
+            };
+            bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
         }
-        
-        private static ISolver GenerateLocalSearchSolverConfiguration1()
+
+        private static ISolver GenerateLocalSearchSolverConfiguration2()
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
             {
@@ -65,6 +66,69 @@ namespace InstanceGeneratorConsole
             return solver;
         }
 
+        private static ISolver GenerateLocalSearchSolverConfiguration3()
+        {
+            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            {
+                MaxOverfillUnits = 30,
+            };
+            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            {
+                MaxBreakExtensionUnits = 30,
+                TimeLimit = new TimeSpan(0, 0, 30),
+                MaxInsertedPerBreak = 3,
+            };
+            LocalSearchSolver solver = new LocalSearchSolver()
+            {
+                Solution = randomSolver.Solution,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                StopWhenCompleted = true,
+                PropagateRandomnessSeed = true,
+                TimeLimit = new TimeSpan(0, 0, 300),
+                Description = "local_random3",
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = false,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new DeleteMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxBreaksChecked = 5,
+                },
+                new SwapMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 5,
+                    MaxBreaksChecked = 5,
+                },
+            };
+            solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(insertionHeuristic);
+            return solver;
+        }
+
         private static ISolver GenerateInsertionSolverConfiguration()
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
@@ -84,49 +148,5 @@ namespace InstanceGeneratorConsole
             return insertionHeuristic;
         }
 
-        private static void SolveEverything(Func<ISolver> solverMaker)
-        {
-            DirectoryInfo initial_dir = new DirectoryInfo(INSTANCE_DIRECTORY);
-            var directories = initial_dir.GetDirectories();
-            Parallel.ForEach(directories, dir =>
-            {
-                SolveParentDirectory(dir, dir.Name, solverMaker);
-            });
-        }
-
-        private static void SolveParentDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
-        {
-            Parallel.ForEach(directory.GetDirectories(), childDir =>
-            {
-                SolveFromDirectory(childDir, Path.Combine(solverDir, childDir.Name), solverMaker);
-            });
-        }
-
-        private static void SolveFromDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
-        {
-            Parallel.ForEach(directory.GetFiles(), file =>
-            {
-                var solver = solverMaker();    
-                string solutionName = Path.Combine(MAIN_DIRECTORY, solver.Description, solverDir, file.Name);
-                Solve(file.FullName, solutionName, solver);
-            });
-        }
-
-        private static void Solve(string pathIn, string pathOut, ISolver solver)
-        {
-            var reader = new InstanceJsonSerializer
-            {
-                Path = pathIn,
-            };
-            Instance instance = reader.DeserializeInstance();
-            solver.Instance = instance;
-            solver.Solve();
-            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
-            {
-                Path = pathOut,
-            };
-            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
-            Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
-        }
     }
 }

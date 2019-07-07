@@ -35,6 +35,10 @@ namespace InstanceSolvers
         {
             foreach(var position in positions)
             {
+                if(CurrentTime.Elapsed > TimeLimit)
+                {
+                    break;
+                }
                 Insert move = new Insert()
                 {
                     Solution = Solution,
@@ -110,10 +114,20 @@ namespace InstanceSolvers
             }
         }
 
+
+        private bool TimeToEnd()
+        {
+            if (Solution.CompletionScore >= 1) return true;
+            if (!_movePerformed) return true;
+            if (LoopsPerformed >= MaxLoops) return true;
+            if (CurrentTime.Elapsed >= TimeLimit) return true;
+            return false;
+        }
+
         protected override void InternalSolve()
         {
             _movePerformed = true;
-            while (Solution.CompletionScore < 1 && _movePerformed && LoopsPerformed < MaxLoops)
+            while (!TimeToEnd())
             {
                 _movePerformed = false;
                 var orders = Solution.AdOrdersScores.Values.Where(o => !o.TimesAiredSatisfied || !o.ViewsSatisfied).ToList();

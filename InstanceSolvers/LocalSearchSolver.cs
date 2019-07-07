@@ -109,7 +109,7 @@ namespace InstanceSolvers
             {
                 return true;
             }
-            if(TimeLimit != default(TimeSpan) && CurrentTime.Elapsed > TimeLimit)
+            if(CurrentTime.Elapsed > TimeLimit)
             {
                 return true;
             }

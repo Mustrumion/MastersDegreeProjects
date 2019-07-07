@@ -15,7 +15,7 @@ namespace InstanceGeneratorConsole
 {
     public class BulkInstanceGenerator
     {
-        public string MainDirectory = @"C:\Users\bartl\Desktop\MDP";
+        public string MainDirectory { get; set; } = @"C:\Users\bartl\Desktop\MDP";
         private string RealDataDirectory => Path.Combine(MainDirectory, "pre_instances");
         private string InstanceDIrectory => Path.Combine(MainDirectory, "instances");
         private string ExampleSolutionDirectory => Path.Combine(MainDirectory, "example_solutions");
