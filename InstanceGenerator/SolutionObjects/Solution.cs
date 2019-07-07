@@ -105,7 +105,7 @@ namespace InstanceGenerator.SolutionObjects
         /// </summary>
         [Description("Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).")]
         [JsonProperty(Order = 1)]
-        public Dictionary<int, TaskData> AdOrdersScores { get; set; } = new Dictionary<int, TaskData>();
+        public Dictionary<int, TaskScore> AdOrdersScores { get; set; } = new Dictionary<int, TaskScore>();
 
         /// <summary>
         /// Simplified view on the current solution state. Created for serialization purpose. 
@@ -193,10 +193,10 @@ namespace InstanceGenerator.SolutionObjects
 
         public void RestoreTaskView()
         {
-            AdOrdersScores = new Dictionary<int, TaskData>();
+            AdOrdersScores = new Dictionary<int, TaskScore>();
             foreach (var task in Instance.AdOrders.Values)
             {
-                AdOrdersScores.Add(task.ID, new TaskData() { AdvertisementOrderData = task, ScoringFunction = GradingFunction});
+                AdOrdersScores.Add(task.ID, new TaskScore() { AdConstraints = task, ScoringFunction = GradingFunction});
             }
             foreach (var tvBreak in _advertisementsScheduledOnBreaks.Values)
             {
@@ -220,7 +220,7 @@ namespace InstanceGenerator.SolutionObjects
             bool success = AdOrdersScores.TryGetValue(orderId, out var taskData);
             if (!success)
             {
-                taskData = new TaskData() { AdvertisementOrderData = Instance.AdOrders[orderId] };
+                taskData = new TaskScore() { AdConstraints = Instance.AdOrders[orderId] };
                 AdOrdersScores.Add(orderId, taskData);
             }
             success = taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions);
@@ -321,9 +321,9 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="ad"></param>
         /// <param name="schedule"></param>
         /// <returns>0 - compatible, 1 - incompatible</returns>
-        public byte GetTypeToBreakIncompatibility(TaskData ad, BreakSchedule schedule)
+        public byte GetTypeToBreakIncompatibility(TaskScore ad, BreakSchedule schedule)
         {
-            return GetTypeToBreakIncompatibility(ad.AdvertisementOrderData.Type.ID, schedule.BreakData.ID);
+            return GetTypeToBreakIncompatibility(ad.AdConstraints.Type.ID, schedule.BreakData.ID);
         }
 
         /// <summary>

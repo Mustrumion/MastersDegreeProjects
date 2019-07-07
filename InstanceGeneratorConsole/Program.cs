@@ -48,7 +48,7 @@ namespace InstanceGeneratorConsole
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
                 MaxBreakExtensionUnits = 30,
-                PositionsPerBreakTakenIntoConsideration = 3,
+                MaxInsertedPerBreak = 3,
             };
             LocalSearchSolver solver = new LocalSearchSolver()
             {
@@ -74,7 +74,7 @@ namespace InstanceGeneratorConsole
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
                 MaxBreakExtensionUnits = 30,
-                PositionsPerBreakTakenIntoConsideration = 3,
+                MaxInsertedPerBreak = 3,
                 ScoringFunction = new Scorer(),
                 PropagateRandomnessSeed = true,
                 Seed = 10,

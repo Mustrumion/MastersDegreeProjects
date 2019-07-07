@@ -13,9 +13,9 @@ namespace InstanceGenerator.SolutionObjects
     /// <summary>
     /// Intermediate, helper data used for scoring the solutions
     /// </summary>
-    public class TaskData
+    public class TaskScore
     {
-        public int TaskID { get => AdvertisementOrderData.ID; }
+        public int TaskID { get => AdConstraints.ID; }
 
         public double Viewership { get; set; }
         public int TimesAired { get; set; }
@@ -56,7 +56,7 @@ namespace InstanceGenerator.SolutionObjects
         public IScoringFunction ScoringFunction { get; set; }
 
         [JsonIgnore]
-        public AdvertisementTask AdvertisementOrderData { get; set; }
+        public AdvertisementTask AdConstraints { get; set; }
 
         [JsonProperty(Order = 1)]
         public Dictionary<int, List<int>> BreaksPositions { get; set; } = new Dictionary<int, List<int>>();
@@ -69,15 +69,15 @@ namespace InstanceGenerator.SolutionObjects
             get
             {
                 if(TimesAired == 0) return 0;
-                return (double)NumberOfStarts / Math.Max(TimesAired, AdvertisementOrderData.MinTimesAired);
+                return (double)NumberOfStarts / Math.Max(TimesAired, AdConstraints.MinTimesAired);
             }
         }
         public double StartsCompletion
         {
             get
             {
-                if (AdvertisementOrderData.MinBeginingsProportion == 0) return 1;
-                return Math.Min(StartsProportion / AdvertisementOrderData.MinBeginingsProportion, 1);
+                if (AdConstraints.MinBeginingsProportion == 0) return 1;
+                return Math.Min(StartsProportion / AdConstraints.MinBeginingsProportion, 1);
             }
         }
         public bool StartsSatisfied
@@ -91,15 +91,15 @@ namespace InstanceGenerator.SolutionObjects
             get
             {
                 if (TimesAired == 0) return 0;
-                return (double)NumberOfEnds / Math.Max(TimesAired, AdvertisementOrderData.MinTimesAired);
+                return (double)NumberOfEnds / Math.Max(TimesAired, AdConstraints.MinTimesAired);
             }
         }
         public double EndsCompletion
         {
             get
             {
-                if (AdvertisementOrderData.MinEndsProportion == 0) return 1;
-                return Math.Min(EndsProportion / AdvertisementOrderData.MinEndsProportion, 1);
+                if (AdConstraints.MinEndsProportion == 0) return 1;
+                return Math.Min(EndsProportion / AdConstraints.MinEndsProportion, 1);
             }
         }
         public bool EndsSatisfied
@@ -112,13 +112,13 @@ namespace InstanceGenerator.SolutionObjects
         {
             get
             {
-                if (AdvertisementOrderData.MinViewership == 0) return 1;
-                return Math.Min(Viewership / AdvertisementOrderData.MinViewership, 1);
+                if (AdConstraints.MinViewership == 0) return 1;
+                return Math.Min(Viewership / AdConstraints.MinViewership, 1);
             }
         }
         public bool ViewsSatisfied
         {
-            get => Viewership >= AdvertisementOrderData.MinViewership;
+            get => Viewership >= AdConstraints.MinViewership;
         }
 
 
@@ -126,31 +126,31 @@ namespace InstanceGenerator.SolutionObjects
         {
             get
             {
-                if (AdvertisementOrderData.MinTimesAired == 0) return 1;
-                return Math.Min((double)TimesAired / AdvertisementOrderData.MinTimesAired, 1);
+                if (AdConstraints.MinTimesAired == 0) return 1;
+                return Math.Min((double)TimesAired / AdConstraints.MinTimesAired, 1);
             }
         }
         public bool TimesAiredSatisfied
         {
-            get => TimesAired >= AdvertisementOrderData.MinTimesAired;
+            get => TimesAired >= AdConstraints.MinTimesAired;
         }
 
 
         public double OwnerConflictsProportion
         {
-            get => (double)OwnerConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, Math.Max(TimesAired, 1));
+            get => (double)OwnerConflicts / Math.Max(AdConstraints.MinTimesAired, Math.Max(TimesAired, 1));
         }
         public double BreakTypeConflictsProportion
         {
-            get => (double)BreakTypeConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, Math.Max(TimesAired, 1));
+            get => (double)BreakTypeConflicts / Math.Max(AdConstraints.MinTimesAired, Math.Max(TimesAired, 1));
         }
         public double SelfSpacingConflictsProportion
         {
-            get => (double)SelfSpacingConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, Math.Max(TimesAired, 1));
+            get => (double)SelfSpacingConflicts / Math.Max(AdConstraints.MinTimesAired, Math.Max(TimesAired, 1));
         }
         public double SelfIncompatibilityConflictsProportion
         {
-            get => (double)SelfIncompatibilityConflicts / Math.Max(AdvertisementOrderData.MinTimesAired, Math.Max(TimesAired, 1));
+            get => (double)SelfIncompatibilityConflicts / Math.Max(AdConstraints.MinTimesAired, Math.Max(TimesAired, 1));
         }
 
 
@@ -186,7 +186,7 @@ namespace InstanceGenerator.SolutionObjects
             }
         }
 
-        public void MergeOtherDataIntoThis(TaskData taskData, bool mergeStatsOnly = false)
+        public void MergeOtherDataIntoThis(TaskScore taskData, bool mergeStatsOnly = false)
         {
             Viewership += taskData.Viewership;
             TimesAired += taskData.TimesAired;
@@ -223,7 +223,7 @@ namespace InstanceGenerator.SolutionObjects
         }
 
 
-        public void RemoveOtherDataFromThis(TaskData taskData)
+        public void RemoveOtherDataFromThis(TaskScore taskData)
         {
             Viewership -= taskData.Viewership;
             TimesAired -= taskData.TimesAired;
@@ -271,7 +271,7 @@ namespace InstanceGenerator.SolutionObjects
         }
 
 
-        public void OverwriteStatsWith(TaskData taskData)
+        public void OverwriteStatsWith(TaskScore taskData)
         {
             Viewership = taskData.Viewership;
             TimesAired = taskData.TimesAired;
@@ -295,9 +295,9 @@ namespace InstanceGenerator.SolutionObjects
         /// Creates a deep clone of TaskData
         /// </summary>
         /// <returns></returns>
-        public TaskData Clone(bool copyStatsOnly = false)
+        public TaskScore Clone(bool copyStatsOnly = false)
         {
-            TaskData clone = new TaskData()
+            TaskScore clone = new TaskScore()
             {
                 Viewership = Viewership,
                 TimesAired = TimesAired,
@@ -315,7 +315,7 @@ namespace InstanceGenerator.SolutionObjects
                 OverdueAdsLoss = OverdueAdsLoss,
                 IntegrityLossScore = IntegrityLossScore,
                 WeightedLoss = WeightedLoss,
-                AdvertisementOrderData = AdvertisementOrderData,
+                AdConstraints = AdConstraints,
                 ScoringFunction = ScoringFunction,
             };
             if (!copyStatsOnly)
@@ -325,7 +325,7 @@ namespace InstanceGenerator.SolutionObjects
             return clone;
         }
 
-        public TaskCompletionDifference CalculateDifference(TaskData taskData)
+        public TaskCompletionDifference CalculateDifference(TaskScore taskData)
         {
             return new TaskCompletionDifference()
             {

@@ -25,11 +25,11 @@ namespace InstanceGenerator.Interfaces
         void RecalculateSolutionScoresBasedOnTaskData(Solution solution);
 
 
-        void RecalculateOverdueLoss(TaskData taskData);
-        void RecalculateMildIncompatibilityLoss(TaskData taskData);
-        void RecalculateExtendedBreakLoss(TaskData taskData);
-        void RecalculateWeightedLoss(TaskData taskData);
-        void RecalculateIntegrityLoss(TaskData taskData);
-        void RecalculateLastAdTime(TaskData taskData);
+        void RecalculateOverdueLoss(TaskScore taskData);
+        void RecalculateMildIncompatibilityLoss(TaskScore taskData);
+        void RecalculateExtendedBreakLoss(TaskScore taskData);
+        void RecalculateWeightedLoss(TaskScore taskData);
+        void RecalculateIntegrityLoss(TaskScore taskData);
+        void RecalculateLastAdTime(TaskScore taskData);
     }
 }

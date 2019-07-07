@@ -17,10 +17,10 @@ namespace InstanceSolvers.Moves
         public Solution Solution { get; set; }
         public Instance Instance { get; set; }
 
-        private Dictionary<int, TaskData> _changedOrderStatsBefore;
-        private Dictionary<int, TaskData> _changedOrderStatsAfter;
-        private Dictionary<int, TaskData> _oldBreakScores;
-        private Dictionary<int, TaskData> _newBreakScores;
+        private Dictionary<int, TaskScore> _changedOrderStatsBefore;
+        private Dictionary<int, TaskScore> _changedOrderStatsAfter;
+        private Dictionary<int, TaskScore> _oldBreakScores;
+        private Dictionary<int, TaskScore> _newBreakScores;
         private BreakSchedule _oldSchedule;
         private BreakSchedule _newSchedule;
         public Dictionary<int, TaskCompletionDifference> CompletionDifferences { get; set; }
@@ -40,23 +40,23 @@ namespace InstanceSolvers.Moves
 
         private void AddToSolutionScores()
         {
-            _changedOrderStatsBefore = new Dictionary<int, TaskData>();
-            _changedOrderStatsAfter = new Dictionary<int, TaskData>();
+            _changedOrderStatsBefore = new Dictionary<int, TaskScore>();
+            _changedOrderStatsAfter = new Dictionary<int, TaskScore>();
             CompletionDifferences = new Dictionary<int, TaskCompletionDifference>();
             foreach (var taskData in _oldSchedule.Scores.Values)
             {
-                TaskData statsCopy = new TaskData() { AdvertisementOrderData = taskData.AdvertisementOrderData };
-                TaskData currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
+                TaskScore statsCopy = new TaskScore() { AdConstraints = taskData.AdConstraints };
+                TaskScore currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
                 statsCopy.OverwriteStatsWith(currentStatsForTask);
                 _changedOrderStatsBefore.Add(statsCopy.TaskID, statsCopy);
                 currentStatsForTask.RemoveOtherDataFromThis(taskData);
             }
             foreach (var taskData in _newSchedule.Scores.Values)
             {
-                TaskData currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
-                if (!_changedOrderStatsBefore.TryGetValue(taskData.TaskID, out TaskData statsCopy))
+                TaskScore currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
+                if (!_changedOrderStatsBefore.TryGetValue(taskData.TaskID, out TaskScore statsCopy))
                 {
-                    statsCopy = new TaskData() { AdvertisementOrderData = taskData.AdvertisementOrderData };
+                    statsCopy = new TaskScore() { AdConstraints = taskData.AdConstraints };
                     statsCopy.OverwriteStatsWith(currentStatsForTask);
                     _changedOrderStatsBefore.Add(statsCopy.TaskID, statsCopy);
                 }
@@ -64,15 +64,15 @@ namespace InstanceSolvers.Moves
             }
             foreach (var statsBefore in _changedOrderStatsBefore.Values)
             {
-                TaskData statsCopy = new TaskData() { AdvertisementOrderData = statsBefore.AdvertisementOrderData };
+                TaskScore statsCopy = new TaskScore() { AdConstraints = statsBefore.AdConstraints };
                 statsCopy.OverwriteStatsWith(Solution.AdOrdersScores[statsBefore.TaskID]);
                 _changedOrderStatsAfter.Add(statsBefore.TaskID, statsCopy);
                 CompletionDifferences.Add(statsBefore.TaskID, statsCopy.CalculateDifference(statsBefore));
             }
             OverallDifference = new TaskCompletionDifference();
-            foreach (var difference in CompletionDifferences)
+            foreach (var difference in CompletionDifferences.Values)
             {
-                OverallDifference.Add(difference.Value);
+                OverallDifference.Add(difference);
             }
         }
 

@@ -40,11 +40,11 @@ namespace InstanceSolvers
             Solution.TimeElapsed += stopwatch.Elapsed;
         }
 
-        private void AddToSolutionScores(Dictionary<int, TaskData> addedScores)
+        private void AddToSolutionScores(Dictionary<int, TaskScore> addedScores)
         {
             foreach (var taskData in addedScores.Values)
             {
-                TaskData currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
+                TaskScore currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
                 currentStatsForTask.MergeOtherDataIntoThis(taskData);
             }
         }
@@ -59,11 +59,11 @@ namespace InstanceSolvers
                 if (Solution.GetTypeToBreakIncompatibility(ad, schedule) == 1) {
                     continue;
                 }
-                if (Solution.GetBulkBrandIncompatibilities(ad.AdvertisementOrderData, schedule.Order).Contains(double.PositiveInfinity))
+                if (Solution.GetBulkBrandIncompatibilities(ad.AdConstraints, schedule.Order).Contains(double.PositiveInfinity))
                 {
                     continue;
                 }
-                schedule.Append(ad.AdvertisementOrderData);
+                schedule.Append(ad.AdConstraints);
                 if(schedule.UnitFill > schedule.BreakData.SpanUnits + MaxOverfillUnits)
                 {
                     break;

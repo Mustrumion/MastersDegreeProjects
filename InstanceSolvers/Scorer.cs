@@ -31,12 +31,12 @@ BreakExtensionLossWeight = {BreakExtensionLossWeight}
 MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
-        private Dictionary<int, TaskData> _temporaryTaskData;
+        private Dictionary<int, TaskScore> _temporaryTaskData;
         private IReadOnlyList<AdvertisementTask> _currentBreakOrder;
         private TvBreak _currentBreak;
         private int _unitsFromStart;
 
-        private TaskData _currentlyAssessed;
+        private TaskScore _currentlyAssessed;
         private int _currentAdPosition;
         private AdvertisementTask _currentAd;
         private int _currentAdCount;
@@ -129,12 +129,12 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             _currentAdPosition = position;
             _currentAdCount = 1;
             _currentAd = order;
-            bool success = _temporaryTaskData.TryGetValue(order.ID, out TaskData assesedTask);
+            bool success = _temporaryTaskData.TryGetValue(order.ID, out TaskScore assesedTask);
             if (!success)
             {
-                assesedTask = new TaskData()
+                assesedTask = new TaskScore()
                 {
-                    AdvertisementOrderData = _currentAd,
+                    AdConstraints = _currentAd,
                     ScoringFunction = this,
                 };
                 assesedTask.BreaksPositions.Add(_currentBreak.ID, new List<int>());
@@ -165,7 +165,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         {
             _currentBreakOrder = schedule.Order;
             _currentBreak = schedule.BreakData;
-            _temporaryTaskData = new Dictionary<int, TaskData>();
+            _temporaryTaskData = new Dictionary<int, TaskScore>();
             _unitsFromStart = 0;
             for (int i = 0; i < _currentBreakOrder.Count; i++)
             {
@@ -179,9 +179,9 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         public void AssesSolution(Solution solution)
         {
             Solution = solution;
-            Dictionary<int, TaskData> statsData = Instance.AdOrders.ToDictionary(
+            Dictionary<int, TaskScore> statsData = Instance.AdOrders.ToDictionary(
                     a => a.Key,
-                    a => new TaskData() { AdvertisementOrderData = a.Value, ScoringFunction = this });
+                    a => new TaskScore() { AdConstraints = a.Value, ScoringFunction = this });
             foreach (var taskData in statsData.Values)
             {
                 taskData.RecalculateLoss();
@@ -192,7 +192,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 {
                     AssesBreak(tvBreak);
                 }
-                Dictionary<int, TaskData> dataToMerge = tvBreak.Scores;
+                Dictionary<int, TaskScore> dataToMerge = tvBreak.Scores;
                 foreach (var taskData in dataToMerge)
                 {
                     if (statsData.TryGetValue(taskData.Key, out var found))
@@ -222,12 +222,12 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
 
-        public void RecalculateOverdueLoss(TaskData taskData)
+        public void RecalculateOverdueLoss(TaskScore taskData)
         {
-            var timeDifference = taskData.LastAdTime - taskData.AdvertisementOrderData.DueTime;
+            var timeDifference = taskData.LastAdTime - taskData.AdConstraints.DueTime;
             if (timeDifference.TotalMilliseconds > 0)
             {
-                taskData.OverdueAdsLoss = Math.Ceiling(timeDifference.TotalDays) * taskData.AdvertisementOrderData.Gain / 10;
+                taskData.OverdueAdsLoss = Math.Ceiling(timeDifference.TotalDays) * taskData.AdConstraints.Gain / 10;
             }
             else
             {
@@ -235,24 +235,24 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             }
         }
 
-        public void RecalculateMildIncompatibilityLoss(TaskData taskData)
+        public void RecalculateMildIncompatibilityLoss(TaskScore taskData)
         {
-            taskData.MildIncompatibilityLoss = taskData.MildIncompatibilitySumOfOccurenceWeights * taskData.AdvertisementOrderData.Gain;
+            taskData.MildIncompatibilityLoss = taskData.MildIncompatibilitySumOfOccurenceWeights * taskData.AdConstraints.Gain;
         }
 
-        public void RecalculateExtendedBreakLoss(TaskData taskData)
+        public void RecalculateExtendedBreakLoss(TaskScore taskData)
         {
             taskData.ExtendedBreakLoss = taskData.ExtendedBreakSeconds;
         }
 
-        public void RecalculateWeightedLoss(TaskData taskData)
+        public void RecalculateWeightedLoss(TaskScore taskData)
         {
             taskData.WeightedLoss = taskData.ExtendedBreakLoss * BreakExtensionLossWeight
                 + taskData.OverdueAdsLoss * OverdueTasksLossWeight
                 + taskData.MildIncompatibilityLoss * MildIncompatibilityLossWeight;
         }
 
-        public void RecalculateIntegrityLoss(TaskData taskData)
+        public void RecalculateIntegrityLoss(TaskScore taskData)
         {
             taskData.IntegrityLossScore =
                 1 - taskData.StartsCompletion
@@ -269,7 +269,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 + taskData.BreakTypeConflictsProportion;
         }
 
-        public void RecalculateLastAdTime(TaskData taskData)
+        public void RecalculateLastAdTime(TaskScore taskData)
         {
             foreach (var tvBreak in taskData.BreaksPositions)
             {

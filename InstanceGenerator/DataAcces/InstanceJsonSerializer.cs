@@ -82,7 +82,7 @@ namespace InstanceGenerator.DataAccess
             var jsonResolver = new PropertyRenameAndIgnoreSerializerContractResolver();
             if (solutionSerializationMode == SolutionSerializationMode.DebugTaskData)
             {
-                jsonResolver.IgnoreProperty(typeof(TaskData), nameof(TaskData.BreaksPositions));
+                jsonResolver.IgnoreProperty(typeof(TaskScore), nameof(TaskScore.BreaksPositions));
             }
             if (solutionSerializationMode == SolutionSerializationMode.Basic)
             {

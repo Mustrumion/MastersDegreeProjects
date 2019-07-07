@@ -1,6 +1,6 @@
 {
   "Description": null,
-  "TimeElapsed": "00:00:00.0281654",
+  "TimeElapsed": "00:00:00.0585270",
   "WeightedLoss": 572333395.80000031,
   "OverdueAdsLoss": 1052773.8000000005,
   "MildIncompatibilityLoss": 571280622.0,
@@ -10,8 +10,8 @@
   "CompletionScore": 0.21153846153846154,
   "MaxCompletion": 208,
   "GradingFunctionDescription": "Grading function 0.1.0. \r\nTask delay loss is counted as a task weight multiplied by delay in days (rounded up).\r\nBreak extension loss is counted as break extension in seconds.\r\nSoft incompatibility between owners of the same advertisement is a sum of occurece weights multiplied by the corresponding tasks weights.\r\nWeights for the loss function components:\r\nOverdueTasksLossWeight = 1\r\nBreakExtensionLossWeight = 1\r\nMildIncompatibilityLossWeight = 1",
-  "Scored": false,
-  "AdOrderData": {
+  "Scored": true,
+  "AdOrdersScores": {
     "4328": {
       "TaskID": 4328,
       "Viewership": 0.0,

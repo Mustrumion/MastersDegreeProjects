@@ -132,12 +132,49 @@ namespace SystemTestsProject
                 Instance = instance,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
-                MaxOverfillUnits = 10,
+                MaxOverfillUnits = 1,
             };
             solver.Solve();
             InstanceJsonSerializer serializer = new InstanceJsonSerializer()
             {
                 Path = @"results\day_DS_D_DH_sol_greedyfastheur.json"
+            };
+            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+            var taskStats = solver.Solution.AdOrdersScores;
+            solver.ScoringFunction.AssesSolution(solver.Solution);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.SelfIncompatibilityConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.SelfSpacingConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.OwnerConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.BreakTypeConflictsProportion) == 0);
+        }
+
+        [TestMethod]
+        public void InsertionHeuristicSolveDay3ChannelInstance()
+        {
+            var file = Properties.Resources.day_DS_D_DH_inst;
+            var reader = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = reader.DeserializeInstance();
+            FastGreedyHeuristic fastRandomHeur = new FastGreedyHeuristic()
+            {
+                Seed = 10,
+                MaxOverfillUnits = 1,
+            };
+            InsertionHeuristic solver = new InsertionHeuristic()
+            {
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                Instance = instance,
+                PropagateRandomnessSeed = true,
+                MaxBreakExtensionUnits = 30,
+            };
+            solver.InitialSolvers.Add(fastRandomHeur);
+            solver.Solve();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = @"results\day_DS_D_DH_sol_insertheur.json"
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
             var taskStats = solver.Solution.AdOrdersScores;

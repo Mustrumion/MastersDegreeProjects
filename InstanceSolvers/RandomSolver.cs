@@ -20,11 +20,11 @@ namespace InstanceSolvers
         }
         
         
-        private bool InsertInRandomNonFilledBreak(TaskData taskData)
+        private bool InsertInRandomNonFilledBreak(TaskScore taskData)
         {
             List<BreakSchedule> breaksWithEnoughSpace = Solution.AdvertisementsScheduledOnBreaks.Values.Where
                 (
-                    b => b.BreakData.SpanUnits >= b.UnitFill + taskData.AdvertisementOrderData.AdSpanUnits
+                    b => b.BreakData.SpanUnits >= b.UnitFill + taskData.AdConstraints.AdSpanUnits
                 ).ToList();
             if (breaksWithEnoughSpace.Count == 0)
             {
@@ -36,7 +36,7 @@ namespace InstanceSolvers
             Insert insert = new Insert()
             {
                 TvBreak = schedule.BreakData,
-                AdvertisementOrder = taskData.AdvertisementOrderData,
+                AdvertisementOrder = taskData.AdConstraints,
                 Position = position,
                 Instance = Instance,
                 Solution = Solution,
@@ -45,7 +45,7 @@ namespace InstanceSolvers
             return true;
         }
 
-        private void InsertInRandomBreak(TaskData taskData)
+        private void InsertInRandomBreak(TaskScore taskData)
         {
             int breakNum = Random.Next(Instance.Breaks.Count);
             TvBreak tvBreak = Instance.Breaks.Values.ToList()[breakNum];
@@ -54,7 +54,7 @@ namespace InstanceSolvers
             Insert insert = new Insert()
             {
                 TvBreak = schedule.BreakData,
-                AdvertisementOrder = taskData.AdvertisementOrderData,
+                AdvertisementOrder = taskData.AdConstraints,
                 Position = position,
                 Instance = Instance,
                 Solution = Solution,

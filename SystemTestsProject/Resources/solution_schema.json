@@ -54,14 +54,14 @@
     "Scored": {
       "type": "boolean"
     },
-    "AdOrderData": {
+    "AdOrdersScores": {
       "description": "Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).",
       "type": [
         "object",
         "null"
       ],
       "additionalProperties": {
-        "$id": "InstanceGenerator.SolutionObjects.TaskData",
+        "$id": "InstanceGenerator.SolutionObjects.TaskScore",
         "type": [
           "object",
           "null"
