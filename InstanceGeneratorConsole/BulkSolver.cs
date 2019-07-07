@@ -15,49 +15,76 @@ namespace InstanceGeneratorConsole
         public string MainDirectory { get; set; } = @"C:\Users\bartl\Desktop\MDP";
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
         private string SolutionsDirectory => Path.Combine(MainDirectory, "solutions");
+        public bool ParallelExecution { get; set; } = false;
+        public int MaxThreads { get; set; } = 4;
+
         public void SolveEverything(Func<ISolver> solverMaker)
+        {
+            var solveTasks = GenerateAllTasks(solverMaker);
+            if (ParallelExecution)
+            {
+                Parallel.ForEach(
+                    solveTasks,
+                    new ParallelOptions { MaxDegreeOfParallelism = MaxThreads }, 
+                    solveTask => solveTask());
+            }
+            else
+            {
+                foreach(var task in solveTasks)
+                {
+                    task();
+                }
+            }
+        }
+
+
+        private List<Action> GenerateAllTasks(Func<ISolver> solverMaker)
         {
             DirectoryInfo initial_dir = new DirectoryInfo(InstanceDirectory);
             var directories = initial_dir.GetDirectories();
-            Parallel.ForEach(directories, dir =>
+            return directories.SelectMany(dir =>
             {
-                SolveParentDirectory(dir, dir.Name, solverMaker);
-            });
+                return GenerateTasksParentDirectory(dir, dir.Name, solverMaker);
+            }).ToList();
         }
 
-        private  void SolveParentDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
+        private List<Action> GenerateTasksParentDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
-            Parallel.ForEach(directory.GetDirectories(), childDir =>
+            return directory.GetDirectories().SelectMany(childDir =>
             {
-                SolveFromDirectory(childDir, Path.Combine(solverDir, childDir.Name), solverMaker);
-            });
+                return GenerateTasksFromDirectory(childDir, Path.Combine(solverDir, childDir.Name), solverMaker);
+            }).ToList();
         }
 
-        private void SolveFromDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
+        private List<Action> GenerateTasksFromDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
-            Parallel.ForEach(directory.GetFiles(), file =>
+            return directory.GetFiles().Select(file =>
             {
                 var solver = solverMaker();
                 string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, file.Name);
-                Solve(file.FullName, solutionName, solver);
-            });
+                return GenerateSolveTask(file.FullName, solutionName, solver);
+            }).ToList();
         }
 
-        private void Solve(string pathIn, string pathOut, ISolver solver)
+        private Action GenerateSolveTask(string pathIn, string pathOut, ISolver solver)
         {
-            var reader = new InstanceJsonSerializer
+            return () =>
             {
-                Path = pathIn,
+                //Console.WriteLine($"Started {pathOut}");
+                var reader = new InstanceJsonSerializer
+                {
+                    Path = pathIn,
+                };
+                Instance instance = reader.DeserializeInstance();
+                solver.Instance = instance;
+                solver.Solve();
+                InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+                {
+                    Path = pathOut,
+                };
+                serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+                Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
             };
-            Instance instance = reader.DeserializeInstance();
-            solver.Instance = instance;
-            solver.Solve();
-            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
-            {
-                Path = pathOut,
-            };
-            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
-            Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
         }
     
     }

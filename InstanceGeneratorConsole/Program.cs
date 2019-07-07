@@ -32,7 +32,7 @@ namespace InstanceGeneratorConsole
             {
                 MainDirectory = MAIN_DIRECTORY,
             };
-            bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
+            bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -136,9 +136,9 @@ namespace InstanceGeneratorConsole
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
                 MaxBreakExtensionUnits = 30,
-                MaxInsertedPerBreak = 4,
+                MaxInsertedPerBreak = 5,
                 ScoringFunction = new Scorer(),
-                TimeLimit = new TimeSpan(0, 0, 30),
+                TimeLimit = new TimeSpan(0, 0, 60),
                 PropagateRandomSeed = true,
                 Seed = 10,
                 Description = "insertion_heuristic2",
@@ -153,7 +153,6 @@ namespace InstanceGeneratorConsole
             {
                 MaxOverfillUnits = -10,
                 ScoringFunction = new Scorer(),
-                TimeLimit = new TimeSpan(0, 0, 30),
                 PropagateRandomSeed = true,
                 Seed = 10,
                 Description = "heuristic_fast_random",

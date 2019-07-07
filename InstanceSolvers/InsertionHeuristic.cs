@@ -20,9 +20,10 @@ namespace InstanceSolvers
         public int MaxInsertedPerBreak { get; set; } = 99999;
         public int MaxLoops { get; set; } = 9999999;
         public int MaxBreakExtensionUnits { get; set; } = 20;
-        public int MovesPerformed { get; set; }
+        public int NumberOfMoves { get; set; }
         public int LoopsPerformed { get; set; }
-        
+
+        public bool DiagnosticMessages { get; set; } = false;
 
         public InsertionHeuristic() : base()
         {
@@ -49,7 +50,7 @@ namespace InstanceSolvers
                 if(move.OverallDifference.HasScoreImproved() && !move.OverallDifference.AnyCompatibilityIssuesIncreased())
                 {
                     move.Execute();
-                    MovesPerformed += 1;
+                    NumberOfMoves += 1;
                     _movePerformed = true;
                 }
                 else
@@ -139,6 +140,7 @@ namespace InstanceSolvers
             }
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
             Solution.Scored = true;
+            if(DiagnosticMessages) Console.WriteLine($"INsertion heuristic ended. Number of moves: {NumberOfMoves}.");
         }
     }
 }
