@@ -13,21 +13,18 @@ namespace InstanceSolvers
 {
     public class RandomFastSolver : BaseSolver, ISolver
     {
-        public string Description { get; set; }
         private List<AdvertisementTask> _order { get; set; }
 
         public RandomFastSolver() : base()
         {
         }
 
-        public void Solve()
+        protected override void InternalSolve()
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
             _order = new List<AdvertisementTask>();
-            foreach(var adInfo in Instance.AdOrders.Values)
+            foreach (var adInfo in Instance.AdOrders.Values)
             {
-                for(int i = 0; i< adInfo.MinTimesAired; i++)
+                for (int i = 0; i < adInfo.MinTimesAired; i++)
                 {
                     _order.Add(adInfo);
                 }
@@ -48,11 +45,9 @@ namespace InstanceSolvers
                     schedule.AddAd(_order[curr]);
                     curr++;
                 }
+                schedule.Scores = null;
             }
-            Solution.RestoreTaskView();
             ScoringFunction.AssesSolution(Solution);
-            stopwatch.Stop();
-            Solution.TimeElapsed += stopwatch.Elapsed;
         }
     }
 }

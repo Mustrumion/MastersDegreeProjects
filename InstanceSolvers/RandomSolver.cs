@@ -13,8 +13,6 @@ namespace InstanceSolvers
 {
     public class RandomSolver : BaseSolver, ISolver
     {
-        public string Description { get; set; }
-
         public RandomSolver() : base()
         {
         }
@@ -62,11 +60,8 @@ namespace InstanceSolvers
             insert.Execute();
         }
 
-        public void Solve()
+        protected override void InternalSolve()
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            ScoringFunction.AssesSolution(Solution);
             while (Solution.AdOrdersScores.Values.Any(a => !a.TimesAiredSatisfied))
             {
                 foreach (AdvertisementTask advertisementOrder in Instance.AdOrders.Values)
@@ -83,8 +78,6 @@ namespace InstanceSolvers
                 }
             }
             ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            stopwatch.Stop();
-            Solution.TimeElapsed += stopwatch.Elapsed;
         }
     }
 }

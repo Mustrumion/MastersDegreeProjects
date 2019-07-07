@@ -195,14 +195,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 Dictionary<int, TaskScore> dataToMerge = tvBreak.Scores;
                 foreach (var taskData in dataToMerge)
                 {
-                    if (statsData.TryGetValue(taskData.Key, out var found))
-                    {
-                        found.MergeOtherDataIntoThis(taskData.Value);
-                    }
-                    else
-                    {
-                        statsData[taskData.Key] = taskData.Value;
-                    }
+                    statsData[taskData.Key].MergeOtherDataIntoThis(taskData.Value);
                 }
             }
             solution.AdOrdersScores = statsData;

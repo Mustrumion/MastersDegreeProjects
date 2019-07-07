@@ -3,13 +3,14 @@ using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class BaseSolver
+    public abstract class BaseSolver : ISolver
     {
         protected Instance _instance;
         protected int _seed;
@@ -24,6 +25,11 @@ namespace InstanceSolvers
         }
 
         public Random Random { get; set; }
+        public TimeSpan TimeLimit { get; set; }
+        public Stopwatch CurrentTime { get; set; }
+        public bool PropagateRandomSeed { get; set; }
+        public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
+        public string Description { get; set; }
 
         public int Seed
         {
@@ -91,5 +97,37 @@ namespace InstanceSolvers
                 }
             }
         }
+
+
+        private void FireInitialSolvers()
+        {
+            foreach (var solver in InitialSolvers)
+            {
+                solver.Instance = Instance;
+                if (PropagateRandomSeed)
+                {
+                    solver.Seed = Random.Next();
+                }
+                solver.ScoringFunction = ScoringFunction;
+                solver.Solve();
+                Solution = solver.Solution;
+            }
+        }
+
+        public void Solve()
+        {
+            if (!Solution.Scored)
+            {
+                ScoringFunction.AssesSolution(Solution);
+            }
+            FireInitialSolvers();
+            CurrentTime = new Stopwatch();
+            CurrentTime.Start();
+            InternalSolve();
+            CurrentTime.Stop();
+            Solution.TimeElapsed += CurrentTime.Elapsed;
+        }
+
+        protected abstract void InternalSolve();
     }
 }

@@ -17,8 +17,6 @@ namespace InstanceSolvers
     {
         private bool _movePerformed;
 
-        public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
-
         public int MaxInsertedPerBreak { get; set; } = 99999;
         public int MaxLoops { get; set; } = 9999999;
         public int MaxBreakExtensionUnits { get; set; } = 20;
@@ -26,55 +24,11 @@ namespace InstanceSolvers
         public int MovesPerformed { get; set; }
         public int LoopsPerformed { get; set; }
         
-        public string Description { get; set; }
 
         public InsertionHeuristic() : base()
         {
         }
-
-        private void FireInitialSolvers()
-        {
-            foreach (var solver in InitialSolvers)
-            {
-                solver.Instance = Instance;
-                if (PropagateRandomnessSeed)
-                {
-                    solver.Seed = Random.Next();
-                }
-                solver.ScoringFunction = ScoringFunction;
-                solver.Solve();
-                Solution = solver.Solution;
-            }
-        }
-
-        public void Solve()
-        {
-            FireInitialSolvers();
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            if (!Solution.Scored)
-            {
-                ScoringFunction.AssesSolution(Solution);
-            }
-            Solution.Scored = false;
-
-            _movePerformed = true;
-            while (Solution.CompletionScore < 1 && _movePerformed && LoopsPerformed < MaxLoops)
-            {
-                _movePerformed = false;
-                var orders = Solution.AdOrdersScores.Values.Where(o => !o.TimesAiredSatisfied || !o.ViewsSatisfied).ToList();
-                orders.Shuffle(Random);
-                foreach (TaskScore order in orders)
-                {
-                    TryToScheduleOrder(order);
-                }
-                LoopsPerformed += 1;
-            }
-            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            Solution.Scored = true;
-            stopwatch.Stop();
-            Solution.TimeElapsed += stopwatch.Elapsed;
-        }
+        
 
 
         private void ChooseMoveToPerform(List<int> positions, TaskScore taskScore, BreakSchedule breakSchedule)
@@ -154,6 +108,24 @@ namespace InstanceSolvers
                 var possibilities = GetPossibleInserts(orderData, schedule);
                 ChooseMoveToPerform(possibilities, orderData, schedule);
             }
+        }
+
+        protected override void InternalSolve()
+        {
+            _movePerformed = true;
+            while (Solution.CompletionScore < 1 && _movePerformed && LoopsPerformed < MaxLoops)
+            {
+                _movePerformed = false;
+                var orders = Solution.AdOrdersScores.Values.Where(o => !o.TimesAiredSatisfied || !o.ViewsSatisfied).ToList();
+                orders.Shuffle(Random);
+                foreach (TaskScore order in orders)
+                {
+                    TryToScheduleOrder(order);
+                }
+                LoopsPerformed += 1;
+            }
+            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+            Solution.Scored = true;
         }
     }
 }

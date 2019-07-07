@@ -22,61 +22,34 @@ namespace InstanceSolvers
     public class LocalSearchSolver : BaseSolver, ISolver
     {
         private bool _movePerformed;
-        public Stopwatch Stopwatch { get; set; } = new Stopwatch();
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
 
         private List<TvBreak> _breakInOrder { get; set; }
-        public string Description { get; set; }
-
         public bool StopWhenCompleted { get; set; } = true;
         public Action ActionWhenScoreDecrease { get; set; } = Action.Ignore;
-        public TimeSpan MaxTime { get; set; }
         public bool PropagateRandomnessSeed { get; set; }
-
-        public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
+        public int NumberOfMoves { get; set; }
+        public List<IMove> MovesPerformed { get; set; } = new List<IMove>();
 
         public LocalSearchSolver() : base()
         {
         }
-
-        private void FireInitialSolvers()
+        
+        protected override void InternalSolve()
         {
-            foreach (var solver in InitialSolvers)
-            {
-                solver.Instance = Instance;
-                if (PropagateRandomnessSeed)
-                {
-                    solver.Seed = Random.Next();
-                }
-                solver.ScoringFunction = ScoringFunction;
-                solver.Solve();
-                Solution = solver.Solution;
-            }
-        }
-
-        public void Solve()
-        {
-            FireInitialSolvers();
-
-            Stopwatch = new Stopwatch();
-            Stopwatch.Start();
-
             InitializeMoveFactories();
-            ScoringFunction.AssesSolution(Solution);
             _movePerformed = true;
             while (_movePerformed)
             {
                 _movePerformed = false;
                 List<IMove> moves = new List<IMove>();
-                foreach(IMoveFactory factory in MoveFactories)
+                foreach (IMoveFactory factory in MoveFactories)
                 {
                     moves.AddRange(factory.GenerateMoves().ToList());
                 }
                 ChooseMoveToPerform(moves);
             }
-            Stopwatch.Stop();
-            Solution.TimeElapsed += Stopwatch.Elapsed;
         }
 
         private void InitializeMoveFactories()
@@ -136,7 +109,7 @@ namespace InstanceSolvers
             {
                 return true;
             }
-            if(MaxTime != default(TimeSpan) && Stopwatch.Elapsed > MaxTime)
+            if(TimeLimit != default(TimeSpan) && CurrentTime.Elapsed > TimeLimit)
             {
                 return true;
             }
@@ -170,6 +143,7 @@ namespace InstanceSolvers
                     return;
                 }
             }
+            MovesPerformed.Add(candidate);
             candidate.Execute();
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
             _movePerformed = true;

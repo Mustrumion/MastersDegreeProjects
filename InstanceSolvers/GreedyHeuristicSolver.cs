@@ -20,35 +20,11 @@ namespace InstanceSolvers
         public int MaxBreakExtensionUnits { get; set; } = 20;
 
         private List<TvBreak> _breakInOrder { get; set; }
-        public string Description { get; set; }
 
         public GreedyHeuristicSolver() : base()
         {
         }
-
-        public void Solve()
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            ScoringFunction.AssesSolution(Solution);
-            //due earlier are scheduled first
-            //heftier are scheduled first if due at the same time
-            var ordersInOrder = Instance.AdOrders.Values.OrderByDescending(order => order.AdSpanUnits).OrderBy(order => order.DueTime).ToList();
-            _breakInOrder = Instance.Breaks.Values.OrderBy(b => b.StartTime).ToList();
-
-            _movePerformed = true;
-            while (Solution.CompletionScore < 1 && _movePerformed)
-            {
-                _movePerformed = false;
-                foreach (AdvertisementTask order in ordersInOrder)
-                {
-                    TryToScheduleOrder(order);
-                }
-            }
-            stopwatch.Stop();
-            Solution.TimeElapsed += stopwatch.Elapsed;
-        }
-
+        
 
         private void ChooseMoveToPerform(List<IMove> moves)
         {
@@ -85,6 +61,24 @@ namespace InstanceSolvers
                 };
                 List<IMove> moves = factory.GenerateMoves().ToList();
                 ChooseMoveToPerform(moves);
+            }
+        }
+
+        protected override void InternalSolve()
+        {
+            //due earlier are scheduled first
+            //heftier are scheduled first if due at the same time
+            var ordersInOrder = Instance.AdOrders.Values.OrderByDescending(order => order.AdSpanUnits).OrderBy(order => order.DueTime).ToList();
+            _breakInOrder = Instance.Breaks.Values.OrderBy(b => b.StartTime).ToList();
+
+            _movePerformed = true;
+            while (Solution.CompletionScore < 1 && _movePerformed)
+            {
+                _movePerformed = false;
+                foreach (AdvertisementTask order in ordersInOrder)
+                {
+                    TryToScheduleOrder(order);
+                }
             }
         }
     }

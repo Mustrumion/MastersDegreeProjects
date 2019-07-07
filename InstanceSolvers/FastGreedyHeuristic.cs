@@ -16,30 +16,13 @@ namespace InstanceSolvers
     /// </summary>
     public class FastGreedyHeuristic : BaseSolver, ISolver
     {
-        public string Description { get; set; }
         public int MaxOverfillUnits { get; set; } = 10;
         private List<AdvertisementTask> _order { get; set; }
 
         public FastGreedyHeuristic() : base()
         {
         }
-
-        public void Solve()
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            Solution.RestoreTaskView();
-            var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.ToList();
-            breakList.Shuffle(Random);
-            foreach (var schedule in breakList)
-            {
-                CreateSchedule(schedule);
-            }
-            ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            stopwatch.Stop();
-            Solution.TimeElapsed += stopwatch.Elapsed;
-        }
-
+        
         private void AddToSolutionScores(Dictionary<int, TaskScore> addedScores)
         {
             foreach (var taskData in addedScores.Values)
@@ -71,6 +54,17 @@ namespace InstanceSolvers
             }
             ScoringFunction.AssesBreak(schedule);
             AddToSolutionScores(schedule.Scores);
+        }
+
+        protected override void InternalSolve()
+        {
+            var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.ToList();
+            breakList.Shuffle(Random);
+            foreach (var schedule in breakList)
+            {
+                CreateSchedule(schedule);
+            }
+            ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
         }
     }
 }

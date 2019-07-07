@@ -57,7 +57,7 @@ namespace InstanceGeneratorConsole
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,
                 PropagateRandomnessSeed = true,
-                MaxTime = new TimeSpan(0, 0, 600),
+                TimeLimit = new TimeSpan(0, 0, 300),
                 Description = "local_random2",
             };
             solver.InitialSolvers.Add(randomSolver);
@@ -126,7 +126,7 @@ namespace InstanceGeneratorConsole
                 Path = pathOut,
             };
             serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
-            Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed}.");
+            Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
         }
     }
 }

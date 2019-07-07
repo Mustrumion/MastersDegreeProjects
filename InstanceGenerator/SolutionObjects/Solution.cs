@@ -217,14 +217,8 @@ namespace InstanceGenerator.SolutionObjects
         /// <param name="position"></param>
         private void AddAdToTaskDataDictionry(int orderId, int breakId, int position)
         {
-            bool success = AdOrdersScores.TryGetValue(orderId, out var taskData);
-            if (!success)
-            {
-                taskData = new TaskScore() { AdConstraints = Instance.AdOrders[orderId] };
-                AdOrdersScores.Add(orderId, taskData);
-            }
-            success = taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions);
-            if (!success)
+            var taskData = AdOrdersScores[orderId];
+            if (!taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions))
             {
                 breakPositions = new List<int>();
                 taskData.BreaksPositions.Add(breakId, breakPositions);

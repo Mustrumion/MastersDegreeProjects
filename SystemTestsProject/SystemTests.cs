@@ -206,7 +206,7 @@ namespace SystemTestsProject
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,
-                MaxTime = new TimeSpan(0, 0, 60),
+                TimeLimit = new TimeSpan(0, 0, 60),
             };
             solver.InitialSolvers.Add(randomSolver);
             solver.Solve();
