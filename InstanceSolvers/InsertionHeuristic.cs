@@ -111,6 +111,10 @@ namespace InstanceSolvers
             {
                 var possibilities = GetPossibleInserts(orderData, schedule);
                 ChooseMoveToPerform(possibilities, orderData, schedule);
+                if(orderData.ViewsSatisfied && orderData.TimesAiredSatisfied)
+                {
+                    break;
+                }
             }
         }
 
@@ -140,7 +144,7 @@ namespace InstanceSolvers
             }
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
             Solution.Scored = true;
-            if(DiagnosticMessages) Console.WriteLine($"INsertion heuristic ended. Number of moves: {NumberOfMoves}.");
+            if(DiagnosticMessages) Console.WriteLine($"Insertion heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
         }
     }
 }

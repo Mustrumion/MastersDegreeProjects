@@ -184,6 +184,43 @@ namespace SystemTestsProject
             Assert.IsTrue(taskStats.Values.Sum(d => d.BreakTypeConflictsProportion) == 0);
         }
 
+
+        [TestMethod]
+        public void StartsHeuristicSolveDay3ChannelInstance()
+        {
+            var file = Properties.Resources.day_DS_D_DH_inst;
+            var reader = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = reader.DeserializeInstance();
+            FastGreedyHeuristic fastRandomHeur = new FastGreedyHeuristic()
+            {
+                Seed = 10,
+                MaxOverfillUnits = 1,
+            };
+            BeginingsHeuristic solver = new BeginingsHeuristic()
+            {
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                Instance = instance,
+                PropagateRandomSeed = true,
+                MaxBreakExtensionUnits = 30,
+            };
+            solver.InitialSolvers.Add(fastRandomHeur);
+            solver.Solve();
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = @"results\day_DS_D_DH_sol_startsheur.json"
+            };
+            serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+            var taskStats = solver.Solution.AdOrdersScores;
+            Assert.IsTrue(taskStats.Values.Sum(d => d.SelfIncompatibilityConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.SelfSpacingConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.OwnerConflictsProportion) == 0);
+            Assert.IsTrue(taskStats.Values.Sum(d => d.BreakTypeConflictsProportion) == 0);
+        }
+
         [TestMethod]
         public void LocalRandomSolveHour3ChannelInstance()
         {

@@ -31,6 +31,7 @@ namespace InstanceGeneratorConsole
             BulkSolver bulkSolver = new BulkSolver()
             {
                 MainDirectory = MAIN_DIRECTORY,
+                ParallelExecution = true,
             };
             bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
 
@@ -140,6 +141,7 @@ namespace InstanceGeneratorConsole
                 ScoringFunction = new Scorer(),
                 TimeLimit = new TimeSpan(0, 0, 60),
                 PropagateRandomSeed = true,
+                DiagnosticMessages = true,
                 Seed = 10,
                 Description = "insertion_heuristic2",
             };
