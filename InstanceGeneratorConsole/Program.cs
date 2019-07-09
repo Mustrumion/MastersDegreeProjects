@@ -33,6 +33,18 @@ namespace InstanceGeneratorConsole
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
             };
+            bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
+            bulkSolver = new BulkSolver()
+            {
+                MainDirectory = MAIN_DIRECTORY,
+                ParallelExecution = true,
+            };
+            bulkSolver.SolveEverything(GenerateStartInsertionSolverConfiguration);
+            bulkSolver = new BulkSolver()
+            {
+                MainDirectory = MAIN_DIRECTORY,
+                ParallelExecution = true,
+            };
             bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
 
             Console.WriteLine("Press any key.");
@@ -136,7 +148,7 @@ namespace InstanceGeneratorConsole
             };
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
-                MaxBreakExtensionUnits = 30,
+                MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
                 ScoringFunction = new Scorer(),
                 TimeLimit = new TimeSpan(0, 0, 60),
@@ -157,18 +169,18 @@ namespace InstanceGeneratorConsole
             };
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
-                MaxBreakExtensionUnits = 30,
+                MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
             };
             BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
             {
-                MaxBreakExtensionUnits = 60,
+                MaxBreakExtensionUnits = 70,
                 ScoringFunction = new Scorer(),
                 TimeLimit = new TimeSpan(0, 0, 60),
                 PropagateRandomSeed = true,
                 DiagnosticMessages = true,
                 Seed = 10,
-                Description = "insertion_starts_heuristic2",
+                Description = "insertion_starts_heuristic",
             };
             beginingsHeuristic.InitialSolvers.Add(randomSolver);
             beginingsHeuristic.InitialSolvers.Add(insertionHeuristic);
@@ -179,26 +191,28 @@ namespace InstanceGeneratorConsole
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
             {
-                MaxOverfillUnits = -20,
+                MaxOverfillUnits = -10,
             };
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
-                MaxBreakExtensionUnits = 10,
+                MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
+                MaxLoops = 4,
+                TimeLimit = new TimeSpan(0, 0, 60),
             };
             BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
             {
-                MaxBreakExtensionUnits = 30,
+                MaxBreakExtensionUnits = 70,
             };
             EndingsHeuristic endingHeuristic = new EndingsHeuristic()
             {
-                MaxBreakExtensionUnits = 50,
+                MaxBreakExtensionUnits = 100,
                 ScoringFunction = new Scorer(),
                 TimeLimit = new TimeSpan(0, 0, 60),
                 PropagateRandomSeed = true,
                 DiagnosticMessages = true,
                 Seed = 10,
-                Description = "insertion_starts_ends_heuristic3",
+                Description = "insertion_starts_ends_heuristic",
             };
             endingHeuristic.InitialSolvers.Add(randomSolver);
             endingHeuristic.InitialSolvers.Add(insertionHeuristic);
