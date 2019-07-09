@@ -16,8 +16,7 @@ namespace InstanceSolvers
     public class EndingsHeuristic : BaseSolver, ISolver
     {
         private bool _movePerformed;
-
-        public int MaxInsertedPerBreak { get; set; } = 99999;
+        
         public int MaxLoops { get; set; } = 9999999;
         public int MaxBreakExtensionUnits { get; set; } = 20;
         public int NumberOfMoves { get; set; }

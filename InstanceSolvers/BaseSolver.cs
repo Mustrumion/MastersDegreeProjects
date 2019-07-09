@@ -104,10 +104,12 @@ namespace InstanceSolvers
             foreach (var solver in InitialSolvers)
             {
                 solver.Instance = Instance;
+                solver.Solution = Solution;
                 if (PropagateRandomSeed)
                 {
                     solver.Seed = Random.Next();
                 }
+                solver.PropagateRandomSeed = PropagateRandomSeed;
                 solver.ScoringFunction = ScoringFunction;
                 solver.Solve();
                 Solution = solver.Solution;

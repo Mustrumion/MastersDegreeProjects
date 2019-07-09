@@ -33,7 +33,7 @@ namespace InstanceGeneratorConsole
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
             };
-            bulkSolver.SolveEverything(GenerateStartInsertionSolverConfiguration);
+            bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -179,32 +179,31 @@ namespace InstanceGeneratorConsole
         {
             FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
             {
-                MaxOverfillUnits = 0,
+                MaxOverfillUnits = -20,
             };
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
-                MaxBreakExtensionUnits = 40,
+                MaxBreakExtensionUnits = 10,
                 MaxInsertedPerBreak = 5,
             };
             BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
             {
-                MaxBreakExtensionUnits = 70,
-                MaxInsertedPerBreak = 5,
+                MaxBreakExtensionUnits = 30,
             };
             EndingsHeuristic endingHeuristic = new EndingsHeuristic()
             {
-                MaxBreakExtensionUnits = 100,
+                MaxBreakExtensionUnits = 50,
                 ScoringFunction = new Scorer(),
                 TimeLimit = new TimeSpan(0, 0, 60),
                 PropagateRandomSeed = true,
                 DiagnosticMessages = true,
                 Seed = 10,
-                Description = "insertion_starts_ends_heuristic2",
+                Description = "insertion_starts_ends_heuristic3",
             };
             endingHeuristic.InitialSolvers.Add(randomSolver);
             endingHeuristic.InitialSolvers.Add(insertionHeuristic);
             endingHeuristic.InitialSolvers.Add(beginingsHeuristic);
-            return beginingsHeuristic;
+            return endingHeuristic;
         }
 
         private static ISolver GenerateFastRandomGreedyConfig()
