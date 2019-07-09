@@ -205,12 +205,23 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
         public void RecalculateSolutionScoresBasedOnTaskData(Solution solution)
         {
-            solution.Completion = solution.AdOrdersScores.Values.Count(v => v.Completed);
-            solution.WeightedLoss = solution.AdOrdersScores.Values.Sum(v => v.WeightedLoss);
-            solution.IntegrityLossScore = solution.AdOrdersScores.Values.Sum(v => v.IntegrityLossScore);
-            solution.ExtendedBreakLoss = solution.AdOrdersScores.Values.Sum(v => v.ExtendedBreakLoss);
-            solution.MildIncompatibilityLoss = solution.AdOrdersScores.Values.Sum(v => v.MildIncompatibilityLoss);
-            solution.OverdueAdsLoss = solution.AdOrdersScores.Values.Sum(v => v.OverdueAdsLoss);
+            solution.Completion = 0;
+            solution.WeightedLoss = 0;
+            solution.IntegrityLossScore = 0;
+            solution.ExtendedBreakLoss = 0;
+            solution.MildIncompatibilityLoss = 0;
+            solution.OverdueAdsLoss = 0;
+            solution.TotalStats = new TasksStats();
+            foreach (var taskScore in solution.AdOrdersScores.Values)
+            {
+                solution.Completion += taskScore.Completed ? 1 : 0;
+                solution.WeightedLoss += taskScore.WeightedLoss;
+                solution.IntegrityLossScore += taskScore.IntegrityLossScore;
+                solution.ExtendedBreakLoss += taskScore.ExtendedBreakLoss;
+                solution.MildIncompatibilityLoss += taskScore.MildIncompatibilityLoss;
+                solution.OverdueAdsLoss += taskScore.OverdueAdsLoss;
+                solution.TotalStats.AddTaskData(taskScore);
+            }
             solution.Scored = true;
         }
 

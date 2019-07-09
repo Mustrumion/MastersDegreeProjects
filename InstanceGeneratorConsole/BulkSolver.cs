@@ -1,6 +1,7 @@
 ﻿using InstanceGenerator.DataAccess;
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,8 @@ namespace InstanceGeneratorConsole
 {
     public class BulkSolver
     {
+        public volatile BulkSolverStats _stats;
+
         public string MainDirectory { get; set; } = @"C:\Users\bartl\Desktop\MDP";
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
         private string SolutionsDirectory => Path.Combine(MainDirectory, "solutions");
@@ -20,6 +23,7 @@ namespace InstanceGeneratorConsole
 
         public void SolveEverything(Func<ISolver> solverMaker)
         {
+            _stats = new BulkSolverStats();
             var solveTasks = GenerateAllTasks(solverMaker);
             if (ParallelExecution)
             {
@@ -34,6 +38,26 @@ namespace InstanceGeneratorConsole
                 {
                     task();
                 }
+            }
+
+
+            string statsPath = Path.Combine(SolutionsDirectory, solverMaker().Description, "TotalStats.json");
+            FileInfo file = new FileInfo(statsPath);
+            if (!file.Directory.Exists)
+            {
+                file.Directory.Create();
+            }
+            using (var writer = new StreamWriter(statsPath))
+            {
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    PreserveReferencesHandling = PreserveReferencesHandling.None,
+                    Formatting = Formatting.Indented,
+                };
+                JsonSerializer ser = JsonSerializer.Create(settings);
+                ser.Serialize(writer, _stats);
+                writer.Flush();
+                writer.Close();
             }
         }
 
@@ -84,6 +108,9 @@ namespace InstanceGeneratorConsole
                 };
                 serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
                 Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
+                _stats.TotalTime += solver.Solution.TimeElapsed;
+                _stats.NumberOfExamples += 1;
+                _stats.TasksStats.AddTasksStats(solver.Solution.TotalStats);
             };
         }
     

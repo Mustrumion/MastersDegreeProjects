@@ -80,6 +80,7 @@
     <Compile Include="SolutionObjects\TaskCompletionDifference.cs" />
     <Compile Include="SolutionObjects\TaskData.cs" />
     <Compile Include="SolutionObjects\Solution.cs" />
+    <Compile Include="SolutionObjects\TasksStats.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

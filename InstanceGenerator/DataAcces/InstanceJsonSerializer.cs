@@ -19,7 +19,7 @@ namespace InstanceGenerator.DataAccess
         /// </summary>
         Bare = 1,
         /// <summary>
-        /// Bare + information about solution scores. Files will not be indented by default.
+        /// Bare + information about solution scores and stats. Files will not be indented by default.
         /// </summary>
         Basic = 2,
         /// <summary>
@@ -100,6 +100,7 @@ namespace InstanceGenerator.DataAccess
                     nameof(Solution.ExtendedBreakLoss),
                     nameof(Solution.WeightedLoss),
                     nameof(Solution.IntegrityLossScore),
+                    nameof(Solution.TotalStats),
                     nameof(Solution.GradingFunctionDescription));
             }
 

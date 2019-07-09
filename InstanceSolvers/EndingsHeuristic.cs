@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class BeginingsHeuristic : BaseSolver, ISolver
+    public class EndingsHeuristic : BaseSolver, ISolver
     {
         private bool _movePerformed;
 
@@ -25,7 +25,7 @@ namespace InstanceSolvers
 
         public bool DiagnosticMessages { get; set; } = false;
 
-        public BeginingsHeuristic() : base()
+        public EndingsHeuristic() : base()
         {
         }
         
@@ -64,8 +64,8 @@ namespace InstanceSolvers
             breakPositions.Sort();
             if (breakPositions.Count >= taskScore.AdConstraints.MaxPerBlock) return false;
             if (breakSchedule.UnitFill + taskScore.AdConstraints.AdSpanUnits > breakSchedule.BreakData.SpanUnits + MaxBreakExtensionUnits) return false;
-            int nextPos = breakPositions.Count > 0 ? breakPositions[0] : 999999999;
-            if (taskScore.AdConstraints.MinJobsBetweenSame > nextPos) return false;
+            int lastPos = breakPositions.Count > 0 ? breakPositions.Last() : 999999999;
+            if (Math.Abs(lastPos - breakSchedule.Count - 1) < taskScore.AdConstraints.MinJobsBetweenSame) return false;
             return true;
         }
 
@@ -87,7 +87,7 @@ namespace InstanceSolvers
                 }
                 //var possibilities = GetPossibleInserts(orderData, schedule);
                 //ChooseMoveToPerform(possibilities, orderData, schedule);
-                if (orderData.StartsSatisfied)
+                if (orderData.EndsSatisfied)
                 {
                     break;
                 }
@@ -110,7 +110,7 @@ namespace InstanceSolvers
             while (!TimeToEnd())
             {
                 _movePerformed = false;
-                var orders = Solution.AdOrdersScores.Values.Where(o => !o.StartsSatisfied).ToList();
+                var orders = Solution.AdOrdersScores.Values.Where(o => !o.EndsSatisfied).ToList();
                 orders.Shuffle(Random);
                 foreach (TaskScore order in orders)
                 {
@@ -120,7 +120,7 @@ namespace InstanceSolvers
             }
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
             Solution.Scored = true;
-            if(DiagnosticMessages) Console.WriteLine($"Beginings heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
+            if(DiagnosticMessages) Console.WriteLine($"Endings heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
         }
     }
 }

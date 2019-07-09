@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InstanceGenerator.SolutionObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace InstanceGeneratorConsole
 {
     public class BulkSolverStats
     {
-        public double CompletionSum { get; set; }
         public int NumberOfExamples { get; set; }
+        public TimeSpan TotalTime { get; set; }
+        public TasksStats TasksStats { get; set; } = new TasksStats();
     }
 }

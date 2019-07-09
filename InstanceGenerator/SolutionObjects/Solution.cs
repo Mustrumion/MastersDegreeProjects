@@ -101,6 +101,12 @@ namespace InstanceGenerator.SolutionObjects
         public int Completion { get; set; }
 
         /// <summary>
+        /// Total stats for the solution.
+        /// </summary>
+        [Description("Total stats for the solution.")]
+        public TasksStats TotalStats { get; set; }
+
+        /// <summary>
         /// Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).
         /// </summary>
         [Description("Dictionary of task stats and where in the solution are instances of the tasks. Key - ID of the order (task).")]

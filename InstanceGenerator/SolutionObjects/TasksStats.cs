@@ -56,5 +56,84 @@ namespace InstanceGenerator.SolutionObjects
         public double BreakTypeConflictsProportion { get; set; }
         public double SelfSpacingConflictsProportion { get; set; }
         public double SelfIncompatibilityConflictsProportion { get; set; }
+
+
+        public void AddTaskData(TaskScore taskData)
+        {
+            NumberOfTasks += 1;
+
+            Viewership += taskData.Viewership;
+            TimesAired += taskData.TimesAired;
+            NumberOfEnds += taskData.NumberOfEnds;
+            NumberOfStarts += taskData.NumberOfStarts;
+
+            if (taskData.LastAdTime > LastAdTime)
+            {
+                LastAdTime = taskData.LastAdTime;
+            }
+            MildIncompatibilitySumOfOccurenceWeights += taskData.MildIncompatibilitySumOfOccurenceWeights;
+            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+
+            OwnerConflicts += taskData.OwnerConflicts;
+            BreakTypeConflicts += taskData.BreakTypeConflicts;
+            SelfSpacingConflicts += taskData.SelfSpacingConflicts;
+            SelfIncompatibilityConflicts += taskData.SelfIncompatibilityConflicts;
+
+            WeightedLoss += taskData.WeightedLoss;
+            OverdueAdsLoss += taskData.OverdueAdsLoss;
+            MildIncompatibilityLoss += taskData.MildIncompatibilityLoss;
+            IntegrityLossScore += taskData.IntegrityLossScore;
+            ExtendedBreakLoss += taskData.ExtendedBreakLoss;
+
+            StartsCompletion += taskData.StartsCompletion;
+            EndsCompletion += taskData.EndsCompletion;
+            ViewsCompletion += taskData.ViewsCompletion;
+            TimesAiredCompletion += taskData.TimesAiredCompletion;
+            TaskCompletion += taskData.Completed ? 1 : 0;
+
+            OwnerConflictsProportion += taskData.OwnerConflictsProportion;
+            BreakTypeConflictsProportion += taskData.BreakTypeConflictsProportion;
+            SelfSpacingConflictsProportion += taskData.SelfSpacingConflictsProportion;
+            SelfIncompatibilityConflictsProportion += taskData.SelfIncompatibilityConflictsProportion;
+        }
+
+        public void AddTasksStats(TasksStats taskData)
+        {
+            NumberOfTasks += taskData.NumberOfTasks;
+
+            Viewership += taskData.Viewership;
+            TimesAired += taskData.TimesAired;
+            NumberOfEnds += taskData.NumberOfEnds;
+            NumberOfStarts += taskData.NumberOfStarts;
+
+            if (taskData.LastAdTime > LastAdTime)
+            {
+                LastAdTime = taskData.LastAdTime;
+            }
+            MildIncompatibilitySumOfOccurenceWeights += taskData.MildIncompatibilitySumOfOccurenceWeights;
+            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+
+            OwnerConflicts += taskData.OwnerConflicts;
+            BreakTypeConflicts += taskData.BreakTypeConflicts;
+            SelfSpacingConflicts += taskData.SelfSpacingConflicts;
+            SelfIncompatibilityConflicts += taskData.SelfIncompatibilityConflicts;
+
+            WeightedLoss += taskData.WeightedLoss;
+            OverdueAdsLoss += taskData.OverdueAdsLoss;
+            MildIncompatibilityLoss += taskData.MildIncompatibilityLoss;
+            IntegrityLossScore += taskData.IntegrityLossScore;
+            ExtendedBreakLoss += taskData.ExtendedBreakLoss;
+
+            StartsCompletion += taskData.StartsCompletion;
+            EndsCompletion += taskData.EndsCompletion;
+            ViewsCompletion += taskData.ViewsCompletion;
+            TimesAiredCompletion += taskData.TimesAiredCompletion;
+            TaskCompletion += taskData.TaskCompletion;
+
+            OwnerConflictsProportion += taskData.OwnerConflictsProportion;
+            BreakTypeConflictsProportion += taskData.BreakTypeConflictsProportion;
+            SelfSpacingConflictsProportion += taskData.SelfSpacingConflictsProportion;
+            SelfIncompatibilityConflictsProportion += taskData.SelfIncompatibilityConflictsProportion;
+        }
     }
 }

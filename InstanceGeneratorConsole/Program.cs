@@ -33,7 +33,7 @@ namespace InstanceGeneratorConsole
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
             };
-            bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
+            bulkSolver.SolveEverything(GenerateStartInsertionSolverConfiguration);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -147,6 +147,64 @@ namespace InstanceGeneratorConsole
             };
             insertionHeuristic.InitialSolvers.Add(randomSolver);
             return insertionHeuristic;
+        }
+
+        private static ISolver GenerateStartInsertionSolverConfiguration()
+        {
+            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            {
+                MaxOverfillUnits = -10,
+            };
+            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            {
+                MaxBreakExtensionUnits = 30,
+                MaxInsertedPerBreak = 5,
+            };
+            BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
+            {
+                MaxBreakExtensionUnits = 60,
+                ScoringFunction = new Scorer(),
+                TimeLimit = new TimeSpan(0, 0, 60),
+                PropagateRandomSeed = true,
+                DiagnosticMessages = true,
+                Seed = 10,
+                Description = "insertion_starts_heuristic2",
+            };
+            beginingsHeuristic.InitialSolvers.Add(randomSolver);
+            beginingsHeuristic.InitialSolvers.Add(insertionHeuristic);
+            return beginingsHeuristic;
+        }
+
+        private static ISolver GeneratInsertionStartEndingSolverConfiguration()
+        {
+            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            {
+                MaxOverfillUnits = 0,
+            };
+            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            {
+                MaxBreakExtensionUnits = 40,
+                MaxInsertedPerBreak = 5,
+            };
+            BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
+            {
+                MaxBreakExtensionUnits = 70,
+                MaxInsertedPerBreak = 5,
+            };
+            EndingsHeuristic endingHeuristic = new EndingsHeuristic()
+            {
+                MaxBreakExtensionUnits = 100,
+                ScoringFunction = new Scorer(),
+                TimeLimit = new TimeSpan(0, 0, 60),
+                PropagateRandomSeed = true,
+                DiagnosticMessages = true,
+                Seed = 10,
+                Description = "insertion_starts_ends_heuristic2",
+            };
+            endingHeuristic.InitialSolvers.Add(randomSolver);
+            endingHeuristic.InitialSolvers.Add(insertionHeuristic);
+            endingHeuristic.InitialSolvers.Add(beginingsHeuristic);
+            return beginingsHeuristic;
         }
 
         private static ISolver GenerateFastRandomGreedyConfig()
