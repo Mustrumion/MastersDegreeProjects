@@ -17,7 +17,7 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\bartl\Dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\Dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -32,18 +32,21 @@ namespace InstanceGeneratorConsole
             {
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
+                MaxThreads = 7,
             };
             bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
             bulkSolver = new BulkSolver()
             {
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
+                MaxThreads = 7,
             };
             bulkSolver.SolveEverything(GenerateStartInsertionSolverConfiguration);
             bulkSolver = new BulkSolver()
             {
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
+                MaxThreads = 7,
             };
             bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
 
@@ -151,7 +154,8 @@ namespace InstanceGeneratorConsole
                 MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
                 ScoringFunction = new Scorer(),
-                TimeLimit = new TimeSpan(0, 0, 60),
+                MaxLoops = 5,
+                TimeLimit = new TimeSpan(0, 0, 40),
                 PropagateRandomSeed = true,
                 DiagnosticMessages = true,
                 Seed = 10,
@@ -170,13 +174,16 @@ namespace InstanceGeneratorConsole
             InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
             {
                 MaxBreakExtensionUnits = 40,
+                MaxLoops = 5,
+                TimeLimit = new TimeSpan(0, 0, 40),
                 MaxInsertedPerBreak = 5,
             };
             BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
             {
                 MaxBreakExtensionUnits = 70,
                 ScoringFunction = new Scorer(),
-                TimeLimit = new TimeSpan(0, 0, 60),
+                MaxLoops = 3,
+                TimeLimit = new TimeSpan(0, 0, 30),
                 PropagateRandomSeed = true,
                 DiagnosticMessages = true,
                 Seed = 10,
@@ -197,18 +204,21 @@ namespace InstanceGeneratorConsole
             {
                 MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
-                MaxLoops = 4,
-                TimeLimit = new TimeSpan(0, 0, 60),
+                MaxLoops = 5,
+                TimeLimit = new TimeSpan(0, 0, 40),
             };
             BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
             {
                 MaxBreakExtensionUnits = 70,
+                MaxLoops = 3,
+                TimeLimit = new TimeSpan(0, 0, 30),
             };
             EndingsHeuristic endingHeuristic = new EndingsHeuristic()
             {
                 MaxBreakExtensionUnits = 100,
                 ScoringFunction = new Scorer(),
-                TimeLimit = new TimeSpan(0, 0, 60),
+                MaxLoops = 3,
+                TimeLimit = new TimeSpan(0, 0, 30),
                 PropagateRandomSeed = true,
                 DiagnosticMessages = true,
                 Seed = 10,

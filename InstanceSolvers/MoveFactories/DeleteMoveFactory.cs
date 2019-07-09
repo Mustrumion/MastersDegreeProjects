@@ -11,18 +11,16 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.MoveFactories
 {
-    public class DeleteMoveFactory : IMoveFactory
+    public class DeleteMoveFactory : BaseMoveFactory, IMoveFactory
     {
+        private static int _minPositionsCountLimit = 3;
+        private static int _minMaxBreaksChecked = 1;
+
         private IEnumerable<TvBreak> _breaks;
-        private Solution _solution;
 
         public IEnumerable<TvBreak> Breaks { get; set; }
-        public Random Random { get; set; }
-        public bool MildlyRandomOrder { get; set; }
-        public Instance Instance { get; set; }
-
         public int PositionsCountLimit { get; set; }
-        public bool AlwaysReturnStartsAndEnds { get; set; } = true;
+        public bool AlwaysReturnStartsAndEnds { get; set; }
         public int MaxBreaksChecked { get; set; }
 
         public DeleteMoveFactory()
@@ -32,19 +30,6 @@ namespace InstanceSolvers.MoveFactories
         public DeleteMoveFactory(Solution solution)
         {
             Solution = solution;
-        }
-
-        public Solution Solution
-        {
-            get => _solution;
-            set
-            {
-                _solution = value;
-                if (_solution != null && Instance != _solution.Instance)
-                {
-                    Instance = Solution.Instance;
-                }
-            }
         }
 
         private void PrepareInitialLists()
@@ -133,6 +118,12 @@ namespace InstanceSolvers.MoveFactories
                     };
                 }
             }
+        }
+
+        protected override void ChangeParametersBy(int step)
+        {
+            PositionsCountLimit = Math.Max(PositionsCountLimit - step, _minPositionsCountLimit);
+            MaxBreaksChecked = Math.Max(MaxBreaksChecked - step, _minMaxBreaksChecked);
         }
     }
 }

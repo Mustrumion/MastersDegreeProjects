@@ -39,7 +39,7 @@ namespace InstanceSolvers
             Insert move = new Insert()
             {
                 Solution = Solution,
-                Position = 0,
+                Position = breakSchedule.Count,
                 TvBreak = breakSchedule.BreakData,
                 AdvertisementOrder = taskScore.AdConstraints,
             };
@@ -64,7 +64,7 @@ namespace InstanceSolvers
             if (breakPositions.Count >= taskScore.AdConstraints.MaxPerBlock) return false;
             if (breakSchedule.UnitFill + taskScore.AdConstraints.AdSpanUnits > breakSchedule.BreakData.SpanUnits + MaxBreakExtensionUnits) return false;
             int lastPos = breakPositions.Count > 0 ? breakPositions.Last() : 999999999;
-            if (Math.Abs(lastPos - breakSchedule.Count - 1) < taskScore.AdConstraints.MinJobsBetweenSame) return false;
+            if (Math.Abs(lastPos - breakSchedule.Count) < taskScore.AdConstraints.MinJobsBetweenSame) return false;
             return true;
         }
 

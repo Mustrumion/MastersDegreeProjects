@@ -16,5 +16,7 @@ namespace InstanceSolvers.MoveFactories
         Instance Instance { get; set; }
         Solution Solution { get; set; }
         IEnumerable<IMove> GenerateMoves();
+        void WidenNeighborhood(double alpha);
+        void NarrowNeighborhood(double alpha);
     }
 }
