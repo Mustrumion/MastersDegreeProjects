@@ -16,5 +16,6 @@ namespace InstanceGenerator.Interfaces
         void Execute();
         void RollBack();
         void Asses();
+        void CleanData();
     }
 }

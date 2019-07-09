@@ -34,21 +34,7 @@ namespace InstanceGeneratorConsole
                 ParallelExecution = true,
                 MaxThreads = 7,
             };
-            bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
-            bulkSolver = new BulkSolver()
-            {
-                MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = true,
-                MaxThreads = 7,
-            };
-            bulkSolver.SolveEverything(GenerateStartInsertionSolverConfiguration);
-            bulkSolver = new BulkSolver()
-            {
-                MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = true,
-                MaxThreads = 7,
-            };
-            bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
+            bulkSolver.SolveEverything(LocalRandomComplex);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -228,6 +214,84 @@ namespace InstanceGeneratorConsole
             endingHeuristic.InitialSolvers.Add(insertionHeuristic);
             endingHeuristic.InitialSolvers.Add(beginingsHeuristic);
             return endingHeuristic;
+        }
+
+        private static ISolver LocalRandomComplex()
+        {
+            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            {
+                MaxOverfillUnits = -10,
+            };
+            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            {
+                MaxBreakExtensionUnits = 30,
+                MaxInsertedPerBreak = 5,
+                MaxLoops = 6,
+                TimeLimit = new TimeSpan(0, 0, 60),
+            };
+            BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
+            {
+                MaxBreakExtensionUnits = 50,
+                MaxLoops = 4,
+                TimeLimit = new TimeSpan(0, 0, 30),
+            };
+            EndingsHeuristic endingHeuristic = new EndingsHeuristic()
+            {
+                MaxBreakExtensionUnits = 70,
+                MaxLoops = 4,
+                TimeLimit = new TimeSpan(0, 0, 30),
+            };
+            LocalSearchSolver solver = new LocalSearchSolver()
+            {
+                Solution = randomSolver.Solution,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                StopWhenCompleted = true,
+                PropagateRandomnessSeed = true,
+                TimeLimit = new TimeSpan(0, 0, 300),
+                Description = "local_random_complex1",
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = false,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new DeleteMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxBreaksChecked = 5,
+                },
+                new SwapMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 5,
+                    MaxBreaksChecked = 5,
+                },
+            };
+            solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(insertionHeuristic);
+            solver.InitialSolvers.Add(beginingsHeuristic);
+            solver.InitialSolvers.Add(endingHeuristic);
+            return solver;
         }
 
         private static ISolver GenerateFastRandomGreedyConfig()

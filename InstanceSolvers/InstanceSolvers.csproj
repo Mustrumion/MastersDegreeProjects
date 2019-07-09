@@ -45,6 +45,7 @@
     <Compile Include="FastGreedyHeuristic.cs" />
     <Compile Include="BeginingsHeuristic.cs" />
     <Compile Include="InsertionHeuristic.cs" />
+    <Compile Include="MoveFactories\BaseMoveFactory.cs" />
     <Compile Include="MoveFactories\IMoveFactory.cs" />
     <Compile Include="MoveFactories\SwapMoveFactory.cs" />
     <Compile Include="MoveFactories\InsertMoveFactory.cs" />

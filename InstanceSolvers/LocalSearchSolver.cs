@@ -143,9 +143,10 @@ namespace InstanceSolvers
                     return;
                 }
             }
-            MovesPerformed.Add(candidate);
             candidate.Execute();
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+            MovesPerformed.Add(candidate);
+            candidate.CleanData();
             _movePerformed = true;
         }
     }

@@ -116,11 +116,19 @@ namespace InstanceSolvers.Moves
 
         public void RollBack()
         {
-            Solution.RemoveAdFromBreak(TvBreak, Position);
-            foreach (var statsBefore in _changedOrderStatsBefore.Values)
-            {
-                Solution.AdOrdersScores[statsBefore.TaskID].OverwriteStatsWith(statsBefore);
-            }
+            throw new NotImplementedException();
+        }
+
+
+        public void CleanData()
+        {
+            _changedOrderStatsBefore = null;
+            _changedOrderStatsAfter = null;
+            _oldBreakScores = null;
+            _newBreakScores = null;
+            _oldSchedule = null;
+            _newSchedule = null;
+            CompletionDifferences = null;
         }
     }
 }
