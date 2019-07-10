@@ -114,6 +114,10 @@ namespace InstanceSolvers
                 {
                     solver.Seed = Random.Next();
                 }
+                else
+                {
+                    solver.Seed = (Random.Next() + new Random().Next()) % int.MaxValue;
+                }
                 solver.PropagateRandomSeed = PropagateRandomSeed;
                 solver.ScoringFunction = ScoringFunction;
                 solver.Solve();

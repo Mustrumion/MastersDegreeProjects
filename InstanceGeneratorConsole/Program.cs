@@ -37,12 +37,11 @@ namespace InstanceGeneratorConsole
 
             bulkSolver.SolveEverything(FastRandomConfig);
             bulkSolver.SolveEverything(SlowRandomConfig);
-            //bulkSolver.SolveEverything(LocalRandomComplex);
-            //bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration2);
-            //bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
-            //bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
-            //bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
-            //bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
+            bulkSolver.SolveEverything(LocalRandomComplex);
+            bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
+            bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
+            bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
+            bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();

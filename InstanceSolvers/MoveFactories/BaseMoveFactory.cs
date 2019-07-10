@@ -11,10 +11,23 @@ namespace InstanceSolvers.MoveFactories
 {
     public abstract class BaseMoveFactory
     {
+        protected int _seed;
         protected Solution _solution;
         protected double _currentChange;
 
+        [JsonIgnore]
         public Random Random { get; set; }
+        [JsonIgnore]
+        public int Seed
+        {
+            get => _seed;
+            set
+            {
+                Random = new Random(value);
+                _seed = value;
+            }
+        }
+
         public bool MildlyRandomOrder { get; set; }
 
         [JsonIgnore]
@@ -33,8 +46,7 @@ namespace InstanceSolvers.MoveFactories
                 }
             }
         }
-
-
+        
         public void WidenNeighborhood(double alpha)
         {
             _currentChange += alpha;

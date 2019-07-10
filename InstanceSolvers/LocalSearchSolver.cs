@@ -101,7 +101,11 @@ namespace InstanceSolvers
             {
                 if (PropagateRandomnessSeed)
                 {
-                    moveFactory.Random = new Random(Random.Next());
+                    moveFactory.Seed = Random.Next();
+                }
+                else
+                {
+                    moveFactory.Seed = (Random.Next() + new Random().Next()) % int.MaxValue;
                 }
                 moveFactory.Solution = Solution;
             }

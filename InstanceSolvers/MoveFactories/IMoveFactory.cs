@@ -13,6 +13,7 @@ namespace InstanceSolvers.MoveFactories
     {
         Random Random { get; set; }
         bool MildlyRandomOrder { get; set; }
+        int Seed { get; set; }
         Instance Instance { get; set; }
         Solution Solution { get; set; }
         IEnumerable<IMove> GenerateMoves();
