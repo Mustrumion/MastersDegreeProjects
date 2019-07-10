@@ -14,13 +14,13 @@ namespace InstanceSolvers
     /// <summary>
     /// This heurisitc generates compatible break orders filling them with advertisements untill their times aired and views are satisfied
     /// </summary>
-    public class FastGreedyHeuristic : BaseSolver, ISolver
+    public class GreedyFastHeuristic : BaseSolver, ISolver
     {
         public int MaxOverfillUnits { get; set; } = 10;
         public bool DiagnosticMessages { get; set; } = false;
         private List<AdvertisementTask> _order { get; set; }
 
-        public FastGreedyHeuristic() : base()
+        public GreedyFastHeuristic() : base()
         {
         }
         

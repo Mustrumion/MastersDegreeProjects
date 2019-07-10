@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class GreedyHeuristicSolver : BaseSolver, ISolver
+    public class GreedyHeuristic : BaseSolver, ISolver
     {
         private bool _movePerformed;
         
@@ -21,7 +21,7 @@ namespace InstanceSolvers
 
         private List<TvBreak> _breakInOrder { get; set; }
 
-        public GreedyHeuristicSolver() : base()
+        public GreedyHeuristic() : base()
         {
         }
         

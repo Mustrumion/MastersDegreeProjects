@@ -49,16 +49,16 @@ namespace InstanceGeneratorConsole
 
         private static ISolver GenerateLocalSearchSolverConfiguration2()
         {
-            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = 30,
             };
-            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
             {
                 MaxBreakExtensionUnits = 30,
                 MaxInsertedPerBreak = 3,
             };
-            LocalSearchSolver solver = new LocalSearchSolver()
+            LocalSearch solver = new LocalSearch()
             {
                 Solution = randomSolver.Solution,
                 Seed = 10,
@@ -75,17 +75,17 @@ namespace InstanceGeneratorConsole
 
         private static ISolver GenerateLocalSearchSolverConfiguration3()
         {
-            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = -10,
             };
-            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
             {
                 MaxBreakExtensionUnits = 30,
                 MaxInsertedPerBreak = 3,
                 TimeLimit = new TimeSpan(0, 0, 30),
             };
-            LocalSearchSolver solver = new LocalSearchSolver()
+            LocalSearch solver = new LocalSearch()
             {
                 Solution = randomSolver.Solution,
                 Seed = 10,
@@ -138,11 +138,11 @@ namespace InstanceGeneratorConsole
 
         private static ISolver GenerateInsertionSolverConfiguration()
         {
-            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = -10,
             };
-            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
             {
                 MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
@@ -160,11 +160,11 @@ namespace InstanceGeneratorConsole
 
         private static ISolver GenerateStartInsertionSolverConfiguration()
         {
-            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = -10,
             };
-            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
             {
                 MaxBreakExtensionUnits = 40,
                 MaxLoops = 5,
@@ -189,11 +189,11 @@ namespace InstanceGeneratorConsole
 
         private static ISolver GeneratInsertionStartEndingSolverConfiguration()
         {
-            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = -10,
             };
-            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
             {
                 MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
@@ -225,11 +225,11 @@ namespace InstanceGeneratorConsole
 
         private static ISolver LocalRandomComplex()
         {
-            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = -10,
             };
-            InsertionHeuristic insertionHeuristic = new InsertionHeuristic()
+            ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
             {
                 MaxBreakExtensionUnits = 30,
                 MaxInsertedPerBreak = 5,
@@ -248,7 +248,7 @@ namespace InstanceGeneratorConsole
                 MaxLoops = 4,
                 TimeLimit = new TimeSpan(0, 0, 30),
             };
-            LocalSearchSolver solver = new LocalSearchSolver()
+            LocalSearch solver = new LocalSearch()
             {
                 Solution = randomSolver.Solution,
                 Seed = 10,
@@ -303,7 +303,7 @@ namespace InstanceGeneratorConsole
 
         private static ISolver GenerateFastRandomGreedyConfig()
         {
-            FastGreedyHeuristic randomSolver = new FastGreedyHeuristic()
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = -10,
                 ScoringFunction = new Scorer(),

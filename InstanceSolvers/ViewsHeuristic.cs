@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class InsertionHeuristic : BaseSolver, ISolver
+    public class ViewsHeuristic : BaseSolver, ISolver
     {
         private bool _movePerformed;
 
@@ -25,7 +25,7 @@ namespace InstanceSolvers
 
         public bool DiagnosticMessages { get; set; } = false;
 
-        public InsertionHeuristic() : base()
+        public ViewsHeuristic() : base()
         {
         }
         

@@ -19,7 +19,7 @@ namespace InstanceSolvers
         Stop = 2,
     }
 
-    public class LocalSearchSolver : BaseSolver, ISolver
+    public class LocalSearch : BaseSolver, ISolver
     {
         private bool _movePerformed;
 
@@ -32,7 +32,7 @@ namespace InstanceSolvers
         public int NumberOfMoves { get; set; }
         public List<IMove> MovesPerformed { get; set; } = new List<IMove>();
 
-        public LocalSearchSolver() : base()
+        public LocalSearch() : base()
         {
         }
         

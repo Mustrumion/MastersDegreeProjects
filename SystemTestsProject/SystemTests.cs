@@ -104,7 +104,7 @@ namespace SystemTestsProject
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
             };
             Instance instance = reader.DeserializeInstance();
-            GreedyHeuristicSolver solver = new GreedyHeuristicSolver()
+            GreedyHeuristic solver = new GreedyHeuristic()
             {
                 Instance = instance,
                 Seed = 10,
@@ -127,7 +127,7 @@ namespace SystemTestsProject
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
             };
             Instance instance = reader.DeserializeInstance();
-            FastGreedyHeuristic solver = new FastGreedyHeuristic()
+            GreedyFastHeuristic solver = new GreedyFastHeuristic()
             {
                 Instance = instance,
                 Seed = 10,
@@ -157,12 +157,12 @@ namespace SystemTestsProject
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
             };
             Instance instance = reader.DeserializeInstance();
-            FastGreedyHeuristic fastRandomHeur = new FastGreedyHeuristic()
+            GreedyFastHeuristic fastRandomHeur = new GreedyFastHeuristic()
             {
                 Seed = 10,
                 MaxOverfillUnits = 1,
             };
-            InsertionHeuristic solver = new InsertionHeuristic()
+            ViewsHeuristic solver = new ViewsHeuristic()
             {
                 Seed = 10,
                 ScoringFunction = new Scorer(),
@@ -194,7 +194,7 @@ namespace SystemTestsProject
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
             };
             Instance instance = reader.DeserializeInstance();
-            FastGreedyHeuristic fastRandomHeur = new FastGreedyHeuristic()
+            GreedyFastHeuristic fastRandomHeur = new GreedyFastHeuristic()
             {
                 Seed = 10,
                 MaxOverfillUnits = 1,
@@ -235,7 +235,7 @@ namespace SystemTestsProject
                 Instance = instance,
                 Seed = 10,
             };
-            LocalSearchSolver solver = new LocalSearchSolver()
+            LocalSearch solver = new LocalSearch()
             {
                 Instance = instance,
                 Solution = randomSolver.Solution,
