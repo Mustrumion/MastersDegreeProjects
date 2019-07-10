@@ -13,21 +13,16 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class EndingsHeuristic : BaseSolver, ISolver
+    public class EndingsHeuristic : BaseSingleGoalHeuristic, ISolver
     {
-        private bool _movePerformed;
         
-        public int MaxLoops { get; set; } = 9999999;
         public int MaxBreakExtensionUnits { get; set; } = 20;
-        public int NumberOfMoves { get; set; }
-        public int LoopsPerformed { get; set; }
 
         public EndingsHeuristic() : base()
         {
         }
         
-
-
+        
         private void PerformIfTransformationImprovesScore(TaskScore taskScore, BreakSchedule breakSchedule)
         {
             Insert move = new Insert()
@@ -84,34 +79,17 @@ namespace InstanceSolvers
                 }
             }
         }
+        
 
-
-        private bool TimeToEnd()
+        protected override void PerformLoop()
         {
-            if (Solution.CompletionScore >= 1) return true;
-            if (!_movePerformed) return true;
-            if (LoopsPerformed >= MaxLoops) return true;
-            if (CurrentTime.Elapsed >= TimeLimit) return true;
-            return false;
-        }
-
-        protected override void InternalSolve()
-        {
-            _movePerformed = true;
-            while (!TimeToEnd())
+            var orders = Solution.AdOrdersScores.Values.Where(o => !o.EndsSatisfied).ToList();
+            orders.Shuffle(Random);
+            foreach (TaskScore order in orders)
             {
-                _movePerformed = false;
-                var orders = Solution.AdOrdersScores.Values.Where(o => !o.EndsSatisfied).ToList();
-                orders.Shuffle(Random);
-                foreach (TaskScore order in orders)
-                {
-                    TryToScheduleOrder(order);
-                    if (CurrentTime.Elapsed >= TimeLimit) break;
-                }
-                LoopsPerformed += 1;
+                TryToScheduleOrder(order);
+                if (CurrentTime.Elapsed >= TimeLimit) break;
             }
-            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            if(DiagnosticMessages) Console.WriteLine($"Endings heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
         }
     }
 }

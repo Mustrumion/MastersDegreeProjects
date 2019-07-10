@@ -43,25 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseSolver.cs" />
-    <Compile Include="EndingsHeuristic.cs" />
-    <Compile Include="GreedyFastHeuristic.cs" />
-    <Compile Include="BeginingsHeuristic.cs" />
-    <Compile Include="FreeSpaceHeuristic.cs" />
-    <Compile Include="ViewsHeuristic.cs" />
+    <Compile Include="Solvers\BaseSingleGoalHeuristic.cs" />
+    <Compile Include="Solvers\BaseSolver.cs" />
+    <Compile Include="Solvers\EndingsHeuristic.cs" />
+    <Compile Include="Solvers\GreedyFastHeuristic.cs" />
+    <Compile Include="Solvers\BeginingsHeuristic.cs" />
+    <Compile Include="Solvers\FreeSpaceHeuristic.cs" />
+    <Compile Include="Solvers\ViewsHeuristic.cs" />
     <Compile Include="MoveFactories\BaseMoveFactory.cs" />
     <Compile Include="MoveFactories\IMoveFactory.cs" />
     <Compile Include="MoveFactories\SwapMoveFactory.cs" />
     <Compile Include="MoveFactories\InsertMoveFactory.cs" />
     <Compile Include="MoveFactories\DeleteMoveFactory.cs" />
-    <Compile Include="LocalSearch.cs" />
+    <Compile Include="Solvers\LocalSearch.cs" />
     <Compile Include="Moves\Delete.cs" />
     <Compile Include="Moves\Swap.cs" />
     <Compile Include="Moves\Insert.cs" />
-    <Compile Include="RandomFastSolver.cs" />
-    <Compile Include="RandomSolver.cs" />
+    <Compile Include="Solvers\RandomFastSolver.cs" />
+    <Compile Include="Solvers\RandomSolver.cs" />
     <Compile Include="Scorer.cs" />
-    <Compile Include="GreedyHeuristic.cs" />
+    <Compile Include="Solvers\GreedyHeuristic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
