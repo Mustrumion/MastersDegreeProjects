@@ -30,7 +30,6 @@ namespace InstanceGenerator.SolutionObjects
         /// Loss form scheduling soft-incompatible ads on the same break.
         /// </summary>
         public double MildIncompatibilityLoss { get; set; }
-        public double MildIncompatibilitySumOfOccurenceWeights { get; set; }
 
         /// <summary>
         /// Loss form overextending breaks.
@@ -71,7 +70,6 @@ namespace InstanceGenerator.SolutionObjects
             {
                 LastAdTime = taskData.LastAdTime;
             }
-            MildIncompatibilitySumOfOccurenceWeights += taskData.MildIncompatibilitySumOfOccurenceWeights;
             ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
 
             OwnerConflicts += taskData.OwnerConflicts;
@@ -110,7 +108,6 @@ namespace InstanceGenerator.SolutionObjects
             {
                 LastAdTime = taskData.LastAdTime;
             }
-            MildIncompatibilitySumOfOccurenceWeights += taskData.MildIncompatibilitySumOfOccurenceWeights;
             ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
 
             OwnerConflicts += taskData.OwnerConflicts;

@@ -11,6 +11,8 @@ namespace InstanceGeneratorConsole
     public class BulkSolverStats
     {
         public int NumberOfExamples { get; set; }
+        public int NumberOfAcceptableSolutions { get; set; }
+        public string RepositoryVersionHash { get; set; }
         public TimeSpan TotalTime { get; set; }
         public TasksStats TasksStats { get; set; } = new TasksStats();
         public ISolver Solver { get; set; }

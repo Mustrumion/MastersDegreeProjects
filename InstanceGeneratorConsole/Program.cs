@@ -35,12 +35,14 @@ namespace InstanceGeneratorConsole
                 MaxThreads = 15,
             };
 
-            bulkSolver.SolveEverything(LocalRandomComplex);
-            bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration2);
-            bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
-            bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
-            bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
-            bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
+            bulkSolver.SolveEverything(FastRandomConfig);
+            bulkSolver.SolveEverything(SlowRandomConfig);
+            //bulkSolver.SolveEverything(LocalRandomComplex);
+            //bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration2);
+            //bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
+            //bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
+            //bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
+            //bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -309,6 +311,30 @@ namespace InstanceGeneratorConsole
                 PropagateRandomSeed = true,
                 Seed = 10,
                 Description = "heuristic_fast_random",
+            };
+            return randomSolver;
+        }
+
+        private static ISolver SlowRandomConfig()
+        {
+            RandomSolver randomSolver = new RandomSolver()
+            {
+                ScoringFunction = new Scorer(),
+                PropagateRandomSeed = true,
+                Seed = 10,
+                Description = "pure_random_slow",
+            };
+            return randomSolver;
+        }
+
+        private static ISolver FastRandomConfig()
+        {
+            RandomFastSolver randomSolver = new RandomFastSolver()
+            {
+                ScoringFunction = new Scorer(),
+                PropagateRandomSeed = true,
+                Seed = 10,
+                Description = "pure_random_fast",
             };
             return randomSolver;
         }

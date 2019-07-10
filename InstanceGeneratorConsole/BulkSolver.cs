@@ -24,6 +24,7 @@ namespace InstanceGeneratorConsole
         public void SolveEverything(Func<ISolver> solverMaker)
         {
             _stats = new BulkSolverStats();
+            _stats.RepositoryVersionHash = ShellExec("git describe --always --dirty");
             var solveTasks = GenerateAllTasks(solverMaker);
             if (ParallelExecution)
             {
@@ -111,9 +112,27 @@ namespace InstanceGeneratorConsole
                 Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
                 _stats.TotalTime += solver.Solution.TimeElapsed;
                 _stats.NumberOfExamples += 1;
+                _stats.NumberOfAcceptableSolutions += solver.Solution.CompletionScore >= 1 ? 1 : 0;
                 _stats.TasksStats.AddTasksStats(solver.Solution.TotalStats);
             };
         }
     
+
+        private string ShellExec(string command, string workingDir = null)
+        {
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+            pProcess.StartInfo.FileName = "cmd.exe";
+            pProcess.StartInfo.Arguments = $"/C \"{command}\"";
+            if (!string.IsNullOrWhiteSpace(workingDir))
+            {
+                pProcess.StartInfo.WorkingDirectory = workingDir;
+            }
+            pProcess.StartInfo.UseShellExecute = false;
+            pProcess.StartInfo.RedirectStandardOutput = true;
+            pProcess.Start();
+            string strOutput = pProcess.StandardOutput.ReadToEnd();
+            pProcess.WaitForExit();
+            return strOutput;
+        }
     }
 }

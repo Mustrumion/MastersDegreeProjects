@@ -25,8 +25,10 @@ namespace InstanceSolvers
             Random = new Random(_seed);
         }
 
+        [JsonIgnore]
         public Random Random { get; set; }
         public TimeSpan TimeLimit { get; set; } = new TimeSpan(100, 0, 0);
+        [JsonIgnore]
         public Stopwatch CurrentTime { get; set; }
         public bool PropagateRandomSeed { get; set; }
         public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
