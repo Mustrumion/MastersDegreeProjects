@@ -67,6 +67,7 @@ namespace InstanceSolvers
                         IgnoreBreaksWhenUnitOverfillAbove = 60,
                         IgnoreCompletedTasks = true,
                         IgnoreTasksWithCompletedViews = false,
+                        AlwaysReturnStartsAndEnds = true,
                     },
                     new InsertMoveFactory()
                     {
@@ -77,12 +78,14 @@ namespace InstanceSolvers
                         IgnoreBreaksWhenUnitOverfillAbove = 60,
                         IgnoreCompletedTasks = false,
                         IgnoreTasksWithCompletedViews = false,
+                        AlwaysReturnStartsAndEnds = true,
                     },
                     new DeleteMoveFactory()
                     {
                         MildlyRandomOrder = true,
                         PositionsCountLimit = 3,
                         MaxBreaksChecked = 3,
+                        AlwaysReturnStartsAndEnds = true,
                     },
                     new SwapMoveFactory()
                     {
@@ -90,6 +93,7 @@ namespace InstanceSolvers
                         PositionsCountLimit = 3,
                         MaxTasksChecked = 3,
                         MaxBreaksChecked = 3,
+                        AlwaysReturnStartsAndEnds = true,
                     },
                 };
             }

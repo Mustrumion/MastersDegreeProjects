@@ -2,6 +2,7 @@
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace InstanceSolvers
         public double MildIncompatibilityLossWeight { get; set; } = 1;
 
         private Solution _solution;
+        [JsonIgnore]
         public Instance Instance { get; set; }
         public string Description
         {
@@ -42,6 +44,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         private int _currentAdCount;
         private Dictionary<int, double> _currentAdIncompatibilityCosts;
 
+        [JsonIgnore]
         public Solution Solution
         {
             get => _solution;

@@ -40,8 +40,9 @@ namespace InstanceGeneratorConsole
                 }
             }
 
-
-            string statsPath = Path.Combine(SolutionsDirectory, solverMaker().Description, "TotalStats.json");
+            ISolver solver = solverMaker();
+            _stats.Solver = solver;
+            string statsPath = Path.Combine(SolutionsDirectory, solver.Description, "TotalStats.json");
             FileInfo file = new FileInfo(statsPath);
             if (!file.Directory.Exists)
             {
@@ -53,6 +54,7 @@ namespace InstanceGeneratorConsole
                 {
                     PreserveReferencesHandling = PreserveReferencesHandling.None,
                     Formatting = Formatting.Indented,
+                    TypeNameHandling = TypeNameHandling.Objects,
                 };
                 JsonSerializer ser = JsonSerializer.Create(settings);
                 ser.Serialize(writer, _stats);
@@ -94,7 +96,6 @@ namespace InstanceGeneratorConsole
         {
             return () =>
             {
-                //Console.WriteLine($"Started {pathOut}");
                 var reader = new InstanceJsonSerializer
                 {
                     Path = pathIn,

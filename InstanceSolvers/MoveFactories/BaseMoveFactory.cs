@@ -1,5 +1,6 @@
 ﻿using InstanceGenerator.InstanceData;
 using InstanceGenerator.SolutionObjects;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,11 @@ namespace InstanceSolvers.MoveFactories
 
         public Random Random { get; set; }
         public bool MildlyRandomOrder { get; set; }
+
+        [JsonIgnore]
         public Instance Instance { get; set; }
 
+        [JsonIgnore]
         public Solution Solution
         {
             get => _solution;

@@ -3,6 +3,7 @@ using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers.Moves;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace InstanceSolvers.MoveFactories
 
         private IEnumerable<TvBreak> _breaks;
 
+        [JsonIgnore]
         public IEnumerable<TvBreak> Breaks { get; set; }
         public int PositionsCountLimit { get; set; }
         public bool AlwaysReturnStartsAndEnds { get; set; }

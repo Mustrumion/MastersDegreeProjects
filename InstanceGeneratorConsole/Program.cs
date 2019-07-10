@@ -32,9 +32,15 @@ namespace InstanceGeneratorConsole
             {
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
-                MaxThreads = 7,
+                MaxThreads = 15,
             };
+
             bulkSolver.SolveEverything(LocalRandomComplex);
+            bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration2);
+            bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
+            bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
+            bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
+            bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();

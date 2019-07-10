@@ -1,6 +1,7 @@
 ﻿using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,6 +42,7 @@ namespace InstanceSolvers
             }
         }
 
+        [JsonIgnore]
         public Instance Instance
         {
             get
@@ -65,7 +67,7 @@ namespace InstanceSolvers
             }
         }
 
-
+        
         public IScoringFunction ScoringFunction
         {
             get => _scoringFunction;
@@ -81,6 +83,7 @@ namespace InstanceSolvers
             }
         }
 
+        [JsonIgnore]
         public Solution Solution
         {
             get => _solution;

@@ -3,6 +3,7 @@ using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers.Moves;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,9 @@ namespace InstanceSolvers.MoveFactories
         private IEnumerable<TvBreak> _breaks;
         private IEnumerable<AdvertisementTask> _tasks;
 
+        [JsonIgnore]
         public IEnumerable<TvBreak> Breaks { get; set; }
+        [JsonIgnore]
         public IEnumerable<AdvertisementTask> Tasks { get; set; }
         public int IgnoreBreaksWhenUnitOverfillAbove { get; set; }
         public bool IgnoreTasksWithCompletedViews { get; set; }
@@ -38,19 +41,6 @@ namespace InstanceSolvers.MoveFactories
         public InsertMoveFactory(Solution solution)
         {
             Solution = solution;
-        }
-
-        public Solution Solution
-        {
-            get => _solution;
-            set
-            {
-                _solution = value;
-                if (_solution != null && Instance != _solution.Instance)
-                {
-                    Instance = Solution.Instance;
-                }
-            }
         }
 
         private void PrepareInitialLists()
