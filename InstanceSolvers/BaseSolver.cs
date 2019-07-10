@@ -33,6 +33,7 @@ namespace InstanceSolvers
         public bool PropagateRandomSeed { get; set; }
         public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
         public string Description { get; set; }
+        public bool DiagnosticMessages { get; set; }
 
         public int Seed
         {

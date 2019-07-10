@@ -22,8 +22,6 @@ namespace InstanceSolvers
         public int NumberOfMoves { get; set; }
         public int LoopsPerformed { get; set; }
 
-        public bool DiagnosticMessages { get; set; } = false;
-
         public BeginingsHeuristic() : base()
         {
         }
@@ -32,10 +30,6 @@ namespace InstanceSolvers
 
         private void PerformIfTransformationImprovesScore(TaskScore taskScore, BreakSchedule breakSchedule)
         {
-            if(CurrentTime.Elapsed > TimeLimit)
-            {
-                return;
-            }
             Insert move = new Insert()
             {
                 Solution = Solution,
@@ -84,9 +78,7 @@ namespace InstanceSolvers
                 {
                     PerformIfTransformationImprovesScore(orderData, schedule);
                 }
-                //var possibilities = GetPossibleInserts(orderData, schedule);
-                //ChooseMoveToPerform(possibilities, orderData, schedule);
-                if (orderData.StartsSatisfied)
+                if (orderData.StartsSatisfied || CurrentTime.Elapsed >= TimeLimit)
                 {
                     break;
                 }
@@ -114,11 +106,11 @@ namespace InstanceSolvers
                 foreach (TaskScore order in orders)
                 {
                     TryToScheduleOrder(order);
+                    if (CurrentTime.Elapsed >= TimeLimit) break;
                 }
                 LoopsPerformed += 1;
             }
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            Solution.Scored = true;
             if(DiagnosticMessages) Console.WriteLine($"Beginings heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
         }
     }

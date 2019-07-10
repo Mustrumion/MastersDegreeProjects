@@ -23,8 +23,6 @@ namespace InstanceSolvers
         public int NumberOfMoves { get; set; }
         public int LoopsPerformed { get; set; }
 
-        public bool DiagnosticMessages { get; set; } = false;
-
         public ViewsHeuristic() : base()
         {
         }
@@ -35,10 +33,6 @@ namespace InstanceSolvers
         {
             foreach(var position in positions)
             {
-                if(CurrentTime.Elapsed > TimeLimit)
-                {
-                    break;
-                }
                 Insert move = new Insert()
                 {
                     Solution = Solution,
@@ -57,6 +51,7 @@ namespace InstanceSolvers
                 {
                     break;
                 }
+                if (CurrentTime.Elapsed >= TimeLimit) break;
             }
         }
 
@@ -111,7 +106,7 @@ namespace InstanceSolvers
             {
                 var possibilities = GetPossibleInserts(orderData, schedule);
                 ChooseMoveToPerform(possibilities, orderData, schedule);
-                if(orderData.ViewsSatisfied && orderData.TimesAiredSatisfied)
+                if((orderData.ViewsSatisfied && orderData.TimesAiredSatisfied) || CurrentTime.Elapsed >= TimeLimit)
                 {
                     break;
                 }
@@ -139,11 +134,11 @@ namespace InstanceSolvers
                 foreach (TaskScore order in orders)
                 {
                     TryToScheduleOrder(order);
+                    if (CurrentTime.Elapsed >= TimeLimit) break;
                 }
                 LoopsPerformed += 1;
             }
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            Solution.Scored = true;
             if(DiagnosticMessages) Console.WriteLine($"Insertion heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
         }
     }

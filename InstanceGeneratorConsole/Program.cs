@@ -35,13 +35,14 @@ namespace InstanceGeneratorConsole
                 MaxThreads = 15,
             };
 
-            bulkSolver.SolveEverything(FastRandomConfig);
-            bulkSolver.SolveEverything(SlowRandomConfig);
-            bulkSolver.SolveEverything(LocalRandomComplex);
-            bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
-            bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
-            bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
-            bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
+            bulkSolver.SolveEverything(GeneratInsertionStartEndingDeleteSolverConfiguration);
+            //bulkSolver.SolveEverything(FastRandomConfig);
+            //bulkSolver.SolveEverything(SlowRandomConfig);
+            //bulkSolver.SolveEverything(LocalRandomComplex);
+            //bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
+            //bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
+            //bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
+            //bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -221,6 +222,49 @@ namespace InstanceGeneratorConsole
             endingHeuristic.InitialSolvers.Add(insertionHeuristic);
             endingHeuristic.InitialSolvers.Add(beginingsHeuristic);
             return endingHeuristic;
+        }
+
+        private static ISolver GeneratInsertionStartEndingDeleteSolverConfiguration()
+        {
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
+            {
+                MaxOverfillUnits = -10,
+            };
+            ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
+            {
+                MaxBreakExtensionUnits = 40,
+                MaxInsertedPerBreak = 5,
+                MaxLoops = 5,
+                TimeLimit = new TimeSpan(0, 0, 40),
+            };
+            BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
+            {
+                MaxBreakExtensionUnits = 70,
+                MaxLoops = 3,
+                TimeLimit = new TimeSpan(0, 0, 30),
+            };
+            EndingsHeuristic endingHeuristic = new EndingsHeuristic()
+            {
+                MaxBreakExtensionUnits = 100,
+                MaxLoops = 3,
+                TimeLimit = new TimeSpan(0, 0, 30),
+                Description = "insertion_starts_ends_heuristic",
+            };
+            FreeSpaceHeuristic freeSpaceHeuristic = new FreeSpaceHeuristic()
+            {
+                ScoringFunction = new Scorer(),
+                MaxLoops = 3,
+                TimeLimit = new TimeSpan(0, 0, 30),
+                PropagateRandomSeed = true,
+                Seed = 10,
+                DiagnosticMessages = true,
+                Description = "views_starts_ends_trim_heuristic",
+            };
+            freeSpaceHeuristic.InitialSolvers.Add(randomSolver);
+            freeSpaceHeuristic.InitialSolvers.Add(insertionHeuristic);
+            freeSpaceHeuristic.InitialSolvers.Add(beginingsHeuristic);
+            freeSpaceHeuristic.InitialSolvers.Add(endingHeuristic);
+            return freeSpaceHeuristic;
         }
 
         private static ISolver LocalRandomComplex()
