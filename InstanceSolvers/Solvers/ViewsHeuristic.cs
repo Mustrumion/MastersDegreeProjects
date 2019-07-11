@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class ViewsHeuristic : BaseSingleGoalHeuristic, ISolver
+    public class ViewsHeuristic : BaseGreedyTransformationHeuristic, ISolver
     {
         public int MaxInsertedPerBreak { get; set; } = 99999;
         public int MaxBreakExtensionUnits { get; set; } = 20;

@@ -36,7 +36,7 @@ namespace InstanceGeneratorConsole
                 MaxThreads = 15,
             };
 
-            bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
+            //bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
             bulkSolver.SolveEverything(CompundConfiguration);
 
             Console.WriteLine("Press any key.");
@@ -229,26 +229,21 @@ namespace InstanceGeneratorConsole
             {
                 MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
-                MaxLoops = 4,
                 TimeLimit = new TimeSpan(0, 0, 50),
             };
             BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
             {
                 MaxBreakExtensionUnits = 70,
-                MaxLoops = 4,
                 TimeLimit = new TimeSpan(0, 0, 50),
             };
             EndingsHeuristic endingHeuristic = new EndingsHeuristic()
             {
                 MaxBreakExtensionUnits = 100,
-                MaxLoops = 4,
                 TimeLimit = new TimeSpan(0, 0, 50),
-                Description = "insertion_starts_ends_heuristic",
             };
             FreeSpaceHeuristic freeSpaceHeuristic = new FreeSpaceHeuristic()
             {
                 ScoringFunction = new Scorer(),
-                MaxLoops = 4,
                 TimeLimit = new TimeSpan(0, 0, 50),
                 PropagateRandomSeed = true,
                 Seed = 10,
@@ -271,12 +266,12 @@ namespace InstanceGeneratorConsole
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 4,
                 TimeLimit = new TimeSpan(0, 0, 200),
                 Description = "compund_heuristic",
                 PropagateRandomSeed = true,
                 Seed = 10,
                 DiagnosticMessages = true,
+                MaxLoops = 10,
                 ScoringFunction = new Scorer(),
             };
             compundSolver.InitialSolvers.Add(randomSolver);

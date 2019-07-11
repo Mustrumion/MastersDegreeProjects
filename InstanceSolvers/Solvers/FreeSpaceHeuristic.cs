@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public class FreeSpaceHeuristic : BaseSingleGoalHeuristic, ISolver
+    public class FreeSpaceHeuristic : BaseGreedyTransformationHeuristic, ISolver
     {
 
         public FreeSpaceHeuristic() : base()

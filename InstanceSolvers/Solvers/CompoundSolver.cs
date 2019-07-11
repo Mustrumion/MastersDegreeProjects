@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using InstanceGenerator;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,56 +8,53 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.Solvers
 {
-    public class CompoundSolver : BaseSolver
+    public class CompoundSolver : BaseGreedyTransformationHeuristic
     {
-        public List<BaseSingleGoalHeuristic> PartialHeuristics { get; set; } = new List<BaseSingleGoalHeuristic>();
-        [JsonIgnore]
-        public int LoopsPerformed { get; set; }
-        public int MaxLoops { get; set; } = 9999999;
+        public List<BaseGreedyTransformationHeuristic> PartialHeuristics { get; set; } = new List<BaseGreedyTransformationHeuristic>();
+        
 
-        private bool TimeToEnd()
+        protected override void PerformLoop()
         {
-            if (Solution.CompletionScore >= 1) return true;
-            if (LoopsPerformed >= MaxLoops) return true;
-            if (CurrentTime.Elapsed >= TimeLimit) return true;
-            return false;
-        }
-
-        protected override void InternalSolve()
-        {
-            if(PartialHeuristics.Count == 0)
+            if (PartialHeuristics.Count == 0)
             {
                 InitiatePartialSolvers();
             }
-            while (!TimeToEnd())
+            int proportionalLimit = Convert.ToInt32(TimeLimit.TotalMilliseconds / PartialHeuristics.Count);
+            PartialHeuristics.Shuffle(Random);
+            foreach (var solver in PartialHeuristics)
             {
-                int proportionalLimit = Convert.ToInt32(TimeLimit.TotalMilliseconds / PartialHeuristics.Count);
-                foreach (var solver in PartialHeuristics)
+                int limitLeft = Convert.ToInt32((TimeLimit - CurrentTime.Elapsed).TotalMilliseconds);
+                if(limitLeft < 0)
                 {
-                    int limitLeft = Convert.ToInt32((TimeLimit - CurrentTime.Elapsed).TotalMilliseconds);
-                    solver.Instance = Instance;
-                    solver.Solution = Solution;
-                    solver.TimeLimit = new TimeSpan(0, 0, 0, 0, Math.Min(proportionalLimit, limitLeft));
-                    if (PropagateRandomSeed)
-                    {
-                        solver.Seed = Random.Next();
-                    }
-                    else
-                    {
-                        solver.Seed = (Random.Next() + new Random().Next()) % int.MaxValue;
-                    }
-                    solver.PropagateRandomSeed = PropagateRandomSeed;
-                    solver.ScoringFunction = ScoringFunction;
-                    solver.Solve();
-                    Solution = solver.Solution;
+                    break;
                 }
-                LoopsPerformed += 1;
+                solver.Instance = Instance;
+                solver.Solution = Solution;
+                solver.TimeLimit = new TimeSpan(0, 0, 0, 0, Math.Min(proportionalLimit, limitLeft));
+                if (PropagateRandomSeed)
+                {
+                    solver.Seed = Random.Next();
+                }
+                else
+                {
+                    solver.Seed = (Random.Next() + new Random().Next()) % int.MaxValue;
+                }
+                solver.PropagateRandomSeed = PropagateRandomSeed;
+                solver.ScoringFunction = ScoringFunction;
+                solver.Solve();
+                Solution = solver.Solution;
+                if (solver.MovePerformed)
+                {
+                    _numberOfMoves += solver.NumberOfMoves;
+                    _movePerformed = true;
+                }
             }
         }
 
+
         private void InitiatePartialSolvers()
         {
-            PartialHeuristics = new List<BaseSingleGoalHeuristic>()
+            PartialHeuristics = new List<BaseGreedyTransformationHeuristic>()
             {
                 new ViewsHeuristic()
                 {

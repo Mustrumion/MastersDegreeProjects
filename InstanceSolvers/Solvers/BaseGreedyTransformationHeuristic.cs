@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers
 {
-    public abstract class BaseSingleGoalHeuristic : BaseSolver
+    public abstract class BaseGreedyTransformationHeuristic : BaseSolver
     {
         protected bool _movePerformed;
         protected int _loopsPerformed;
@@ -17,6 +17,8 @@ namespace InstanceSolvers
         public int NumberOfMoves { get => _numberOfMoves; }
         [JsonIgnore]
         public int LoopsPerformed { get => _loopsPerformed; }
+        [JsonIgnore]
+        public bool MovePerformed { get => _movePerformed; }
 
 
         protected bool TimeToEnd()
@@ -32,6 +34,8 @@ namespace InstanceSolvers
 
         protected override void InternalSolve()
         {
+            _loopsPerformed = 0;
+            _numberOfMoves = 0;
             _movePerformed = true;
             while (!TimeToEnd())
             {

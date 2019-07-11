@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Solvers\BaseSingleGoalHeuristic.cs" />
+    <Compile Include="Solvers\BaseGreedyTransformationHeuristic.cs" />
     <Compile Include="Solvers\BaseSolver.cs" />
     <Compile Include="Solvers\CompoundSolver.cs" />
     <Compile Include="Solvers\EndingsHeuristic.cs" />
