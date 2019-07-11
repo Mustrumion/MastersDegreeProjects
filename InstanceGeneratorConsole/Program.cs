@@ -6,6 +6,7 @@ using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers;
 using InstanceSolvers.MoveFactories;
+using InstanceSolvers.Solvers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,20 +36,14 @@ namespace InstanceGeneratorConsole
                 MaxThreads = 15,
             };
 
-            bulkSolver.SolveEverything(GeneratInsertionStartEndingDeleteSolverConfiguration);
-            //bulkSolver.SolveEverything(FastRandomConfig);
-            //bulkSolver.SolveEverything(SlowRandomConfig);
-            //bulkSolver.SolveEverything(LocalRandomComplex);
-            //bulkSolver.SolveEverything(GenerateLocalSearchSolverConfiguration3);
-            //bulkSolver.SolveEverything(GenerateInsertionSolverConfiguration);
-            //bulkSolver.SolveEverything(GeneratInsertionStartEndingSolverConfiguration);
-            //bulkSolver.SolveEverything(GenerateFastRandomGreedyConfig);
+            bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
+            bulkSolver.SolveEverything(CompundConfiguration);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
         }
 
-        private static ISolver GenerateLocalSearchSolverConfiguration2()
+        private static ISolver LocalSearchConfiguration2()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
@@ -74,7 +69,7 @@ namespace InstanceGeneratorConsole
             return solver;
         }
 
-        private static ISolver GenerateLocalSearchSolverConfiguration3()
+        private static ISolver LocalSearchConfiguration3()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
@@ -137,7 +132,7 @@ namespace InstanceGeneratorConsole
             return solver;
         }
 
-        private static ISolver GenerateInsertionSolverConfiguration()
+        private static ISolver InsertionConfiguration()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
@@ -159,7 +154,7 @@ namespace InstanceGeneratorConsole
             return insertionHeuristic;
         }
 
-        private static ISolver GenerateStartInsertionSolverConfiguration()
+        private static ISolver StartInsertionConfiguration()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
@@ -188,7 +183,7 @@ namespace InstanceGeneratorConsole
             return beginingsHeuristic;
         }
 
-        private static ISolver GeneratInsertionStartEndingSolverConfiguration()
+        private static ISolver InsertionStartEndingConfiguration()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
@@ -224,7 +219,7 @@ namespace InstanceGeneratorConsole
             return endingHeuristic;
         }
 
-        private static ISolver GeneratInsertionStartEndingDeleteSolverConfiguration()
+        private static ISolver InsertionStartEndingDeleteConfiguration()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
@@ -234,27 +229,27 @@ namespace InstanceGeneratorConsole
             {
                 MaxBreakExtensionUnits = 40,
                 MaxInsertedPerBreak = 5,
-                MaxLoops = 5,
-                TimeLimit = new TimeSpan(0, 0, 40),
+                MaxLoops = 4,
+                TimeLimit = new TimeSpan(0, 0, 50),
             };
             BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
             {
                 MaxBreakExtensionUnits = 70,
-                MaxLoops = 3,
-                TimeLimit = new TimeSpan(0, 0, 30),
+                MaxLoops = 4,
+                TimeLimit = new TimeSpan(0, 0, 50),
             };
             EndingsHeuristic endingHeuristic = new EndingsHeuristic()
             {
                 MaxBreakExtensionUnits = 100,
-                MaxLoops = 3,
-                TimeLimit = new TimeSpan(0, 0, 30),
+                MaxLoops = 4,
+                TimeLimit = new TimeSpan(0, 0, 50),
                 Description = "insertion_starts_ends_heuristic",
             };
             FreeSpaceHeuristic freeSpaceHeuristic = new FreeSpaceHeuristic()
             {
                 ScoringFunction = new Scorer(),
-                MaxLoops = 3,
-                TimeLimit = new TimeSpan(0, 0, 30),
+                MaxLoops = 4,
+                TimeLimit = new TimeSpan(0, 0, 50),
                 PropagateRandomSeed = true,
                 Seed = 10,
                 DiagnosticMessages = true,
@@ -265,6 +260,27 @@ namespace InstanceGeneratorConsole
             freeSpaceHeuristic.InitialSolvers.Add(beginingsHeuristic);
             freeSpaceHeuristic.InitialSolvers.Add(endingHeuristic);
             return freeSpaceHeuristic;
+        }
+
+
+        private static ISolver CompundConfiguration()
+        {
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
+            {
+                MaxOverfillUnits = -10,
+            };
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                MaxLoops = 4,
+                TimeLimit = new TimeSpan(0, 0, 200),
+                Description = "compund_heuristic",
+                PropagateRandomSeed = true,
+                Seed = 10,
+                DiagnosticMessages = true,
+                ScoringFunction = new Scorer(),
+            };
+            compundSolver.InitialSolvers.Add(randomSolver);
+            return compundSolver;
         }
 
         private static ISolver LocalRandomComplex()

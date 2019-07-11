@@ -36,7 +36,7 @@ namespace InstanceSolvers
             if(move.OverallDifference.HasScoreImproved() && !move.OverallDifference.AnyCompatibilityIssuesIncreased())
             {
                 move.Execute();
-                NumberOfMoves += 1;
+                _numberOfMoves += 1;
                 _movePerformed = true;
             }
         }

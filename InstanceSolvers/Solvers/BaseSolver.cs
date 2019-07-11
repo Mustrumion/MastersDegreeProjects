@@ -17,6 +17,7 @@ namespace InstanceSolvers
         protected int _seed;
         protected IScoringFunction _scoringFunction;
         protected Solution _solution;
+        private Stopwatch _currentTime;
 
         public BaseSolver()
         {
@@ -29,7 +30,7 @@ namespace InstanceSolvers
         public Random Random { get; set; }
         public TimeSpan TimeLimit { get; set; } = new TimeSpan(100, 0, 0);
         [JsonIgnore]
-        public Stopwatch CurrentTime { get; set; }
+        public Stopwatch CurrentTime { get => _currentTime; }
         public bool PropagateRandomSeed { get; set; }
         public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
         public string Description { get; set; }
@@ -70,13 +71,13 @@ namespace InstanceSolvers
             }
         }
 
-        
+
         public IScoringFunction ScoringFunction
         {
             get => _scoringFunction;
             set
             {
-                if(_scoringFunction == value || value == null)
+                if (_scoringFunction == value || value == null)
                 {
                     return;
                 }
@@ -92,7 +93,7 @@ namespace InstanceSolvers
             get => _solution;
             set
             {
-                if(_solution == value || value == null)
+                if (_solution == value || value == null)
                 {
                     return;
                 }
@@ -133,7 +134,7 @@ namespace InstanceSolvers
                 ScoringFunction.AssesSolution(Solution);
             }
             FireInitialSolvers();
-            CurrentTime = new Stopwatch();
+            _currentTime = new Stopwatch();
             CurrentTime.Start();
             InternalSolve();
             CurrentTime.Stop();

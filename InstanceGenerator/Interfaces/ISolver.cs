@@ -21,7 +21,7 @@ namespace InstanceGenerator.Interfaces
         Instance Instance { get; set; }
         Random Random { get; set; }
         TimeSpan TimeLimit { get; set; }
-        Stopwatch CurrentTime { get; set; }
+        Stopwatch CurrentTime { get; }
         void Solve();
     }
 }

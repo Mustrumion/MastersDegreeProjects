@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,13 @@ namespace InstanceSolvers
     public abstract class BaseSingleGoalHeuristic : BaseSolver
     {
         protected bool _movePerformed;
+        protected int _loopsPerformed;
+        protected int _numberOfMoves;
+
         public int MaxLoops { get; set; } = 9999999;
-        public int NumberOfMoves { get; set; }
-        public int LoopsPerformed { get; set; }
+        public int NumberOfMoves { get => _numberOfMoves; }
+        [JsonIgnore]
+        public int LoopsPerformed { get => _loopsPerformed; }
 
 
         protected bool TimeToEnd()
@@ -32,10 +37,10 @@ namespace InstanceSolvers
             {
                 _movePerformed = false;
                 PerformLoop();
-                LoopsPerformed += 1;
+                _loopsPerformed += 1;
             }
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            if (DiagnosticMessages) Console.WriteLine($"Beginings heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
+            if (DiagnosticMessages) Console.WriteLine($"Heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
         }
     }
 }

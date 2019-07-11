@@ -3,6 +3,7 @@ using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers.MoveFactories;
 using InstanceSolvers.Moves;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,7 +30,9 @@ namespace InstanceSolvers
         public bool StopWhenCompleted { get; set; } = true;
         public Action ActionWhenScoreDecrease { get; set; } = Action.Ignore;
         public bool PropagateRandomnessSeed { get; set; }
+        [JsonIgnore]
         public int NumberOfMoves { get; set; }
+        [JsonIgnore]
         public List<IMove> MovesPerformed { get; set; } = new List<IMove>();
 
         public LocalSearch() : base()

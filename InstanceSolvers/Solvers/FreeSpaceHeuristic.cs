@@ -44,7 +44,7 @@ namespace InstanceSolvers
                 if (delete.OverallDifference.HasScoreImproved() && !delete.OverallDifference.AnyCompatibilityIssuesIncreased())
                 {
                     delete.Execute();
-                    NumberOfMoves += 1;
+                    _numberOfMoves += 1;
                     _movePerformed = true;
                 }
                 if (CurrentTime.Elapsed >= TimeLimit) break;
