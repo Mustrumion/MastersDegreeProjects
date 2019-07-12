@@ -115,29 +115,34 @@ namespace InstanceGeneratorConsole
                 return GenerateSolveTask(file.FullName, solutionName, solver);
             }).ToList();
         }
-
+        
         private void AddSolutionToStats(BulkSolverStats stats, ISolver solver)
         {
-            if (stats == null) return; 
-            stats.TotalTime += solver.Solution.TimeElapsed;
-            stats.NumberOfExamples += 1;
-            stats.NumberOfAcceptableSolutions += solver.Solution.CompletionScore >= 1 ? 1 : 0;
-            stats.TasksStats.AddTasksStats(solver.Solution.TotalStats);
+            if (stats == null) return;
+            lock (stats)
+            {
+                stats.TotalTime += solver.Solution.TimeElapsed;
+                stats.NumberOfExamples += 1;
+                stats.NumberOfAcceptableSolutions += solver.Solution.CompletionScore >= 1 ? 1 : 0;
+                stats.TasksStats.AddTasksStats(solver.Solution.TotalStats);
+            }
         }
-
-
+        
         private Action GenerateSolveTask(string pathIn, string pathOut, ISolver solver)
         {
             return () =>
             {
                 string category = TotalStatsCategories.FirstOrDefault(c => pathOut.Contains(c));
-                if (category == null) category = "";
-                if (!_categorizedStats.TryGetValue(category, out var categoryStats))
+                BulkSolverStats categoryStats = null;
+                if (!string.IsNullOrEmpty(category))
                 {
-                    if (!string.IsNullOrEmpty(category))
+                    lock (_categorizedStats)
                     {
-                        categoryStats = GenerateInitialStats();
-                        _categorizedStats[category] = categoryStats;
+                        if (!_categorizedStats.TryGetValue(category, out categoryStats))
+                        {
+                            categoryStats = GenerateInitialStats();
+                            _categorizedStats[category] = categoryStats;
+                        }
                     }
                 }
                 var reader = new InstanceJsonSerializer
