@@ -17,7 +17,6 @@ namespace InstanceSolvers
     public class GreedyFastHeuristic : BaseSolver, ISolver
     {
         public int MaxOverfillUnits { get; set; } = 10;
-        public bool DiagnosticMessages { get; set; } = false;
         private List<AdvertisementTask> _order { get; set; }
 
         public GreedyFastHeuristic() : base()
@@ -40,10 +39,10 @@ namespace InstanceSolvers
             advertisementDataList.Shuffle(Random);
             foreach(var ad in advertisementDataList)
             {
-                if (Solution.GetTypeToBreakIncompatibility(ad, schedule) == 1) {
+                if (Instance.GetTypeToBreakIncompatibility(ad, schedule) == 1) {
                     continue;
                 }
-                if (Solution.GetBulkBrandIncompatibilities(ad.AdConstraints, schedule.Order).Contains(double.PositiveInfinity))
+                if (Instance.GetBulkBrandIncompatibilities(ad.AdConstraints, schedule.Order).Contains(double.PositiveInfinity))
                 {
                     continue;
                 }

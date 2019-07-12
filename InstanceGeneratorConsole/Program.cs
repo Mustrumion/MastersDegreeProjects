@@ -23,25 +23,25 @@ namespace InstanceGeneratorConsole
 
         static void Main(string[] args)
         {
-            //BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
-            //{
-            //    MainDirectory = MAIN_DIRECTORY,
-            //};
-            //bulkInstanceGenerator.GenerateAllInstances();
-
-            BulkSolver bulkSolver = new BulkSolver()
+            BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
             {
                 MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = true,
-                MaxThreads = 15,
-                TotalStatsCategories = new [] {"easy", "medium", "hard"},
-                //DifficultyFilter = new[] { "extreme" },
-                //KindFilter = new[] { "3edu2" },
-                //LengthFilter = new[] { "month.json" },
             };
+            bulkInstanceGenerator.GenerateAllInstances();
+
+            //BulkSolver bulkSolver = new BulkSolver()
+            //{
+            //    MainDirectory = MAIN_DIRECTORY,
+            //    ParallelExecution = true,
+            //    MaxThreads = 15,
+            //    TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
+            ////    DifficultyFilter = new[] { "extreme" },
+            ////    KindFilter = new[] { "3edu2" },
+            ////    LengthFilter = new[] { "month.json" },
+            //};
 
             //bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
-            bulkSolver.SolveEverything(LocalSearchBasedInCompundConfiguration);
+            //bulkSolver.SolveEverything(LocalSearchBasedInCompundConfiguration);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();

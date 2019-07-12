@@ -441,5 +441,20 @@ $@"Parameters used in conversion from real data:
                 Instance.TypesOfAds.Remove(adType.ID);
             }
         }
+
+        private void IncreaseCompatibility()
+        {
+            foreach(var brand1 in Instance.Brands)
+            {
+                foreach (var brand2 in Instance.Brands)
+                {
+                    if(Instance.GetBrandsIncompatibility(brand1.Key, brand2.Key) == double.PositiveInfinity)
+                    {
+                        Instance.AddBrandCompatibility(brand1.Key, brand2.Key, 1.0);
+                    }
+                }
+            }
+            Instance.TypeToBreakIncompatibilityMatrix.Clear();
+        }
     }
 }

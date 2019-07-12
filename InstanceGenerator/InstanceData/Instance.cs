@@ -1,5 +1,6 @@
 ﻿using InstanceGenerator.InstanceData.Activities;
 using InstanceGenerator.Interfaces;
+using InstanceGenerator.SolutionObjects;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -185,6 +186,78 @@ namespace InstanceGenerator.InstanceData
         public void RestoreStructuresAfterDeserialization()
         {
             RestoreBreakDictionary();
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ad"></param>
+        /// <param name="schedule"></param>
+        /// <returns>0 - compatible, 1 - incompatible</returns>
+        public byte GetTypeToBreakIncompatibility(TaskScore ad, BreakSchedule schedule)
+        {
+            return GetTypeToBreakIncompatibility(ad.AdConstraints.Type.ID, schedule.BreakData.ID);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="typeId"></param>
+        /// <param name="breakId"></param>
+        /// <returns>0 - compatible, 1 - incompatible</returns>
+        public byte GetTypeToBreakIncompatibility(int typeId, int breakId)
+        {
+            if (TypeToBreakIncompatibilityMatrix.TryGetValue(typeId, out var incompatibleBreaks))
+            {
+                if (incompatibleBreaks.ContainsKey(breakId))
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+
+
+        public double GetBrandsIncompatibility(int brand1Id, int brand2Id)
+        {
+            if (brand1Id == brand2Id)
+            {
+                return 0;
+            }
+            if (!BrandIncompatibilityCost.TryGetValue(brand1Id, out var brandCompatibility))
+            {
+                return double.PositiveInfinity;
+            }
+            if (!brandCompatibility.TryGetValue(brand2Id, out var incompatibilityScore))
+            {
+                return double.PositiveInfinity;
+            }
+            return incompatibilityScore;
+        }
+
+        public double GetAdsBrandIncompatibilitiy(AdvertisementTask ad1, AdvertisementTask ad2)
+        {
+            if (ad1.Type.ID != ad2.Type.ID)
+            {
+                return 0;
+            }
+            return GetBrandsIncompatibility(ad1.Brand.ID, ad2.Brand.ID);
+        }
+
+        public List<double> GetBulkBrandIncompatibilities(AdvertisementTask ad1, IEnumerable<AdvertisementTask> otherAds)
+        {
+            BrandIncompatibilityCost.TryGetValue(ad1.Brand.ID, out var ad1BrandDict);
+            return otherAds.Select(ad2 =>
+            {
+                if (ad1.Brand.ID == ad2.Brand.ID) return 0;
+                if (ad1BrandDict == null) return double.PositiveInfinity;
+                if (!ad1BrandDict.TryGetValue(ad2.Brand.ID, out var incompatibilityScore))
+                {
+                    return double.PositiveInfinity;
+                }
+                return incompatibilityScore;
+            }).ToList();
         }
     }
 }

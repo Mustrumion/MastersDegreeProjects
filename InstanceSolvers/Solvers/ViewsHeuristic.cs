@@ -91,8 +91,8 @@ namespace InstanceSolvers
             var schedules = Solution.AdvertisementsScheduledOnBreaks.Values.Where(s =>
                 {
                     if (s.UnitFill > MaxBreakExtensionUnits + s.BreakData.SpanUnits) return false;
-                    if (Solution.GetTypeToBreakIncompatibility(orderData, s) == 1) return false;
-                    if (Solution.GetBulkBrandIncompatibilities(orderData.AdConstraints, s.Order).Contains(double.PositiveInfinity)) return false;
+                    if (Instance.GetTypeToBreakIncompatibility(orderData, s) == 1) return false;
+                    if (Instance.GetBulkBrandIncompatibilities(orderData.AdConstraints, s.Order).Contains(double.PositiveInfinity)) return false;
                     return true;
                 }).ToList();
             schedules.Shuffle(Random);

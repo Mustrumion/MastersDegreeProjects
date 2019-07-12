@@ -107,7 +107,7 @@ namespace InstanceGeneratorConsole
             conv.MinTimesAiredMultiplier = 0.7;
             conv.MinTimesAiredOffset = -1;
             conv.MaxAdsPerBreakOffset = 1;
-            conv.DefaultAdsInBetweenSame = 10;
+            conv.DefaultAdsInBetweenSame = 5;
             GenerateInstancesForDifficulty("hard", conv);
 
             Console.WriteLine("medium difficulty start");
@@ -122,14 +122,26 @@ namespace InstanceGeneratorConsole
 
             Console.WriteLine("easy difficulty start");
             conv.InstanceDescription = @"Easy difficulty.";
+            conv.MinBeginingsMultiplier = 0.4;
+            conv.MinEndsMultiplier = 0.4;
+            conv.MinViewsMultiplier = 0.4;
+            conv.MinTimesAiredMultiplier = 0.4;
+            GenerateInstancesForDifficulty("easy", conv);
+
+            Console.WriteLine("very easy difficulty start");
+            conv.InstanceDescription = @"Very easy difficulty.";
             conv.MinBeginingsMultiplier = 0.3;
             conv.MinEndsMultiplier = 0.3;
             conv.MinViewsMultiplier = 0.3;
             conv.MinTimesAiredMultiplier = 0.3;
-            GenerateInstancesForDifficulty("easy", conv);
+            GenerateInstancesForDifficulty("very_easy", conv);
 
             Console.WriteLine("trivial difficulty start");
             conv.InstanceDescription = @"Trivial difficulty.";
+            conv.MinBeginingsMultiplier = 0.2;
+            conv.MinEndsMultiplier = 0.2;
+            conv.MinViewsMultiplier = 0.2;
+            conv.MinTimesAiredMultiplier = 0.2;
             conv.MakeEverythingCompatible = true;
             GenerateInstancesForDifficulty("trivial", conv);
         }
