@@ -18,7 +18,7 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\Dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -34,14 +34,19 @@ namespace InstanceGeneratorConsole
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
                 MaxThreads = 15,
+                //DifficultyFilter = new[] { "extreme" },
+                //KindFilter = new[] { "3edu2" },
+                //LengthFilter = new[] { "month.json" },
             };
 
             //bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
-            bulkSolver.SolveEverything(CompundConfiguration);
+            bulkSolver.SolveEverything(LocalSearchBasedInCompundConfiguration);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
         }
+
+
 
         private static ISolver LocalSearchConfiguration2()
         {
@@ -266,8 +271,8 @@ namespace InstanceGeneratorConsole
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                TimeLimit = new TimeSpan(0, 0, 200),
-                Description = "compund_heuristic",
+                TimeLimit = new TimeSpan(0, 0, 80),
+                Description = "compund_heuristic_random_70s",
                 PropagateRandomSeed = true,
                 Seed = 10,
                 DiagnosticMessages = true,
@@ -276,6 +281,70 @@ namespace InstanceGeneratorConsole
             };
             compundSolver.InitialSolvers.Add(randomSolver);
             return compundSolver;
+        }
+
+        private static ISolver LocalSearchBasedInCompundConfiguration()
+        {
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
+            {
+                MaxOverfillUnits = -10,
+            };
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                TimeLimit = new TimeSpan(0, 0, 150),
+                Seed = 15,
+                MaxLoops = 10,
+                RandomOrder = true,
+            };
+            LocalSearch solver = new LocalSearch()
+            {
+                Solution = randomSolver.Solution,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                StopWhenCompleted = true,
+                PropagateRandomnessSeed = true,
+                TimeLimit = new TimeSpan(0, 0, 300),
+                Description = "local_random_compound",
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = false,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new DeleteMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxBreaksChecked = 5,
+                },
+                new SwapMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 5,
+                    MaxBreaksChecked = 5,
+                },
+            };
+            solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(compundSolver);
+            return solver;
         }
 
         private static ISolver LocalRandomComplex()

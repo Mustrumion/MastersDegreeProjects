@@ -37,6 +37,92 @@
       "description": "Number of advertisement orders (tasks) with hard constraints met.",
       "type": "integer"
     },
+    "TotalStats": {
+      "$id": "InstanceGenerator.SolutionObjects.TasksStats",
+      "description": "Total stats for the solution.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "NumberOfTasks": {
+          "type": "integer"
+        },
+        "Viewership": {
+          "type": "number"
+        },
+        "TimesAired": {
+          "type": "integer"
+        },
+        "NumberOfStarts": {
+          "type": "integer"
+        },
+        "NumberOfEnds": {
+          "type": "integer"
+        },
+        "WeightedLoss": {
+          "type": "number"
+        },
+        "OverdueAdsLoss": {
+          "type": "number"
+        },
+        "LastAdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "MildIncompatibilityLoss": {
+          "type": "number"
+        },
+        "ExtendedBreakLoss": {
+          "type": "number"
+        },
+        "ExtendedBreakSeconds": {
+          "type": "integer"
+        },
+        "OwnerConflicts": {
+          "type": "integer"
+        },
+        "BreakTypeConflicts": {
+          "type": "integer"
+        },
+        "SelfSpacingConflicts": {
+          "type": "integer"
+        },
+        "SelfIncompatibilityConflicts": {
+          "type": "integer"
+        },
+        "IntegrityLossScore": {
+          "type": "number"
+        },
+        "StartsCompletion": {
+          "type": "number"
+        },
+        "EndsCompletion": {
+          "type": "number"
+        },
+        "ViewsCompletion": {
+          "type": "number"
+        },
+        "TimesAiredCompletion": {
+          "type": "number"
+        },
+        "TaskCompletion": {
+          "type": "integer"
+        },
+        "OwnerConflictsProportion": {
+          "type": "number"
+        },
+        "BreakTypeConflictsProportion": {
+          "type": "number"
+        },
+        "SelfSpacingConflictsProportion": {
+          "type": "number"
+        },
+        "SelfIncompatibilityConflictsProportion": {
+          "type": "number"
+        }
+      }
+    },
     "CompletionScore": {
       "description": "Fraction of tasks with hard constraints met.",
       "type": "number"

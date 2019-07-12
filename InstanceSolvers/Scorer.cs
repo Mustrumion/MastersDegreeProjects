@@ -278,10 +278,13 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
         public void RecalculateLastAdTime(TaskScore taskData)
         {
+            int currentMaxPos = -1;
+            int currentMaxBreak = -1;
             foreach (var tvBreak in taskData.BreaksPositions)
             {
-                var position = tvBreak.Value.Max();
-                // TODO: finish this
+                int position = tvBreak.Value.Max();
+                BreakSchedule breakSchedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.Key];
+                //breakSchedule.
             }
         }
     }

@@ -20,6 +20,9 @@ namespace InstanceGeneratorConsole
         private string SolutionsDirectory => Path.Combine(MainDirectory, "solutions");
         public bool ParallelExecution { get; set; } = false;
         public int MaxThreads { get; set; } = 4;
+        public string[] DifficultyFilter { get; set; }
+        public string[] KindFilter { get; set; }
+        public string[] LengthFilter { get; set; }
 
         public void SolveEverything(Func<ISolver> solverMaker)
         {
@@ -69,7 +72,7 @@ namespace InstanceGeneratorConsole
         {
             DirectoryInfo initial_dir = new DirectoryInfo(InstanceDirectory);
             var directories = initial_dir.GetDirectories();
-            return directories.SelectMany(dir =>
+            return directories.Where(d => DifficultyFilter == null || DifficultyFilter.Contains(d.Name)).SelectMany(dir =>
             {
                 return GenerateTasksParentDirectory(dir, dir.Name, solverMaker);
             }).ToList();
@@ -77,7 +80,7 @@ namespace InstanceGeneratorConsole
 
         private List<Action> GenerateTasksParentDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
-            return directory.GetDirectories().SelectMany(childDir =>
+            return directory.GetDirectories().Where(d => KindFilter == null || KindFilter.Contains(d.Name)).SelectMany(childDir =>
             {
                 return GenerateTasksFromDirectory(childDir, Path.Combine(solverDir, childDir.Name), solverMaker);
             }).ToList();
@@ -85,7 +88,7 @@ namespace InstanceGeneratorConsole
 
         private List<Action> GenerateTasksFromDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
-            return directory.GetFiles().Select(file =>
+            return directory.GetFiles().Where(d => LengthFilter == null || LengthFilter.Contains(d.Name)).Select(file =>
             {
                 var solver = solverMaker();
                 string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, file.Name);

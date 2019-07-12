@@ -47,7 +47,7 @@ namespace InstanceSolvers
                 {
                     continue;
                 }
-                schedule.Append(ad.AdConstraints);
+                schedule.AddAd(ad.AdConstraints);
                 if(schedule.UnitFill > schedule.BreakData.SpanUnits + MaxOverfillUnits)
                 {
                     break;

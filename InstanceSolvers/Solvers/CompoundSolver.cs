@@ -11,23 +11,18 @@ namespace InstanceSolvers.Solvers
     public class CompoundSolver : BaseGreedyTransformationHeuristic
     {
         public List<BaseGreedyTransformationHeuristic> PartialHeuristics { get; set; } = new List<BaseGreedyTransformationHeuristic>();
+        public bool RandomOrder { get; set; }
         
 
         protected override void PerformLoop()
         {
-            if (PartialHeuristics.Count == 0)
-            {
-                InitiatePartialSolvers();
-            }
+            if (PartialHeuristics.Count == 0) InitiatePartialSolvers();
             int proportionalLimit = Convert.ToInt32(TimeLimit.TotalMilliseconds / PartialHeuristics.Count);
-            PartialHeuristics.Shuffle(Random);
+            if (RandomOrder) PartialHeuristics.Shuffle(Random);
             foreach (var solver in PartialHeuristics)
             {
-                int limitLeft = Convert.ToInt32((TimeLimit - CurrentTime.Elapsed).TotalMilliseconds);
-                if(limitLeft < 0)
-                {
-                    break;
-                }
+                int limitLeft = Convert.ToInt32(TimeLimit.TotalMilliseconds - CurrentTime.Elapsed.TotalMilliseconds);
+                if (limitLeft < 0) break;
                 solver.Instance = Instance;
                 solver.Solution = Solution;
                 solver.TimeLimit = new TimeSpan(0, 0, 0, 0, Math.Min(proportionalLimit, limitLeft));
@@ -58,18 +53,18 @@ namespace InstanceSolvers.Solvers
             {
                 new ViewsHeuristic()
                 {
-                    MaxBreakExtensionUnits = 40,
+                    MaxBreakExtensionUnits = 50,
                     MaxInsertedPerBreak = 5,
                     MaxLoops = 1,
                 },
                 new BeginingsHeuristic()
                 {
-                    MaxBreakExtensionUnits = 70,
+                    MaxBreakExtensionUnits = 999,
                     MaxLoops = 1,
                 },
                 new EndingsHeuristic()
                 {
-                    MaxBreakExtensionUnits = 100,
+                    MaxBreakExtensionUnits = 999,
                     MaxLoops = 1,
                 },
                 new FreeSpaceHeuristic()

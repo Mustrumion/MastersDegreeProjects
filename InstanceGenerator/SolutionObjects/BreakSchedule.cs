@@ -24,9 +24,10 @@ namespace InstanceGenerator.SolutionObjects
 
 
         private List<AdvertisementTask> _order = new List<AdvertisementTask>();
-        private int _unitFill;
+        private List<int> _endTimes = new List<int>();
 
         public IReadOnlyList<AdvertisementTask> Order => _order.AsReadOnly();
+        public IReadOnlyList<int> EndTimes => _endTimes.AsReadOnly();
 
         public List<AdvertisementTask> GetOrderCopy()
         {
@@ -49,42 +50,52 @@ namespace InstanceGenerator.SolutionObjects
         public void AddAd(AdvertisementTask ad)
         {
             _order.Add(ad);
-            _unitFill += ad.AdSpanUnits;
+            _endTimes.Add(_endTimes.LastOrDefault() + ad.AdSpanUnits);
         }
 
         public void AddAdRange(IEnumerable<AdvertisementTask> ads)
         {
             _order.AddRange(ads);
-            _unitFill += ads.Sum(a => a.AdSpanUnits);
+            foreach(var ad in ads)
+            {
+                _endTimes.Add(_endTimes.LastOrDefault() + ad.AdSpanUnits);
+            }
         }
 
         public void SubsituteOrder(List<AdvertisementTask> ads)
         {
             _order = ads;
-            _unitFill = ads.Sum(a => a.AdSpanUnits);
+            foreach(var ad in ads)
+            {
+                _endTimes.Add(_endTimes.LastOrDefault() + ad.AdSpanUnits);
+            }
         }
 
         public void RemoveAt(int position)
         {
-            _unitFill -= _order[position].AdSpanUnits;
+            var ad = _order[position];
             _order.RemoveAt(position);
+            _endTimes.RemoveAt(position);
+            for(int i = position; i < _endTimes.Count; i++)
+            {
+                _endTimes[i] -= ad.AdSpanUnits;
+            }
         }
 
         public void Insert(int position, AdvertisementTask ad)
         {
             _order.Insert(position, ad);
-            _unitFill += ad.AdSpanUnits;
-        }
-
-        public void Append(AdvertisementTask ad)
-        {
-            _order.Add(ad);
-            _unitFill += ad.AdSpanUnits;
+            int previousEnd = position - 1 >= 0 ? _endTimes[position - 1] : 0;
+            _endTimes.Insert(position, previousEnd + ad.AdSpanUnits);
+            for (int i = position + 1; i < _endTimes.Count; i++)
+            {
+                _endTimes[i] += ad.AdSpanUnits;
+            }
         }
 
         public int Count => _order.Count;
 
-        public int UnitFill => _unitFill;
+        public int UnitFill => _endTimes.LastOrDefault();
 
         public int ID => BreakData.ID;
     }
