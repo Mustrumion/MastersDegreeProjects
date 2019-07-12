@@ -14,6 +14,7 @@ namespace InstanceGeneratorConsole
     public class BulkSolver
     {
         public volatile BulkSolverStats _stats;
+        private volatile Dictionary<string, BulkSolverStats> _categorizedStats = new Dictionary<string, BulkSolverStats>();
 
         public string MainDirectory { get; set; } = @"C:\Users\bartl\Desktop\MDP";
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
@@ -23,11 +24,20 @@ namespace InstanceGeneratorConsole
         public string[] DifficultyFilter { get; set; }
         public string[] KindFilter { get; set; }
         public string[] LengthFilter { get; set; }
+        public string[] TotalStatsCategories { get; set; }
+
+
+        private BulkSolverStats GenerateInitialStats()
+        {
+            BulkSolverStats stats = new BulkSolverStats();
+            stats.RepositoryVersionHash = ShellExec("git describe --always --dirty");
+            return stats;
+        }
+
 
         public void SolveEverything(Func<ISolver> solverMaker)
         {
-            _stats = new BulkSolverStats();
-            _stats.RepositoryVersionHash = ShellExec("git describe --always --dirty");
+            _stats = GenerateInitialStats();
             var solveTasks = GenerateAllTasks(solverMaker);
             if (ParallelExecution)
             {
@@ -47,6 +57,16 @@ namespace InstanceGeneratorConsole
             ISolver solver = solverMaker();
             _stats.Solver = solver;
             string statsPath = Path.Combine(SolutionsDirectory, solver.Description, "TotalStats.json");
+            SerializeStats(_stats, statsPath);
+            foreach(var categoryStats in _categorizedStats)
+            {
+                statsPath = Path.Combine(SolutionsDirectory, solver.Description, "CategorizedStats", $"{categoryStats.Key}.json");
+                SerializeStats(categoryStats.Value, statsPath);
+            }
+        }
+
+        private void SerializeStats(BulkSolverStats stats, string statsPath)
+        {
             FileInfo file = new FileInfo(statsPath);
             if (!file.Directory.Exists)
             {
@@ -61,7 +81,7 @@ namespace InstanceGeneratorConsole
                     TypeNameHandling = TypeNameHandling.Objects,
                 };
                 JsonSerializer ser = JsonSerializer.Create(settings);
-                ser.Serialize(writer, _stats);
+                ser.Serialize(writer, stats);
                 writer.Flush();
                 writer.Close();
             }
@@ -96,10 +116,30 @@ namespace InstanceGeneratorConsole
             }).ToList();
         }
 
+        private void AddSolutionToStats(BulkSolverStats stats, ISolver solver)
+        {
+            if (stats == null) return; 
+            stats.TotalTime += solver.Solution.TimeElapsed;
+            stats.NumberOfExamples += 1;
+            stats.NumberOfAcceptableSolutions += solver.Solution.CompletionScore >= 1 ? 1 : 0;
+            stats.TasksStats.AddTasksStats(solver.Solution.TotalStats);
+        }
+
+
         private Action GenerateSolveTask(string pathIn, string pathOut, ISolver solver)
         {
             return () =>
             {
+                string category = TotalStatsCategories.FirstOrDefault(c => pathOut.Contains(c));
+                if (category == null) category = "";
+                if (!_categorizedStats.TryGetValue(category, out var categoryStats))
+                {
+                    if (!string.IsNullOrEmpty(category))
+                    {
+                        categoryStats = GenerateInitialStats();
+                        _categorizedStats[category] = categoryStats;
+                    }
+                }
                 var reader = new InstanceJsonSerializer
                 {
                     Path = pathIn,
@@ -113,10 +153,8 @@ namespace InstanceGeneratorConsole
                 };
                 serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
                 Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
-                _stats.TotalTime += solver.Solution.TimeElapsed;
-                _stats.NumberOfExamples += 1;
-                _stats.NumberOfAcceptableSolutions += solver.Solution.CompletionScore >= 1 ? 1 : 0;
-                _stats.TasksStats.AddTasksStats(solver.Solution.TotalStats);
+                AddSolutionToStats(_stats, solver);
+                AddSolutionToStats(categoryStats, solver);
             };
         }
     

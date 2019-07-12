@@ -34,6 +34,7 @@ namespace InstanceGeneratorConsole
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
                 MaxThreads = 15,
+                TotalStatsCategories = new [] {"easy", "medium", "hard"},
                 //DifficultyFilter = new[] { "extreme" },
                 //KindFilter = new[] { "3edu2" },
                 //LengthFilter = new[] { "month.json" },
