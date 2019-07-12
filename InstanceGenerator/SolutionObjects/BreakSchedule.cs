@@ -93,6 +93,11 @@ namespace InstanceGenerator.SolutionObjects
             }
         }
 
+        public int GetPositionEndUnits(int position)
+        {
+            return _endTimes[position];
+        }
+
         public int Count => _order.Count;
 
         public int UnitFill => _endTimes.LastOrDefault();
