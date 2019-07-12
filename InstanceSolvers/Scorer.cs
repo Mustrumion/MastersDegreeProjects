@@ -33,11 +33,11 @@ BreakExtensionLossWeight = {BreakExtensionLossWeight}
 MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
         }
 
-        private Dictionary<int, TaskScore> _temporaryTaskData;
-        private IReadOnlyList<AdvertisementTask> _currentBreakOrder;
-        private TvBreak _currentBreak;
+        private Dictionary<int, TaskScore> _taksAssessments;
+        private TvBreak _breakData;
         private int _unitsFromStart;
 
+        private BreakSchedule _schedule;
         private TaskScore _currentlyAssessed;
         private int _currentAdPosition;
         private AdvertisementTask _currentAd;
@@ -99,26 +99,32 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 _currentlyAssessed.NumberOfStarts += 1;
             }
 
-            if (position == _currentBreakOrder.Count - 1)
+            if (position == _schedule.Count - 1)
             {
                 _currentlyAssessed.NumberOfEnds += 1;
             }
 
             bool success = Instance.TypeToBreakIncompatibilityMatrix.TryGetValue(_currentAd.Type.ID, out var incompatibleBreaks);
-            if (success && incompatibleBreaks.ContainsKey(_currentBreak.ID))
+            if (success && incompatibleBreaks.ContainsKey(_breakData.ID))
             {
                 _currentlyAssessed.BreakTypeConflicts += 1;
             }
 
-            var viewsFunction = _currentBreak.MainViewsFunction;
-            if (_currentBreak.TypeViewsFunctions.TryGetValue(_currentAd.Type.ID, out var function))
+            var viewsFunction = _breakData.MainViewsFunction;
+            if (_breakData.TypeViewsFunctions.TryGetValue(_currentAd.Type.ID, out var function))
             {
                 viewsFunction = function;
             }
 
+            int adEndUnit = _schedule.GetPositionEndUnits(position);
+            if (adEndUnit > _breakData.SpanUnits)
+            {
+                _currentlyAssessed.ExtendedBreakUnits = Math.Min(adEndUnit - _breakData.SpanUnits, _currentAd.AdSpanUnits);
+            }
+
             _currentlyAssessed.Viewership += viewsFunction.GetViewers(_unitsFromStart);
 
-            DateTime adEnd = _currentBreak.StartTime.AddSeconds(Instance.UnitSizeInSeconds *
+            DateTime adEnd = _breakData.StartTime.AddSeconds(Instance.UnitSizeInSeconds *
                 (_unitsFromStart + _currentAd.AdSpanUnits));
             if (_currentlyAssessed.LastAdTime == default(DateTime) || adEnd > _currentlyAssessed.LastAdTime)
             {
@@ -132,29 +138,28 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             _currentAdPosition = position;
             _currentAdCount = 1;
             _currentAd = order;
-            bool success = _temporaryTaskData.TryGetValue(order.ID, out TaskScore assesedTask);
-            if (!success)
+            if (!_taksAssessments.TryGetValue(order.ID, out TaskScore assesedTask))
             {
                 assesedTask = new TaskScore()
                 {
                     AdConstraints = _currentAd,
                     ScoringFunction = this,
                 };
-                assesedTask.BreaksPositions.Add(_currentBreak.ID, new List<int>());
-                _temporaryTaskData.Add(order.ID, assesedTask);
+                assesedTask.BreaksPositions.Add(_breakData.ID, new List<int>());
+                _taksAssessments.Add(order.ID, assesedTask);
             }
-            assesedTask.BreaksPositions[_currentBreak.ID].Add(position);
+            assesedTask.BreaksPositions[_breakData.ID].Add(position);
             _currentlyAssessed = assesedTask;
             Instance.BrandIncompatibilityCost.TryGetValue(_currentAd.Brand.ID, out var currentAdWeights);
             _currentAdIncompatibilityCosts = currentAdWeights;
 
             UpdateSimpleStatsForCurrentAd(position);
 
-            for (int i = 0; i < _currentBreakOrder.Count; i++)
+            for (int i = 0; i < _schedule.Count; i++)
             {
                 if (i != _currentAdPosition)
                 {
-                    CheckAdToAdCompatibility(_currentBreakOrder[i], i);
+                    CheckAdToAdCompatibility(_schedule.Order[i], i);
                 }
             }
             if (_currentAdCount > _currentAd.MaxPerBlock)
@@ -166,16 +171,16 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
         public void AssesBreak(BreakSchedule schedule)
         {
-            _currentBreakOrder = schedule.Order;
-            _currentBreak = schedule.BreakData;
-            _temporaryTaskData = new Dictionary<int, TaskScore>();
+            _schedule = schedule;
+            _breakData = schedule.BreakData;
+            _taksAssessments = new Dictionary<int, TaskScore>();
             _unitsFromStart = 0;
-            for (int i = 0; i < _currentBreakOrder.Count; i++)
+            for (int i = 0; i < _schedule.Count; i++)
             {
-                CalculateAdConstraints(_currentBreakOrder[i], i);
+                CalculateAdConstraints(_schedule.Order[i], i);
                 _unitsFromStart += _currentAd.AdSpanUnits;
             }
-            schedule.Scores = _temporaryTaskData;
+            schedule.Scores = _taksAssessments;
         }
 
 
@@ -249,7 +254,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
         public void RecalculateExtendedBreakLoss(TaskScore taskData)
         {
-            taskData.ExtendedBreakLoss = taskData.ExtendedBreakSeconds;
+            taskData.ExtendedBreakLoss = taskData.ExtendedBreakUnits;
         }
 
         public void RecalculateWeightedLoss(TaskScore taskData)

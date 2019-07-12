@@ -35,7 +35,7 @@ namespace InstanceGenerator.SolutionObjects
         /// Loss form overextending breaks.
         /// </summary>
         public double ExtendedBreakLoss { get; set; }
-        public long ExtendedBreakSeconds { get; set; }
+        public long ExtendedBreakUnits { get; set; }
 
         public int OwnerConflicts { get; set; }
         public int BreakTypeConflicts { get; set; }
@@ -70,7 +70,7 @@ namespace InstanceGenerator.SolutionObjects
             {
                 LastAdTime = taskData.LastAdTime;
             }
-            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+            ExtendedBreakUnits += taskData.ExtendedBreakUnits;
 
             OwnerConflicts += taskData.OwnerConflicts;
             BreakTypeConflicts += taskData.BreakTypeConflicts;
@@ -108,7 +108,7 @@ namespace InstanceGenerator.SolutionObjects
             {
                 LastAdTime = taskData.LastAdTime;
             }
-            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+            ExtendedBreakUnits += taskData.ExtendedBreakUnits;
 
             OwnerConflicts += taskData.OwnerConflicts;
             BreakTypeConflicts += taskData.BreakTypeConflicts;

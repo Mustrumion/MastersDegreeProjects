@@ -43,7 +43,7 @@ namespace InstanceGenerator.SolutionObjects
         /// Loss form overextending breaks.
         /// </summary>
         public double ExtendedBreakLoss { get; set; }
-        public long ExtendedBreakSeconds { get; set; }
+        public long ExtendedBreakUnits { get; set; }
 
         public int OwnerConflicts { get; set; }
         public int BreakTypeConflicts { get; set; }
@@ -198,7 +198,7 @@ namespace InstanceGenerator.SolutionObjects
                 LastAdTime = taskData.LastAdTime;
             }
             MildIncompatibilitySumOfOccurenceWeights += taskData.MildIncompatibilitySumOfOccurenceWeights;
-            ExtendedBreakSeconds += taskData.ExtendedBreakSeconds;
+            ExtendedBreakUnits += taskData.ExtendedBreakUnits;
 
             OwnerConflicts += taskData.OwnerConflicts;
             BreakTypeConflicts += taskData.BreakTypeConflicts;
@@ -231,7 +231,7 @@ namespace InstanceGenerator.SolutionObjects
             NumberOfStarts -= taskData.NumberOfStarts;
 
             MildIncompatibilitySumOfOccurenceWeights -= taskData.MildIncompatibilitySumOfOccurenceWeights;
-            ExtendedBreakSeconds -= taskData.ExtendedBreakSeconds;
+            ExtendedBreakUnits -= taskData.ExtendedBreakUnits;
 
             OwnerConflicts -= taskData.OwnerConflicts;
             BreakTypeConflicts -= taskData.BreakTypeConflicts;
@@ -279,7 +279,7 @@ namespace InstanceGenerator.SolutionObjects
             NumberOfStarts = taskData.NumberOfStarts;
             LastAdTime = taskData.LastAdTime;
             MildIncompatibilitySumOfOccurenceWeights = taskData.MildIncompatibilitySumOfOccurenceWeights;
-            ExtendedBreakSeconds = taskData.ExtendedBreakSeconds;
+            ExtendedBreakUnits = taskData.ExtendedBreakUnits;
             OwnerConflicts = taskData.OwnerConflicts;
             BreakTypeConflicts = taskData.BreakTypeConflicts;
             SelfSpacingConflicts = taskData.SelfSpacingConflicts;
@@ -305,7 +305,7 @@ namespace InstanceGenerator.SolutionObjects
                 NumberOfStarts = NumberOfStarts,
                 LastAdTime = LastAdTime,
                 MildIncompatibilitySumOfOccurenceWeights = MildIncompatibilitySumOfOccurenceWeights,
-                ExtendedBreakSeconds = ExtendedBreakSeconds,
+                ExtendedBreakUnits = ExtendedBreakUnits,
                 OwnerConflicts = OwnerConflicts,
                 BreakTypeConflicts = BreakTypeConflicts,
                 SelfSpacingConflicts = SelfSpacingConflicts,
