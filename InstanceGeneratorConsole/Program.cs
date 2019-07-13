@@ -23,25 +23,35 @@ namespace InstanceGeneratorConsole
 
         static void Main(string[] args)
         {
-            BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
-            {
-                MainDirectory = MAIN_DIRECTORY,
-            };
-            bulkInstanceGenerator.GenerateAllInstances();
-
-            //BulkSolver bulkSolver = new BulkSolver()
+            //BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
             //{
             //    MainDirectory = MAIN_DIRECTORY,
-            //    ParallelExecution = true,
-            //    MaxThreads = 15,
-            //    TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
-            ////    DifficultyFilter = new[] { "extreme" },
-            ////    KindFilter = new[] { "3edu2" },
-            ////    LengthFilter = new[] { "month.json" },
             //};
+            //bulkInstanceGenerator.GenerateAllInstances();
 
-            //bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
-            //bulkSolver.SolveEverything(LocalSearchBasedInCompundConfiguration);
+            BulkSolver bulkSolver = new BulkSolver()
+            {
+                MainDirectory = MAIN_DIRECTORY,
+                ParallelExecution = true,
+                MaxThreads = 15,
+                TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
+                //    DifficultyFilter = new[] { "extreme" },
+                //    KindFilter = new[] { "3edu2" },
+                //    LengthFilter = new[] { "month.json" },
+            };
+
+            bulkSolver.SolveEverything(FastRandomConfig);
+            bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
+            bulkSolver.SolveEverything(LocalSearchBasedInCompundConfiguration);
+            bulkSolver.SolveEverything(LocalSearchConfiguration2);
+            bulkSolver.SolveEverything(LocalSearchConfiguration3);
+            bulkSolver.SolveEverything(InsertionConfiguration);
+            bulkSolver.SolveEverything(StartInsertionConfiguration);
+            bulkSolver.SolveEverything(InsertionStartEndingConfiguration);
+            bulkSolver.SolveEverything(CompundConfiguration);
+            bulkSolver.SolveEverything(LocalRandomComplex);
+            bulkSolver.SolveEverything(FastRandomGreedyConfig);
+            bulkSolver.SolveEverything(SlowRandomConfig);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -426,7 +436,7 @@ namespace InstanceGeneratorConsole
             return solver;
         }
 
-        private static ISolver GenerateFastRandomGreedyConfig()
+        private static ISolver FastRandomGreedyConfig()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {

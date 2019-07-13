@@ -47,6 +47,7 @@
     <Compile Include="Solvers\BaseSolver.cs" />
     <Compile Include="Solvers\CompoundSolver.cs" />
     <Compile Include="Solvers\EndingsHeuristic.cs" />
+    <Compile Include="Solvers\Evolutionary.cs" />
     <Compile Include="Solvers\GreedyFastHeuristic.cs" />
     <Compile Include="Solvers\BeginingsHeuristic.cs" />
     <Compile Include="Solvers\FreeSpaceHeuristic.cs" />

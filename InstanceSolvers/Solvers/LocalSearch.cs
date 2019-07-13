@@ -23,17 +23,23 @@ namespace InstanceSolvers
     public class LocalSearch : BaseSolver, ISolver
     {
         private bool _movePerformed;
+        private Solution _previousBest;
+        private IMoveFactory _bestFactory;
+        private IMove _bestMove;
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
 
         private List<TvBreak> _breakInOrder { get; set; }
         public bool StopWhenCompleted { get; set; } = true;
-        public Action ActionWhenScoreDecrease { get; set; } = Action.Ignore;
+        public Action ActionWhenNoImprovement { get; set; } = Action.Ignore;
         public bool PropagateRandomnessSeed { get; set; }
+        public double NeighberhoodAdjustmentParam { get; set; }
+        public double BestFactoryAdjustmentParam { get; set; }
         [JsonIgnore]
         public int NumberOfMoves { get; set; }
         [JsonIgnore]
         public List<IMove> MovesPerformed { get; set; } = new List<IMove>();
+
 
         public LocalSearch() : base()
         {
@@ -42,16 +48,44 @@ namespace InstanceSolvers
         protected override void InternalSolve()
         {
             InitializeMoveFactories();
+            _previousBest = null;
             _movePerformed = true;
-            while (_movePerformed)
+            while (!TimeToEnd() && _movePerformed)
             {
                 _movePerformed = false;
-                List<IMove> moves = new List<IMove>();
+                _bestFactory = null;
+                _bestMove = null;
                 foreach (IMoveFactory factory in MoveFactories)
                 {
-                    moves.AddRange(factory.GenerateMoves().ToList());
+                    AssesMovesFromFactory(factory);
                 }
-                ChooseMoveToPerform(moves);
+                ChooseToPerform();
+            }
+        }
+
+        private bool FirstIsBetter(IMove move1, IMove move2)
+        {
+            if (move2 == null && move1 != null) return true;
+            if (move1.OverallDifference.IntegrityLossScore < move2.OverallDifference.IntegrityLossScore) return true;
+            if (move1.OverallDifference.IntegrityLossScore == move2.OverallDifference.IntegrityLossScore && move1.OverallDifference.WeightedLoss < move2.OverallDifference.WeightedLoss) return true;
+            return false;
+        }
+
+        private void AssesMovesFromFactory(IMoveFactory factory)
+        {
+            var moves = factory.GenerateMoves().ToList();
+            foreach (var move in moves)
+            {
+                if (TimeToEnd())
+                {
+                    return;
+                }
+                move.Asses();
+                if (FirstIsBetter(move, _bestMove))
+                {
+                    _bestMove = move;
+                    _bestFactory = factory;
+                }
             }
         }
 
@@ -127,37 +161,66 @@ namespace InstanceSolvers
             return false;
         }
 
-        private void ChooseMoveToPerform(List<IMove> moves)
+
+        private void WidenNeighberhood()
         {
-            if(moves.Count == 0 || TimeToEnd())
+            if (NeighberhoodAdjustmentParam == 0) return;
+            foreach (var factory in MoveFactories)
             {
-                return;
+                factory.WidenNeighborhood(NeighberhoodAdjustmentParam);
             }
-            foreach (var move in moves)
+        }
+
+        private void NarrowNeighberhood()
+        {
+            if (NeighberhoodAdjustmentParam == 0) return;
+            foreach (var factory in MoveFactories)
             {
-                if (TimeToEnd())
+                factory.NarrowNeighborhood(NeighberhoodAdjustmentParam);
+            }
+        }
+
+        private void RewardBestFactory()
+        {
+            if (BestFactoryAdjustmentParam == 0) return;
+            foreach(var factory in MoveFactories)
+            {
+                if(factory == _bestFactory)
+                {
+                    _bestFactory.WidenNeighborhood(BestFactoryAdjustmentParam);
+                }
+            }
+        }
+
+        private void ChooseToPerform()
+        {
+            if (_bestMove == null || _bestMove.OverallDifference.HasScoreWorsened())
+            {
+                if(ActionWhenNoImprovement == Action.Stop)
                 {
                     return;
                 }
-                move.Asses();
-            }
-            var candidate = moves.OrderBy(m => m.OverallDifference.WeightedLoss).OrderBy(m => m.OverallDifference.IntegrityLossScore).FirstOrDefault();
-            if (candidate.OverallDifference.HasScoreWorsened())
-            {
-                if(ActionWhenScoreDecrease == Action.Stop)
-                {
-                    return;
-                }
-                else if(ActionWhenScoreDecrease == Action.Ignore)
+                else if(ActionWhenNoImprovement == Action.Ignore)
                 {
                     _movePerformed = true;
                     return;
                 }
+                if (Solution.IsBetterThan(_previousBest))
+                {
+                    _previousBest = Solution.TakeSnapshot();
+                }
+                WidenNeighberhood();
             }
-            candidate.Execute();
+            else
+            {
+                RewardBestFactory();
+                NarrowNeighberhood();
+            }
+            if (_bestMove == null) return;
+            _bestMove.Execute();
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            MovesPerformed.Add(candidate);
-            candidate.CleanData();
+            MovesPerformed.Add(_bestMove);
+            _bestMove.CleanData();
             _movePerformed = true;
         }
     }

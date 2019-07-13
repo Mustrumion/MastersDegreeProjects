@@ -38,6 +38,7 @@ namespace InstanceGeneratorConsole
         public void SolveEverything(Func<ISolver> solverMaker)
         {
             _stats = GenerateInitialStats();
+            _categorizedStats = new Dictionary<string, BulkSolverStats>();
             var solveTasks = GenerateAllTasks(solverMaker);
             if (ParallelExecution)
             {

@@ -314,5 +314,33 @@ namespace InstanceGenerator.SolutionObjects
             RemoveAdFromTaskDataDictionary(order.ID, tvBreak.ID, position);
             schedule.RemoveAt(position);
         }
+
+
+        public Solution TakeSnapshot()
+        {
+            PrepareForSerialization();
+            Solution solution = new Solution()
+            {
+                Instance = Instance,
+                AdvertisementIdsScheduledOnBreaks = AdvertisementIdsScheduledOnBreaks,
+                TotalStats = TotalStats,
+                Completion = Completion,
+                IntegrityLossScore = IntegrityLossScore,
+                ExtendedBreakLoss = ExtendedBreakLoss,
+                MildIncompatibilityLoss = MildIncompatibilityLoss,
+                OverdueAdsLoss = OverdueAdsLoss,
+                WeightedLoss = WeightedLoss,
+            };
+            return solution;
+        }
+
+
+        public bool IsBetterThan(Solution solution)
+        {
+            if (solution == null) return true;
+            if (IntegrityLossScore < solution.IntegrityLossScore) return true;
+            if (IntegrityLossScore == solution.IntegrityLossScore && WeightedLoss < solution.WeightedLoss) return true;
+            return false;
+        }
     }
 }
