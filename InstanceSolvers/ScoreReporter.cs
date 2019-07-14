@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,11 @@ namespace InstanceSolvers
     {
         private DateTime _start { get; set; }
         private List<ReportEntry> _entries { get; set; }
+        
+        public void Start()
+        {
+            _start = DateTime.Now;
+        }
 
         public void AddEntry(ReportEntry entry)
         {
@@ -21,7 +27,15 @@ namespace InstanceSolvers
 
         public void Save(string path)
         {
-
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                int i = 0;
+                foreach(var entry in _entries)
+                {
+                    i += 1;
+                    writer.WriteLine($"{i},{entry.ToCsv()}");
+                }
+            }
         }
     }
 }

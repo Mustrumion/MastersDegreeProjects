@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceSolvers
+namespace InstanceSolvers.Solvers.Base
 {
     public abstract class BaseSolver : ISolver
     {

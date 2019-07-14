@@ -6,6 +6,7 @@ using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers;
 using InstanceSolvers.MoveFactories;
+using InstanceSolvers.Solvers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;

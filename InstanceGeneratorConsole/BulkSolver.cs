@@ -1,6 +1,7 @@
 ﻿using InstanceGenerator.DataAccess;
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
+using InstanceSolvers.Solvers.Base;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

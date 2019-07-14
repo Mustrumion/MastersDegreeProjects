@@ -1,5 +1,6 @@
 ﻿using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
+using InstanceSolvers.Solvers.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;

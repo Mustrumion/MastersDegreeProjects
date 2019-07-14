@@ -2,6 +2,7 @@
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
+using InstanceSolvers.Solvers.Base;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceSolvers
+namespace InstanceSolvers.Solvers
 {
     public class RandomFastSolver : BaseSolver, ISolver
     {

@@ -3,6 +3,7 @@ using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers.MoveFactories;
 using InstanceSolvers.Moves;
+using InstanceSolvers.Solvers.Base;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceSolvers
+namespace InstanceSolvers.Solvers
 {
     public enum Action
     {

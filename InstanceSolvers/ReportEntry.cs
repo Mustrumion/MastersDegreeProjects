@@ -14,5 +14,10 @@ namespace InstanceSolvers
         public double WeightedLoss { get; set; }
         public bool AttainedAcceptable { get; set; }
         public string Action { get; set; }
+
+        public string ToCsv()
+        {
+            return $"{SecondsFromStart},{IntegrityLoss},{WeightedLoss},{AttainedAcceptable},{Action}";
+        }
     }
 }

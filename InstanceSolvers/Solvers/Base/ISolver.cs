@@ -1,4 +1,5 @@
 ﻿using InstanceGenerator.InstanceData;
+using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using Newtonsoft.Json;
 using System;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceGenerator.Interfaces
+namespace InstanceSolvers.Solvers.Base
 {
     public interface ISolver
     {

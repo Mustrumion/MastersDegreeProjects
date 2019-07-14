@@ -45,14 +45,15 @@
   <ItemGroup>
     <Compile Include="ReportEntry.cs" />
     <Compile Include="ScoreReporter.cs" />
-    <Compile Include="Solvers\BaseGreedyTransformationHeuristic.cs" />
-    <Compile Include="Solvers\BaseSolver.cs" />
+    <Compile Include="Solvers\Base\BaseGreedyTransformationHeuristic.cs" />
+    <Compile Include="Solvers\Base\BaseSolver.cs" />
     <Compile Include="Solvers\CompoundSolver.cs" />
     <Compile Include="Solvers\EndingsHeuristic.cs" />
     <Compile Include="Solvers\Evolutionary.cs" />
     <Compile Include="Solvers\GreedyFastHeuristic.cs" />
     <Compile Include="Solvers\BeginingsHeuristic.cs" />
     <Compile Include="Solvers\FreeSpaceHeuristic.cs" />
+    <Compile Include="Solvers\Base\ISolver.cs" />
     <Compile Include="Solvers\ViewsHeuristic.cs" />
     <Compile Include="MoveFactories\BaseMoveFactory.cs" />
     <Compile Include="MoveFactories\IMoveFactory.cs" />
