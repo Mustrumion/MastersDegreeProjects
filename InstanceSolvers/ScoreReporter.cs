@@ -10,7 +10,7 @@ namespace InstanceSolvers
     public class ScoreReporter : IReporter
     {
         private DateTime _start { get; set; }
-        private List<ReportEntry> _entries { get; set; }
+        private List<ReportEntry> _entries { get; set; } = new List<ReportEntry>();
         
         public void Start()
         {
