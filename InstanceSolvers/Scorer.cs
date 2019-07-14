@@ -61,7 +61,7 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
 
         private void CheckAdToAdCompatibility(AdvertisementTask other, int otherPosition)
         {
-            if (_currentAd == other)
+            if (_currentAd == other && otherPosition != _currentAdPosition)
             {
                 _currentAdCount += 1;
                 int distance = Math.Abs(_currentAdPosition - otherPosition);

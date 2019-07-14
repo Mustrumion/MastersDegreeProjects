@@ -266,10 +266,10 @@ $@"Parameters used in conversion from real data:
             {
                 var adsInThisBreak = ad.Break.Advertisements;
                 int indexStarting = adsInThisBreak.IndexOf(ad);
-                int times = 0;
+                int times = 1;
                 for(int i = indexStarting + 1; i < adsInThisBreak.Count; i++)
                 {
-                    if(adsInThisBreak[i].AdvertisementOrder == order)
+                    if(adsInThisBreak[i].AdvertisementOrder.ID == order.ID)
                     {
                         times += 1;
                         if (minSelfInterval > i - indexStarting - 1)

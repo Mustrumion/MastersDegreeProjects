@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReportEntry.cs" />
+    <Compile Include="ScoreReporter.cs" />
     <Compile Include="Solvers\BaseGreedyTransformationHeuristic.cs" />
     <Compile Include="Solvers\BaseSolver.cs" />
     <Compile Include="Solvers\CompoundSolver.cs" />
