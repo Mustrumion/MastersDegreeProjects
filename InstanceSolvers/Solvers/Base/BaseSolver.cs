@@ -143,12 +143,25 @@ namespace InstanceSolvers.Solvers.Base
                 ScoringFunction.AssesSolution(Solution);
             }
             FireInitialSolvers();
+            AddStartReport();
             _previousSolutionTime = Solution.TimeElapsed;
             _currentTime = new Stopwatch();
             _currentTime.Start();
             InternalSolve();
             CurrentTime.Stop();
             Solution.TimeElapsed = CurrentTime.Elapsed + _previousSolutionTime;
+        }
+
+        private void AddStartReport()
+        {
+            Reporter.AddEntry(new ReportEntry()
+            {
+                Time = DateTime.Now,
+                Action = $"Started {this.GetType().Name}",
+                AttainedAcceptable = false,
+                IntegrityLoss = Solution.IntegrityLossScore,
+                WeightedLoss = Solution.WeightedLoss,
+            });
         }
 
         protected abstract void InternalSolve();
