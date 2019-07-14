@@ -44,7 +44,7 @@ namespace InstanceGeneratorConsole
             {
                 Parallel.ForEach(
                     solveTasks,
-                    new ParallelOptions { MaxDegreeOfParallelism = MaxThreads }, 
+                    new ParallelOptions { MaxDegreeOfParallelism = MaxThreads, }, 
                     solveTask => solveTask());
             }
             else

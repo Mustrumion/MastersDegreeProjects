@@ -18,6 +18,7 @@ namespace InstanceSolvers
         protected IScoringFunction _scoringFunction;
         protected Solution _solution;
         private Stopwatch _currentTime;
+        private TimeSpan _previousSolutionTime;
 
         public BaseSolver()
         {
@@ -134,11 +135,12 @@ namespace InstanceSolvers
                 ScoringFunction.AssesSolution(Solution);
             }
             FireInitialSolvers();
+            _previousSolutionTime = Solution.TimeElapsed;
             _currentTime = new Stopwatch();
-            CurrentTime.Start();
+            _currentTime.Start();
             InternalSolve();
             CurrentTime.Stop();
-            Solution.TimeElapsed += CurrentTime.Elapsed;
+            Solution.TimeElapsed = CurrentTime.Elapsed + _previousSolutionTime;
         }
 
         protected abstract void InternalSolve();

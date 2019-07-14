@@ -296,5 +296,14 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
             }
             taskData.LastAdTime = currentMax;
         }
+
+        /// <summary>
+        /// Generate new scorer for use in parallel
+        /// </summary>
+        /// <returns></returns>
+        public IScoringFunction GetAnotherOne()
+        {
+            return new Scorer();
+        }
     }
 }

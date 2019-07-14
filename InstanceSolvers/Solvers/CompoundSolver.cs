@@ -38,8 +38,6 @@ namespace InstanceSolvers.Solvers
                 solver.ScoringFunction = ScoringFunction;
                 solver.Solve();
                 Solution = solver.Solution;
-                // revert the time increase automatically added to the solution, as this solver will add its whole time at the end
-                Solution.TimeElapsed -= solver.CurrentTime.Elapsed;
                 if (solver.MovePerformed)
                 {
                     _numberOfMoves += solver.NumberOfMoves;

@@ -30,7 +30,7 @@ namespace InstanceSolvers
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
 
         private List<TvBreak> _breakInOrder { get; set; }
-        public bool StopWhenCompleted { get; set; } = true;
+        public bool StopWhenCompleted { get; set; }
         public Action ActionWhenNoImprovement { get; set; } = Action.Ignore;
         public bool PropagateRandomnessSeed { get; set; }
         public double NeighberhoodAdjustmentParam { get; set; }
@@ -39,7 +39,7 @@ namespace InstanceSolvers
         public int NumberOfMoves { get; set; }
         [JsonIgnore]
         public List<IMove> MovesPerformed { get; set; } = new List<IMove>();
-
+        public double ImprovementOverNarrowNeighb { get; set; }
 
         public LocalSearch() : base()
         {
@@ -60,6 +60,12 @@ namespace InstanceSolvers
                     AssesMovesFromFactory(factory);
                 }
                 ChooseToPerform();
+            }
+            if (_previousBest.IsBetterThan(Solution))
+            {
+                Solution = _previousBest;
+                _previousBest.RestoreStructures();
+                _scoringFunction.AssesSolution(Solution);
             }
         }
 
@@ -150,9 +156,12 @@ namespace InstanceSolvers
 
         private bool TimeToEnd()
         {
-            if(Solution.CompletionScore >= 1 && StopWhenCompleted)
+            if(Solution.CompletionScore >= 1)
             {
-                return true;
+                if(StopWhenCompleted || Solution.WeightedLoss == 0)
+                {
+                    return true;
+                }
             }
             if(CurrentTime.Elapsed > TimeLimit)
             {
@@ -167,7 +176,7 @@ namespace InstanceSolvers
             if (NeighberhoodAdjustmentParam == 0) return;
             foreach (var factory in MoveFactories)
             {
-                factory.WidenNeighborhood(NeighberhoodAdjustmentParam);
+                factory.WidenNeighborhood(NeighberhoodAdjustmentParam * ImprovementOverNarrowNeighb);
             }
         }
 
@@ -182,14 +191,8 @@ namespace InstanceSolvers
 
         private void RewardBestFactory()
         {
-            if (BestFactoryAdjustmentParam == 0) return;
-            foreach(var factory in MoveFactories)
-            {
-                if(factory == _bestFactory)
-                {
-                    _bestFactory.WidenNeighborhood(BestFactoryAdjustmentParam);
-                }
-            }
+            if (BestFactoryAdjustmentParam == 0 || _bestFactory == null) return;
+            _bestFactory.WidenNeighborhood(BestFactoryAdjustmentParam);
         }
 
         private void ChooseToPerform()
@@ -211,7 +214,7 @@ namespace InstanceSolvers
                 }
                 WidenNeighberhood();
             }
-            else
+            else if(_bestMove != null && _bestMove.OverallDifference.HasScoreImproved())
             {
                 RewardBestFactory();
                 NarrowNeighberhood();

@@ -12,6 +12,7 @@ namespace InstanceSolvers
 {
     public class FreeSpaceHeuristic : BaseGreedyTransformationHeuristic, ISolver
     {
+        public bool DeleteOnlyOverfull { get; set; }
 
         public FreeSpaceHeuristic() : base()
         {
@@ -20,6 +21,7 @@ namespace InstanceSolvers
         protected override void PerformLoop()
         {
             var breaks = Solution.AdvertisementsScheduledOnBreaks.Values.ToList();
+            if (DeleteOnlyOverfull) breaks = breaks.Where(b => b.UnitFill <= b.BreakData.SpanUnits).ToList();
             breaks.Shuffle(Random);
             foreach (var tvBreak in breaks)
             {
@@ -34,6 +36,10 @@ namespace InstanceSolvers
             ads.Shuffle(Random);
             for(int pos = 0; pos < tvBreak.Count; pos++)
             {
+                if (DeleteOnlyOverfull && tvBreak.UnitFill <= tvBreak.BreakData.SpanUnits)
+                {
+                    break;
+                }
                 Delete delete = new Delete()
                 {
                     Solution = Solution,

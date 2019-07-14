@@ -33,31 +33,97 @@ namespace InstanceGeneratorConsole
             {
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
-                MaxThreads = 15,
+                MaxThreads = 16,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
-                //    DifficultyFilter = new[] { "extreme" },
+                DifficultyFilter = new[] { "very_easy", "easy", "medium" },
                 //    KindFilter = new[] { "3edu2" },
                 //    LengthFilter = new[] { "month.json" },
             };
 
-            bulkSolver.SolveEverything(FastRandomConfig);
-            bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
+            //bulkSolver.SolveEverything(FastRandomConfig);
+            //bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
             bulkSolver.SolveEverything(LocalSearchBasedInCompundConfiguration);
-            bulkSolver.SolveEverything(LocalSearchConfiguration2);
-            bulkSolver.SolveEverything(LocalSearchConfiguration3);
-            bulkSolver.SolveEverything(InsertionConfiguration);
-            bulkSolver.SolveEverything(StartInsertionConfiguration);
-            bulkSolver.SolveEverything(InsertionStartEndingConfiguration);
-            bulkSolver.SolveEverything(CompundConfiguration);
-            bulkSolver.SolveEverything(LocalRandomComplex);
-            bulkSolver.SolveEverything(FastRandomGreedyConfig);
-            bulkSolver.SolveEverything(SlowRandomConfig);
+            bulkSolver.SolveEverything(LocalSearchAdaptive);
+            //bulkSolver.SolveEverything(LocalSearchConfiguration2);
+            //bulkSolver.SolveEverything(LocalSearchConfiguration3);
+            //bulkSolver.SolveEverything(InsertionConfiguration);
+            //bulkSolver.SolveEverything(StartInsertionConfiguration);
+            //bulkSolver.SolveEverything(InsertionStartEndingConfiguration);
+            //bulkSolver.SolveEverything(CompundConfiguration);
+            //bulkSolver.SolveEverything(LocalRandomComplex);
+            //bulkSolver.SolveEverything(FastRandomGreedyConfig);
+            //bulkSolver.SolveEverything(SlowRandomConfig);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
         }
 
-
+        private static ISolver LocalSearchAdaptive()
+        {
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
+            {
+                MaxOverfillUnits = 0,
+            };
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                TimeLimit = new TimeSpan(0, 0, 180),
+                Seed = 15,
+                MaxLoops = 10,
+                RandomOrder = true,
+            };
+            LocalSearch solver = new LocalSearch()
+            {
+                Solution = randomSolver.Solution,
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                BestFactoryAdjustmentParam = 0.2,
+                NeighberhoodAdjustmentParam = 0.2,
+                ImprovementOverNarrowNeighb = 2.0,
+                DiagnosticMessages = true,
+                PropagateRandomnessSeed = true,
+                TimeLimit = new TimeSpan(0, 0, 600),
+                Description = "optimization_local_random_adaptive_10min2",
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = false,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new DeleteMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxBreaksChecked = 5,
+                },
+                new SwapMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 5,
+                    MaxBreaksChecked = 5,
+                },
+            };
+            solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(compundSolver);
+            return solver;
+        }
 
         private static ISolver LocalSearchConfiguration2()
         {
@@ -298,11 +364,11 @@ namespace InstanceGeneratorConsole
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
-                MaxOverfillUnits = -10,
+                MaxOverfillUnits = 0,
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                TimeLimit = new TimeSpan(0, 0, 150),
+                TimeLimit = new TimeSpan(0, 0, 180),
                 Seed = 15,
                 MaxLoops = 10,
                 RandomOrder = true,
@@ -312,10 +378,10 @@ namespace InstanceGeneratorConsole
                 Solution = randomSolver.Solution,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
-                StopWhenCompleted = true,
+                DiagnosticMessages = true,
                 PropagateRandomnessSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_random_compound",
+                Description = "optimization_local_random_compound_deloverfull2",
             };
             solver.MoveFactories = new List<IMoveFactory>
             {

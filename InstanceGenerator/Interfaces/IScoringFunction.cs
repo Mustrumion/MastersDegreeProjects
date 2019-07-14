@@ -23,13 +23,19 @@ namespace InstanceGenerator.Interfaces
         void AssesBreak(BreakSchedule schedule);
         void AssesSolution(Solution solution);
         void RecalculateSolutionScoresBasedOnTaskData(Solution solution);
-
-
+        
         void RecalculateOverdueLoss(TaskScore taskData);
         void RecalculateMildIncompatibilityLoss(TaskScore taskData);
         void RecalculateExtendedBreakLoss(TaskScore taskData);
         void RecalculateWeightedLoss(TaskScore taskData);
         void RecalculateIntegrityLoss(TaskScore taskData);
         void RecalculateLastAdTime(TaskScore taskData);
+
+        /// <summary>
+        /// Since IScoringFunction by is associated with a solution it's assessing bad things may happen if it's executed in parallel on different solutions.
+        /// For this purpose get other scorer object to asses multiple solutions in parallel.
+        /// </summary>
+        /// <returns>Another scorer, ready to score other things.</returns>
+        IScoringFunction GetAnotherOne();
     }
 }
