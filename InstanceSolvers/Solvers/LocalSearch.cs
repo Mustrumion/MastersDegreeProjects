@@ -61,7 +61,7 @@ namespace InstanceSolvers
                 }
                 ChooseToPerform();
             }
-            if (_previousBest.IsBetterThan(Solution))
+            if (_previousBest != null && _previousBest.IsBetterThan(Solution))
             {
                 Solution = _previousBest;
                 _previousBest.RestoreStructures();
