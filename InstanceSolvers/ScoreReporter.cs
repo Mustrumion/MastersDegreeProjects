@@ -19,6 +19,7 @@ namespace InstanceSolvers
 
         public void AddEntry(ReportEntry entry)
         {
+            entry.SecondsFromStart = (entry.Time - _start).TotalSeconds;
             lock (_entries)
             {
                 _entries.Add(entry);

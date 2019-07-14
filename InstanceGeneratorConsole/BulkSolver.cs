@@ -162,7 +162,7 @@ namespace InstanceGeneratorConsole
                 {
                     Path = pathOut,
                 };
-                reporter.Save(Path.Combine(new FileInfo(pathOut).Directory.FullName, "transformationsReport.csv"));
+                reporter.Save(Path.Combine(new FileInfo(pathOut).Directory.FullName, $"{Path.GetFileNameWithoutExtension(new FileInfo(pathOut).Name)}Report.csv"));
                 serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
                 Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
                 AddSolutionToStats(_stats, solver);

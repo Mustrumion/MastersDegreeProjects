@@ -138,7 +138,7 @@ namespace InstanceSolvers.Moves
             return new ReportEntry()
             {
                 Time = DateTime.Now,
-                Action = "Delete",
+                Action = "Swap",
                 AttainedAcceptable = OverallDifference.IntegrityLossScore < 0 && Solution.Completion >= 0,
                 IntegrityLoss = Solution.IntegrityLossScore,
                 WeightedLoss = Solution.WeightedLoss,
