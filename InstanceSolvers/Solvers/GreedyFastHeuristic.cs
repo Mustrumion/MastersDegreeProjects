@@ -31,8 +31,20 @@ namespace InstanceSolvers.Solvers
                 TaskScore currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
                 currentStatsForTask.MergeOtherDataIntoThis(taskData);
             }
+            ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
         }
 
+        private void GenerateReportEntry()
+        {
+            Reporter.AddEntry(new ReportEntry()
+            {
+                Time = DateTime.Now,
+                Action = "Added break",
+                AttainedAcceptable = Solution.IntegrityLossScore <= 0,
+                WeightedLoss = Solution.WeightedLoss,
+                IntegrityLoss = Solution.IntegrityLossScore,
+            });
+        }
 
         private void CreateSchedule(BreakSchedule schedule)
         {
@@ -55,6 +67,7 @@ namespace InstanceSolvers.Solvers
             }
             ScoringFunction.AssesBreak(schedule);
             AddToSolutionScores(schedule.Scores);
+            GenerateReportEntry();
         }
 
         protected override void InternalSolve()
@@ -65,7 +78,6 @@ namespace InstanceSolvers.Solvers
             {
                 CreateSchedule(schedule);
             }
-            ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
         }
     }
 }

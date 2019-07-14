@@ -23,6 +23,7 @@ namespace InstanceSolvers.Solvers.Base
         Random Random { get; set; }
         TimeSpan TimeLimit { get; set; }
         Stopwatch CurrentTime { get; }
+        IReporter Reporter { get; set; }
         void Solve();
     }
 }

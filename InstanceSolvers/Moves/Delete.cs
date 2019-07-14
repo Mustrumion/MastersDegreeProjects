@@ -109,6 +109,7 @@ namespace InstanceSolvers.Moves
             {
                 Solution.AdOrdersScores[statsAfter.TaskID].OverwriteStatsWith(statsAfter);
             }
+            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
         }
 
         public void RollBack()
@@ -125,6 +126,18 @@ namespace InstanceSolvers.Moves
             _oldSchedule = null;
             _newSchedule = null;
             CompletionDifferences = null;
+        }
+
+        public ReportEntry GenerateReportEntry()
+        {
+            return new ReportEntry()
+            {
+                Time = DateTime.Now,
+                Action = "Delete",
+                AttainedAcceptable = OverallDifference.IntegrityLossScore < 0 && Solution.Completion >= 0,
+                IntegrityLoss = Solution.IntegrityLossScore,
+                WeightedLoss = Solution.WeightedLoss,
+            };
         }
     }
 }

@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMove.cs" />
+    <Compile Include="IReporter.cs" />
+    <Compile Include="NullReporter.cs" />
     <Compile Include="ReportEntry.cs" />
     <Compile Include="ScoreReporter.cs" />
     <Compile Include="Solvers\Base\BaseGreedyTransformationHeuristic.cs" />

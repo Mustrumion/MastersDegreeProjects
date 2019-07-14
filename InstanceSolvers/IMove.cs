@@ -1,5 +1,6 @@
 ﻿using InstanceGenerator.InstanceData;
 using InstanceGenerator.SolutionObjects;
+using InstanceSolvers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace InstanceGenerator.Interfaces
         void RollBack();
         void Asses();
         void CleanData();
+        ReportEntry GenerateReportEntry();
     }
 }

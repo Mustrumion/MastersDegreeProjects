@@ -24,19 +24,8 @@ namespace InstanceSolvers.Solvers
             {
                 int limitLeft = Convert.ToInt32(TimeLimit.TotalMilliseconds - CurrentTime.Elapsed.TotalMilliseconds);
                 if (limitLeft < 0) break;
-                solver.Instance = Instance;
-                solver.Solution = Solution;
                 solver.TimeLimit = new TimeSpan(0, 0, 0, 0, Math.Min(proportionalLimit, limitLeft));
-                if (PropagateRandomSeed)
-                {
-                    solver.Seed = Random.Next();
-                }
-                else
-                {
-                    solver.Seed = (Random.Next() + new Random().Next()) % int.MaxValue;
-                }
-                solver.PropagateRandomSeed = PropagateRandomSeed;
-                solver.ScoringFunction = ScoringFunction;
+                PassContextToSolver(solver);
                 solver.Solve();
                 Solution = solver.Solution;
                 if (solver.MovePerformed)

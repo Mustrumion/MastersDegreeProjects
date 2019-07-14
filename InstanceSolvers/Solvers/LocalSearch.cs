@@ -27,10 +27,9 @@ namespace InstanceSolvers.Solvers
         private Solution _previousBest;
         private IMoveFactory _bestFactory;
         private IMove _bestMove;
+        private List<TvBreak> _breakInOrder;
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
-
-        private List<TvBreak> _breakInOrder { get; set; }
         public bool StopWhenCompleted { get; set; }
         public Action ActionWhenNoImprovement { get; set; } = Action.Ignore;
         public bool PropagateRandomnessSeed { get; set; }
@@ -38,8 +37,6 @@ namespace InstanceSolvers.Solvers
         public double BestFactoryAdjustmentParam { get; set; }
         [JsonIgnore]
         public int NumberOfMoves { get; set; }
-        [JsonIgnore]
-        public List<IMove> MovesPerformed { get; set; } = new List<IMove>();
         public double ImprovementOverNarrowNeighb { get; set; }
 
         public LocalSearch() : base()
@@ -221,10 +218,9 @@ namespace InstanceSolvers.Solvers
                 NarrowNeighberhood();
             }
             if (_bestMove == null) return;
+            NumberOfMoves += 1;
             _bestMove.Execute();
-            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-            MovesPerformed.Add(_bestMove);
-            _bestMove.CleanData();
+            Reporter.AddEntry(_bestMove.GenerateReportEntry());
             _movePerformed = true;
         }
     }

@@ -51,6 +51,7 @@ namespace InstanceSolvers.Solvers
                 if (delete.OverallDifference.HasScoreImproved() && !delete.OverallDifference.AnyCompatibilityIssuesIncreased())
                 {
                     delete.Execute();
+                    Reporter.AddEntry(delete.GenerateReportEntry());
                     _numberOfMoves += 1;
                     _movePerformed = true;
                 }

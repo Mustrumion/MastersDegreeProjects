@@ -28,6 +28,7 @@ namespace InstanceSolvers.Solvers.Base
         }
 
         [JsonIgnore]
+        public IReporter Reporter { get; set; } = new NullReporter();
         public Random Random { get; set; }
         public TimeSpan TimeLimit { get; set; } = new TimeSpan(100, 0, 0);
         [JsonIgnore]
@@ -107,22 +108,29 @@ namespace InstanceSolvers.Solvers.Base
         }
 
 
+        protected void PassContextToSolver(ISolver solver)
+        {
+            solver.Instance = Instance;
+            solver.Solution = Solution;
+            if (PropagateRandomSeed)
+            {
+                solver.Seed = Random.Next();
+            }
+            else
+            {
+                solver.Seed = (Random.Next() + new Random().Next()) % int.MaxValue;
+            }
+            solver.PropagateRandomSeed = PropagateRandomSeed;
+            solver.ScoringFunction = ScoringFunction;
+            solver.Reporter = Reporter;
+        }
+
+
         private void FireInitialSolvers()
         {
             foreach (var solver in InitialSolvers)
             {
-                solver.Instance = Instance;
-                solver.Solution = Solution;
-                if (PropagateRandomSeed)
-                {
-                    solver.Seed = Random.Next();
-                }
-                else
-                {
-                    solver.Seed = (Random.Next() + new Random().Next()) % int.MaxValue;
-                }
-                solver.PropagateRandomSeed = PropagateRandomSeed;
-                solver.ScoringFunction = ScoringFunction;
+                PassContextToSolver(solver);
                 solver.Solve();
                 Solution = solver.Solution;
             }

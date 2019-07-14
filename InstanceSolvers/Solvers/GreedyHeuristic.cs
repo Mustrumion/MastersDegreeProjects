@@ -37,7 +37,7 @@ namespace InstanceSolvers.Solvers
             if(candidate.OverallDifference.IntegrityLossScore < 0)
             {
                 candidate.Execute();
-                Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+                Reporter.AddEntry(candidate.GenerateReportEntry());
                 _movePerformed = true;
             }
         }

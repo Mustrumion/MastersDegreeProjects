@@ -43,7 +43,6 @@ namespace InstanceSolvers.Solvers.Base
                 PerformLoop();
                 _loopsPerformed += 1;
             }
-            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
             if (DiagnosticMessages) Console.WriteLine($"Heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
         }
     }

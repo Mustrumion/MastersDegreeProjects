@@ -63,7 +63,7 @@ namespace InstanceSolvers.Moves
                 }
                 currentStatsForTask.MergeOtherDataIntoThis(taskData);
             }
-            foreach(var statsBefore in _changedOrderStatsBefore.Values)
+            foreach (var statsBefore in _changedOrderStatsBefore.Values)
             {
                 TaskScore statsCopy = new TaskScore() { AdConstraints = statsBefore.AdConstraints };
                 statsCopy.OverwriteStatsWith(Solution.AdOrdersScores[statsBefore.TaskID]);
@@ -80,7 +80,7 @@ namespace InstanceSolvers.Moves
         private void CountBreakTaskChanges()
         {
             _oldSchedule = Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID];
-            if(_oldSchedule.Scores == null)
+            if (_oldSchedule.Scores == null)
             {
                 Solution.GradingFunction.AssesBreak(_oldSchedule);
             }
@@ -110,6 +110,7 @@ namespace InstanceSolvers.Moves
             {
                 Solution.AdOrdersScores[statsAfter.TaskID].OverwriteStatsWith(statsAfter);
             }
+            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
         }
 
         public void RollBack()
@@ -126,6 +127,18 @@ namespace InstanceSolvers.Moves
             _oldSchedule = null;
             _newSchedule = null;
             CompletionDifferences = null;
+        }
+
+        public ReportEntry GenerateReportEntry()
+        {
+            return new ReportEntry()
+            {
+                Time = DateTime.Now,
+                Action = "Delete",
+                AttainedAcceptable = OverallDifference.IntegrityLossScore < 0 && Solution.Completion >= 0,
+                IntegrityLoss = Solution.IntegrityLossScore,
+                WeightedLoss = Solution.WeightedLoss,
+            };
         }
     }
 }

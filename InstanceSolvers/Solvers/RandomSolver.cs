@@ -59,6 +59,7 @@ namespace InstanceSolvers.Solvers
                 Solution = Solution,
             };
             insert.Execute();
+            Reporter.AddEntry(insert.GenerateReportEntry());
         }
 
         protected override void InternalSolve()
@@ -78,7 +79,6 @@ namespace InstanceSolvers.Solvers
                     }
                 }
             }
-            ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
         }
     }
 }
