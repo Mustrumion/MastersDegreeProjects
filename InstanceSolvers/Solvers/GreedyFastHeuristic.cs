@@ -17,7 +17,7 @@ namespace InstanceSolvers.Solvers
     /// </summary>
     public class GreedyFastHeuristic : BaseSolver, ISolver
     {
-        public int MaxOverfillUnits { get; set; } = 10;
+        public int MaxOverfillUnits { get; set; }
         private List<AdvertisementTask> _order { get; set; }
 
         public GreedyFastHeuristic() : base()

@@ -65,7 +65,7 @@ namespace InstanceGeneratorConsole
         {
             StreamReader descFile = new StreamReader(Path.Combine(directory.FullName, "desc.txt"));
             string desc = descFile.ReadToEnd();
-            converter.InstanceDescription += "\n" + desc;
+            converter.InstanceDescription = desc;
             foreach (var file in directory.GetFiles())
             {
                 if (file.Name == "desc.txt") continue;
