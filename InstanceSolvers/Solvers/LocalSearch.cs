@@ -197,7 +197,8 @@ namespace InstanceSolvers.Solvers
         {
             if (_bestMove == null || _bestMove.OverallDifference.HasScoreWorsened())
             {
-                if(ActionWhenNoImprovement == Action.Stop)
+                WidenNeighberhood();
+                if (ActionWhenNoImprovement == Action.Stop)
                 {
                     return;
                 }
@@ -210,7 +211,6 @@ namespace InstanceSolvers.Solvers
                 {
                     _previousBest = Solution.TakeSnapshot();
                 }
-                WidenNeighberhood();
             }
             else if(_bestMove != null && _bestMove.OverallDifference.HasScoreImproved())
             {
