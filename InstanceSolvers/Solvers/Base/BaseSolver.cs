@@ -107,6 +107,8 @@ namespace InstanceSolvers.Solvers.Base
             }
         }
 
+        public bool ReportStarts { get; set; } = true;
+        public bool ReportEnds { get; set; } = true;
 
         protected void PassContextToSolver(ISolver solver)
         {
@@ -143,14 +145,14 @@ namespace InstanceSolvers.Solvers.Base
                 ScoringFunction.AssesSolution(Solution);
             }
             FireInitialSolvers();
-            AddStartReport();
+            if(ReportStarts) AddStartReport();
             _previousSolutionTime = Solution.TimeElapsed;
             _currentTime = new Stopwatch();
             _currentTime.Start();
             InternalSolve();
             CurrentTime.Stop();
             Solution.TimeElapsed = CurrentTime.Elapsed + _previousSolutionTime;
-            AddEndReport();
+            if(ReportEnds) AddEndReport();
         }
 
         private void AddStartReport()

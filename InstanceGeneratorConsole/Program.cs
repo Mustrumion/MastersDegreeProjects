@@ -54,12 +54,14 @@ namespace InstanceGeneratorConsole
             //bulkSolver.SolveEverything(LocalRandomComplex);
             //bulkSolver.SolveEverything(FastRandomGreedyConfig);
             //bulkSolver.SolveEverything(SlowRandomConfig);
-            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
-            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
+            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
+            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
+            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
+            //bulkSolver.SolveEverything(CompundRandom);
             bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
-            bulkSolver.SolveEverything(CompundRandom);
-            bulkSolver.SolveEverything(CompundHeuristic);
-            bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
+            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
+            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
+            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -174,7 +176,6 @@ namespace InstanceGeneratorConsole
                 TimeLimit = new TimeSpan(0, 0, 200),
                 Description = "compund_heuristic",
                 PropagateRandomSeed = true,
-                PassReporter = true,
                 Seed = 10,
                 DiagnosticMessages = true,
                 MaxLoops = 10,

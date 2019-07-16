@@ -24,6 +24,8 @@ namespace InstanceSolvers.Solvers.Base
         TimeSpan TimeLimit { get; set; }
         Stopwatch CurrentTime { get; }
         IReporter Reporter { get; set; }
+        bool ReportStarts { get; set; }
+        bool ReportEnds { get; set; }
         void Solve();
     }
 }

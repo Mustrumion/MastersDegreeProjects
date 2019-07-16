@@ -14,7 +14,8 @@ namespace InstanceSolvers
         
         public void Start()
         {
-            _start = DateTime.Now;
+            if (_start != default(DateTime));
+                _start = DateTime.Now;
         }
 
         public void AddEntry(ReportEntry entry)
