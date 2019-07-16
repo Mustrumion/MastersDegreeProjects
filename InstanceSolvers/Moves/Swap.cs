@@ -139,7 +139,7 @@ namespace InstanceSolvers.Moves
             {
                 Time = DateTime.Now,
                 Action = "Swap",
-                AttainedAcceptable = OverallDifference.IntegrityLossScore < 0 && Solution.Completion >= 1,
+                AttainedAcceptable = OverallDifference.IntegrityLossScore < 0 && Solution.CompletionScore >= 1,
                 IntegrityLoss = Solution.IntegrityLossScore,
                 WeightedLoss = Solution.WeightedLoss,
             };

@@ -13,7 +13,7 @@ namespace InstanceSolvers.Solvers
     {
         public List<BaseGreedyTransformationHeuristic> PartialHeuristics { get; set; } = new List<BaseGreedyTransformationHeuristic>();
         public bool RandomOrder { get; set; }
-        
+        public bool PassReporter { get; set; }
 
         protected override void PerformLoop()
         {
@@ -26,6 +26,7 @@ namespace InstanceSolvers.Solvers
                 if (limitLeft < 0) break;
                 solver.TimeLimit = new TimeSpan(0, 0, 0, 0, Math.Min(proportionalLimit, limitLeft));
                 PassContextToSolver(solver);
+                if(!PassReporter) solver.Reporter = new NullReporter();
                 solver.Solve();
                 Solution = solver.Solution;
                 if (solver.MovePerformed)

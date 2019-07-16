@@ -54,85 +54,15 @@ namespace InstanceGeneratorConsole
             //bulkSolver.SolveEverything(LocalRandomComplex);
             //bulkSolver.SolveEverything(FastRandomGreedyConfig);
             //bulkSolver.SolveEverything(SlowRandomConfig);
-            bulkSolver.SolveEverything(LocalSearchNaked);
-            bulkSolver.SolveEverything(LocalSearchNakedAdaptive);
-            bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
-            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
             bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
-            bulkSolver.SolveEverything(CompundConfiguration);
+            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
+            bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
+            bulkSolver.SolveEverything(CompundRandom);
+            bulkSolver.SolveEverything(CompundHeuristic);
             bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
-        }
-
-
-        private static ISolver LocalSearchNaked()
-        {
-            LocalSearch solver = new LocalSearch()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-                DiagnosticMessages = true,
-                PropagateRandomnessSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_search_naked",
-            };
-            solver.MoveFactories = new List<IMoveFactory>
-            {
-                new InsertMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 4,
-                    MaxBreaksChecked = 4,
-                    IgnoreBreaksWhenUnitOverfillAbove = 60,
-                    IgnoreCompletedTasks = true,
-                    IgnoreTasksWithCompletedViews = false,
-                },
-                new InsertMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 4,
-                    MaxBreaksChecked = 4,
-                    IgnoreBreaksWhenUnitOverfillAbove = 60,
-                    IgnoreCompletedTasks = false,
-                    IgnoreTasksWithCompletedViews = false,
-                },
-                new DeleteMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 4,
-                    MaxBreaksChecked = 5,
-                },
-                new SwapMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 5,
-                    MaxBreaksChecked = 5,
-                },
-            };
-            return solver;
-        }
-
-
-        private static ISolver LocalSearchNakedAdaptive()
-        {
-            LocalSearch solver = new LocalSearch()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
-                ImprovementOverNarrowNeighb = 2.0,
-                DiagnosticMessages = true,
-                PropagateRandomnessSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_search_naked_adaptive",
-            };
-            return solver;
         }
 
         private static ISolver LocalSearchAdaptiveRandom()
@@ -192,7 +122,7 @@ namespace InstanceGeneratorConsole
                 DiagnosticMessages = true,
                 PropagateRandomnessSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_search_adaptive_randomheuristic",
+                Description = "local_search_adaptive_compound",
             };
             solver.InitialSolvers.Add(randomSolver);
             solver.InitialSolvers.Add(compundSolver);
@@ -236,13 +166,31 @@ namespace InstanceGeneratorConsole
         }
 
 
-        private static ISolver CompundConfiguration()
+        private static ISolver CompundHeuristic()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic();
             CompoundSolver compundSolver = new CompoundSolver()
             {
                 TimeLimit = new TimeSpan(0, 0, 200),
                 Description = "compund_heuristic",
+                PropagateRandomSeed = true,
+                PassReporter = true,
+                Seed = 10,
+                DiagnosticMessages = true,
+                MaxLoops = 10,
+                ScoringFunction = new Scorer(),
+            };
+            compundSolver.InitialSolvers.Add(randomSolver);
+            return compundSolver;
+        }
+
+        private static ISolver CompundRandom()
+        {
+            RandomFastSolver randomSolver = new RandomFastSolver();
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                TimeLimit = new TimeSpan(0, 0, 200),
+                Description = "compund_random",
                 PropagateRandomSeed = true,
                 Seed = 10,
                 DiagnosticMessages = true,

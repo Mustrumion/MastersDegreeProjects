@@ -150,6 +150,7 @@ namespace InstanceSolvers.Solvers.Base
             InternalSolve();
             CurrentTime.Stop();
             Solution.TimeElapsed = CurrentTime.Elapsed + _previousSolutionTime;
+            AddEndReport();
         }
 
         private void AddStartReport()
@@ -158,6 +159,18 @@ namespace InstanceSolvers.Solvers.Base
             {
                 Time = DateTime.Now,
                 Action = $"Started {this.GetType().Name}",
+                AttainedAcceptable = false,
+                IntegrityLoss = Solution.IntegrityLossScore,
+                WeightedLoss = Solution.WeightedLoss,
+            });
+        }
+
+        private void AddEndReport()
+        {
+            Reporter.AddEntry(new ReportEntry()
+            {
+                Time = DateTime.Now,
+                Action = $"Ended {this.GetType().Name}",
                 AttainedAcceptable = false,
                 IntegrityLoss = Solution.IntegrityLossScore,
                 WeightedLoss = Solution.WeightedLoss,
