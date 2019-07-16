@@ -58,13 +58,82 @@ namespace InstanceGeneratorConsole
             //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
             //bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
             //bulkSolver.SolveEverything(CompundRandom);
-            bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
-            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
-            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
-            bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
+            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
+            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
+            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
+            bulkSolver.SolveEverything(LocalSearchNaked);
+            bulkSolver.SolveEverything(LocalSearchNakedAdaptive);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
+        }
+
+        private static ISolver LocalSearchNaked()
+        {
+            LocalSearch solver = new LocalSearch()
+            {
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                DiagnosticMessages = true,
+                PropagateRandomnessSeed = true,
+                TimeLimit = new TimeSpan(0, 0, 300),
+                Description = "local_search_naked",
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 4,
+                    MaxBreaksChecked = 4,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = false,
+                    IgnoreTasksWithCompletedViews = false,
+                },
+                new DeleteMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxBreaksChecked = 5,
+                },
+                new SwapMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 5,
+                    MaxTasksChecked = 5,
+                    MaxBreaksChecked = 5,
+                },
+            };
+            return solver;
+        }
+
+
+        private static ISolver LocalSearchNakedAdaptive()
+        {
+            LocalSearch solver = new LocalSearch()
+            {
+                Seed = 10,
+                ScoringFunction = new Scorer(),
+                BestFactoryAdjustmentParam = 0.2,
+                NeighberhoodAdjustmentParam = 0.2,
+                ImprovementOverNarrowNeighb = 2.0,
+                DiagnosticMessages = true,
+                PropagateRandomnessSeed = true,
+                TimeLimit = new TimeSpan(0, 0, 300),
+                Description = "local_search_naked_adaptive",
+            };
+            return solver;
         }
 
         private static ISolver LocalSearchAdaptiveRandom()
