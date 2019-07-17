@@ -57,6 +57,7 @@ for file in glob.glob("*.csv"):
     plotResults(file, mainDimensions, cmap(n), cmap(n + 1))
     n += 2
 
+plt.ylim(0, curryMax)
 plt.title("{} over {}, every {}th transformation".format(mainDimensions[1], mainDimensions[0], nth))
 plt.legend()
 plt.show()
