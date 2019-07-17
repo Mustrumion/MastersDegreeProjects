@@ -19,7 +19,7 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\bartl\dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -61,8 +61,9 @@ namespace InstanceGeneratorConsole
             //bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
             //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
             //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
-            bulkSolver.SolveEverything(LocalSearchNaked);
-            bulkSolver.SolveEverything(LocalSearchNakedAdaptive);
+            //bulkSolver.SolveEverything(LocalSearchNaked);
+            bulkSolver.SolveEverything(OldGreedy);
+            //bulkSolver.SolveEverything(LocalSearchNakedAdaptive);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -444,6 +445,21 @@ namespace InstanceGeneratorConsole
                 PropagateRandomSeed = true,
                 Seed = 10,
                 Description = "pure_random_fast",
+            };
+            return randomSolver;
+        }
+
+
+        private static ISolver OldGreedy()
+        {
+            GreedyHeuristic randomSolver = new GreedyHeuristic()
+            {
+                ScoringFunction = new Scorer(),
+                PropagateRandomSeed = true,
+                MaxBreakExtensionUnits = 1,
+                PositionsPerBreakTakenIntoConsideration = 3,
+                Seed = 10,
+                Description = "old_greedy",
             };
             return randomSolver;
         }

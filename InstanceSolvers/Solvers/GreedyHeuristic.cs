@@ -62,6 +62,10 @@ namespace InstanceSolvers.Solvers
                 };
                 List<IMove> moves = factory.GenerateMoves().ToList();
                 ChooseMoveToPerform(moves);
+                if(TimeLimit <= CurrentTime.Elapsed)
+                {
+                    break;
+                }
             }
         }
 
@@ -73,7 +77,7 @@ namespace InstanceSolvers.Solvers
             _breakInOrder = Instance.Breaks.Values.OrderBy(b => b.StartTime).ToList();
 
             _movePerformed = true;
-            while (Solution.CompletionScore < 1 && _movePerformed)
+            while (Solution.CompletionScore < 1 && _movePerformed && TimeLimit >= CurrentTime.Elapsed)
             {
                 _movePerformed = false;
                 foreach (AdvertisementTask order in ordersInOrder)
