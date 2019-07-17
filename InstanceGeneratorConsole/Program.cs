@@ -19,7 +19,7 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\bartl\dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -33,7 +33,7 @@ namespace InstanceGeneratorConsole
             BulkSolver bulkSolver = new BulkSolver()
             {
                 MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = true,
+                ParallelExecution = false,
                 MaxThreads = 16,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
                 //DifficultyFilter = new[] { "very_easy", "easy", "medium" },
@@ -41,29 +41,9 @@ namespace InstanceGeneratorConsole
                 //    LengthFilter = new[] { "month.json" },
             };
 
-            //bulkSolver.SolveEverything(InsertionStartEndingDeleteConfiguration);
-            //bulkSolver.SolveEverything(FastRandomConfig);
-            //bulkSolver.SolveEverything(LocalSearchBasedInCompundConfiguration);
-            //bulkSolver.SolveEverything(LocalSearchAdaptive);
-            //bulkSolver.SolveEverything(LocalSearchConfiguration2);
-            //bulkSolver.SolveEverything(LocalSearchConfiguration3);
-            //bulkSolver.SolveEverything(InsertionConfiguration);
-            //bulkSolver.SolveEverything(StartInsertionConfiguration);
-            //bulkSolver.SolveEverything(InsertionStartEndingConfiguration);
-            //bulkSolver.SolveEverything(CompundConfiguration);
-            //bulkSolver.SolveEverything(LocalRandomComplex);
-            //bulkSolver.SolveEverything(FastRandomGreedyConfig);
-            //bulkSolver.SolveEverything(SlowRandomConfig);
-            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
-            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
-            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
-            //bulkSolver.SolveEverything(CompundRandom);
-            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandom);
-            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristic);
-            //bulkSolver.SolveEverything(LocalSearchAdaptiveRandomHeuristicCompound);
-            //bulkSolver.SolveEverything(LocalSearchNaked);
-            bulkSolver.SolveEverything(OldGreedy);
-            //bulkSolver.SolveEverything(LocalSearchNakedAdaptive);
+            bulkSolver.SolveEverything(OldRandom);
+            bulkSolver.SolveEverything(FastRandomConfig);
+            ////bulkSolver.SolveEverything(LocalSearchNakedAdaptive);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -425,14 +405,15 @@ namespace InstanceGeneratorConsole
             return randomSolver;
         }
 
-        private static ISolver SlowRandomConfig()
+        private static ISolver OldRandom()
         {
             RandomSolver randomSolver = new RandomSolver()
             {
                 ScoringFunction = new Scorer(),
+                TimeLimit = new TimeSpan(0, 0, 20),
                 PropagateRandomSeed = true,
                 Seed = 10,
-                Description = "pure_random_slow",
+                Description = "old_random",
             };
             return randomSolver;
         }
@@ -455,6 +436,7 @@ namespace InstanceGeneratorConsole
             GreedyHeuristic randomSolver = new GreedyHeuristic()
             {
                 ScoringFunction = new Scorer(),
+                TimeLimit = new TimeSpan(0, 0, 200),
                 PropagateRandomSeed = true,
                 MaxBreakExtensionUnits = 1,
                 PositionsPerBreakTakenIntoConsideration = 3,

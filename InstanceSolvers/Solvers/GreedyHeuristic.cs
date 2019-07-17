@@ -62,7 +62,7 @@ namespace InstanceSolvers.Solvers
                 };
                 List<IMove> moves = factory.GenerateMoves().ToList();
                 ChooseMoveToPerform(moves);
-                if(TimeLimit <= CurrentTime.Elapsed)
+                if(TimeLimit < CurrentTime.Elapsed)
                 {
                     break;
                 }

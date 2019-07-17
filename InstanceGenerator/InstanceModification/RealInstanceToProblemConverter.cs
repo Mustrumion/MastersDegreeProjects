@@ -255,7 +255,7 @@ $@"Parameters used in conversion from real data:
             {
                 requiredAmount = (int)(sumSpan.TotalMilliseconds / order.AdSpan.TotalMilliseconds);
             }
-            order.MinTimesAired = Convert.ToInt32(Math.Max(requiredAmount + MinTimesAiredOffset, 0) * MinTimesAiredMultiplier);
+            order.MinTimesAired = Math.Max(Convert.ToInt32(Math.Max(requiredAmount + MinTimesAiredOffset, 0) * MinTimesAiredMultiplier), 1);
         }
 
         private void GenerateSelfIncompatibilityData(AdvertisementTask order)

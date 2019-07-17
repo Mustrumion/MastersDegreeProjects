@@ -41,6 +41,7 @@ namespace InstanceSolvers.Solvers
                 Solution = Solution,
             };
             insert.Execute();
+            Reporter.AddEntry(insert.GenerateReportEntry());
             return true;
         }
 
@@ -64,7 +65,7 @@ namespace InstanceSolvers.Solvers
 
         protected override void InternalSolve()
         {
-            while (Solution.AdOrdersScores.Values.Any(a => !a.TimesAiredSatisfied))
+            while (Solution.AdOrdersScores.Values.Any(a => !a.TimesAiredSatisfied) && TimeLimit >= CurrentTime.Elapsed)
             {
                 foreach (AdvertisementTask advertisementOrder in Instance.AdOrders.Values)
                 {
@@ -76,6 +77,10 @@ namespace InstanceSolvers.Solvers
                     if (!InsertInRandomNonFilledBreak(taskData))
                     {
                         InsertInRandomBreak(taskData);
+                    }
+                    if(TimeLimit < CurrentTime.Elapsed)
+                    {
+                        break;
                     }
                 }
             }
