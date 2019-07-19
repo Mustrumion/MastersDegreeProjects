@@ -13,8 +13,8 @@ namespace InstanceSolvers.Solvers
     public class Evolutionary : BaseSolver
     {
         public int PopulationCount { get; set; } = 100;
-        public int PopulationKept { get; set; } = 20;
         public int NumberOfTransformations { get; set; } = 10;
+        public int NumberOfBreaksCrossed { get; set; } = 5;
         public int NumberOfMutants { get; set; } = 20;
         public int NumberOfCrossbreeds { get; set; } = 10;
         public bool ParallelAllowed { get; set; }
@@ -120,12 +120,11 @@ namespace InstanceSolvers.Solvers
             FillPopulation();
             while(CurrentTime.Elapsed < TimeLimit)
             {
-                CullPopulation();
                 CreateCrossbreeds();
                 CreateMutants();
-                FillPopulation();
                 ImprovePopulation();
-                KeepTheBest();
+                CullPopulation();
+                SaveTheBest();
             }
         }
 
@@ -164,7 +163,7 @@ namespace InstanceSolvers.Solvers
             throw new NotImplementedException();
         }
 
-        private void KeepTheBest()
+        private void SaveTheBest()
         {
             var populationBest = _generation.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).First();
             if (populationBest.IsBetterThan(_bestSolution))
@@ -175,7 +174,7 @@ namespace InstanceSolvers.Solvers
 
         private void CullPopulation()
         {
-            _generation = _generation.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).Take(PopulationKept).ToList();
+            _generation = _generation.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).Take(PopulationCount).ToList();
         }
     }
 }
