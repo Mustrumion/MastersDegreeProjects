@@ -5,8 +5,8 @@
   "OverdueAdsLoss": 3288.7,
   "MildIncompatibilityLoss": 588950593.0,
   "ExtendedBreakLoss": 12.0,
-  "IntegrityLossScore": 0.22127832591818247,
-  "Completion": 200,
+  "IntegrityLossScore": 0.0,
+  "Completion": 208,
   "TotalStats": {
     "NumberOfTasks": 208,
     "Viewership": 332881424.92,
@@ -22,19 +22,19 @@
     "OwnerConflicts": 0,
     "BreakTypeConflicts": 0,
     "SelfSpacingConflicts": 0,
-    "SelfIncompatibilityConflicts": 16,
-    "IntegrityLossScore": 0.22127832591818247,
+    "SelfIncompatibilityConflicts": 0,
+    "IntegrityLossScore": 0.0,
     "StartsCompletion": 208.0,
     "EndsCompletion": 208.0,
     "ViewsCompletion": 208.0,
     "TimesAiredCompletion": 208.0,
-    "TaskCompletion": 200,
+    "TaskCompletion": 208,
     "OwnerConflictsProportion": 0.0,
     "BreakTypeConflictsProportion": 0.0,
     "SelfSpacingConflictsProportion": 0.0,
-    "SelfIncompatibilityConflictsProportion": 0.22127832591818247
+    "SelfIncompatibilityConflictsProportion": 0.0
   },
-  "CompletionScore": 0.96153846153846156,
+  "CompletionScore": 1.0,
   "MaxCompletion": 208,
   "GradingFunctionDescription": "Grading function 0.1.0. \r\nTask delay loss is counted as a task weight multiplied by delay in days (rounded up).\r\nBreak extension loss is counted as break extension in seconds.\r\nSoft incompatibility between owners of the same advertisement is a sum of occurece weights multiplied by the corresponding tasks weights.\r\nWeights for the loss function components:\r\nOverdueTasksLossWeight = 1\r\nBreakExtensionLossWeight = 1\r\nMildIncompatibilityLossWeight = 1",
   "Scored": true,
@@ -1245,8 +1245,8 @@
       "OwnerConflicts": 0,
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
-      "SelfIncompatibilityConflicts": 2,
-      "IntegrityLossScore": 0.0392156862745098,
+      "SelfIncompatibilityConflicts": 0,
+      "IntegrityLossScore": 0.0,
       "StartsProportion": 0.17647058823529413,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
@@ -1260,8 +1260,8 @@
       "OwnerConflictsProportion": 0.0,
       "BreakTypeConflictsProportion": 0.0,
       "SelfSpacingConflictsProportion": 0.0,
-      "SelfIncompatibilityConflictsProportion": 0.0392156862745098,
-      "Completed": false
+      "SelfIncompatibilityConflictsProportion": 0.0,
+      "Completed": true
     },
     "819": {
       "TaskID": 819,
@@ -1925,8 +1925,8 @@
       "OwnerConflicts": 0,
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
-      "SelfIncompatibilityConflicts": 2,
-      "IntegrityLossScore": 0.024691358024691357,
+      "SelfIncompatibilityConflicts": 0,
+      "IntegrityLossScore": 0.0,
       "StartsProportion": 0.012345679012345678,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
@@ -1940,8 +1940,8 @@
       "OwnerConflictsProportion": 0.0,
       "BreakTypeConflictsProportion": 0.0,
       "SelfSpacingConflictsProportion": 0.0,
-      "SelfIncompatibilityConflictsProportion": 0.024691358024691357,
-      "Completed": false
+      "SelfIncompatibilityConflictsProportion": 0.0,
+      "Completed": true
     },
     "1191": {
       "TaskID": 1191,
@@ -2741,8 +2741,8 @@
       "OwnerConflicts": 0,
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
-      "SelfIncompatibilityConflicts": 2,
-      "IntegrityLossScore": 0.0125,
+      "SelfIncompatibilityConflicts": 0,
+      "IntegrityLossScore": 0.0,
       "StartsProportion": 0.01875,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
@@ -2756,8 +2756,8 @@
       "OwnerConflictsProportion": 0.0,
       "BreakTypeConflictsProportion": 0.0,
       "SelfSpacingConflictsProportion": 0.0,
-      "SelfIncompatibilityConflictsProportion": 0.0125,
-      "Completed": false
+      "SelfIncompatibilityConflictsProportion": 0.0,
+      "Completed": true
     },
     "274": {
       "TaskID": 274,
@@ -3183,8 +3183,8 @@
       "OwnerConflicts": 0,
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
-      "SelfIncompatibilityConflicts": 2,
-      "IntegrityLossScore": 0.01282051282051282,
+      "SelfIncompatibilityConflicts": 0,
+      "IntegrityLossScore": 0.0,
       "StartsProportion": 0.02564102564102564,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
@@ -3198,8 +3198,8 @@
       "OwnerConflictsProportion": 0.0,
       "BreakTypeConflictsProportion": 0.0,
       "SelfSpacingConflictsProportion": 0.0,
-      "SelfIncompatibilityConflictsProportion": 0.01282051282051282,
-      "Completed": false
+      "SelfIncompatibilityConflictsProportion": 0.0,
+      "Completed": true
     },
     "504": {
       "TaskID": 504,
@@ -3421,8 +3421,8 @@
       "OwnerConflicts": 0,
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
-      "SelfIncompatibilityConflicts": 2,
-      "IntegrityLossScore": 0.058823529411764705,
+      "SelfIncompatibilityConflicts": 0,
+      "IntegrityLossScore": 0.0,
       "StartsProportion": 0.38235294117647056,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
@@ -3436,8 +3436,8 @@
       "OwnerConflictsProportion": 0.0,
       "BreakTypeConflictsProportion": 0.0,
       "SelfSpacingConflictsProportion": 0.0,
-      "SelfIncompatibilityConflictsProportion": 0.058823529411764705,
-      "Completed": false
+      "SelfIncompatibilityConflictsProportion": 0.0,
+      "Completed": true
     },
     "3494": {
       "TaskID": 3494,
@@ -4237,8 +4237,8 @@
       "OwnerConflicts": 0,
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
-      "SelfIncompatibilityConflicts": 2,
-      "IntegrityLossScore": 0.037735849056603772,
+      "SelfIncompatibilityConflicts": 0,
+      "IntegrityLossScore": 0.0,
       "StartsProportion": 0.056603773584905662,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
@@ -4252,8 +4252,8 @@
       "OwnerConflictsProportion": 0.0,
       "BreakTypeConflictsProportion": 0.0,
       "SelfSpacingConflictsProportion": 0.0,
-      "SelfIncompatibilityConflictsProportion": 0.037735849056603772,
-      "Completed": false
+      "SelfIncompatibilityConflictsProportion": 0.0,
+      "Completed": true
     },
     "2786": {
       "TaskID": 2786,
@@ -5393,8 +5393,8 @@
       "OwnerConflicts": 0,
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
-      "SelfIncompatibilityConflicts": 2,
-      "IntegrityLossScore": 0.021505376344086023,
+      "SelfIncompatibilityConflicts": 0,
+      "IntegrityLossScore": 0.0,
       "StartsProportion": 0.032258064516129031,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
@@ -5408,8 +5408,8 @@
       "OwnerConflictsProportion": 0.0,
       "BreakTypeConflictsProportion": 0.0,
       "SelfSpacingConflictsProportion": 0.0,
-      "SelfIncompatibilityConflictsProportion": 0.021505376344086023,
-      "Completed": false
+      "SelfIncompatibilityConflictsProportion": 0.0,
+      "Completed": true
     },
     "281": {
       "TaskID": 281,
@@ -5699,8 +5699,8 @@
       "OwnerConflicts": 0,
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
-      "SelfIncompatibilityConflicts": 2,
-      "IntegrityLossScore": 0.013986013986013986,
+      "SelfIncompatibilityConflicts": 0,
+      "IntegrityLossScore": 0.0,
       "StartsProportion": 0.048951048951048952,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
@@ -5714,8 +5714,8 @@
       "OwnerConflictsProportion": 0.0,
       "BreakTypeConflictsProportion": 0.0,
       "SelfSpacingConflictsProportion": 0.0,
-      "SelfIncompatibilityConflictsProportion": 0.013986013986013986,
-      "Completed": false
+      "SelfIncompatibilityConflictsProportion": 0.0,
+      "Completed": true
     },
     "983": {
       "TaskID": 983,

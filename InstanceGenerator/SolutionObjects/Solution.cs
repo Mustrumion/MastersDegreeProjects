@@ -342,5 +342,14 @@ namespace InstanceGenerator.SolutionObjects
             if (IntegrityLossScore == solution.IntegrityLossScore && WeightedLoss < solution.WeightedLoss) return true;
             return false;
         }
+
+        public Solution DeepCopy()
+        {
+            return new Solution()
+            {
+                TimeElapsed = TimeElapsed,
+                Description = Description,
+            };
+        }
     }
 }

@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="IMove.cs" />
     <Compile Include="IReporter.cs" />
+    <Compile Include="MoveFactories\RandomDeleteFactory.cs" />
+    <Compile Include="MoveFactories\RandomSwapFactory.cs" />
+    <Compile Include="MoveFactories\RandomInsertFactory.cs" />
     <Compile Include="NullReporter.cs" />
     <Compile Include="ReportEntry.cs" />
     <Compile Include="ScoreReporter.cs" />
@@ -80,6 +83,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BreakScorer.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

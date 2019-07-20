@@ -157,6 +157,17 @@ namespace InstanceSolvers.Solvers
 
 
         }
+        
+        private void CreateCrossbreed(Solution mainSolution, Solution breakDonor)
+        {
+            var schedules = breakDonor.AdvertisementsScheduledOnBreaks.Values.ToList();
+            schedules.Shuffle(Random);
+
+            var kiddo = _solution.TakeSnapshot();
+            kiddo.RestoreStructures();
+            kiddo.GradingFunction = ScoringFunction.GetAnotherOne();
+            kiddo.GradingFunction.AssesSolution(kiddo);
+        }
 
         private void CreateCrossbreeds()
         {
