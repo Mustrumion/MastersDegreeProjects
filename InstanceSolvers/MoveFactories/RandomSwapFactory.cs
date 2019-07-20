@@ -16,7 +16,8 @@ namespace InstanceSolvers.MoveFactories
         public IEnumerable<IMove> GenerateMoves()
         {
             var ordersList = Instance.AdOrders.Values.ToList();
-            var breakList = Instance.Breaks.Values.ToList();
+            var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.Where(b => b.Count > 0).ToList();
+            if (breakList.Count == 0) yield break;
             for (int i = 0; i < MovesReturned; i++)
             {
                 var swap = new Swap()
@@ -24,7 +25,7 @@ namespace InstanceSolvers.MoveFactories
                     Instance = Instance,
                     Solution = Solution,
                     AdvertisementOrder = ordersList[Random.Next() % ordersList.Count],
-                    TvBreak = breakList[Random.Next() % breakList.Count],
+                    TvBreak = breakList[Random.Next() % breakList.Count].BreakData,
                 };
                 swap.Position = Random.Next() % (Solution.AdvertisementsScheduledOnBreaks[swap.TvBreak.ID].Count);
                 yield return swap;

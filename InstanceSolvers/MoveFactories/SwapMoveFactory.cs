@@ -160,9 +160,9 @@ namespace InstanceSolvers.MoveFactories
                             AdvertisementOrder = task,
                             TvBreak = tvBreak
                         };
+                        if (movesReturned > MaxMovesReturned) yield break;
                     }
                 }
-                if (movesReturned > MaxMovesReturned) break;
             }
         }
         

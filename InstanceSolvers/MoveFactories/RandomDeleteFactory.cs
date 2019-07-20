@@ -15,14 +15,15 @@ namespace InstanceSolvers.MoveFactories
 
         public IEnumerable<IMove> GenerateMoves()
         {
-            var breakList = Instance.Breaks.Values.ToList();
+            var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.Where(b => b.Count > 0).ToList();
+            if (breakList.Count == 0) yield break;
             for (int i = 0; i < MovesReturned; i++)
             {
                 var delete = new Delete()
                 {
                     Instance = Instance,
                     Solution = Solution,
-                    TvBreak = breakList[Random.Next() % breakList.Count],
+                    TvBreak = breakList[Random.Next() % breakList.Count].BreakData,
                 };
                 delete.Position = Random.Next() % (Solution.AdvertisementsScheduledOnBreaks[delete.TvBreak.ID].Count);
                 yield return delete;

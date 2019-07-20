@@ -120,8 +120,8 @@ namespace InstanceSolvers.MoveFactories
                         Position = position,
                         TvBreak = tvBreak
                     };
+                    if (movesReturned > MaxMovesReturned) yield break;
                 }
-                if (movesReturned > MaxMovesReturned) break;
             }
         }
 

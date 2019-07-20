@@ -33,15 +33,15 @@ namespace InstanceGeneratorConsole
             BulkSolver bulkSolver = new BulkSolver()
             {
                 MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = false,
-                MaxThreads = 16,
+                ParallelExecution = true,
+                MaxThreads = 4,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
                 //DifficultyFilter = new[] { "very_easy", "easy", "medium" },
                 //    KindFilter = new[] { "3edu2" },
                 //    LengthFilter = new[] { "month.json" },
             };
 
-            bulkSolver.SolveEverything(LocalSearchNewStopConditions);
+            bulkSolver.SolveEverything(LocalSearchNewStopConditions2);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -82,7 +82,61 @@ namespace InstanceGeneratorConsole
             return freeSpaceHeuristic;
         }
 
-        
+
+
+        private static ISolver LocalSearchNewStopConditions2()
+        {
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
+            {
+                MaxOverfillUnits = 0,
+            };
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                MaxLoops = 7,
+                DiagnosticMessages = true,
+            };
+            LocalSearch solver = new LocalSearch()
+            {
+                ScoringFunction = new Scorer(),
+                DiagnosticMessages = true,
+                PropagateRandomSeed = true,
+                NumberOfNoGoodActionsToStop = 20,
+                BestFactoryAdjustmentParam = 0.5,
+                NeighberhoodAdjustmentParam = 0.5,
+                TimeLimit = new TimeSpan(0, 15, 0),
+                Description = "local_search_new_stop_condition_20r",
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxTasksChecked = 3,
+                    MaxBreaksChecked = 3,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                    AlwaysReturnStartsAndEnds = true,
+                },
+                new RandomDeleteFactory()
+                {
+                    MovesReturned = 30,
+                },
+                new RandomInsertFactory()
+                {
+                    MovesReturned = 30,
+                },
+                new RandomSwapFactory()
+                {
+                    MovesReturned = 30,
+                },
+            };
+            solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(compundSolver);
+            return solver;
+        }
+
 
         private static ISolver LocalSearchNewStopConditions()
         {
@@ -92,23 +146,24 @@ namespace InstanceGeneratorConsole
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 6,
+                MaxLoops = 7,
+                DiagnosticMessages = true,
             };
             LocalSearch solver = new LocalSearch()
             {
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 10,
+                NumberOfNoGoodActionsToStop = 20,
                 BestFactoryAdjustmentParam = 0.5,
                 NeighberhoodAdjustmentParam = 0.5,
-                Description = "local_search_new_stop_condition_10",
+                Description = "local_search_new_stop_condition_20",
             };
             solver.InitialSolvers.Add(randomSolver);
             solver.InitialSolvers.Add(compundSolver);
             return solver;
         }
-        
+
         private static ISolver FastRandomGreedyConfig()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
