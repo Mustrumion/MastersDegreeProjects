@@ -163,7 +163,7 @@ namespace InstanceSolvers.Solvers
             var schedules = breakDonor.AdvertisementsScheduledOnBreaks.Values.ToList();
             schedules.Shuffle(Random);
 
-            var kiddo = _solution.TakeSnapshot();
+            var kiddo = _solution.DeepCopy();
             kiddo.RestoreStructures();
             kiddo.GradingFunction = ScoringFunction.GetAnotherOne();
             kiddo.GradingFunction.AssesSolution(kiddo);

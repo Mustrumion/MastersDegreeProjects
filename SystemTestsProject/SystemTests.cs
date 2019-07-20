@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace SystemTestsProject
@@ -400,6 +401,79 @@ namespace SystemTestsProject
                 OutputFilename = @"results\solution_schema.json"
             };
             instanceGenerator.GenerateSolutionSchema();
+        }
+
+        private string GetFileHash(string filename)
+        {
+            var hash = new SHA1Managed();
+            var clearBytes = File.ReadAllBytes(filename);
+            var hashedBytes = hash.ComputeHash(clearBytes);
+            return ConvertBytesToHex(hashedBytes);
+        }
+        
+        public string ConvertBytesToHex(byte[] bytes)
+        {
+            var sb = new StringBuilder();
+
+            for (var i = 0; i < bytes.Length; i++)
+            {
+                sb.Append(bytes[i].ToString("x"));
+            }
+            return sb.ToString();
+        }
+
+        [TestMethod]
+        public void DeepCopiedSolutionIdenticalToOriginal()
+        {
+            var file = Properties.Resources.week_DS_D_DH_inst;
+            var deserializer = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = deserializer.DeserializeInstance();
+            deserializer.Reader = new StreamReader(new MemoryStream(Properties.Resources.week_DS_D_DH_sol), Encoding.UTF8);
+            Solution solution = deserializer.DeserializeSolution(instance);
+            solution.GradingFunction = new Scorer();
+            solution.GradingFunction.AssesSolution(solution);
+            string path1 = @"results\hourSolScored.json";
+            string path2 = @"results\hourSolScored2.json";
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = path1,
+            };
+            serializer.SerializeSolution(solution, SolutionSerializationMode.DebugFull);
+            Solution solution2 = solution.DeepCopy();
+            serializer.Path = path2;
+            serializer.SerializeSolution(solution2, SolutionSerializationMode.DebugFull);
+            Assert.AreEqual(GetFileHash(path1), GetFileHash(path2));
+        }
+
+        [TestMethod]
+        public void SnapshotRestoredSolutionIdenticalToOriginal()
+        {
+            var file = Properties.Resources.week_DS_D_DH_inst;
+            var deserializer = new InstanceJsonSerializer
+            {
+                Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
+            };
+            Instance instance = deserializer.DeserializeInstance();
+            deserializer.Reader = new StreamReader(new MemoryStream(Properties.Resources.week_DS_D_DH_sol), Encoding.UTF8);
+            Solution solution = deserializer.DeserializeSolution(instance);
+            solution.GradingFunction = new Scorer();
+            solution.GradingFunction.AssesSolution(solution);
+            string path1 = @"results\hourSolScored.json";
+            string path2 = @"results\hourSolScored2.json";
+            InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+            {
+                Path = path1,
+            };
+            serializer.SerializeSolution(solution, SolutionSerializationMode.DebugFull);
+            Solution solution2 = solution.TakeSnapshot();
+            solution2.RestoreStructures();
+            solution2.GradingFunction.AssesSolution(solution2);
+            serializer.Path = path2;
+            serializer.SerializeSolution(solution2, SolutionSerializationMode.DebugFull);
+            Assert.AreEqual(GetFileHash(path1), GetFileHash(path2));
         }
     }
 }

@@ -59,6 +59,7 @@ namespace InstanceGenerator.DataAccess
             ser.Serialize(Writer, instance);
             Writer.Flush();
             Writer.Close();
+            Writer = null;
         }
 
         public void SerializeSolution(Solution solution, SolutionSerializationMode solutionSerializationMode = SolutionSerializationMode.Basic)
@@ -109,6 +110,7 @@ namespace InstanceGenerator.DataAccess
             ser.Serialize(Writer, solution);
             Writer.Flush();
             Writer.Close();
+            Writer = null;
         }
 
         public Instance DeserializeInstance()
@@ -119,6 +121,8 @@ namespace InstanceGenerator.DataAccess
             }
             Instance instance = JsonConvert.DeserializeObject<Instance>(Reader.ReadToEnd());
             instance.RestoreStructuresAfterDeserialization();
+            Reader.Close();
+            Reader = null;
             return instance;
         }
 
@@ -156,6 +160,8 @@ namespace InstanceGenerator.DataAccess
                 solution.Instance = instance;
                 solution.RestoreStructures();
             }
+            Reader.Close();
+            Reader = null;
             return solution;
         }
     }

@@ -327,6 +327,7 @@ namespace InstanceGenerator.SolutionObjects
                 MildIncompatibilityLoss = MildIncompatibilityLoss,
                 OverdueAdsLoss = OverdueAdsLoss,
                 WeightedLoss = WeightedLoss,
+                GradingFunction = GradingFunction.GetAnotherOne(),
             };
             return solution;
         }
@@ -345,8 +346,19 @@ namespace InstanceGenerator.SolutionObjects
             return new Solution()
             {
                 Instance = Instance,
+                AdvertisementsScheduledOnBreaks = AdvertisementsScheduledOnBreaks.ToDictionary(a => a.Key, a => a.Value.DeepClone()),
+                AdOrdersScores = AdOrdersScores.ToDictionary(a => a.Key, a => a.Value.Clone()),
                 TimeElapsed = TimeElapsed,
                 Description = Description,
+                Completion = Completion,
+                Scored = Scored,
+                IntegrityLossScore = IntegrityLossScore,
+                ExtendedBreakLoss = ExtendedBreakLoss,
+                MildIncompatibilityLoss = MildIncompatibilityLoss,
+                OverdueAdsLoss = OverdueAdsLoss,
+                WeightedLoss = WeightedLoss,
+                TotalStats = TotalStats,
+                GradingFunction = GradingFunction.GetAnotherOne(),
             };
         }
     }
