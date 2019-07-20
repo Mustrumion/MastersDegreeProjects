@@ -49,9 +49,8 @@ namespace InstanceSolvers.Solvers
         {
             if (!taskScore.BreaksPositions.TryGetValue(breakSchedule.ID, out var breakPositions))
             {
-                breakPositions = new List<int>();
+                breakPositions = new SortedSet<int>();
             }
-            breakPositions.Sort();
             if (breakPositions.Count >= taskScore.AdConstraints.MaxPerBlock) return false;
             if (breakSchedule.UnitFill + taskScore.AdConstraints.AdSpanUnits > breakSchedule.BreakData.SpanUnits + MaxBreakExtensionUnits) return false;
             int lastPos = breakPositions.Count > 0 ? breakPositions.Last() : 999999999;

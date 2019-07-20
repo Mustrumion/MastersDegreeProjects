@@ -112,7 +112,7 @@ namespace InstanceSolvers
                     AdConstraints = _currentAd,
                     ScoringFunction = ScoringFunction,
                 };
-                assesedTask.BreaksPositions.Add(_breakData.ID, new List<int>());
+                assesedTask.BreaksPositions.Add(_breakData.ID, new SortedSet<int>());
                 _taksAssessments.Add(order.ID, assesedTask);
             }
             assesedTask.BreaksPositions[_breakData.ID].Add(position);

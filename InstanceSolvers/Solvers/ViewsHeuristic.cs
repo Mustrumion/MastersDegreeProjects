@@ -57,25 +57,25 @@ namespace InstanceSolvers.Solvers
             List<int> added = new List<int>();
             if(!taskScore.BreaksPositions.TryGetValue(breakSchedule.ID, out var breakPositions))
             {
-                breakPositions = new List<int>();
+                breakPositions = new SortedSet<int>();
             }
-            breakPositions.Sort();
-            breakPositions = breakPositions.ToList();
+            //make it a list copy
+            var positionsList = breakPositions.ToList();
             int arrIndex = 0;
             for(int possiblePos = 0; possiblePos < breakSchedule.Order.Count + 1; )
             {
                 if (added.Count >= MaxInsertedPerBreak) break;
                 if (breakPositions.Count >= taskScore.AdConstraints.MaxPerBlock) break;
                 if (breakSchedule.UnitFill + (added.Count + 1) * taskScore.AdConstraints.AdSpanUnits > breakSchedule.BreakData.SpanUnits + MaxBreakExtensionUnits) break;
-                int nextPos = breakPositions.Count > arrIndex ? breakPositions[arrIndex] : 999999999;
+                int nextPos = breakPositions.Count > arrIndex ? positionsList[arrIndex] : 999999999;
                 if (possiblePos + taskScore.AdConstraints.MinJobsBetweenSame <= nextPos)
                 {
                     added.Add(possiblePos);
                     for(int j = arrIndex; j < breakPositions.Count; j++)
                     {
-                        breakPositions[j] += 1;
+                        positionsList[j] += 1;
                     }
-                    breakPositions.Insert(arrIndex, possiblePos);
+                    positionsList.Insert(arrIndex, possiblePos);
                     possiblePos += taskScore.AdConstraints.MinJobsBetweenSame + 1;
                 }
                 else

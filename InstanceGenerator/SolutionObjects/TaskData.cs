@@ -59,7 +59,7 @@ namespace InstanceGenerator.SolutionObjects
         public AdvertisementTask AdConstraints { get; set; }
 
         [JsonProperty(Order = 1)]
-        public Dictionary<int, List<int>> BreaksPositions { get; set; } = new Dictionary<int, List<int>>();
+        public Dictionary<int, SortedSet<int>> BreaksPositions { get; set; } = new Dictionary<int, SortedSet<int>>();
 
 
         #region CalculatedProperties
@@ -209,13 +209,13 @@ namespace InstanceGenerator.SolutionObjects
             {
                 foreach (var tvBreak in taskData.BreaksPositions)
                 {
-                    if (BreaksPositions.TryGetValue(tvBreak.Key, out var list))
+                    if (BreaksPositions.TryGetValue(tvBreak.Key, out var positionsSet))
                     {
-                        list.AddRange(list);
+                        positionsSet.UnionWith(tvBreak.Value);
                     }
                     else
                     {
-                        BreaksPositions.Add(tvBreak.Key, tvBreak.Value);
+                        BreaksPositions.Add(tvBreak.Key, new SortedSet<int>(tvBreak.Value));
                     }
                 }
             }
@@ -242,14 +242,10 @@ namespace InstanceGenerator.SolutionObjects
             {
                 if (BreaksPositions.TryGetValue(tvBreak.Key, out var list))
                 {
-                    list = list.Except(tvBreak.Value).ToList();
+                    list.ExceptWith(tvBreak.Value);
                     if(list.Count == 0)
                     {
                         BreaksPositions.Remove(tvBreak.Key);
-                    }
-                    else
-                    {
-                        BreaksPositions[tvBreak.Key] = list;
                     }
                 }
                 else
@@ -267,6 +263,11 @@ namespace InstanceGenerator.SolutionObjects
 
         private void RecalculateLastAdTime()
         {
+            if (BreaksPositions.Count == 0)
+            {
+                LastAdTime = default(DateTime);
+                return;
+            }
             ScoringFunction.RecalculateLastAdTime(this);
         }
 
@@ -320,7 +321,7 @@ namespace InstanceGenerator.SolutionObjects
             };
             if (!copyStatsOnly)
             {
-                clone.BreaksPositions = BreaksPositions.ToDictionary(b => b.Key, b => b.Value.ToList());
+                clone.BreaksPositions = BreaksPositions.ToDictionary(b => b.Key, b => new SortedSet<int>(b.Value));
             }
             return clone;
         }

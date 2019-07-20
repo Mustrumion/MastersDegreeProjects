@@ -162,8 +162,13 @@ namespace InstanceSolvers.Solvers
         {
             var schedules = breakDonor.AdvertisementsScheduledOnBreaks.Values.ToList();
             schedules.Shuffle(Random);
-
             var kiddo = _solution.DeepCopy();
+            int breaksCrossed = Math.Min(NumberOfBreaksCrossed, Instance.Breaks.Count / 2);
+            schedules = schedules.Take(breaksCrossed).ToList();
+            foreach(var schedule in schedules)
+            {
+                kiddo.AdvertisementsScheduledOnBreaks[schedule.ID] = schedule.DeepClone();
+            }
         }
 
         private void CreateCrossbreeds()

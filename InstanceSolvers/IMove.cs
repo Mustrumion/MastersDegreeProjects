@@ -15,7 +15,6 @@ namespace InstanceGenerator.Interfaces
         Solution Solution { get; set; }
         Instance Instance { get; set; }
         void Execute();
-        void RollBack();
         void Asses();
         void CleanData();
         ReportEntry GenerateReportEntry();

@@ -46,12 +46,11 @@ namespace InstanceSolvers.Solvers
         {
             if (!taskScore.BreaksPositions.TryGetValue(breakSchedule.ID, out var breakPositions))
             {
-                breakPositions = new List<int>();
+                breakPositions = new SortedSet<int>();
             }
-            breakPositions.Sort();
             if (breakPositions.Count >= taskScore.AdConstraints.MaxPerBlock) return false;
             if (breakSchedule.UnitFill + taskScore.AdConstraints.AdSpanUnits > breakSchedule.BreakData.SpanUnits + MaxBreakExtensionUnits) return false;
-            int nextPos = breakPositions.Count > 0 ? breakPositions[0] : 999999999;
+            int nextPos = breakPositions.Count > 0 ? breakPositions.First() : 999999999;
             if (taskScore.AdConstraints.MinJobsBetweenSame > nextPos) return false;
             return true;
         }
