@@ -27,10 +27,11 @@ namespace InstanceSolvers.Solvers
         private IMoveFactory _bestFactory;
         private IMove _bestMove;
         private int _numberOfLoopsWithoutImprovement;
+        private bool _timeToStop;
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
         public bool StopWhenCompleted { get; set; }
-        public Action ActionWhenNoImprovement { get; set; } = Action.Ignore;
+        public Action ActionWhenScoreWorsens { get; set; } = Action.Ignore;
         public int NumberOfNoGoodActionsToStop { get; set; }
         public double NeighberhoodAdjustmentParam { get; set; }
         public double BestFactoryAdjustmentParam { get; set; }
@@ -41,11 +42,20 @@ namespace InstanceSolvers.Solvers
         public LocalSearch() : base()
         {
         }
-        
+
+        private void ReinitializePrivates()
+        {
+            _previousBest = null;
+            _bestFactory = null;
+            _bestMove = null;
+            _numberOfLoopsWithoutImprovement = 0;
+            _timeToStop = false;
+        }
+
         protected override void InternalSolve()
         {
+            ReinitializePrivates();
             InitializeMoveFactories();
-            _previousBest = null;
             while (!TimeToEnd())
             {
                 _bestFactory = null;
@@ -167,7 +177,7 @@ namespace InstanceSolvers.Solvers
                 if (DiagnosticMessages) Console.WriteLine($"Performed {_numberOfLoopsWithoutImprovement} actions with no improvement.");
                 return true;
             }
-            if (ActionWhenNoImprovement == Action.Stop && _numberOfLoopsWithoutImprovement >= 1)
+            if (_timeToStop)
             {
                 return true;
             }
@@ -205,14 +215,6 @@ namespace InstanceSolvers.Solvers
             {
                 WidenNeighberhood();
                 _numberOfLoopsWithoutImprovement += 1;
-                if (ActionWhenNoImprovement == Action.Stop)
-                {
-                    return;
-                }
-                else if(ActionWhenNoImprovement == Action.Ignore)
-                {
-                    return;
-                }
                 if (Solution.IsBetterThan(_previousBest))
                 {
                     _previousBest = Solution.TakeSnapshot();
@@ -223,9 +225,21 @@ namespace InstanceSolvers.Solvers
                 _numberOfLoopsWithoutImprovement = 0;
                 RewardBestFactory();
                 NarrowNeighberhood();
+                NumberOfMoves += 1;
+            }
+            if(_bestMove == null || _bestMove.OverallDifference.HasScoreWorsened())
+            {
+                if (ActionWhenScoreWorsens == Action.Stop)
+                {
+                    _timeToStop = true;
+                    return;
+                }
+                else if (ActionWhenScoreWorsens == Action.Ignore)
+                {
+                    return;
+                };
             }
             if (_bestMove == null) return;
-            NumberOfMoves += 1;
             _bestMove.Execute();
             Reporter.AddEntry(_bestMove.GenerateReportEntry());
         }

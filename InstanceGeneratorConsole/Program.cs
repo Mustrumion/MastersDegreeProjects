@@ -36,11 +36,12 @@ namespace InstanceGeneratorConsole
                 ParallelExecution = true,
                 MaxThreads = 4,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
-                //DifficultyFilter = new[] { "very_easy", "easy", "medium" },
-                //    KindFilter = new[] { "3edu2" },
-                //    LengthFilter = new[] { "month.json" },
+                //DifficultyFilter = new[] { "extreme" },
+                //KindFilter = new[] { "4ch3n1a1" },
+                //LengthFilter = new[] { "day.json" },
             };
 
+            //bulkSolver.SolveEverything(LocalSearchNewStopConditions);
             bulkSolver.SolveEverything(LocalSearchNewStopConditions2);
 
             Console.WriteLine("Press any key.");
@@ -101,10 +102,11 @@ namespace InstanceGeneratorConsole
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
                 NumberOfNoGoodActionsToStop = 20,
-                BestFactoryAdjustmentParam = 0.5,
-                NeighberhoodAdjustmentParam = 0.5,
+                BestFactoryAdjustmentParam = 0.3,
+                NeighberhoodAdjustmentParam = 0.3,
+                ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 15, 0),
-                Description = "local_search_new_stop_condition_20r",
+                Description = "local_search_new_stop_condition_20rs",
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
@@ -155,8 +157,9 @@ namespace InstanceGeneratorConsole
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
                 NumberOfNoGoodActionsToStop = 20,
-                BestFactoryAdjustmentParam = 0.5,
-                NeighberhoodAdjustmentParam = 0.5,
+                BestFactoryAdjustmentParam = 0.3,
+                NeighberhoodAdjustmentParam = 0.3,
+                ImprovementOverNarrowNeighb = 2,
                 Description = "local_search_new_stop_condition_20",
             };
             solver.InitialSolvers.Add(randomSolver);
