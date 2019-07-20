@@ -10,4 +10,4 @@ Solutions and instances library is avaliable under: https://www.dropbox.com/sh/w
 
 
 
-For some reason after cloning clean repo I needed to build, clean and restart the project and restart the VS before it started working properly. It's probably VS2017 issue.
+For some reason after cloning a clean repo I needed to build, clean and restart the VS before tests started working properly. It's probably a VS2017 issue.
