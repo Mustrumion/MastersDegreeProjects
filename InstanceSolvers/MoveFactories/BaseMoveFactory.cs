@@ -15,6 +15,7 @@ namespace InstanceSolvers.MoveFactories
         protected Solution _solution;
         protected double _currentChange;
 
+        public int MaxMovesReturned = 10000;
         [JsonIgnore]
         public Random Random { get; set; }
         [JsonIgnore]

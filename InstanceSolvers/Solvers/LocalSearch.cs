@@ -23,14 +23,15 @@ namespace InstanceSolvers.Solvers
 
     public class LocalSearch : BaseSolver, ISolver
     {
-        private bool _movePerformed;
         private Solution _previousBest;
         private IMoveFactory _bestFactory;
         private IMove _bestMove;
+        private int _numberOfLoopsWithoutImprovement;
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
         public bool StopWhenCompleted { get; set; }
         public Action ActionWhenNoImprovement { get; set; } = Action.Ignore;
+        public int NumberOfNoGoodActionsToStop { get; set; }
         public double NeighberhoodAdjustmentParam { get; set; }
         public double BestFactoryAdjustmentParam { get; set; }
         [JsonIgnore]
@@ -45,10 +46,8 @@ namespace InstanceSolvers.Solvers
         {
             InitializeMoveFactories();
             _previousBest = null;
-            _movePerformed = true;
-            while (!TimeToEnd() && _movePerformed)
+            while (!TimeToEnd())
             {
-                _movePerformed = false;
                 _bestFactory = null;
                 _bestMove = null;
                 foreach (IMoveFactory factory in MoveFactories)
@@ -159,7 +158,16 @@ namespace InstanceSolvers.Solvers
                     return true;
                 }
             }
-            if(CurrentTime.Elapsed > TimeLimit)
+            if (CurrentTime.Elapsed > TimeLimit)
+            {
+                return true;
+            }
+            if (NumberOfNoGoodActionsToStop != 0 && NumberOfNoGoodActionsToStop <= _numberOfLoopsWithoutImprovement)
+            {
+                if (DiagnosticMessages) Console.WriteLine($"Performed {_numberOfLoopsWithoutImprovement} actions with no improvement.");
+                return true;
+            }
+            if (ActionWhenNoImprovement == Action.Stop && _numberOfLoopsWithoutImprovement >= 1)
             {
                 return true;
             }
@@ -193,16 +201,16 @@ namespace InstanceSolvers.Solvers
 
         private void ChooseToPerform()
         {
-            if (_bestMove == null || _bestMove.OverallDifference.HasScoreWorsened())
+            if (_bestMove == null || !_bestMove.OverallDifference.HasScoreImproved())
             {
                 WidenNeighberhood();
+                _numberOfLoopsWithoutImprovement += 1;
                 if (ActionWhenNoImprovement == Action.Stop)
                 {
                     return;
                 }
                 else if(ActionWhenNoImprovement == Action.Ignore)
                 {
-                    _movePerformed = true;
                     return;
                 }
                 if (Solution.IsBetterThan(_previousBest))
@@ -210,8 +218,9 @@ namespace InstanceSolvers.Solvers
                     _previousBest = Solution.TakeSnapshot();
                 }
             }
-            else if(_bestMove != null && _bestMove.OverallDifference.HasScoreImproved())
+            else
             {
+                _numberOfLoopsWithoutImprovement = 0;
                 RewardBestFactory();
                 NarrowNeighberhood();
             }
@@ -219,7 +228,6 @@ namespace InstanceSolvers.Solvers
             NumberOfMoves += 1;
             _bestMove.Execute();
             Reporter.AddEntry(_bestMove.GenerateReportEntry());
-            _movePerformed = true;
         }
     }
 }

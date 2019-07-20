@@ -19,7 +19,7 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\bartl\dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -41,146 +41,11 @@ namespace InstanceGeneratorConsole
                 //    LengthFilter = new[] { "month.json" },
             };
 
-            bulkSolver.SolveEverything(OldRandom);
-            bulkSolver.SolveEverything(FastRandomConfig);
-            ////bulkSolver.SolveEverything(LocalSearchNakedAdaptive);
+            bulkSolver.SolveEverything(LocalSearchNewStopConditions);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
         }
-
-        private static ISolver LocalSearchNaked()
-        {
-            LocalSearch solver = new LocalSearch()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-                DiagnosticMessages = true,
-                PropagateRandomSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_search_naked",
-            };
-            solver.MoveFactories = new List<IMoveFactory>
-            {
-                new InsertMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 4,
-                    MaxBreaksChecked = 4,
-                    IgnoreBreaksWhenUnitOverfillAbove = 60,
-                    IgnoreCompletedTasks = true,
-                    IgnoreTasksWithCompletedViews = false,
-                },
-                new InsertMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 4,
-                    MaxBreaksChecked = 4,
-                    IgnoreBreaksWhenUnitOverfillAbove = 60,
-                    IgnoreCompletedTasks = false,
-                    IgnoreTasksWithCompletedViews = false,
-                },
-                new DeleteMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 4,
-                    MaxBreaksChecked = 5,
-                },
-                new SwapMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 5,
-                    MaxBreaksChecked = 5,
-                },
-            };
-            return solver;
-        }
-
-
-        private static ISolver LocalSearchNakedAdaptive()
-        {
-            LocalSearch solver = new LocalSearch()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
-                ImprovementOverNarrowNeighb = 2.0,
-                DiagnosticMessages = true,
-                PropagateRandomSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_search_naked_adaptive",
-            };
-            return solver;
-        }
-
-        private static ISolver LocalSearchAdaptiveRandom()
-        {
-            RandomFastSolver randomSolver = new RandomFastSolver();
-            LocalSearch solver = new LocalSearch()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
-                ImprovementOverNarrowNeighb = 2.0,
-                DiagnosticMessages = true,
-                PropagateRandomSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_search_adaptive_random",
-            };
-            solver.InitialSolvers.Add(randomSolver);
-            return solver;
-        }
-
-        private static ISolver LocalSearchAdaptiveRandomHeuristic()
-        {
-            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic();
-            LocalSearch solver = new LocalSearch()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
-                ImprovementOverNarrowNeighb = 2.0,
-                DiagnosticMessages = true,
-                PropagateRandomSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_search_adaptive_randomheuristic",
-            };
-            solver.InitialSolvers.Add(randomSolver);
-            return solver;
-        }
-
-        private static ISolver LocalSearchAdaptiveRandomHeuristicCompound()
-        {
-            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic();
-            CompoundSolver compundSolver = new CompoundSolver()
-            {
-                TimeLimit = new TimeSpan(0, 0, 180),
-                MaxLoops = 10,
-                RandomOrder = true,
-            };
-            LocalSearch solver = new LocalSearch()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
-                ImprovementOverNarrowNeighb = 2.0,
-                DiagnosticMessages = true,
-                PropagateRandomSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_search_adaptive_compound",
-            };
-            solver.InitialSolvers.Add(randomSolver);
-            solver.InitialSolvers.Add(compundSolver);
-            return solver;
-        }
-        
 
         private static ISolver InsertionStartEndingDeleteConfiguration()
         {
@@ -188,23 +53,23 @@ namespace InstanceGeneratorConsole
             ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
             {
                 MaxBreakExtensionUnits = 40,
+                MaxLoops = 6,
                 MaxInsertedPerBreak = 5,
-                TimeLimit = new TimeSpan(0, 0, 50),
             };
             BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
             {
+                MaxLoops = 6,
                 MaxBreakExtensionUnits = 999,
-                TimeLimit = new TimeSpan(0, 0, 50),
             };
             EndingsHeuristic endingHeuristic = new EndingsHeuristic()
             {
+                MaxLoops = 6,
                 MaxBreakExtensionUnits = 999,
-                TimeLimit = new TimeSpan(0, 0, 50),
             };
             FreeSpaceHeuristic freeSpaceHeuristic = new FreeSpaceHeuristic()
             {
                 ScoringFunction = new Scorer(),
-                TimeLimit = new TimeSpan(0, 0, 50),
+                MaxLoops = 6,
                 PropagateRandomSeed = true,
                 Seed = 10,
                 DiagnosticMessages = true,
@@ -217,42 +82,9 @@ namespace InstanceGeneratorConsole
             return freeSpaceHeuristic;
         }
 
+        
 
-        private static ISolver CompundHeuristic()
-        {
-            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic();
-            CompoundSolver compundSolver = new CompoundSolver()
-            {
-                TimeLimit = new TimeSpan(0, 0, 200),
-                Description = "compund_heuristic",
-                PropagateRandomSeed = true,
-                Seed = 10,
-                DiagnosticMessages = true,
-                MaxLoops = 10,
-                ScoringFunction = new Scorer(),
-            };
-            compundSolver.InitialSolvers.Add(randomSolver);
-            return compundSolver;
-        }
-
-        private static ISolver CompundRandom()
-        {
-            RandomFastSolver randomSolver = new RandomFastSolver();
-            CompoundSolver compundSolver = new CompoundSolver()
-            {
-                TimeLimit = new TimeSpan(0, 0, 200),
-                Description = "compund_random",
-                PropagateRandomSeed = true,
-                Seed = 10,
-                DiagnosticMessages = true,
-                MaxLoops = 10,
-                ScoringFunction = new Scorer(),
-            };
-            compundSolver.InitialSolvers.Add(randomSolver);
-            return compundSolver;
-        }
-
-        private static ISolver LocalSearchBasedInCompundConfiguration()
+        private static ISolver LocalSearchNewStopConditions()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
@@ -260,138 +92,23 @@ namespace InstanceGeneratorConsole
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                TimeLimit = new TimeSpan(0, 0, 180),
-                Seed = 15,
-                MaxLoops = 10,
-                RandomOrder = true,
+                MaxLoops = 6,
             };
             LocalSearch solver = new LocalSearch()
             {
-                Seed = 10,
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "optimization_local_random_compound_deloverfull2",
-            };
-            solver.MoveFactories = new List<IMoveFactory>
-            {
-                new InsertMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 4,
-                    MaxBreaksChecked = 4,
-                    IgnoreBreaksWhenUnitOverfillAbove = 60,
-                    IgnoreCompletedTasks = true,
-                    IgnoreTasksWithCompletedViews = false,
-                },
-                new InsertMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 4,
-                    MaxBreaksChecked = 4,
-                    IgnoreBreaksWhenUnitOverfillAbove = 60,
-                    IgnoreCompletedTasks = false,
-                    IgnoreTasksWithCompletedViews = false,
-                },
-                new DeleteMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 4,
-                    MaxBreaksChecked = 5,
-                },
-                new SwapMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 5,
-                    MaxBreaksChecked = 5,
-                },
+                NumberOfNoGoodActionsToStop = 10,
+                BestFactoryAdjustmentParam = 0.5,
+                NeighberhoodAdjustmentParam = 0.5,
+                Description = "local_search_new_stop_condition_10",
             };
             solver.InitialSolvers.Add(randomSolver);
             solver.InitialSolvers.Add(compundSolver);
             return solver;
         }
-
-        private static ISolver LocalRandomComplex()
-        {
-            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
-            {
-                MaxOverfillUnits = -10,
-            };
-            ViewsHeuristic insertionHeuristic = new ViewsHeuristic()
-            {
-                MaxBreakExtensionUnits = 30,
-                MaxInsertedPerBreak = 5,
-                MaxLoops = 6,
-                TimeLimit = new TimeSpan(0, 0, 60),
-            };
-            BeginingsHeuristic beginingsHeuristic = new BeginingsHeuristic()
-            {
-                MaxBreakExtensionUnits = 50,
-                MaxLoops = 4,
-                TimeLimit = new TimeSpan(0, 0, 30),
-            };
-            EndingsHeuristic endingHeuristic = new EndingsHeuristic()
-            {
-                MaxBreakExtensionUnits = 70,
-                MaxLoops = 4,
-                TimeLimit = new TimeSpan(0, 0, 30),
-            };
-            LocalSearch solver = new LocalSearch()
-            {
-                Seed = 10,
-                ScoringFunction = new Scorer(),
-                StopWhenCompleted = true,
-                PropagateRandomSeed = true,
-                TimeLimit = new TimeSpan(0, 0, 300),
-                Description = "local_random_complex1",
-            };
-            solver.MoveFactories = new List<IMoveFactory>
-            {
-                new InsertMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 4,
-                    MaxBreaksChecked = 4,
-                    IgnoreBreaksWhenUnitOverfillAbove = 60,
-                    IgnoreCompletedTasks = true,
-                    IgnoreTasksWithCompletedViews = false,
-                },
-                new InsertMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 4,
-                    MaxBreaksChecked = 4,
-                    IgnoreBreaksWhenUnitOverfillAbove = 60,
-                    IgnoreCompletedTasks = false,
-                    IgnoreTasksWithCompletedViews = false,
-                },
-                new DeleteMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 4,
-                    MaxBreaksChecked = 5,
-                },
-                new SwapMoveFactory()
-                {
-                    MildlyRandomOrder = true,
-                    PositionsCountLimit = 5,
-                    MaxTasksChecked = 5,
-                    MaxBreaksChecked = 5,
-                },
-            };
-            solver.InitialSolvers.Add(randomSolver);
-            solver.InitialSolvers.Add(insertionHeuristic);
-            solver.InitialSolvers.Add(beginingsHeuristic);
-            solver.InitialSolvers.Add(endingHeuristic);
-            return solver;
-        }
-
+        
         private static ISolver FastRandomGreedyConfig()
         {
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()

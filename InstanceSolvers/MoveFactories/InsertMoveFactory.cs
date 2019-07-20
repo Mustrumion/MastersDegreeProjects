@@ -122,6 +122,7 @@ namespace InstanceSolvers.MoveFactories
 
         public IEnumerable<Insert> GenerateInsertMoves()
         {
+            int movesReturned = 0;
             PrepareStructures();
             foreach (var tvBreak in _breaks)
             {
@@ -152,6 +153,7 @@ namespace InstanceSolvers.MoveFactories
                     }
                     foreach (int position in positionList)
                     {
+                        movesReturned += 1;
                         yield return new Insert()
                         {
                             Solution = Solution,
@@ -162,6 +164,7 @@ namespace InstanceSolvers.MoveFactories
                         };
                     }
                 }
+                if (movesReturned > MaxMovesReturned) break;
             }
         }
 

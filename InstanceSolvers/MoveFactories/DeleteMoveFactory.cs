@@ -83,6 +83,7 @@ namespace InstanceSolvers.MoveFactories
 
         public IEnumerable<Delete> GenerateDeleteMoves()
         {
+            int movesReturned = 0;
             PrepareStructures();
             foreach (var tvBreak in _breaks)
             {
@@ -111,6 +112,7 @@ namespace InstanceSolvers.MoveFactories
                 }
                 foreach (int position in positionList)
                 {
+                    movesReturned += 1;
                     yield return new Delete()
                     {
                         Solution = Solution,
@@ -119,6 +121,7 @@ namespace InstanceSolvers.MoveFactories
                         TvBreak = tvBreak
                     };
                 }
+                if (movesReturned > MaxMovesReturned) break;
             }
         }
 

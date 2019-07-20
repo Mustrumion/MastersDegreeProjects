@@ -164,9 +164,6 @@ namespace InstanceSolvers.Solvers
             schedules.Shuffle(Random);
 
             var kiddo = _solution.DeepCopy();
-            kiddo.RestoreStructures();
-            kiddo.GradingFunction = ScoringFunction.GetAnotherOne();
-            kiddo.GradingFunction.AssesSolution(kiddo);
         }
 
         private void CreateCrossbreeds()

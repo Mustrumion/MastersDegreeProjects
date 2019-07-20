@@ -34,7 +34,7 @@ namespace InstanceSolvers.MoveFactories
         protected override void ChangeParametersBy(int step)
         {
             int newCount = MovesReturned + step * 20;
-            MovesReturned = Math.Min(_minMovesReturned, newCount);
+            MovesReturned = Math.Min(Math.Max(_minMovesReturned, newCount), MaxMovesReturned);
         }
         
     }
