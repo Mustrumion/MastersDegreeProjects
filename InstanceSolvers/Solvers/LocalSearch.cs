@@ -27,12 +27,10 @@ namespace InstanceSolvers.Solvers
         private Solution _previousBest;
         private IMoveFactory _bestFactory;
         private IMove _bestMove;
-        private List<TvBreak> _breakInOrder;
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
         public bool StopWhenCompleted { get; set; }
         public Action ActionWhenNoImprovement { get; set; } = Action.Ignore;
-        public bool PropagateRandomnessSeed { get; set; }
         public double NeighberhoodAdjustmentParam { get; set; }
         public double BestFactoryAdjustmentParam { get; set; }
         [JsonIgnore]
@@ -140,7 +138,7 @@ namespace InstanceSolvers.Solvers
             }
             foreach (var moveFactory in MoveFactories)
             {
-                if (PropagateRandomnessSeed)
+                if (PropagateRandomSeed)
                 {
                     moveFactory.Seed = Random.Next();
                 }

@@ -240,7 +240,7 @@ namespace SystemTestsProject
             {
                 Instance = instance,
                 Solution = randomSolver.Solution,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,

@@ -56,7 +56,7 @@ namespace InstanceGeneratorConsole
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
                 Description = "local_search_naked",
             };
@@ -110,7 +110,7 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2.0,
                 DiagnosticMessages = true,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
                 Description = "local_search_naked_adaptive",
             };
@@ -128,7 +128,7 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2.0,
                 DiagnosticMessages = true,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
                 Description = "local_search_adaptive_random",
             };
@@ -147,7 +147,7 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2.0,
                 DiagnosticMessages = true,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
                 Description = "local_search_adaptive_randomheuristic",
             };
@@ -172,7 +172,7 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2.0,
                 DiagnosticMessages = true,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
                 Description = "local_search_adaptive_compound",
             };
@@ -270,7 +270,7 @@ namespace InstanceGeneratorConsole
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
                 Description = "optimization_local_random_compound_deloverfull2",
             };
@@ -345,7 +345,7 @@ namespace InstanceGeneratorConsole
                 Seed = 10,
                 ScoringFunction = new Scorer(),
                 StopWhenCompleted = true,
-                PropagateRandomnessSeed = true,
+                PropagateRandomSeed = true,
                 TimeLimit = new TimeSpan(0, 0, 300),
                 Description = "local_random_complex1",
             };

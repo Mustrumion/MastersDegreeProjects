@@ -145,7 +145,6 @@ namespace InstanceGenerator.SolutionObjects
             {
                 return (double)Completion / MaxCompletion;
             }
-            set { }
         }
 
         /// <summary>
@@ -158,7 +157,6 @@ namespace InstanceGenerator.SolutionObjects
             {
                 return Instance.AdOrders.Count;
             }
-            set { }
         }
 
         public string GradingFunctionDescription
@@ -167,7 +165,6 @@ namespace InstanceGenerator.SolutionObjects
             {
                 return GradingFunction?.Description;
             }
-            set { }
         }
 
         public bool Scored { get; set; }
@@ -347,6 +344,7 @@ namespace InstanceGenerator.SolutionObjects
         {
             return new Solution()
             {
+                Instance = Instance,
                 TimeElapsed = TimeElapsed,
                 Description = Description,
             };
