@@ -1,6 +1,6 @@
 {
   "Description": null,
-  "TimeElapsed": "00:00:00.1900119",
+  "TimeElapsed": "00:00:00.2044153",
   "WeightedLoss": 16329076.999999996,
   "OverdueAdsLoss": 102514.99999999997,
   "MildIncompatibilityLoss": 16222319.0,
@@ -891,7 +891,7 @@
     },
     "2895": {
       "ID": 2895,
-      "Viewership": 133961.17,
+      "Viewership": 133961.16999999998,
       "TimesAired": 6,
       "NumberOfStarts": 0,
       "NumberOfEnds": 0,
@@ -913,7 +913,7 @@
       "EndsProportion": 0.0,
       "EndsCompletion": 0.0,
       "EndsSatisfied": false,
-      "ViewsCompletion": 0.32953755679747032,
+      "ViewsCompletion": 0.32953755679747027,
       "ViewsSatisfied": false,
       "TimesAiredCompletion": 1.0,
       "TimesAiredSatisfied": true,
@@ -1197,7 +1197,7 @@
     },
     "1232": {
       "ID": 1232,
-      "Viewership": 255683.83000000002,
+      "Viewership": 255683.83000000007,
       "TimesAired": 9,
       "NumberOfStarts": 0,
       "NumberOfEnds": 3,
@@ -1333,7 +1333,7 @@
     },
     "2757": {
       "ID": 2757,
-      "Viewership": 519777.17,
+      "Viewership": 519777.17000000033,
       "TimesAired": 22,
       "NumberOfStarts": 0,
       "NumberOfEnds": 2,
@@ -2421,7 +2421,7 @@
     },
     "1795": {
       "ID": 1795,
-      "Viewership": 533157.84000000008,
+      "Viewership": 533157.8400000002,
       "TimesAired": 14,
       "NumberOfStarts": 4,
       "NumberOfEnds": 0,
@@ -2863,7 +2863,7 @@
     },
     "2184": {
       "ID": 2184,
-      "Viewership": 611390.8400000002,
+      "Viewership": 611390.84000000043,
       "TimesAired": 25,
       "NumberOfStarts": 0,
       "NumberOfEnds": 1,
@@ -3917,7 +3917,7 @@
     },
     "659": {
       "ID": 659,
-      "Viewership": 820242.00000000012,
+      "Viewership": 820242.0,
       "TimesAired": 24,
       "NumberOfStarts": 0,
       "NumberOfEnds": 4,

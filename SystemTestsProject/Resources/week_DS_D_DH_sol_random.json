@@ -1,6 +1,6 @@
 {
   "Description": null,
-  "TimeElapsed": "00:00:03.1237936",
+  "TimeElapsed": "00:00:03.1330347",
   "WeightedLoss": 357201105.3,
   "OverdueAdsLoss": 862085.30000000028,
   "MildIncompatibilityLoss": 356339020.0,
@@ -1401,7 +1401,7 @@
     },
     "2729": {
       "ID": 2729,
-      "Viewership": 205206.00000000009,
+      "Viewership": 205206.00000000003,
       "TimesAired": 7,
       "NumberOfStarts": 0,
       "NumberOfEnds": 0,
@@ -4529,7 +4529,7 @@
     },
     "1896": {
       "ID": 1896,
-      "Viewership": 248689.66000000006,
+      "Viewership": 248689.66,
       "TimesAired": 9,
       "NumberOfStarts": 0,
       "NumberOfEnds": 3,
@@ -4551,7 +4551,7 @@
       "EndsProportion": 0.33333333333333331,
       "EndsCompletion": 1.0,
       "EndsSatisfied": true,
-      "ViewsCompletion": 0.60430822270193707,
+      "ViewsCompletion": 0.604308222701937,
       "ViewsSatisfied": false,
       "TimesAiredCompletion": 1.0,
       "TimesAiredSatisfied": true,

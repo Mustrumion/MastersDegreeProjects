@@ -24,7 +24,10 @@ namespace InstanceSolvers.Moves
         private Dictionary<int, TaskScore> _newBreakScores;
         public Dictionary<int, TaskCompletionDifference> CompletionDifferences { get; set; }
 
-        
+        private void FirstExecute()
+        {
+
+        }
 
         private void AddToSolutionScores()
         {
@@ -84,21 +87,22 @@ namespace InstanceSolvers.Moves
                 {
                     continue;
                 }
-                if (newScore.BreaksPositions[TvBreak.ID].Count != oldScore.BreaksPositions[TvBreak.ID].Count)
-                {
-                    continue;
-                }
-                if (newScore.BreaksPositions[TvBreak.ID].Except(oldScore.BreaksPositions[TvBreak.ID]).Any())
-                {
-                    continue;
-                }
-                if (oldScore.BreaksPositions[TvBreak.ID].Except(newScore.BreaksPositions[TvBreak.ID]).Any())
-                {
-                    continue;
-                }
+                //if (newScore.BreaksPositions[TvBreak.ID].Count != oldScore.BreaksPositions[TvBreak.ID].Count)
+                //{
+                //    continue;
+                //}
+                //if (newScore.BreaksPositions[TvBreak.ID].Except(oldScore.BreaksPositions[TvBreak.ID]).Any())
+                //{
+                //    continue;
+                //}
+                //if (oldScore.BreaksPositions[TvBreak.ID].Except(newScore.BreaksPositions[TvBreak.ID]).Any())
+                //{
+                //    continue;
+                //}
                 if (oldScore.IsStatEqual(newScore))
                 {
-
+                    _newBreakScores.Remove(oldScore.ID);
+                    _oldBreakScores.Remove(oldScore.ID);
                 }
             }
         }
@@ -106,6 +110,7 @@ namespace InstanceSolvers.Moves
         public void Asses()
         {
             CountBreakTaskChanges();
+            RemoveUnchangedAdScores();
             AddToSolutionScores();
         }
 

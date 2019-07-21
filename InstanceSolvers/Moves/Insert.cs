@@ -77,9 +77,26 @@ namespace InstanceSolvers.Moves
             _newBreakScores = _newSchedule.Scores.ToDictionary(s => s.Key, s => s.Value);
         }
 
+        private void RemoveUnchangedAdScores()
+        {
+            foreach (var newScore in _newSchedule.Scores.Values)
+            {
+                if (!_oldSchedule.Scores.TryGetValue(newScore.ID, out var oldScore))
+                {
+                    continue;
+                }
+                if (oldScore.IsStatEqual(newScore))
+                {
+                    _newBreakScores.Remove(oldScore.ID);
+                    _oldBreakScores.Remove(oldScore.ID);
+                }
+            }
+        }
+
         public void Asses()
         {
             CountBreakTaskChanges();
+            RemoveUnchangedAdScores();
             AddToSolutionScores();
         }
 
