@@ -120,6 +120,43 @@ namespace InstanceSolvers.MoveFactories
         }
 
 
+        private List<int> GeneratePossiblePositions(BreakSchedule schedule)
+        {
+            IEnumerable<int> positionList = null;
+            if (PositionsCountLimit == 0 || !AlwaysReturnStartsAndEnds)
+            {
+                positionList = Enumerable.Range(0, schedule.Count + 1);
+            }
+            else
+            {
+                positionList = Enumerable.Range(1, schedule.Count);
+            }
+            if (MildlyRandomOrder)
+            {
+                positionList = positionList.ToList();
+                (positionList as IList<int>).Shuffle(Random);
+            }
+            if (PositionsCountLimit != 0)
+            {
+                if (AlwaysReturnStartsAndEnds)
+                {
+                    if (positionList.Count() >= 2)
+                    {
+                        var newList = new List<int> { positionList.First(), positionList.Last() };
+
+                        newList.AddRange(positionList.Take(PositionsCountLimit - 2));
+                        positionList = newList;
+                    }
+                }
+                else
+                {
+                    positionList = positionList.Take(PositionsCountLimit);
+                }
+            }
+            return positionList.ToList();
+        }
+
+
         public IEnumerable<Insert> GenerateInsertMoves()
         {
             int movesReturned = 0;
@@ -129,28 +166,7 @@ namespace InstanceSolvers.MoveFactories
                 BreakSchedule schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
                 foreach (var task in _tasks)
                 {
-                    IEnumerable<int> positionList = Enumerable.Range(0, schedule.Count + 1);
-                    if (MildlyRandomOrder)
-                    {
-                        positionList = positionList.ToList();
-                        (positionList as IList<int>).Shuffle(Random);
-                    }
-                    if (PositionsCountLimit != 0)
-                    {
-                        if (AlwaysReturnStartsAndEnds)
-                        {
-                            if (positionList.Count() > 2)
-                            {
-                                var newList = new List<int> { positionList.First(), positionList.Last() };
-                                newList.AddRange(positionList.Take(PositionsCountLimit - 2));
-                                positionList = newList;
-                            }
-                        }
-                        else
-                        {
-                            positionList = positionList.Take(PositionsCountLimit);
-                        }
-                    }
+                    var positionList = GeneratePossiblePositions(schedule);
                     foreach (int position in positionList)
                     {
                         movesReturned += 1;
@@ -170,9 +186,18 @@ namespace InstanceSolvers.MoveFactories
 
         protected override void ChangeParametersBy(int step)
         {
-            PositionsCountLimit = Math.Max(PositionsCountLimit - step, _minPositionsCountLimit);
-            MaxBreaksChecked = Math.Max(MaxBreaksChecked - step, _minMaxBreaksChecked);
-            MaxTasksChecked = Math.Max(MaxTasksChecked - step, _minMaxTasksChecked);
+            switch (Random.Next() % 3)
+            {
+                case 0:
+                    PositionsCountLimit = Math.Max(PositionsCountLimit + step, _minPositionsCountLimit);
+                    break;
+                case 1:
+                    MaxBreaksChecked = Math.Max(MaxBreaksChecked + step, _minMaxBreaksChecked);
+                    break;
+                case 2:
+                    MaxTasksChecked = Math.Max(MaxTasksChecked + step, _minMaxTasksChecked);
+                    break;
+            }
         }
     }
 }

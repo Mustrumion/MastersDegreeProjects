@@ -15,10 +15,12 @@ namespace InstanceSolvers.MoveFactories
 
         public IEnumerable<IMove> GenerateMoves()
         {
+            int limit = Solution.AdvertisementsScheduledOnBreaks.Sum(b => b.Value.Count) * Instance.AdOrders.Count / 4;
+            limit = Math.Min(limit, MovesReturned);
             var ordersList = Instance.AdOrders.Values.ToList();
             var breakList = Solution.AdvertisementsScheduledOnBreaks.Values.Where(b => b.Count > 0).ToList();
             if (breakList.Count == 0) yield break;
-            for (int i = 0; i < MovesReturned; i++)
+            for (int i = 0; i < limit; i++)
             {
                 var swap = new Swap()
                 {
@@ -34,7 +36,7 @@ namespace InstanceSolvers.MoveFactories
 
         protected override void ChangeParametersBy(int step)
         {
-            int newCount = MovesReturned + step * 20;
+            int newCount = MovesReturned + step * 8;
             MovesReturned = Math.Min(Math.Max(_minMovesReturned, newCount), MaxMovesReturned);
         }
         

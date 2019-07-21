@@ -127,8 +127,15 @@ namespace InstanceSolvers.MoveFactories
 
         protected override void ChangeParametersBy(int step)
         {
-            PositionsCountLimit = Math.Max(PositionsCountLimit - step, _minPositionsCountLimit);
-            MaxBreaksChecked = Math.Max(MaxBreaksChecked - step, _minMaxBreaksChecked);
+            switch (Random.Next() % 3)
+            {
+                case 0:
+                    PositionsCountLimit = Math.Max(PositionsCountLimit + step, _minPositionsCountLimit);
+                    break;
+                case 1:
+                    MaxBreaksChecked = Math.Max(MaxBreaksChecked + step, _minMaxBreaksChecked);
+                    break;
+            }
         }
     }
 }

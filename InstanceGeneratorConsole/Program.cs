@@ -101,12 +101,12 @@ namespace InstanceGeneratorConsole
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 20,
-                BestFactoryAdjustmentParam = 0.3,
-                NeighberhoodAdjustmentParam = 0.3,
+                NumberOfNoGoodActionsToStop = 10,
+                BestFactoryAdjustmentParam = 0.2,
+                NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 15, 0),
-                Description = "local_search_new_stop_condition_20rs",
+                Description = "local_search_new_stop_condition_20rs3",
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
