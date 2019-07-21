@@ -70,7 +70,29 @@ namespace InstanceSolvers.Moves
 
         private void RemoveUnchangedAdScores()
         {
-            //foreach(var score in _newBreakScores )
+            foreach(var newScore in _newSchedule.Scores.Values)
+            {
+                if (!_oldSchedule.Scores.TryGetValue(newScore.ID, out var oldScore))
+                {
+                    continue;
+                }
+                if (newScore.BreaksPositions[TvBreak.ID].Count != oldScore.BreaksPositions[TvBreak.ID].Count)
+                {
+                    continue;
+                }
+                if (newScore.BreaksPositions[TvBreak.ID].Except(oldScore.BreaksPositions[TvBreak.ID]).Any())
+                {
+                    continue;
+                }
+                if (oldScore.BreaksPositions[TvBreak.ID].Except(newScore.BreaksPositions[TvBreak.ID]).Any())
+                {
+                    continue;
+                }
+                if (oldScore.IsStatEqual(newScore))
+                {
+
+                }
+            }
         }
 
         public void Asses()

@@ -43,7 +43,7 @@ namespace InstanceSolvers.Solvers.Base
                 PerformLoop();
                 _loopsPerformed += 1;
             }
-            if (DiagnosticMessages) Console.WriteLine($"Heuristic ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
+            if (DiagnosticMessages) Console.WriteLine($"{GetType().Name} ended. Number of moves: {NumberOfMoves}. LoopsPerformed: {LoopsPerformed}.");
         }
     }
 }

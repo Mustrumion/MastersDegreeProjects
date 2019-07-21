@@ -292,6 +292,27 @@ namespace InstanceGenerator.SolutionObjects
             WeightedLoss = taskData.WeightedLoss;
         }
 
+        public bool IsStatEqual(TaskScore taskData)
+        {
+            if (Viewership != taskData.Viewership) return false;
+            if (TimesAired != taskData.TimesAired) return false;
+            if (NumberOfEnds != taskData.NumberOfEnds) return false;
+            if (NumberOfStarts != taskData.NumberOfStarts) return false;
+            if (LastAdTime != taskData.LastAdTime) return false;
+            if (MildIncompatibilitySumOfOccurenceWeights != taskData.MildIncompatibilitySumOfOccurenceWeights) return false;
+            if (ExtendedBreakUnits != taskData.ExtendedBreakUnits) return false;
+            if (OwnerConflicts != taskData.OwnerConflicts) return false;
+            if (BreakTypeConflicts != taskData.BreakTypeConflicts) return false;
+            if (SelfSpacingConflicts != taskData.SelfSpacingConflicts) return false;
+            if (SelfIncompatibilityConflicts != taskData.SelfIncompatibilityConflicts) return false;
+            if (ExtendedBreakLoss != taskData.ExtendedBreakLoss) return false;
+            if (MildIncompatibilityLoss != taskData.MildIncompatibilityLoss) return false;
+            if (OverdueAdsLoss != taskData.OverdueAdsLoss) return false;
+            if (IntegrityLossScore != taskData.IntegrityLossScore) return false;
+            if (WeightedLoss != taskData.WeightedLoss) return false;
+            return true;
+        }
+
         /// <summary>
         /// Creates a deep clone of TaskData
         /// </summary>

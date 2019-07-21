@@ -153,6 +153,7 @@ namespace InstanceSolvers.Solvers.Base
             CurrentTime.Stop();
             Solution.TimeElapsed = CurrentTime.Elapsed + _previousSolutionTime;
             if(ReportEnds) AddEndReport();
+            if (DiagnosticMessages) Console.WriteLine($"{GetType().Name} ended. Time elapsed {CurrentTime.Elapsed}.");
         }
 
         private void AddStartReport()

@@ -165,11 +165,13 @@ namespace InstanceSolvers.Solvers
             {
                 if(StopWhenCompleted || Solution.WeightedLoss == 0)
                 {
+                    if (DiagnosticMessages) Console.WriteLine($"TaskCompleted.");
                     return true;
                 }
             }
             if (CurrentTime.Elapsed > TimeLimit)
             {
+                if (DiagnosticMessages) Console.WriteLine($"Timeout of {TimeLimit}.");
                 return true;
             }
             if (NumberOfNoGoodActionsToStop != 0 && NumberOfNoGoodActionsToStop <= _numberOfLoopsWithoutImprovement)
@@ -179,6 +181,7 @@ namespace InstanceSolvers.Solvers
             }
             if (_timeToStop)
             {
+                if (DiagnosticMessages) Console.WriteLine($"No good action.");
                 return true;
             }
             return false;

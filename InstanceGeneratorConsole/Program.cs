@@ -101,12 +101,12 @@ namespace InstanceGeneratorConsole
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 10,
+                NumberOfNoGoodActionsToStop = 15,
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 15, 0),
-                Description = "local_search_new_stop_condition_20rs3",
+                Description = "local_search_new_stop_condition_15rs4",
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
@@ -123,7 +123,7 @@ namespace InstanceGeneratorConsole
                 },
                 new RandomDeleteFactory()
                 {
-                    MovesReturned = 30,
+                    MovesReturned = 20,
                 },
                 new RandomInsertFactory()
                 {
@@ -156,11 +156,12 @@ namespace InstanceGeneratorConsole
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 20,
-                BestFactoryAdjustmentParam = 0.3,
-                NeighberhoodAdjustmentParam = 0.3,
+                NumberOfNoGoodActionsToStop = 15,
+                TimeLimit = new TimeSpan(0, 15, 0),
+                BestFactoryAdjustmentParam = 0.2,
+                NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                Description = "local_search_new_stop_condition_20",
+                Description = "local_search_new_stop_condition_15",
             };
             solver.InitialSolvers.Add(randomSolver);
             solver.InitialSolvers.Add(compundSolver);
