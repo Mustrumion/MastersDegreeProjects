@@ -1,6 +1,6 @@
 {
   "Description": null,
-  "TimeElapsed": "00:00:00.2943603",
+  "TimeElapsed": "00:00:00.2138962",
   "WeightedLoss": 15093994.799999997,
   "OverdueAdsLoss": 94056.799999999974,
   "MildIncompatibilityLoss": 14996191.0,
@@ -40,7 +40,7 @@
   "Scored": true,
   "AdOrdersScores": {
     "4328": {
-      "TaskID": 4328,
+      "ID": 4328,
       "Viewership": 43131.0,
       "TimesAired": 5,
       "NumberOfStarts": 0,
@@ -74,7 +74,7 @@
       "Completed": true
     },
     "3125": {
-      "TaskID": 3125,
+      "ID": 3125,
       "Viewership": 10542.0,
       "TimesAired": 1,
       "NumberOfStarts": 0,
@@ -108,7 +108,7 @@
       "Completed": false
     },
     "590": {
-      "TaskID": 590,
+      "ID": 590,
       "Viewership": 1006852.3300000001,
       "TimesAired": 41,
       "NumberOfStarts": 2,
@@ -142,7 +142,7 @@
       "Completed": true
     },
     "2953": {
-      "TaskID": 2953,
+      "ID": 2953,
       "Viewership": 345748.67000000004,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -176,7 +176,7 @@
       "Completed": true
     },
     "3519": {
-      "TaskID": 3519,
+      "ID": 3519,
       "Viewership": 446637.15999999992,
       "TimesAired": 17,
       "NumberOfStarts": 0,
@@ -210,7 +210,7 @@
       "Completed": true
     },
     "231": {
-      "TaskID": 231,
+      "ID": 231,
       "Viewership": 51937.0,
       "TimesAired": 8,
       "NumberOfStarts": 2,
@@ -244,7 +244,7 @@
       "Completed": true
     },
     "3499": {
-      "TaskID": 3499,
+      "ID": 3499,
       "Viewership": 648319.50000000012,
       "TimesAired": 20,
       "NumberOfStarts": 0,
@@ -278,7 +278,7 @@
       "Completed": false
     },
     "3651": {
-      "TaskID": 3651,
+      "ID": 3651,
       "Viewership": 141976.0,
       "TimesAired": 10,
       "NumberOfStarts": 1,
@@ -312,7 +312,7 @@
       "Completed": true
     },
     "111": {
-      "TaskID": 111,
+      "ID": 111,
       "Viewership": 26809.0,
       "TimesAired": 7,
       "NumberOfStarts": 0,
@@ -346,7 +346,7 @@
       "Completed": true
     },
     "2723": {
-      "TaskID": 2723,
+      "ID": 2723,
       "Viewership": 103896.34,
       "TimesAired": 10,
       "NumberOfStarts": 0,
@@ -380,7 +380,7 @@
       "Completed": true
     },
     "1558": {
-      "TaskID": 1558,
+      "ID": 1558,
       "Viewership": 2174254.16,
       "TimesAired": 72,
       "NumberOfStarts": 0,
@@ -414,7 +414,7 @@
       "Completed": true
     },
     "2469": {
-      "TaskID": 2469,
+      "ID": 2469,
       "Viewership": 400962.18,
       "TimesAired": 17,
       "NumberOfStarts": 0,
@@ -448,7 +448,7 @@
       "Completed": true
     },
     "4327": {
-      "TaskID": 4327,
+      "ID": 4327,
       "Viewership": 40728.0,
       "TimesAired": 6,
       "NumberOfStarts": 2,
@@ -482,7 +482,7 @@
       "Completed": true
     },
     "1981": {
-      "TaskID": 1981,
+      "ID": 1981,
       "Viewership": 0.0,
       "TimesAired": 1,
       "NumberOfStarts": 0,
@@ -516,7 +516,7 @@
       "Completed": true
     },
     "2901": {
-      "TaskID": 2901,
+      "ID": 2901,
       "Viewership": 214559.0,
       "TimesAired": 9,
       "NumberOfStarts": 0,
@@ -550,7 +550,7 @@
       "Completed": true
     },
     "648": {
-      "TaskID": 648,
+      "ID": 648,
       "Viewership": 1165922.0000000002,
       "TimesAired": 40,
       "NumberOfStarts": 15,
@@ -584,7 +584,7 @@
       "Completed": false
     },
     "857": {
-      "TaskID": 857,
+      "ID": 857,
       "Viewership": 4641.0,
       "TimesAired": 1,
       "NumberOfStarts": 0,
@@ -618,8 +618,8 @@
       "Completed": true
     },
     "3928": {
-      "TaskID": 3928,
-      "Viewership": 530873.17000000086,
+      "ID": 3928,
+      "Viewership": 530873.17,
       "TimesAired": 26,
       "NumberOfStarts": 1,
       "NumberOfEnds": 1,
@@ -634,14 +634,14 @@
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
       "SelfIncompatibilityConflicts": 0,
-      "IntegrityLossScore": 0.57474677724880419,
+      "IntegrityLossScore": 0.57474677724880552,
       "StartsProportion": 0.038461538461538464,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
       "EndsProportion": 0.038461538461538464,
       "EndsCompletion": 0.61965811965811968,
       "EndsSatisfied": false,
-      "ViewsCompletion": 0.82559510309307615,
+      "ViewsCompletion": 0.82559510309307493,
       "ViewsSatisfied": false,
       "TimesAiredCompletion": 1.0,
       "TimesAiredSatisfied": true,
@@ -652,7 +652,7 @@
       "Completed": false
     },
     "998": {
-      "TaskID": 998,
+      "ID": 998,
       "Viewership": 352454.83,
       "TimesAired": 10,
       "NumberOfStarts": 0,
@@ -686,7 +686,7 @@
       "Completed": false
     },
     "1435": {
-      "TaskID": 1435,
+      "ID": 1435,
       "Viewership": 44901.67,
       "TimesAired": 5,
       "NumberOfStarts": 0,
@@ -720,7 +720,7 @@
       "Completed": false
     },
     "2056": {
-      "TaskID": 2056,
+      "ID": 2056,
       "Viewership": 0.0,
       "TimesAired": 0,
       "NumberOfStarts": 0,
@@ -754,8 +754,8 @@
       "Completed": false
     },
     "1822": {
-      "TaskID": 1822,
-      "Viewership": 174356.17000000004,
+      "ID": 1822,
+      "Viewership": 174356.17,
       "TimesAired": 11,
       "NumberOfStarts": 0,
       "NumberOfEnds": 0,
@@ -788,7 +788,7 @@
       "Completed": true
     },
     "1631": {
-      "TaskID": 1631,
+      "ID": 1631,
       "Viewership": 262222.00000000006,
       "TimesAired": 13,
       "NumberOfStarts": 0,
@@ -822,7 +822,7 @@
       "Completed": false
     },
     "2529": {
-      "TaskID": 2529,
+      "ID": 2529,
       "Viewership": 4641.0,
       "TimesAired": 1,
       "NumberOfStarts": 0,
@@ -856,7 +856,7 @@
       "Completed": true
     },
     "647": {
-      "TaskID": 647,
+      "ID": 647,
       "Viewership": 2102683.16,
       "TimesAired": 70,
       "NumberOfStarts": 11,
@@ -890,7 +890,7 @@
       "Completed": false
     },
     "2895": {
-      "TaskID": 2895,
+      "ID": 2895,
       "Viewership": 133961.17,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -924,7 +924,7 @@
       "Completed": false
     },
     "3411": {
-      "TaskID": 3411,
+      "ID": 3411,
       "Viewership": 390068.5,
       "TimesAired": 11,
       "NumberOfStarts": 0,
@@ -958,7 +958,7 @@
       "Completed": false
     },
     "3979": {
-      "TaskID": 3979,
+      "ID": 3979,
       "Viewership": 216768.33,
       "TimesAired": 14,
       "NumberOfStarts": 0,
@@ -992,7 +992,7 @@
       "Completed": false
     },
     "1826": {
-      "TaskID": 1826,
+      "ID": 1826,
       "Viewership": 339766.34,
       "TimesAired": 17,
       "NumberOfStarts": 0,
@@ -1026,7 +1026,7 @@
       "Completed": true
     },
     "1922": {
-      "TaskID": 1922,
+      "ID": 1922,
       "Viewership": 96382.17,
       "TimesAired": 8,
       "NumberOfStarts": 0,
@@ -1060,7 +1060,7 @@
       "Completed": false
     },
     "1307": {
-      "TaskID": 1307,
+      "ID": 1307,
       "Viewership": 133437.33000000002,
       "TimesAired": 8,
       "NumberOfStarts": 0,
@@ -1094,7 +1094,7 @@
       "Completed": false
     },
     "3865": {
-      "TaskID": 3865,
+      "ID": 3865,
       "Viewership": 142418.33,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -1128,8 +1128,8 @@
       "Completed": false
     },
     "654": {
-      "TaskID": 654,
-      "Viewership": 885995.16000000015,
+      "ID": 654,
+      "Viewership": 885995.15999999992,
       "TimesAired": 22,
       "NumberOfStarts": 2,
       "NumberOfEnds": 2,
@@ -1162,7 +1162,7 @@
       "Completed": false
     },
     "3389": {
-      "TaskID": 3389,
+      "ID": 3389,
       "Viewership": 971775.35000000021,
       "TimesAired": 43,
       "NumberOfStarts": 3,
@@ -1196,7 +1196,7 @@
       "Completed": false
     },
     "1232": {
-      "TaskID": 1232,
+      "ID": 1232,
       "Viewership": 475495.33,
       "TimesAired": 16,
       "NumberOfStarts": 6,
@@ -1230,7 +1230,7 @@
       "Completed": false
     },
     "824": {
-      "TaskID": 824,
+      "ID": 824,
       "Viewership": 16447.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -1264,7 +1264,7 @@
       "Completed": false
     },
     "819": {
-      "TaskID": 819,
+      "ID": 819,
       "Viewership": 665587.0,
       "TimesAired": 28,
       "NumberOfStarts": 13,
@@ -1298,7 +1298,7 @@
       "Completed": false
     },
     "3193": {
-      "TaskID": 3193,
+      "ID": 3193,
       "Viewership": 317646.33,
       "TimesAired": 13,
       "NumberOfStarts": 1,
@@ -1332,8 +1332,8 @@
       "Completed": false
     },
     "2757": {
-      "TaskID": 2757,
-      "Viewership": 532087.82999999984,
+      "ID": 2757,
+      "Viewership": 532087.83,
       "TimesAired": 22,
       "NumberOfStarts": 0,
       "NumberOfEnds": 2,
@@ -1366,7 +1366,7 @@
       "Completed": false
     },
     "118": {
-      "TaskID": 118,
+      "ID": 118,
       "Viewership": 784720.32,
       "TimesAired": 32,
       "NumberOfStarts": 0,
@@ -1400,7 +1400,7 @@
       "Completed": true
     },
     "2729": {
-      "TaskID": 2729,
+      "ID": 2729,
       "Viewership": 67296.0,
       "TimesAired": 4,
       "NumberOfStarts": 0,
@@ -1434,7 +1434,7 @@
       "Completed": false
     },
     "1742": {
-      "TaskID": 1742,
+      "ID": 1742,
       "Viewership": 2038312.3199999998,
       "TimesAired": 77,
       "NumberOfStarts": 20,
@@ -1468,7 +1468,7 @@
       "Completed": false
     },
     "3185": {
-      "TaskID": 3185,
+      "ID": 3185,
       "Viewership": 491671.49999999994,
       "TimesAired": 18,
       "NumberOfStarts": 0,
@@ -1502,8 +1502,8 @@
       "Completed": false
     },
     "3550": {
-      "TaskID": 3550,
-      "Viewership": 534263.83,
+      "ID": 3550,
+      "Viewership": 534263.83000000007,
       "TimesAired": 18,
       "NumberOfStarts": 1,
       "NumberOfEnds": 0,
@@ -1536,7 +1536,7 @@
       "Completed": true
     },
     "1815": {
-      "TaskID": 1815,
+      "ID": 1815,
       "Viewership": 537612.01000000013,
       "TimesAired": 11,
       "NumberOfStarts": 0,
@@ -1570,7 +1570,7 @@
       "Completed": false
     },
     "526": {
-      "TaskID": 526,
+      "ID": 526,
       "Viewership": 696447.66999999993,
       "TimesAired": 25,
       "NumberOfStarts": 0,
@@ -1604,7 +1604,7 @@
       "Completed": true
     },
     "2779": {
-      "TaskID": 2779,
+      "ID": 2779,
       "Viewership": 48915.33,
       "TimesAired": 7,
       "NumberOfStarts": 0,
@@ -1638,7 +1638,7 @@
       "Completed": false
     },
     "76": {
-      "TaskID": 76,
+      "ID": 76,
       "Viewership": 145563.33000000002,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -1672,7 +1672,7 @@
       "Completed": false
     },
     "3780": {
-      "TaskID": 3780,
+      "ID": 3780,
       "Viewership": 236553.17,
       "TimesAired": 12,
       "NumberOfStarts": 1,
@@ -1706,8 +1706,8 @@
       "Completed": false
     },
     "18": {
-      "TaskID": 18,
-      "Viewership": 522612.16999999993,
+      "ID": 18,
+      "Viewership": 522612.17,
       "TimesAired": 13,
       "NumberOfStarts": 0,
       "NumberOfEnds": 2,
@@ -1740,7 +1740,7 @@
       "Completed": true
     },
     "629": {
-      "TaskID": 629,
+      "ID": 629,
       "Viewership": 605872.15999999992,
       "TimesAired": 17,
       "NumberOfStarts": 10,
@@ -1774,7 +1774,7 @@
       "Completed": false
     },
     "2258": {
-      "TaskID": 2258,
+      "ID": 2258,
       "Viewership": 386833.67,
       "TimesAired": 17,
       "NumberOfStarts": 3,
@@ -1808,7 +1808,7 @@
       "Completed": false
     },
     "540": {
-      "TaskID": 540,
+      "ID": 540,
       "Viewership": 576777.49,
       "TimesAired": 26,
       "NumberOfStarts": 1,
@@ -1842,7 +1842,7 @@
       "Completed": false
     },
     "2737": {
-      "TaskID": 2737,
+      "ID": 2737,
       "Viewership": 611540.33000000019,
       "TimesAired": 39,
       "NumberOfStarts": 1,
@@ -1876,7 +1876,7 @@
       "Completed": false
     },
     "2778": {
-      "TaskID": 2778,
+      "ID": 2778,
       "Viewership": 119224.5,
       "TimesAired": 5,
       "NumberOfStarts": 0,
@@ -1910,7 +1910,7 @@
       "Completed": false
     },
     "2784": {
-      "TaskID": 2784,
+      "ID": 2784,
       "Viewership": 184011.66999999998,
       "TimesAired": 10,
       "NumberOfStarts": 0,
@@ -1944,7 +1944,7 @@
       "Completed": false
     },
     "1191": {
-      "TaskID": 1191,
+      "ID": 1191,
       "Viewership": 487330.5,
       "TimesAired": 15,
       "NumberOfStarts": 1,
@@ -1978,7 +1978,7 @@
       "Completed": false
     },
     "1711": {
-      "TaskID": 1711,
+      "ID": 1711,
       "Viewership": 498767.83,
       "TimesAired": 17,
       "NumberOfStarts": 0,
@@ -2012,7 +2012,7 @@
       "Completed": false
     },
     "1916": {
-      "TaskID": 1916,
+      "ID": 1916,
       "Viewership": 396077.66000000003,
       "TimesAired": 5,
       "NumberOfStarts": 0,
@@ -2046,7 +2046,7 @@
       "Completed": true
     },
     "88": {
-      "TaskID": 88,
+      "ID": 88,
       "Viewership": 351270.0,
       "TimesAired": 11,
       "NumberOfStarts": 0,
@@ -2080,7 +2080,7 @@
       "Completed": false
     },
     "726": {
-      "TaskID": 726,
+      "ID": 726,
       "Viewership": 216262.0,
       "TimesAired": 4,
       "NumberOfStarts": 1,
@@ -2114,7 +2114,7 @@
       "Completed": true
     },
     "1959": {
-      "TaskID": 1959,
+      "ID": 1959,
       "Viewership": 333232.0,
       "TimesAired": 10,
       "NumberOfStarts": 0,
@@ -2148,7 +2148,7 @@
       "Completed": true
     },
     "3554": {
-      "TaskID": 3554,
+      "ID": 3554,
       "Viewership": 1017797.3300000001,
       "TimesAired": 37,
       "NumberOfStarts": 0,
@@ -2182,7 +2182,7 @@
       "Completed": false
     },
     "1599": {
-      "TaskID": 1599,
+      "ID": 1599,
       "Viewership": 2437583.3399999994,
       "TimesAired": 94,
       "NumberOfStarts": 30,
@@ -2216,7 +2216,7 @@
       "Completed": false
     },
     "3903": {
-      "TaskID": 3903,
+      "ID": 3903,
       "Viewership": 216574.17000000004,
       "TimesAired": 10,
       "NumberOfStarts": 0,
@@ -2250,7 +2250,7 @@
       "Completed": false
     },
     "802": {
-      "TaskID": 802,
+      "ID": 802,
       "Viewership": 19550.0,
       "TimesAired": 4,
       "NumberOfStarts": 0,
@@ -2284,7 +2284,7 @@
       "Completed": false
     },
     "3412": {
-      "TaskID": 3412,
+      "ID": 3412,
       "Viewership": 983544.16999999993,
       "TimesAired": 42,
       "NumberOfStarts": 1,
@@ -2318,7 +2318,7 @@
       "Completed": false
     },
     "3806": {
-      "TaskID": 3806,
+      "ID": 3806,
       "Viewership": 501470.83,
       "TimesAired": 13,
       "NumberOfStarts": 0,
@@ -2352,7 +2352,7 @@
       "Completed": false
     },
     "3656": {
-      "TaskID": 3656,
+      "ID": 3656,
       "Viewership": 412827.17,
       "TimesAired": 22,
       "NumberOfStarts": 0,
@@ -2386,7 +2386,7 @@
       "Completed": false
     },
     "3044": {
-      "TaskID": 3044,
+      "ID": 3044,
       "Viewership": 49033.0,
       "TimesAired": 4,
       "NumberOfStarts": 0,
@@ -2420,7 +2420,7 @@
       "Completed": false
     },
     "1795": {
-      "TaskID": 1795,
+      "ID": 1795,
       "Viewership": 443272.17000000004,
       "TimesAired": 8,
       "NumberOfStarts": 0,
@@ -2454,7 +2454,7 @@
       "Completed": false
     },
     "1136": {
-      "TaskID": 1136,
+      "ID": 1136,
       "Viewership": 9099.67,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -2488,7 +2488,7 @@
       "Completed": false
     },
     "2090": {
-      "TaskID": 2090,
+      "ID": 2090,
       "Viewership": 155827.0,
       "TimesAired": 7,
       "NumberOfStarts": 0,
@@ -2522,8 +2522,8 @@
       "Completed": true
     },
     "2645": {
-      "TaskID": 2645,
-      "Viewership": 1080793.8399999999,
+      "ID": 2645,
+      "Viewership": 1080793.84,
       "TimesAired": 47,
       "NumberOfStarts": 11,
       "NumberOfEnds": 9,
@@ -2538,14 +2538,14 @@
       "BreakTypeConflicts": 0,
       "SelfSpacingConflicts": 0,
       "SelfIncompatibilityConflicts": 0,
-      "IntegrityLossScore": 0.54012820267690143,
+      "IntegrityLossScore": 0.5401282026769012,
       "StartsProportion": 0.23404255319148937,
       "StartsCompletion": 1.0,
       "StartsSatisfied": true,
       "EndsProportion": 0.19148936170212766,
       "EndsCompletion": 1.0,
       "EndsSatisfied": true,
-      "ViewsCompletion": 0.46987179732309858,
+      "ViewsCompletion": 0.46987179732309869,
       "ViewsSatisfied": false,
       "TimesAiredCompletion": 1.0,
       "TimesAiredSatisfied": true,
@@ -2556,7 +2556,7 @@
       "Completed": false
     },
     "1430": {
-      "TaskID": 1430,
+      "ID": 1430,
       "Viewership": 631192.66,
       "TimesAired": 25,
       "NumberOfStarts": 0,
@@ -2590,7 +2590,7 @@
       "Completed": false
     },
     "2442": {
-      "TaskID": 2442,
+      "ID": 2442,
       "Viewership": 102026.0,
       "TimesAired": 10,
       "NumberOfStarts": 1,
@@ -2624,7 +2624,7 @@
       "Completed": false
     },
     "3887": {
-      "TaskID": 3887,
+      "ID": 3887,
       "Viewership": 234861.0,
       "TimesAired": 21,
       "NumberOfStarts": 0,
@@ -2658,7 +2658,7 @@
       "Completed": false
     },
     "117": {
-      "TaskID": 117,
+      "ID": 117,
       "Viewership": 1202158.5099999998,
       "TimesAired": 36,
       "NumberOfStarts": 4,
@@ -2692,7 +2692,7 @@
       "Completed": true
     },
     "3987": {
-      "TaskID": 3987,
+      "ID": 3987,
       "Viewership": 322787.17,
       "TimesAired": 5,
       "NumberOfStarts": 0,
@@ -2726,7 +2726,7 @@
       "Completed": false
     },
     "1923": {
-      "TaskID": 1923,
+      "ID": 1923,
       "Viewership": 711326.00000000012,
       "TimesAired": 28,
       "NumberOfStarts": 0,
@@ -2760,7 +2760,7 @@
       "Completed": false
     },
     "274": {
-      "TaskID": 274,
+      "ID": 274,
       "Viewership": 259068.0,
       "TimesAired": 9,
       "NumberOfStarts": 0,
@@ -2794,7 +2794,7 @@
       "Completed": false
     },
     "4060": {
-      "TaskID": 4060,
+      "ID": 4060,
       "Viewership": 86395.0,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -2828,8 +2828,8 @@
       "Completed": false
     },
     "935": {
-      "TaskID": 935,
-      "Viewership": 499277.49999999988,
+      "ID": 935,
+      "Viewership": 499277.49999999994,
       "TimesAired": 16,
       "NumberOfStarts": 1,
       "NumberOfEnds": 1,
@@ -2862,7 +2862,7 @@
       "Completed": false
     },
     "2184": {
-      "TaskID": 2184,
+      "ID": 2184,
       "Viewership": 595201.3400000002,
       "TimesAired": 25,
       "NumberOfStarts": 0,
@@ -2896,7 +2896,7 @@
       "Completed": false
     },
     "3579": {
-      "TaskID": 3579,
+      "ID": 3579,
       "Viewership": 356675.5,
       "TimesAired": 10,
       "NumberOfStarts": 1,
@@ -2930,7 +2930,7 @@
       "Completed": true
     },
     "2785": {
-      "TaskID": 2785,
+      "ID": 2785,
       "Viewership": 855763.50999999989,
       "TimesAired": 30,
       "NumberOfStarts": 0,
@@ -2964,7 +2964,7 @@
       "Completed": false
     },
     "1632": {
-      "TaskID": 1632,
+      "ID": 1632,
       "Viewership": 2426706.84,
       "TimesAired": 63,
       "NumberOfStarts": 0,
@@ -2998,7 +2998,7 @@
       "Completed": true
     },
     "4292": {
-      "TaskID": 4292,
+      "ID": 4292,
       "Viewership": 246605.5,
       "TimesAired": 3,
       "NumberOfStarts": 1,
@@ -3032,7 +3032,7 @@
       "Completed": false
     },
     "1914": {
-      "TaskID": 1914,
+      "ID": 1914,
       "Viewership": 372556.17,
       "TimesAired": 5,
       "NumberOfStarts": 1,
@@ -3066,7 +3066,7 @@
       "Completed": true
     },
     "702": {
-      "TaskID": 702,
+      "ID": 702,
       "Viewership": 304637.33,
       "TimesAired": 14,
       "NumberOfStarts": 1,
@@ -3100,7 +3100,7 @@
       "Completed": false
     },
     "2225": {
-      "TaskID": 2225,
+      "ID": 2225,
       "Viewership": 73700.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -3134,7 +3134,7 @@
       "Completed": false
     },
     "3530": {
-      "TaskID": 3530,
+      "ID": 3530,
       "Viewership": 281017.33999999997,
       "TimesAired": 14,
       "NumberOfStarts": 1,
@@ -3168,7 +3168,7 @@
       "Completed": false
     },
     "2398": {
-      "TaskID": 2398,
+      "ID": 2398,
       "Viewership": 715937.17000000016,
       "TimesAired": 23,
       "NumberOfStarts": 0,
@@ -3202,7 +3202,7 @@
       "Completed": true
     },
     "504": {
-      "TaskID": 504,
+      "ID": 504,
       "Viewership": 63358.33,
       "TimesAired": 3,
       "NumberOfStarts": 0,
@@ -3236,7 +3236,7 @@
       "Completed": true
     },
     "1236": {
-      "TaskID": 1236,
+      "ID": 1236,
       "Viewership": 268627.33,
       "TimesAired": 9,
       "NumberOfStarts": 4,
@@ -3270,7 +3270,7 @@
       "Completed": false
     },
     "3363": {
-      "TaskID": 3363,
+      "ID": 3363,
       "Viewership": 330657.49999999994,
       "TimesAired": 9,
       "NumberOfStarts": 1,
@@ -3304,7 +3304,7 @@
       "Completed": false
     },
     "4117": {
-      "TaskID": 4117,
+      "ID": 4117,
       "Viewership": 0.0,
       "TimesAired": 0,
       "NumberOfStarts": 0,
@@ -3338,7 +3338,7 @@
       "Completed": false
     },
     "4100": {
-      "TaskID": 4100,
+      "ID": 4100,
       "Viewership": 229502.0,
       "TimesAired": 3,
       "NumberOfStarts": 2,
@@ -3372,7 +3372,7 @@
       "Completed": false
     },
     "3206": {
-      "TaskID": 3206,
+      "ID": 3206,
       "Viewership": 115329.5,
       "TimesAired": 3,
       "NumberOfStarts": 0,
@@ -3406,7 +3406,7 @@
       "Completed": false
     },
     "2987": {
-      "TaskID": 2987,
+      "ID": 2987,
       "Viewership": 11520.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -3440,7 +3440,7 @@
       "Completed": false
     },
     "3494": {
-      "TaskID": 3494,
+      "ID": 3494,
       "Viewership": 121508.33,
       "TimesAired": 9,
       "NumberOfStarts": 1,
@@ -3474,7 +3474,7 @@
       "Completed": true
     },
     "1022": {
-      "TaskID": 1022,
+      "ID": 1022,
       "Viewership": 122998.17,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -3508,7 +3508,7 @@
       "Completed": false
     },
     "834": {
-      "TaskID": 834,
+      "ID": 834,
       "Viewership": 347029.67,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -3542,7 +3542,7 @@
       "Completed": false
     },
     "255": {
-      "TaskID": 255,
+      "ID": 255,
       "Viewership": 25425.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -3576,7 +3576,7 @@
       "Completed": false
     },
     "3043": {
-      "TaskID": 3043,
+      "ID": 3043,
       "Viewership": 501416.16000000003,
       "TimesAired": 20,
       "NumberOfStarts": 2,
@@ -3610,7 +3610,7 @@
       "Completed": false
     },
     "2185": {
-      "TaskID": 2185,
+      "ID": 2185,
       "Viewership": 596733.99999999988,
       "TimesAired": 30,
       "NumberOfStarts": 0,
@@ -3644,8 +3644,8 @@
       "Completed": true
     },
     "644": {
-      "TaskID": 644,
-      "Viewership": 1860732.5,
+      "ID": 644,
+      "Viewership": 1860732.4999999998,
       "TimesAired": 47,
       "NumberOfStarts": 11,
       "NumberOfEnds": 10,
@@ -3678,7 +3678,7 @@
       "Completed": false
     },
     "662": {
-      "TaskID": 662,
+      "ID": 662,
       "Viewership": 1066192.0,
       "TimesAired": 45,
       "NumberOfStarts": 23,
@@ -3712,7 +3712,7 @@
       "Completed": false
     },
     "3127": {
-      "TaskID": 3127,
+      "ID": 3127,
       "Viewership": 30201.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -3746,7 +3746,7 @@
       "Completed": false
     },
     "3819": {
-      "TaskID": 3819,
+      "ID": 3819,
       "Viewership": 566749.17000000016,
       "TimesAired": 14,
       "NumberOfStarts": 0,
@@ -3780,7 +3780,7 @@
       "Completed": true
     },
     "661": {
-      "TaskID": 661,
+      "ID": 661,
       "Viewership": 325978.16000000003,
       "TimesAired": 9,
       "NumberOfStarts": 5,
@@ -3814,7 +3814,7 @@
       "Completed": false
     },
     "488": {
-      "TaskID": 488,
+      "ID": 488,
       "Viewership": 90416.0,
       "TimesAired": 4,
       "NumberOfStarts": 0,
@@ -3848,7 +3848,7 @@
       "Completed": true
     },
     "658": {
-      "TaskID": 658,
+      "ID": 658,
       "Viewership": 747993.84000000008,
       "TimesAired": 19,
       "NumberOfStarts": 0,
@@ -3882,7 +3882,7 @@
       "Completed": true
     },
     "753": {
-      "TaskID": 753,
+      "ID": 753,
       "Viewership": 135900.0,
       "TimesAired": 3,
       "NumberOfStarts": 0,
@@ -3916,8 +3916,8 @@
       "Completed": true
     },
     "659": {
-      "TaskID": 659,
-      "Viewership": 1067490.4999999995,
+      "ID": 659,
+      "Viewership": 1067490.5,
       "TimesAired": 34,
       "NumberOfStarts": 7,
       "NumberOfEnds": 4,
@@ -3950,7 +3950,7 @@
       "Completed": false
     },
     "1746": {
-      "TaskID": 1746,
+      "ID": 1746,
       "Viewership": 83334.84,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -3984,8 +3984,8 @@
       "Completed": false
     },
     "3857": {
-      "TaskID": 3857,
-      "Viewership": 519095.15999999992,
+      "ID": 3857,
+      "Viewership": 519095.16,
       "TimesAired": 4,
       "NumberOfStarts": 2,
       "NumberOfEnds": 0,
@@ -4018,7 +4018,7 @@
       "Completed": false
     },
     "2416": {
-      "TaskID": 2416,
+      "ID": 2416,
       "Viewership": 10997.0,
       "TimesAired": 1,
       "NumberOfStarts": 1,
@@ -4052,7 +4052,7 @@
       "Completed": false
     },
     "4057": {
-      "TaskID": 4057,
+      "ID": 4057,
       "Viewership": 303700.5,
       "TimesAired": 16,
       "NumberOfStarts": 7,
@@ -4086,7 +4086,7 @@
       "Completed": false
     },
     "3095": {
-      "TaskID": 3095,
+      "ID": 3095,
       "Viewership": 12978.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -4120,7 +4120,7 @@
       "Completed": false
     },
     "1996": {
-      "TaskID": 1996,
+      "ID": 1996,
       "Viewership": 305023.67,
       "TimesAired": 10,
       "NumberOfStarts": 0,
@@ -4154,7 +4154,7 @@
       "Completed": true
     },
     "810": {
-      "TaskID": 810,
+      "ID": 810,
       "Viewership": 397619.83000000007,
       "TimesAired": 14,
       "NumberOfStarts": 0,
@@ -4188,7 +4188,7 @@
       "Completed": false
     },
     "3446": {
-      "TaskID": 3446,
+      "ID": 3446,
       "Viewership": 178951.0,
       "TimesAired": 11,
       "NumberOfStarts": 0,
@@ -4222,7 +4222,7 @@
       "Completed": false
     },
     "3512": {
-      "TaskID": 3512,
+      "ID": 3512,
       "Viewership": 34666.67,
       "TimesAired": 3,
       "NumberOfStarts": 0,
@@ -4256,7 +4256,7 @@
       "Completed": false
     },
     "1465": {
-      "TaskID": 1465,
+      "ID": 1465,
       "Viewership": 175849.5,
       "TimesAired": 8,
       "NumberOfStarts": 1,
@@ -4290,7 +4290,7 @@
       "Completed": false
     },
     "1184": {
-      "TaskID": 1184,
+      "ID": 1184,
       "Viewership": 125419.67,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -4324,7 +4324,7 @@
       "Completed": false
     },
     "3039": {
-      "TaskID": 3039,
+      "ID": 3039,
       "Viewership": 94073.33,
       "TimesAired": 2,
       "NumberOfStarts": 1,
@@ -4358,7 +4358,7 @@
       "Completed": false
     },
     "2559": {
-      "TaskID": 2559,
+      "ID": 2559,
       "Viewership": 253923.83000000002,
       "TimesAired": 8,
       "NumberOfStarts": 0,
@@ -4392,7 +4392,7 @@
       "Completed": false
     },
     "1570": {
-      "TaskID": 1570,
+      "ID": 1570,
       "Viewership": 255762.33000000002,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -4426,7 +4426,7 @@
       "Completed": false
     },
     "3016": {
-      "TaskID": 3016,
+      "ID": 3016,
       "Viewership": 18437.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -4460,7 +4460,7 @@
       "Completed": false
     },
     "2468": {
-      "TaskID": 2468,
+      "ID": 2468,
       "Viewership": 202584.0,
       "TimesAired": 8,
       "NumberOfStarts": 1,
@@ -4494,7 +4494,7 @@
       "Completed": true
     },
     "2845": {
-      "TaskID": 2845,
+      "ID": 2845,
       "Viewership": 175400.5,
       "TimesAired": 4,
       "NumberOfStarts": 1,
@@ -4528,7 +4528,7 @@
       "Completed": true
     },
     "2967": {
-      "TaskID": 2967,
+      "ID": 2967,
       "Viewership": 8863.0,
       "TimesAired": 1,
       "NumberOfStarts": 1,
@@ -4562,7 +4562,7 @@
       "Completed": false
     },
     "1234": {
-      "TaskID": 1234,
+      "ID": 1234,
       "Viewership": 139085.16999999998,
       "TimesAired": 8,
       "NumberOfStarts": 4,
@@ -4596,7 +4596,7 @@
       "Completed": false
     },
     "3501": {
-      "TaskID": 3501,
+      "ID": 3501,
       "Viewership": 5353.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -4630,7 +4630,7 @@
       "Completed": false
     },
     "577": {
-      "TaskID": 577,
+      "ID": 577,
       "Viewership": 94051.67,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -4664,7 +4664,7 @@
       "Completed": false
     },
     "578": {
-      "TaskID": 578,
+      "ID": 578,
       "Viewership": 23802.33,
       "TimesAired": 5,
       "NumberOfStarts": 3,
@@ -4698,7 +4698,7 @@
       "Completed": false
     },
     "779": {
-      "TaskID": 779,
+      "ID": 779,
       "Viewership": 31584.0,
       "TimesAired": 3,
       "NumberOfStarts": 0,
@@ -4732,7 +4732,7 @@
       "Completed": true
     },
     "3670": {
-      "TaskID": 3670,
+      "ID": 3670,
       "Viewership": 11520.0,
       "TimesAired": 2,
       "NumberOfStarts": 1,
@@ -4766,7 +4766,7 @@
       "Completed": true
     },
     "4303": {
-      "TaskID": 4303,
+      "ID": 4303,
       "Viewership": 282609.33999999997,
       "TimesAired": 6,
       "NumberOfStarts": 0,
@@ -4800,7 +4800,7 @@
       "Completed": true
     },
     "288": {
-      "TaskID": 288,
+      "ID": 288,
       "Viewership": 11520.0,
       "TimesAired": 1,
       "NumberOfStarts": 1,
@@ -4834,7 +4834,7 @@
       "Completed": true
     },
     "3191": {
-      "TaskID": 3191,
+      "ID": 3191,
       "Viewership": 76952.17,
       "TimesAired": 7,
       "NumberOfStarts": 0,
@@ -4868,7 +4868,7 @@
       "Completed": true
     },
     "2538": {
-      "TaskID": 2538,
+      "ID": 2538,
       "Viewership": 94841.0,
       "TimesAired": 5,
       "NumberOfStarts": 0,
@@ -4902,7 +4902,7 @@
       "Completed": true
     },
     "963": {
-      "TaskID": 963,
+      "ID": 963,
       "Viewership": 60513.0,
       "TimesAired": 4,
       "NumberOfStarts": 1,
@@ -4936,7 +4936,7 @@
       "Completed": true
     },
     "1603": {
-      "TaskID": 1603,
+      "ID": 1603,
       "Viewership": 2021123.5,
       "TimesAired": 65,
       "NumberOfStarts": 0,
@@ -4970,7 +4970,7 @@
       "Completed": true
     },
     "657": {
-      "TaskID": 657,
+      "ID": 657,
       "Viewership": 509682.33,
       "TimesAired": 21,
       "NumberOfStarts": 0,
@@ -5004,7 +5004,7 @@
       "Completed": true
     },
     "1084": {
-      "TaskID": 1084,
+      "ID": 1084,
       "Viewership": 59820.0,
       "TimesAired": 1,
       "NumberOfStarts": 1,
@@ -5038,7 +5038,7 @@
       "Completed": true
     },
     "3508": {
-      "TaskID": 3508,
+      "ID": 3508,
       "Viewership": 528612.16999999993,
       "TimesAired": 22,
       "NumberOfStarts": 0,
@@ -5072,7 +5072,7 @@
       "Completed": true
     },
     "3746": {
-      "TaskID": 3746,
+      "ID": 3746,
       "Viewership": 0.0,
       "TimesAired": 0,
       "NumberOfStarts": 0,
@@ -5106,7 +5106,7 @@
       "Completed": false
     },
     "3237": {
-      "TaskID": 3237,
+      "ID": 3237,
       "Viewership": 6070.0,
       "TimesAired": 2,
       "NumberOfStarts": 0,
@@ -5140,7 +5140,7 @@
       "Completed": true
     },
     "1192": {
-      "TaskID": 1192,
+      "ID": 1192,
       "Viewership": 869229.83000000007,
       "TimesAired": 22,
       "NumberOfStarts": 1,
@@ -5174,7 +5174,7 @@
       "Completed": true
     },
     "3522": {
-      "TaskID": 3522,
+      "ID": 3522,
       "Viewership": 370586.33999999997,
       "TimesAired": 11,
       "NumberOfStarts": 0,
@@ -5208,7 +5208,7 @@
       "Completed": true
     },
     "2362": {
-      "TaskID": 2362,
+      "ID": 2362,
       "Viewership": 145604.83000000002,
       "TimesAired": 3,
       "NumberOfStarts": 3,
@@ -5242,7 +5242,7 @@
       "Completed": true
     },
     "1584": {
-      "TaskID": 1584,
+      "ID": 1584,
       "Viewership": 308772.82999999996,
       "TimesAired": 16,
       "NumberOfStarts": 0,
@@ -5276,7 +5276,7 @@
       "Completed": true
     },
     "2089": {
-      "TaskID": 2089,
+      "ID": 2089,
       "Viewership": 329793.5,
       "TimesAired": 10,
       "NumberOfStarts": 0,

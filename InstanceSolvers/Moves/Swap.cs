@@ -19,84 +19,60 @@ namespace InstanceSolvers.Moves
         public AdvertisementTask AdvertisementOrder { get; set; }
         public int Position { get; set; }
 
-        private Dictionary<int, TaskScore> _changedOrderStatsBefore;
         private Dictionary<int, TaskScore> _changedOrderStatsAfter;
-        private Dictionary<int, TaskScore> _oldBreakScores;
-        private Dictionary<int, TaskScore> _newBreakScores;
         private BreakSchedule _oldSchedule;
         private BreakSchedule _newSchedule;
+        private Dictionary<int, TaskScore> _oldBreakScores;
+        private Dictionary<int, TaskScore> _newBreakScores;
         public Dictionary<int, TaskCompletionDifference> CompletionDifferences { get; set; }
-
-        private void RollBackSolutionScores()
-        {
-            foreach (var taskData in _newSchedule.Scores.Values)
-            {
-                Solution.AdOrdersScores[taskData.TaskID].RemoveOtherDataFromThis(taskData);
-            }
-            foreach (var taskData in _oldSchedule.Scores.Values)
-            {
-                Solution.AdOrdersScores[taskData.TaskID].MergeOtherDataIntoThis(taskData);
-            }
-        }
 
         private void AddToSolutionScores()
         {
-            _changedOrderStatsBefore = new Dictionary<int, TaskScore>();
             _changedOrderStatsAfter = new Dictionary<int, TaskScore>();
             CompletionDifferences = new Dictionary<int, TaskCompletionDifference>();
-            foreach (var taskData in _oldSchedule.Scores.Values)
+            var changedIds = _oldBreakScores.Keys.Union(_newBreakScores.Keys);
+            foreach (int id in changedIds)
             {
-                TaskScore statsCopy = new TaskScore() { AdConstraints = taskData.AdConstraints };
-                TaskScore currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
-                statsCopy.OverwriteStatsWith(currentStatsForTask);
-                _changedOrderStatsBefore.Add(statsCopy.TaskID, statsCopy);
-                currentStatsForTask.RemoveOtherDataFromThis(taskData);
+                _changedOrderStatsAfter.Add(id, Solution.AdOrdersScores[id].Clone());
             }
-            foreach (var taskData in _newSchedule.Scores.Values)
+            foreach (var taskData in _oldBreakScores.Values)
             {
-                TaskScore currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
-                if (!_changedOrderStatsBefore.TryGetValue(taskData.TaskID, out TaskScore statsCopy))
-                {
-                    statsCopy = new TaskScore() { AdConstraints = taskData.AdConstraints };
-                    statsCopy.OverwriteStatsWith(currentStatsForTask);
-                    _changedOrderStatsBefore.Add(statsCopy.TaskID, statsCopy);
-                }
-                currentStatsForTask.MergeOtherDataIntoThis(taskData);
+                _changedOrderStatsAfter[taskData.ID].RemoveOtherDataFromThis(taskData);
             }
-            foreach(var statsBefore in _changedOrderStatsBefore.Values)
+            foreach (var taskData in _newBreakScores.Values)
             {
-                TaskScore statsCopy = new TaskScore() { AdConstraints = statsBefore.AdConstraints };
-                statsCopy.OverwriteStatsWith(Solution.AdOrdersScores[statsBefore.TaskID]);
-                _changedOrderStatsAfter.Add(statsBefore.TaskID, statsCopy);
-                CompletionDifferences.Add(statsBefore.TaskID, statsCopy.CalculateDifference(statsBefore));
+                _changedOrderStatsAfter[taskData.ID].MergeOtherDataIntoThis(taskData);
+            }
+            foreach (var taskData in _changedOrderStatsAfter.Values)
+            {
+                CompletionDifferences.Add(taskData.ID, taskData.CalculateDifference(Solution.AdOrdersScores[taskData.ID]));
             }
             OverallDifference = new TaskCompletionDifference();
-            foreach (var difference in CompletionDifferences)
+            foreach (var difference in CompletionDifferences.Values)
             {
-                OverallDifference.Add(difference.Value);
+                OverallDifference.Add(difference);
             }
         }
 
         private void CountBreakTaskChanges()
         {
             _oldSchedule = Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID];
-            if(_oldSchedule.Scores == null)
+            if (_oldSchedule.Scores == null)
             {
                 Solution.GradingFunction.AssesBreak(_oldSchedule);
             }
-            _oldBreakScores = _oldSchedule.Scores;
+            _oldBreakScores = _oldSchedule.Scores.ToDictionary(s => s.Key, s => s.Value);
             _newSchedule = _oldSchedule.DeepClone();
             _newSchedule.RemoveAt(Position);
             _newSchedule.Insert(Position, AdvertisementOrder);
             Solution.GradingFunction.AssesBreak(_newSchedule);
-            _newBreakScores = _newSchedule.Scores;
+            _newBreakScores = _newSchedule.Scores.ToDictionary(s => s.Key, s => s.Value);
         }
 
         public void Asses()
         {
             CountBreakTaskChanges();
             AddToSolutionScores();
-            RollBackSolutionScores();
         }
 
         public void Execute()
@@ -107,23 +83,17 @@ namespace InstanceSolvers.Moves
             }
             Solution.RemoveAdFromBreak(TvBreak, Position);
             Solution.AddAdToBreak(AdvertisementOrder, TvBreak, Position);
-            Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newBreakScores;
+            Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newSchedule.Scores;
             foreach (var statsAfter in _changedOrderStatsAfter.Values)
             {
-                Solution.AdOrdersScores[statsAfter.TaskID].OverwriteStatsWith(statsAfter);
+                Solution.AdOrdersScores[statsAfter.ID].OverwriteStatsWith(statsAfter);
             }
             Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
-        }
-
-        public void RollBack()
-        {
-            throw new NotImplementedException();
         }
 
 
         public void CleanData()
         {
-            _changedOrderStatsBefore = null;
             _changedOrderStatsAfter = null;
             _oldBreakScores = null;
             _newBreakScores = null;

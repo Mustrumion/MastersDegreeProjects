@@ -357,5 +357,23 @@ namespace InstanceGenerator.SolutionObjects
                 GradingFunction = GradingFunction.GetAnotherOne(),
             };
         }
+
+        public void AddToSolutionScores(Dictionary<int, TaskScore> addedScores)
+        {
+            foreach (var taskData in addedScores.Values)
+            {
+                TaskScore currentStatsForTask = AdOrdersScores[taskData.ID];
+                currentStatsForTask.MergeOtherDataIntoThis(taskData);
+            }
+        }
+
+        public void RemoveFromSolutionScores(Dictionary<int, TaskScore> removedScores)
+        {
+            foreach (var taskData in removedScores.Values)
+            {
+                TaskScore currentStatsForTask = AdOrdersScores[taskData.ID];
+                currentStatsForTask.RemoveOtherDataFromThis(taskData);
+            }
+        }
     }
 }

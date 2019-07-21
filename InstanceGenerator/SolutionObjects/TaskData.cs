@@ -15,7 +15,7 @@ namespace InstanceGenerator.SolutionObjects
     /// </summary>
     public class TaskScore
     {
-        public int TaskID { get => AdConstraints.ID; }
+        public int ID { get => AdConstraints.ID; }
 
         public double Viewership { get; set; }
         public int TimesAired { get; set; }

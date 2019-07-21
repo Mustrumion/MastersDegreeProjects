@@ -26,11 +26,7 @@ namespace InstanceSolvers.Solvers
         
         private void AddToSolutionScores(Dictionary<int, TaskScore> addedScores)
         {
-            foreach (var taskData in addedScores.Values)
-            {
-                TaskScore currentStatsForTask = Solution.AdOrdersScores[taskData.TaskID];
-                currentStatsForTask.MergeOtherDataIntoThis(taskData);
-            }
+            Solution.AddToSolutionScores(addedScores);
             ScoringFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
         }
 
