@@ -33,12 +33,12 @@ namespace InstanceGeneratorConsole
             BulkSolver bulkSolver = new BulkSolver()
             {
                 MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = true,
+                ParallelExecution = false,
                 MaxThreads = 4,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
-                //DifficultyFilter = new[] { "extreme" },
-                //KindFilter = new[] { "4ch3n1a1" },
-                //LengthFilter = new[] { "day.json" },
+                DifficultyFilter = new[] { "extreme" },
+                KindFilter = new[] { "4ch3n1a1" },
+                LengthFilter = new[] { "month.json" },
             };
 
             //bulkSolver.SolveEverything(LocalSearchNewStopConditions);
@@ -90,6 +90,7 @@ namespace InstanceGeneratorConsole
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = 0,
+                DiagnosticMessages = true,
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
@@ -105,7 +106,7 @@ namespace InstanceGeneratorConsole
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 15, 0),
+                TimeLimit = new TimeSpan(0, 0, 60),
                 Description = "local_search_new_stop_condition_15rs4",
             };
             solver.MoveFactories = new List<IMoveFactory>

@@ -31,7 +31,7 @@ namespace InstanceSolvers.Moves
         {
             _changedOrderStatsAfter = new Dictionary<int, TaskScore>();
             CompletionDifferences = new Dictionary<int, TaskCompletionDifference>();
-            var changedIds = _oldBreakScores.Keys.Union(_newBreakScores.Keys);
+            var changedIds = _oldBreakScores.Keys.Union(_newBreakScores.Keys).ToList();
             foreach (int id in changedIds)
             {
                 _changedOrderStatsAfter.Add(id, Solution.AdOrdersScores[id].Clone());

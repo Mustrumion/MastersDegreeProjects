@@ -62,6 +62,7 @@ namespace InstanceSolvers.Solvers
                 _bestMove = null;
                 foreach (IMoveFactory factory in MoveFactories)
                 {
+                    if (TimeToEnd()) break;
                     AssesMovesFromFactory(factory);
                 }
                 ChooseToPerform();
@@ -87,10 +88,7 @@ namespace InstanceSolvers.Solvers
             var moves = factory.GenerateMoves().ToList();
             foreach (var move in moves)
             {
-                if (TimeToEnd())
-                {
-                    return;
-                }
+                if (TimeToEnd()) break;
                 move.Asses();
                 if (FirstIsBetter(move, _bestMove))
                 {
@@ -159,29 +157,29 @@ namespace InstanceSolvers.Solvers
             }
         }
 
-        private bool TimeToEnd()
+        private bool TimeToEnd(bool outer = true)
         {
             if(Solution.CompletionScore >= 1)
             {
                 if(StopWhenCompleted || Solution.WeightedLoss == 0)
                 {
-                    if (DiagnosticMessages) Console.WriteLine($"TaskCompleted.");
+                    if (DiagnosticMessages  && outer) Console.WriteLine($"TaskCompleted.");
                     return true;
                 }
             }
             if (CurrentTime.Elapsed > TimeLimit)
             {
-                if (DiagnosticMessages) Console.WriteLine($"Timeout of {TimeLimit}.");
+                if (DiagnosticMessages && outer) Console.WriteLine($"Timeout of {TimeLimit}.");
                 return true;
             }
             if (NumberOfNoGoodActionsToStop != 0 && NumberOfNoGoodActionsToStop <= _numberOfLoopsWithoutImprovement)
             {
-                if (DiagnosticMessages) Console.WriteLine($"Performed {_numberOfLoopsWithoutImprovement} actions with no improvement.");
+                if (DiagnosticMessages && outer) Console.WriteLine($"Performed {_numberOfLoopsWithoutImprovement} actions with no improvement.");
                 return true;
             }
             if (_timeToStop)
             {
-                if (DiagnosticMessages) Console.WriteLine($"No good action.");
+                if (DiagnosticMessages && outer) Console.WriteLine($"No good action.");
                 return true;
             }
             return false;

@@ -17,7 +17,6 @@ namespace InstanceSolvers.Solvers.Base
         protected int _seed;
         protected IScoringFunction _scoringFunction;
         protected Solution _solution;
-        private Stopwatch _currentTime;
         private TimeSpan _previousSolutionTime;
 
         public BaseSolver()
@@ -29,13 +28,15 @@ namespace InstanceSolvers.Solvers.Base
 
         [JsonIgnore]
         public IReporter Reporter { get; set; } = new NullReporter();
+        [JsonIgnore]
         public Random Random { get; set; }
         public TimeSpan TimeLimit { get; set; } = new TimeSpan(100, 0, 0);
         [JsonIgnore]
-        public Stopwatch CurrentTime { get => _currentTime; }
+        public Stopwatch CurrentTime { get; private set; }
         public bool PropagateRandomSeed { get; set; }
         public List<ISolver> InitialSolvers { get; set; } = new List<ISolver>();
         public string Description { get; set; }
+        [JsonIgnore]
         public bool DiagnosticMessages { get; set; }
 
         public int Seed
@@ -147,8 +148,8 @@ namespace InstanceSolvers.Solvers.Base
             FireInitialSolvers();
             if(ReportStarts) AddStartReport();
             _previousSolutionTime = Solution.TimeElapsed;
-            _currentTime = new Stopwatch();
-            _currentTime.Start();
+            CurrentTime = new Stopwatch();
+            CurrentTime.Start();
             InternalSolve();
             CurrentTime.Stop();
             Solution.TimeElapsed = CurrentTime.Elapsed + _previousSolutionTime;
