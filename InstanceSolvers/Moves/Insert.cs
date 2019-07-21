@@ -29,20 +29,28 @@ namespace InstanceSolvers.Moves
 
         private void AddToSolutionScores()
         {
-            _changedOrderStatsAfter = new Dictionary<int, TaskScore>();
             CompletionDifferences = new Dictionary<int, TaskCompletionDifference>();
-            var changedIds = _oldBreakScores.Keys.Union(_newBreakScores.Keys).ToList();
-            foreach (int id in changedIds)
-            {
-                _changedOrderStatsAfter.Add(id, Solution.AdOrdersScores[id].Clone());
-            }
+            var changedIds = _oldBreakScores.Keys.Union(_newBreakScores.Keys);
             foreach (var taskData in _oldBreakScores.Values)
             {
-                _changedOrderStatsAfter[taskData.ID].RemoveOtherDataFromThis(taskData);
+                Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData);
             }
             foreach (var taskData in _newBreakScores.Values)
             {
-                _changedOrderStatsAfter[taskData.ID].MergeOtherDataIntoThis(taskData);
+                Solution.AdOrdersScores[taskData.ID].MergeOtherDataIntoThis(taskData);
+            }
+            _changedOrderStatsAfter = new Dictionary<int, TaskScore>();
+            foreach (int id in changedIds)
+            {
+                _changedOrderStatsAfter.Add(id, Solution.AdOrdersScores[id].Clone(true));
+            }
+            foreach (var taskData in _newBreakScores.Values)
+            {
+                Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData);
+            }
+            foreach (var taskData in _oldBreakScores.Values)
+            {
+                Solution.AdOrdersScores[taskData.ID].MergeOtherDataIntoThis(taskData);
             }
             foreach (var taskData in _changedOrderStatsAfter.Values)
             {

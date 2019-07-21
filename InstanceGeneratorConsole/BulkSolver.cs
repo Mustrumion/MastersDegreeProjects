@@ -18,7 +18,7 @@ namespace InstanceGeneratorConsole
         public volatile BulkSolverStats _stats;
         private volatile Dictionary<string, BulkSolverStats> _categorizedStats = new Dictionary<string, BulkSolverStats>();
 
-        public string MainDirectory { get; set; } = @"C:\Users\bartl\Desktop\MDP";
+        public string MainDirectory { get; set; }
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
         private string SolutionsDirectory => Path.Combine(MainDirectory, "solutions");
         public bool ParallelExecution { get; set; } = false;

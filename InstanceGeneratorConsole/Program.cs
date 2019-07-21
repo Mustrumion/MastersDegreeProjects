@@ -19,7 +19,7 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\bartl\dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\dropbox\MDP";
 
 
         static void Main(string[] args)
