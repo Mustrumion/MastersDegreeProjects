@@ -36,13 +36,13 @@ namespace InstanceGeneratorConsole
                 ParallelExecution = false,
                 MaxThreads = 4,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
-                DifficultyFilter = new[] { "extreme" },
+                DifficultyFilter = new[] { "medium" },
                 KindFilter = new[] { "4ch3n1a1" },
-                LengthFilter = new[] { "month.json" },
+                LengthFilter = new[] { "week.json" },
             };
 
             //bulkSolver.SolveEverything(LocalSearchNewStopConditions);
-            bulkSolver.SolveEverything(LocalSearchNewStopConditions2);
+            bulkSolver.SolveEverything(EvolutionarySolver);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -84,6 +84,24 @@ namespace InstanceGeneratorConsole
         }
 
 
+        private static ISolver EvolutionarySolver()
+        {
+            Evolutionary solver = new Evolutionary()
+            {
+                Description = "evolutionary",
+                ScoringFunction = new Scorer(),
+                DiagnosticMessages = true,
+                PropagateRandomSeed = true,
+                ParallelAllowed = true,
+                Seed = 10,
+                GenerationImproverGenerator = LocalSearchForEvulutionaryImprovement,
+                GenerationCreatorGenerator = LocalSearchEvolutionaryInitial,
+                BreakAfterLoopsWithoutImprovement = 3,
+            };
+            return solver;
+        }
+
+
 
         private static ISolver LocalSearchNewStopConditions2()
         {
@@ -106,7 +124,7 @@ namespace InstanceGeneratorConsole
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 0, 60),
+                TimeLimit = new TimeSpan(0, 5, 0),
                 Description = "local_search_new_stop_condition_15rs4",
             };
             solver.MoveFactories = new List<IMoveFactory>
@@ -136,6 +154,102 @@ namespace InstanceGeneratorConsole
                 },
             };
             solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(compundSolver);
+            return solver;
+        }
+
+
+
+        private static ISolver LocalSearchEvolutionaryInitial()
+        {
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
+            {
+                MaxOverfillUnits = 0,
+            };
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                MaxLoops = 7,
+            };
+            LocalSearch solver = new LocalSearch()
+            {
+                PropagateRandomSeed = true,
+                NumberOfNoGoodActionsToStop = 15,
+                BestFactoryAdjustmentParam = 0.2,
+                NeighberhoodAdjustmentParam = 0.2,
+                ImprovementOverNarrowNeighb = 2,
+                TimeLimit = new TimeSpan(0, 5, 0),
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxTasksChecked = 3,
+                    MaxBreaksChecked = 3,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                    AlwaysReturnStartsAndEnds = true,
+                },
+                new RandomDeleteFactory()
+                {
+                    MovesReturned = 20,
+                },
+                new RandomInsertFactory()
+                {
+                    MovesReturned = 30,
+                },
+                new RandomSwapFactory()
+                {
+                    MovesReturned = 30,
+                },
+            };
+            solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(compundSolver);
+            return solver;
+        }
+
+        private static ISolver LocalSearchForEvulutionaryImprovement()
+        {
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                MaxLoops = 7,
+            };
+            LocalSearch solver = new LocalSearch()
+            {
+                NumberOfNoGoodActionsToStop = 15,
+                BestFactoryAdjustmentParam = 0.2,
+                NeighberhoodAdjustmentParam = 0.2,
+                ImprovementOverNarrowNeighb = 2,
+                TimeLimit = new TimeSpan(0, 5, 0),
+            };
+            solver.MoveFactories = new List<IMoveFactory>
+            {
+                new InsertMoveFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxTasksChecked = 3,
+                    MaxBreaksChecked = 3,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                    AlwaysReturnStartsAndEnds = true,
+                },
+                new RandomDeleteFactory()
+                {
+                    MovesReturned = 20,
+                },
+                new RandomInsertFactory()
+                {
+                    MovesReturned = 30,
+                },
+                new RandomSwapFactory()
+                {
+                    MovesReturned = 30,
+                },
+            };
             solver.InitialSolvers.Add(compundSolver);
             return solver;
         }
