@@ -40,6 +40,7 @@ namespace InstanceSolvers.Solvers
                 Instance = Instance,
                 Solution = Solution,
             };
+            insert.Asses();
             insert.Execute();
             Reporter.AddEntry(insert.GenerateReportEntry());
             return true;
@@ -59,6 +60,7 @@ namespace InstanceSolvers.Solvers
                 Instance = Instance,
                 Solution = Solution,
             };
+            insert.Asses();
             insert.Execute();
             Reporter.AddEntry(insert.GenerateReportEntry());
         }

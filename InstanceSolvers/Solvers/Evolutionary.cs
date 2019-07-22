@@ -1,6 +1,7 @@
 ﻿using InstanceGenerator;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
+using InstanceSolvers.MoveFactories;
 using InstanceSolvers.Solvers.Base;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,18 @@ namespace InstanceSolvers.Solvers
 {
     public class Evolutionary : BaseSolver
     {
-        public int PopulationCount { get; set; } = 100;
-        public int NumberOfTransformations { get; set; } = 10;
+        public int PopulationCount { get; set; } = 20;
+        public int NumberOfMutatingTransformations { get; set; } = 10;
         public int NumberOfBreaksCrossed { get; set; } = 5;
         public int NumberOfMutants { get; set; } = 20;
         public int NumberOfCrossbreeds { get; set; } = 10;
-        public bool ParallelAllowed { get; set; }
+        public bool ParallelAllowed { get; set; } = false;
+
+        public int GenerationsWithoutImprovement { get; private set; }
+        public int Generations { get; private set; }
+
+
+        public Func<List<IMoveFactory>> GenerateMutationFactories { get; set; }
 
         /// <summary>
         /// Those may be used in parallel, so a single one won't cut it.
@@ -52,6 +59,29 @@ namespace InstanceSolvers.Solvers
                 {
                     AddSolutionToGeneration(seed);
                 }
+            }
+        }
+
+
+        private void InitializeMoveFactories()
+        {
+            if (GenerateMutationFactories == null)
+            {
+                GenerateMutationFactories = () => new List<IMoveFactory>
+                {
+                    new RandomDeleteFactory()
+                    {
+                        MovesReturned = 1,
+                    },
+                    new RandomInsertFactory()
+                    {
+                        MovesReturned = 1,
+                    },
+                    new RandomSwapFactory()
+                    {
+                        MovesReturned = 1,
+                    },
+                };
             }
         }
 
@@ -125,6 +155,8 @@ namespace InstanceSolvers.Solvers
                 ImprovePopulation();
                 CullPopulation();
                 SaveTheBest();
+                Generations += 1;
+                if (DiagnosticMessages) Console.WriteLine($"Generation {Generations} finished. Completion {_bestSolution.CompletionScore}. Weighted loss {_bestSolution.WeightedLoss}.");
             }
         }
 
@@ -150,12 +182,26 @@ namespace InstanceSolvers.Solvers
 
         private void GenerateMutantBasedOn(Solution solution)
         {
-            var mutant = _solution.TakeSnapshot();
-            mutant.RestoreStructures();
-            mutant.GradingFunction = ScoringFunction.GetAnotherOne();
-            mutant.GradingFunction.AssesSolution(mutant);
-
-
+            var mutant = _solution.DeepCopy();
+            var factories = GenerateMutationFactories();
+            foreach (var factory in factories)
+            {
+                lock (Random)
+                {
+                    if (PropagateRandomSeed) factory.Seed = Random.Next();
+                    else factory.Seed = (Random.Next() + new Random().Next()) % int.MaxValue;
+                }
+                factory.Solution = mutant;
+            }
+            for (int i = 0; i < NumberOfMutatingTransformations; i++)
+            {
+                var moves = factories[i % factories.Count].GenerateMoves();
+                var move = moves.FirstOrDefault();
+                if (move != null)
+                {
+                    move.Execute();
+                }
+            }
         }
         
         private void CreateCrossbreed(Solution mainSolution, Solution breakDonor)
@@ -173,7 +219,10 @@ namespace InstanceSolvers.Solvers
 
         private void CreateCrossbreeds()
         {
-            throw new NotImplementedException();
+            for(int i = 0; i < NumberOfCrossbreeds; i++)
+            {
+
+            }
         }
 
         private void SaveTheBest()
@@ -182,6 +231,11 @@ namespace InstanceSolvers.Solvers
             if (populationBest.IsBetterThan(_bestSolution))
             {
                 _bestSolution = populationBest.TakeSnapshot();
+                GenerationsWithoutImprovement = 0;
+            }
+            else
+            {
+                GenerationsWithoutImprovement += 1;
             }
         }
 

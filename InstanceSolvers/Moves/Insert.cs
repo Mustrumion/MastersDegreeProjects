@@ -27,10 +27,9 @@ namespace InstanceSolvers.Moves
         public Dictionary<int, TaskCompletionDifference> CompletionDifferences { get; set; }
 
 
-        private void AddToSolutionScores()
+        private void Perform()
         {
-            CompletionDifferences = new Dictionary<int, TaskCompletionDifference>();
-            var changedIds = _oldBreakScores.Keys.Union(_newBreakScores.Keys);
+            Solution.AdvertisementsScheduledOnBreaks[_newSchedule.ID] = _newSchedule;
             foreach (var taskData in _oldBreakScores.Values)
             {
                 Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData);
@@ -39,19 +38,44 @@ namespace InstanceSolvers.Moves
             {
                 Solution.AdOrdersScores[taskData.ID].MergeOtherDataIntoThis(taskData);
             }
+        }
+
+        // perform the move faster using the data gotten from assesment
+        private void FastPerform()
+        {
+            Solution.AddAdToBreak(AdvertisementOrder, TvBreak, Position);
+            Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newSchedule.Scores;
+            foreach (var statsAfter in _changedOrderStatsAfter.Values)
+            {
+                Solution.AdOrdersScores[statsAfter.ID].OverwriteStatsWith(statsAfter);
+            }
+            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
+        }
+
+        private void RollBack()
+        {
+            Solution.AdvertisementsScheduledOnBreaks[_oldSchedule.ID] = _oldSchedule;
+            foreach (var taskData in _newBreakScores.Values)
+            {
+                Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData);
+            }
+            foreach (var taskData in _oldBreakScores.Values)
+            {
+                Solution.AdOrdersScores[taskData.ID].MergeOtherDataIntoThis(taskData);
+            }
+        }
+
+        private void ScoreInPlace()
+        {
+            var changedIds = _oldBreakScores.Keys.Union(_newBreakScores.Keys).ToList();
+            Perform();
+            CompletionDifferences = new Dictionary<int, TaskCompletionDifference>();
             _changedOrderStatsAfter = new Dictionary<int, TaskScore>();
             foreach (int id in changedIds)
             {
                 _changedOrderStatsAfter.Add(id, Solution.AdOrdersScores[id].Clone(true));
             }
-            foreach (var taskData in _newBreakScores.Values)
-            {
-                Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData);
-            }
-            foreach (var taskData in _oldBreakScores.Values)
-            {
-                Solution.AdOrdersScores[taskData.ID].MergeOtherDataIntoThis(taskData);
-            }
+            RollBack();
             foreach (var taskData in _changedOrderStatsAfter.Values)
             {
                 CompletionDifferences.Add(taskData.ID, taskData.CalculateDifference(Solution.AdOrdersScores[taskData.ID]));
@@ -97,22 +121,20 @@ namespace InstanceSolvers.Moves
         {
             CountBreakTaskChanges();
             RemoveUnchangedAdScores();
-            AddToSolutionScores();
+            ScoreInPlace();
         }
 
         public void Execute()
         {
             if (OverallDifference == null)
             {
-                Asses();
+                CountBreakTaskChanges();
+                Perform();
             }
-            Solution.AddAdToBreak(AdvertisementOrder, TvBreak, Position);
-            Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newSchedule.Scores;
-            foreach (var statsAfter in _changedOrderStatsAfter.Values)
+            else
             {
-                Solution.AdOrdersScores[statsAfter.ID].OverwriteStatsWith(statsAfter);
+                FastPerform();
             }
-            Solution.GradingFunction.RecalculateSolutionScoresBasedOnTaskData(Solution);
         }
 
         public void CleanData()
