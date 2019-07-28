@@ -103,7 +103,7 @@ namespace InstanceGeneratorConsole
                 PropagateRandomSeed = true,
                 ParallelAllowed = true,
                 Seed = 10,
-                GenerationImproverGenerator = LocalSearchForEvulutionaryImprovement,
+                GenerationImproverGenerator = LocalSearchForEvolutionaryImprovement,
                 GenerationCreatorGenerator = LocalSearchEvolutionaryInitial,
             };
             return solver;
@@ -182,9 +182,9 @@ namespace InstanceGeneratorConsole
             {
                 PropagateRandomSeed = true,
                 NumberOfNoGoodActionsToStop = 5,
-                BestFactoryAdjustmentParam = 0.5,
-                NeighberhoodAdjustmentParam = 0.5,
-                ImprovementOverNarrowNeighb = 2,
+                BestFactoryAdjustmentParam = 0.1,
+                NeighberhoodAdjustmentParam = 0.1,
+                ImprovementOverNarrowNeighb = 1.5,
                 TimeLimit = new TimeSpan(0, 5, 0),
                 DiagnosticMessages = true,
                 ReportTimeouts = true,
@@ -204,18 +204,18 @@ namespace InstanceGeneratorConsole
                 },
                 new RandomDeleteFactory()
                 {
-                    MovesReturned = 5,
+                    MovesReturned = 20,
                     RampUpSpeed = 3.0,
                 },
                 new RandomInsertFactory()
                 {
-                    MovesReturned = 5,
+                    MovesReturned = 20,
                     RampUpSpeed = 3.0,
                 },
                 new RandomSwapFactory()
                 {
-                    MovesReturned = 5,
-                    RampUpSpeed = 3.0,
+                    MovesReturned = 50,
+                    RampUpSpeed = 4.0,
                 },
             };
             solver.InitialSolvers.Add(randomSolver);
@@ -223,7 +223,7 @@ namespace InstanceGeneratorConsole
             return solver;
         }
 
-        private static ISolver LocalSearchForEvulutionaryImprovement()
+        private static ISolver LocalSearchForEvolutionaryImprovement()
         {
             CompoundSolver compundSolver = new CompoundSolver()
             {
@@ -231,10 +231,10 @@ namespace InstanceGeneratorConsole
             };
             LocalSearch solver = new LocalSearch()
             {
-                NumberOfNoGoodActionsToStop = 10,
-                BestFactoryAdjustmentParam = 0.5,
-                NeighberhoodAdjustmentParam = 0.5,
-                ImprovementOverNarrowNeighb = 2,
+                NumberOfNoGoodActionsToStop = 15,
+                BestFactoryAdjustmentParam = 0.1,
+                NeighberhoodAdjustmentParam = 0.1,
+                ImprovementOverNarrowNeighb = 1.5,
                 TimeLimit = new TimeSpan(0, 2, 0),
                 ReportTimeouts = true,
             };
@@ -244,8 +244,8 @@ namespace InstanceGeneratorConsole
                 {
                     MildlyRandomOrder = true,
                     PositionsCountLimit = 3,
-                    MaxTasksChecked = 2,
-                    MaxBreaksChecked = 2,
+                    MaxTasksChecked = 1,
+                    MaxBreaksChecked = 1,
                     IgnoreBreaksWhenUnitOverfillAbove = 60,
                     IgnoreCompletedTasks = true,
                     IgnoreTasksWithCompletedViews = false,
@@ -254,14 +254,17 @@ namespace InstanceGeneratorConsole
                 new RandomDeleteFactory()
                 {
                     MovesReturned = 20,
+                    RampUpSpeed = 3.0,
                 },
                 new RandomInsertFactory()
                 {
-                    MovesReturned = 30,
+                    MovesReturned = 20,
+                    RampUpSpeed = 3.0,
                 },
                 new RandomSwapFactory()
                 {
-                    MovesReturned = 30,
+                    MovesReturned = 50,
+                    RampUpSpeed = 4.0,
                 },
             };
             solver.InitialSolvers.Add(compundSolver);

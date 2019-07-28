@@ -53,9 +53,9 @@ namespace InstanceSolvers.MoveFactories
         public void WidenNeighborhood(double alpha)
         {
             _currentChange += alpha * RampUpSpeed;
-            if (alpha >= 1)
+            if (_currentChange >= 1)
             {
-                int step = Convert.ToInt32(alpha);
+                int step = Convert.ToInt32(_currentChange);
                 _currentChange -= step;
                 ChangeParametersBy(step);
             }
@@ -64,9 +64,9 @@ namespace InstanceSolvers.MoveFactories
         public void NarrowNeighborhood(double alpha)
         {
             _currentChange -= alpha * RampUpSpeed;
-            if (alpha <= -1)
+            if (_currentChange <= -1)
             {
-                int step = -1 * Convert.ToInt32(Math.Abs(alpha));
+                int step = -1 * Convert.ToInt32(Math.Abs(_currentChange));
                 _currentChange -= step;
                 ChangeParametersBy(step);
             }

@@ -209,6 +209,7 @@ namespace InstanceSolvers.Solvers
         {
             if (BestFactoryAdjustmentParam == 0 || _bestFactory == null) return;
             _bestFactory.WidenNeighborhood(BestFactoryAdjustmentParam);
+            //Console.WriteLine($"Rewarded {_bestFactory.GetType().Name}");
         }
 
         private void ChooseToPerform()
