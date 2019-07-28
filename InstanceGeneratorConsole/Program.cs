@@ -173,10 +173,12 @@ namespace InstanceGeneratorConsole
             {
                 PropagateRandomSeed = true,
                 NumberOfNoGoodActionsToStop = 5,
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
+                BestFactoryAdjustmentParam = 0.5,
+                NeighberhoodAdjustmentParam = 0.5,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 5, 0),
+                DiagnosticMessages = true,
+                ReportTimeouts = true,
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
@@ -184,8 +186,8 @@ namespace InstanceGeneratorConsole
                 {
                     MildlyRandomOrder = true,
                     PositionsCountLimit = 3,
-                    MaxTasksChecked = 2,
-                    MaxBreaksChecked = 2,
+                    MaxTasksChecked = 1,
+                    MaxBreaksChecked = 1,
                     IgnoreBreaksWhenUnitOverfillAbove = 60,
                     IgnoreCompletedTasks = true,
                     IgnoreTasksWithCompletedViews = false,
@@ -193,15 +195,18 @@ namespace InstanceGeneratorConsole
                 },
                 new RandomDeleteFactory()
                 {
-                    MovesReturned = 20,
+                    MovesReturned = 5,
+                    RampUpSpeed = 3.0,
                 },
                 new RandomInsertFactory()
                 {
-                    MovesReturned = 30,
+                    MovesReturned = 5,
+                    RampUpSpeed = 3.0,
                 },
                 new RandomSwapFactory()
                 {
-                    MovesReturned = 30,
+                    MovesReturned = 5,
+                    RampUpSpeed = 3.0,
                 },
             };
             solver.InitialSolvers.Add(randomSolver);
@@ -217,11 +222,12 @@ namespace InstanceGeneratorConsole
             };
             LocalSearch solver = new LocalSearch()
             {
-                NumberOfNoGoodActionsToStop = 15,
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
+                NumberOfNoGoodActionsToStop = 10,
+                BestFactoryAdjustmentParam = 0.5,
+                NeighberhoodAdjustmentParam = 0.5,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 1, 0),
+                TimeLimit = new TimeSpan(0, 2, 0),
+                ReportTimeouts = true,
             };
             solver.MoveFactories = new List<IMoveFactory>
             {

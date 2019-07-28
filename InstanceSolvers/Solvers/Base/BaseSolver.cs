@@ -38,6 +38,8 @@ namespace InstanceSolvers.Solvers.Base
         public string Description { get; set; }
         [JsonIgnore]
         public bool DiagnosticMessages { get; set; }
+        [JsonIgnore]
+        public bool ReportTimeouts { get; set; }
 
         public int Seed
         {
@@ -154,6 +156,7 @@ namespace InstanceSolvers.Solvers.Base
             CurrentTime.Stop();
             Solution.TimeElapsed = CurrentTime.Elapsed + _previousSolutionTime;
             if(ReportEnds) AddEndReport();
+            if (ReportTimeouts && CurrentTime.Elapsed > TimeLimit) Console.WriteLine($"{GetType().Name} ended because of a timeout.");
             if (DiagnosticMessages) Console.WriteLine($"{GetType().Name} ended. Time elapsed {CurrentTime.Elapsed}.");
         }
 

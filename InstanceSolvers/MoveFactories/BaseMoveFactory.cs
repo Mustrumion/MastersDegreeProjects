@@ -15,6 +15,8 @@ namespace InstanceSolvers.MoveFactories
         protected Solution _solution;
         protected double _currentChange;
 
+        public double RampUpSpeed { get; set; } = 1.0;
+        [JsonIgnore]
         public int MaxMovesReturned = 10000;
         [JsonIgnore]
         public Random Random { get; set; }
@@ -50,7 +52,7 @@ namespace InstanceSolvers.MoveFactories
         
         public void WidenNeighborhood(double alpha)
         {
-            _currentChange += alpha;
+            _currentChange += alpha * RampUpSpeed;
             if (alpha >= 1)
             {
                 int step = Convert.ToInt32(alpha);
@@ -61,7 +63,7 @@ namespace InstanceSolvers.MoveFactories
 
         public void NarrowNeighborhood(double alpha)
         {
-            _currentChange -= alpha;
+            _currentChange -= alpha * RampUpSpeed;
             if (alpha <= -1)
             {
                 int step = -1 * Convert.ToInt32(Math.Abs(alpha));
