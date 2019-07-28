@@ -10,8 +10,10 @@ using InstanceSolvers.Solvers;
 using InstanceSolvers.Solvers.Base;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,11 +21,18 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
+        [DllImport("kernel32.dll")]
+        public static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint dwMode);
+        private const uint ENABLE_EXTENDED_FLAGS = 0x0080;
+
+
         private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\dropbox\MDP";
 
 
         static void Main(string[] args)
         {
+            IntPtr handle = Process.GetCurrentProcess().MainWindowHandle;
+            SetConsoleMode(handle, ENABLE_EXTENDED_FLAGS);
             //BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
             //{
             //    MainDirectory = MAIN_DIRECTORY,
@@ -168,12 +177,12 @@ namespace InstanceGeneratorConsole
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 7,
+                MaxLoops = 2,
             };
             LocalSearch solver = new LocalSearch()
             {
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 15,
+                NumberOfNoGoodActionsToStop = 5,
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
@@ -214,11 +223,11 @@ namespace InstanceGeneratorConsole
         {
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 7,
+                MaxLoops = 2,
             };
             LocalSearch solver = new LocalSearch()
             {
-                NumberOfNoGoodActionsToStop = 15,
+                NumberOfNoGoodActionsToStop = 5,
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
