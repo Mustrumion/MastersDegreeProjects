@@ -19,7 +19,7 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\bartl\dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -88,7 +88,7 @@ namespace InstanceGeneratorConsole
         {
             Evolutionary solver = new Evolutionary()
             {
-                Description = "evolutionary",
+                Description = "evolutionary2",
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
@@ -177,16 +177,16 @@ namespace InstanceGeneratorConsole
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 5, 0),
+                TimeLimit = new TimeSpan(0, 1, 0),
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
                 new InsertMoveFactory()
                 {
                     MildlyRandomOrder = true,
-                    PositionsCountLimit = 4,
-                    MaxTasksChecked = 3,
-                    MaxBreaksChecked = 3,
+                    PositionsCountLimit = 3,
+                    MaxTasksChecked = 2,
+                    MaxBreaksChecked = 2,
                     IgnoreBreaksWhenUnitOverfillAbove = 60,
                     IgnoreCompletedTasks = true,
                     IgnoreTasksWithCompletedViews = false,
@@ -214,7 +214,7 @@ namespace InstanceGeneratorConsole
         {
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 7,
+                MaxLoops = 1,
             };
             LocalSearch solver = new LocalSearch()
             {
@@ -222,16 +222,16 @@ namespace InstanceGeneratorConsole
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 5, 0),
+                TimeLimit = new TimeSpan(0, 1, 0),
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
                 new InsertMoveFactory()
                 {
                     MildlyRandomOrder = true,
-                    PositionsCountLimit = 4,
-                    MaxTasksChecked = 3,
-                    MaxBreaksChecked = 3,
+                    PositionsCountLimit = 3,
+                    MaxTasksChecked = 2,
+                    MaxBreaksChecked = 2,
                     IgnoreBreaksWhenUnitOverfillAbove = 60,
                     IgnoreCompletedTasks = true,
                     IgnoreTasksWithCompletedViews = false,

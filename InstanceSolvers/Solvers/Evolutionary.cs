@@ -101,6 +101,7 @@ namespace InstanceSolvers.Solvers
             generationCreator.PropagateRandomSeed = PropagateRandomSeed;
             generationCreator.ScoringFunction = ScoringFunction.GetAnotherOne();
             generationCreator.Solve();
+            generationCreator.Solution.Description = $"Initial, seed:{seed}";
             lock (_generation)
             {
                 _generation.Add(generationCreator.Solution);
@@ -169,7 +170,7 @@ namespace InstanceSolvers.Solvers
             _generation = _generation.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).ToList();
             for(int i = 0; i < _generation.Count; i ++)
             {
-                Console.WriteLine($"Solution no. {i}. Completion {_generation[i].CompletionScore}. Weighted loss {_generation[i].WeightedLoss}.");
+                Console.WriteLine($"No. {i}. Comp {_generation[i].CompletionScore}. Weighted {_generation[i].WeightedLoss}. Desc {_generation[i].Description}.");
             }
         }
 
@@ -230,6 +231,7 @@ namespace InstanceSolvers.Solvers
                     move.Execute();
                 }
             }
+            mutant.Description += $", m{Generations}";
             lock (_generation)
             {
                 _generation.Add(mutant);
@@ -248,6 +250,7 @@ namespace InstanceSolvers.Solvers
                 kiddo.AdvertisementsScheduledOnBreaks[schedule.ID] = schedule.DeepClone();
             }
             kiddo.GradingFunction.AssesSolution(kiddo);
+            kiddo.Description += $", c{Generations}";
             lock (_generation)
             {
                 _generation.Add(kiddo);
@@ -256,19 +259,27 @@ namespace InstanceSolvers.Solvers
 
         private void CreateCrossbreeds()
         {
-            _generation.Shuffle(Random);
+            List<Solution> pairList = new List<Solution>();
+            int numberLeft = NumberOfCrossbreeds * 2;
+            while(numberLeft > 0)
+            {
+                _generation.Shuffle(Random);
+                pairList.AddRange(_generation);
+                numberLeft -= _generation.Count;
+            }
+
             if (ParallelAllowed)
             {
                 Parallel.For(0, NumberOfCrossbreeds, (i) =>
                 {
-                    CreateCrossbreed(_generation[i * 2], _generation[i * 2 + 1]);
+                    CreateCrossbreed(pairList[i * 2], pairList[i * 2 + 1]);
                 });
             }
             else
             {
                 for(int i = 0; i< NumberOfCrossbreeds; i++)
                 {
-                    CreateCrossbreed(_generation[i * 2], _generation[i * 2 + 1]);
+                    CreateCrossbreed(pairList[i * 2], pairList[i * 2 + 1]);
                 }
             }
         }
