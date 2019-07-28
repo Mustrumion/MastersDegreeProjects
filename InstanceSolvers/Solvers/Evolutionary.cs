@@ -20,7 +20,7 @@ namespace InstanceSolvers.Solvers
         public int NumberOfCrossbreeds { get; set; } = 20;
         public int CandidatesForParent { get; set; } = 2;
         public bool ParallelAllowed { get; set; } = true;
-        public int BreakAfterLoopsWithoutImprovement { get; set; }
+        public int BreakAfterLoopsWithoutImprovement { get; set; } = 1;
 
         public int GenerationsWithoutImprovement { get; private set; }
         public int Generations { get; private set; }
@@ -102,7 +102,7 @@ namespace InstanceSolvers.Solvers
             generationCreator.PropagateRandomSeed = PropagateRandomSeed;
             generationCreator.ScoringFunction = ScoringFunction.GetAnotherOne();
             generationCreator.Solve();
-            generationCreator.Solution.Description = $"Initial, seed:{seed}";
+            generationCreator.Solution.Description = $"Seed:{seed}";
             lock (_generation)
             {
                 _generation.Add(generationCreator.Solution);

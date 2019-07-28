@@ -96,7 +96,6 @@ namespace InstanceGeneratorConsole
                 Seed = 10,
                 GenerationImproverGenerator = LocalSearchForEvulutionaryImprovement,
                 GenerationCreatorGenerator = LocalSearchEvolutionaryInitial,
-                BreakAfterLoopsWithoutImprovement = 3,
             };
             return solver;
         }

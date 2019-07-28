@@ -88,7 +88,7 @@ namespace InstanceSolvers.MoveFactories
             foreach (var tvBreak in _breaks)
             {
                 BreakSchedule schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
-                IEnumerable<int> positionList = Enumerable.Range(0, schedule.Count);
+                IEnumerable<int> positionList = Enumerable.Range(0, schedule.Count).Reverse();
                 if (MildlyRandomOrder)
                 {
                     positionList = positionList.ToList();
@@ -110,6 +110,7 @@ namespace InstanceSolvers.MoveFactories
                         positionList = positionList.Take(PositionsCountLimit);
                     }
                 }
+                positionList = positionList.ToList();
                 foreach (int position in positionList)
                 {
                     movesReturned += 1;
