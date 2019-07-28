@@ -73,6 +73,7 @@ namespace InstanceSolvers.Solvers
                 _previousBest.RestoreStructures();
                 _scoringFunction.AssesSolution(Solution);
             }
+            if (DiagnosticMessages) Console.WriteLine($"Number of transformations performed {NumberOfMoves}.");
         }
 
         private bool FirstIsBetter(IMove move1, IMove move2)
@@ -216,10 +217,6 @@ namespace InstanceSolvers.Solvers
             {
                 WidenNeighberhood();
                 _numberOfLoopsWithoutImprovement += 1;
-                if (Solution.IsBetterThan(_previousBest))
-                {
-                    _previousBest = Solution.TakeSnapshot();
-                }
             }
             else
             {
@@ -230,6 +227,10 @@ namespace InstanceSolvers.Solvers
             }
             if(_bestMove == null || _bestMove.OverallDifference.HasScoreWorsened())
             {
+                if (Solution.IsBetterThan(_previousBest))
+                {
+                    _previousBest = Solution.TakeSnapshot();
+                }
                 if (ActionWhenScoreWorsens == Action.Stop)
                 {
                     _timeToStop = true;

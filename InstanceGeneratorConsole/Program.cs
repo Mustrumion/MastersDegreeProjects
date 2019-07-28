@@ -97,7 +97,7 @@ namespace InstanceGeneratorConsole
         {
             Evolutionary solver = new Evolutionary()
             {
-                Description = "evolutionary",
+                Description = "evolutionary2",
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
@@ -105,7 +105,6 @@ namespace InstanceGeneratorConsole
                 Seed = 10,
                 GenerationImproverGenerator = LocalSearchForEvulutionaryImprovement,
                 GenerationCreatorGenerator = LocalSearchEvolutionaryInitial,
-                BreakAfterLoopsWithoutImprovement = 3,
             };
             return solver;
         }
@@ -177,25 +176,27 @@ namespace InstanceGeneratorConsole
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 2,
+                MaxLoops = 3,
             };
             LocalSearch solver = new LocalSearch()
             {
                 PropagateRandomSeed = true,
                 NumberOfNoGoodActionsToStop = 5,
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
+                BestFactoryAdjustmentParam = 0.5,
+                NeighberhoodAdjustmentParam = 0.5,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 5, 0),
+                DiagnosticMessages = true,
+                ReportTimeouts = true,
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
                 new InsertMoveFactory()
                 {
                     MildlyRandomOrder = true,
-                    PositionsCountLimit = 4,
-                    MaxTasksChecked = 3,
-                    MaxBreaksChecked = 3,
+                    PositionsCountLimit = 3,
+                    MaxTasksChecked = 1,
+                    MaxBreaksChecked = 1,
                     IgnoreBreaksWhenUnitOverfillAbove = 60,
                     IgnoreCompletedTasks = true,
                     IgnoreTasksWithCompletedViews = false,
@@ -203,15 +204,18 @@ namespace InstanceGeneratorConsole
                 },
                 new RandomDeleteFactory()
                 {
-                    MovesReturned = 20,
+                    MovesReturned = 5,
+                    RampUpSpeed = 3.0,
                 },
                 new RandomInsertFactory()
                 {
-                    MovesReturned = 30,
+                    MovesReturned = 5,
+                    RampUpSpeed = 3.0,
                 },
                 new RandomSwapFactory()
                 {
-                    MovesReturned = 30,
+                    MovesReturned = 5,
+                    RampUpSpeed = 3.0,
                 },
             };
             solver.InitialSolvers.Add(randomSolver);
@@ -223,24 +227,25 @@ namespace InstanceGeneratorConsole
         {
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 2,
+                MaxLoops = 1,
             };
             LocalSearch solver = new LocalSearch()
             {
-                NumberOfNoGoodActionsToStop = 5,
-                BestFactoryAdjustmentParam = 0.2,
-                NeighberhoodAdjustmentParam = 0.2,
+                NumberOfNoGoodActionsToStop = 10,
+                BestFactoryAdjustmentParam = 0.5,
+                NeighberhoodAdjustmentParam = 0.5,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 5, 0),
+                TimeLimit = new TimeSpan(0, 2, 0),
+                ReportTimeouts = true,
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
                 new InsertMoveFactory()
                 {
                     MildlyRandomOrder = true,
-                    PositionsCountLimit = 4,
-                    MaxTasksChecked = 3,
-                    MaxBreaksChecked = 3,
+                    PositionsCountLimit = 3,
+                    MaxTasksChecked = 2,
+                    MaxBreaksChecked = 2,
                     IgnoreBreaksWhenUnitOverfillAbove = 60,
                     IgnoreCompletedTasks = true,
                     IgnoreTasksWithCompletedViews = false,
