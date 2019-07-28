@@ -14,10 +14,11 @@ namespace InstanceSolvers.Solvers
     public class Evolutionary : BaseSolver
     {
         public int PopulationCount { get; set; } = 30;
-        public int NumberOfMutatingTransformations { get; set; } = 5;
-        public int NumberOfBreaksCrossed { get; set; } = 4;
+        public double NumberOfMutationsToBreakCount { get; set; } = 0.01;
+        public double ProportionOfBreaksCrossed { get; set; } = 0.01;
         public int NumberOfMutants { get; set; } = 20;
         public int NumberOfCrossbreeds { get; set; } = 20;
+        public int CandidatesForParent { get; set; } = 2;
         public bool ParallelAllowed { get; set; } = true;
         public int BreakAfterLoopsWithoutImprovement { get; set; }
 
@@ -144,6 +145,7 @@ namespace InstanceSolvers.Solvers
             }
             generationImprover.PropagateRandomSeed = PropagateRandomSeed;
             generationImprover.ScoringFunction = ScoringFunction.GetAnotherOne();
+            generationImprover.Solution = solution;
             generationImprover.Solve();
         }
 
@@ -162,6 +164,9 @@ namespace InstanceSolvers.Solvers
                 Generations += 1;
                 if (DiagnosticMessages) Console.WriteLine($"Generation {Generations} finished. Completion {_bestSolution.CompletionScore}. Weighted loss {_bestSolution.WeightedLoss}.");
             }
+            Solution = _bestSolution;
+            Solution.RestoreStructures();
+            _scoringFunction.AssesSolution(Solution);
         }
 
 
@@ -222,7 +227,8 @@ namespace InstanceSolvers.Solvers
                 }
                 factory.Solution = mutant;
             }
-            for (int i = 0; i < NumberOfMutatingTransformations; i++)
+            int numberOfMutations = Math.Max(Convert.ToInt32(Instance.Breaks.Count * NumberOfMutationsToBreakCount), 1);
+            for (int i = 0; i < numberOfMutations; i++)
             {
                 var moves = factories[i % factories.Count].GenerateMoves();
                 var move = moves.FirstOrDefault();
@@ -238,12 +244,15 @@ namespace InstanceSolvers.Solvers
             }
         }
         
-        private void CreateCrossbreed(Solution mainSolution, Solution breakDonor)
+        private void CreateCrossbreed(IEnumerable<Solution> mainCandidates, IEnumerable<Solution> donorCandidates)
         {
+            var mainSolution = mainCandidates.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).First();
+            var breakDonor = donorCandidates.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).First();
             var schedules = breakDonor.AdvertisementsScheduledOnBreaks.Values.ToList();
             schedules.Shuffle(Random);
             var kiddo = mainSolution.DeepCopy();
-            int breaksCrossed = Math.Min(NumberOfBreaksCrossed, Instance.Breaks.Count / 2);
+            int numberOfBreaksCrossed = Math.Max(Convert.ToInt32(Instance.Breaks.Count * ProportionOfBreaksCrossed), 1);
+            int breaksCrossed = Math.Min(numberOfBreaksCrossed, Instance.Breaks.Count / 2);
             schedules = schedules.Take(breaksCrossed).ToList();
             foreach(var schedule in schedules)
             {
@@ -260,7 +269,7 @@ namespace InstanceSolvers.Solvers
         private void CreateCrossbreeds()
         {
             List<Solution> pairList = new List<Solution>();
-            int numberLeft = NumberOfCrossbreeds * 2;
+            int numberLeft = NumberOfCrossbreeds * 2 * CandidatesForParent;
             while(numberLeft > 0)
             {
                 _generation.Shuffle(Random);
@@ -272,14 +281,18 @@ namespace InstanceSolvers.Solvers
             {
                 Parallel.For(0, NumberOfCrossbreeds, (i) =>
                 {
-                    CreateCrossbreed(pairList[i * 2], pairList[i * 2 + 1]);
+                    var mainCandidates = pairList.GetRange(i * 2 * CandidatesForParent, CandidatesForParent);
+                    var donorCandidates = pairList.GetRange((i * 2 + 1) * CandidatesForParent, CandidatesForParent);
+                    CreateCrossbreed(mainCandidates, donorCandidates);
                 });
             }
             else
             {
                 for(int i = 0; i< NumberOfCrossbreeds; i++)
                 {
-                    CreateCrossbreed(pairList[i * 2], pairList[i * 2 + 1]);
+                    var mainCandidates = pairList.GetRange(i * 2 * CandidatesForParent, CandidatesForParent);
+                    var donorCandidates = pairList.GetRange((i * 2 + 1) * CandidatesForParent, CandidatesForParent);
+                    CreateCrossbreed(mainCandidates, donorCandidates);
                 }
             }
         }

@@ -168,16 +168,16 @@ namespace InstanceGeneratorConsole
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 7,
+                MaxLoops = 3,
             };
             LocalSearch solver = new LocalSearch()
             {
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 15,
+                NumberOfNoGoodActionsToStop = 5,
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 1, 0),
+                TimeLimit = new TimeSpan(0, 5, 0),
             };
             solver.MoveFactories = new List<IMoveFactory>
             {
