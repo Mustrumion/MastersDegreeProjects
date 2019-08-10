@@ -26,7 +26,7 @@ namespace InstanceGeneratorConsole
         private const uint ENABLE_EXTENDED_FLAGS = 0x0080;
 
 
-        private static string MAIN_DIRECTORY = @"C:\Users\Mustrum\dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\bartl\dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -51,7 +51,7 @@ namespace InstanceGeneratorConsole
             };
 
             //bulkSolver.SolveEverything(LocalSearchNewStopConditions);
-            bulkSolver.SolveEverything(EvolutionarySolver);
+            bulkSolver.SolveEverything(SimulatedAnnealingGenerator);
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();
@@ -164,6 +164,35 @@ namespace InstanceGeneratorConsole
             solver.InitialSolvers.Add(randomSolver);
             solver.InitialSolvers.Add(compundSolver);
             return solver;
+        }
+
+
+        private static ISolver SimulatedAnnealingGenerator()
+        {
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
+            {
+                MaxOverfillUnits = 0,
+                DiagnosticMessages = true,
+            };
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                MaxLoops = 7,
+                DiagnosticMessages = true,
+            };
+            SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing()
+            {
+                DiagnosticMessages = true,
+                ScoringFunction = new Scorer(),
+                StartingTemperature = 10000.0,
+                NumberOfLoopsWithoutImprovementToStop = 200,
+                PropagateRandomSeed = true,
+                Seed = 100,
+                Description = "SimulatedAnnealing",
+                IntegrityLossMultiplier = 1000.0,
+            };
+            simulatedAnnealing.InitialSolvers.Add(randomSolver);
+            simulatedAnnealing.InitialSolvers.Add(compundSolver);
+            return simulatedAnnealing;
         }
 
 

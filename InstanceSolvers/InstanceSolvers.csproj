@@ -60,6 +60,7 @@
     <Compile Include="Solvers\BeginingsHeuristic.cs" />
     <Compile Include="Solvers\FreeSpaceHeuristic.cs" />
     <Compile Include="Solvers\Base\ISolver.cs" />
+    <Compile Include="Solvers\SimulatedAnnealing.cs" />
     <Compile Include="Solvers\ViewsHeuristic.cs" />
     <Compile Include="MoveFactories\BaseMoveFactory.cs" />
     <Compile Include="MoveFactories\IMoveFactory.cs" />
