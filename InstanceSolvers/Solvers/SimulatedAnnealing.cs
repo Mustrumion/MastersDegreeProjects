@@ -18,15 +18,21 @@ namespace InstanceSolvers.Solvers
     public class SimulatedAnnealing : BaseSolver, ISolver
     {
         private Solution _previousBest;
-        private int _loopsSinceLastImprovemnt;
+        private int _stepsSinceLastImprovement;
+        private int _loopsSinceLastAction;
         private bool _timeToStop;
 
         public IEnumerable<IMoveFactory> MoveFactories { get; set; }
         public bool StopWhenCompleted { get; set; } = false;
-        public int NumberOfLoopsWithoutImprovementToStop { get; set; } = 20;
-        public double StartingTemperature { get; set; } = 1.0;
-        public double TemperatureMultiplier { get; set; } = 1.0;
+        public int StepsAnalyzedWithoutImprovementToStop { get; set; } = 0;
+        public int NumberOfLoopsWithoutActionsToStop { get; set; } = 1;
+
+        public bool AllowIntegrityLoss { get; set; } = false;
         public double IntegrityLossMultiplier { get; set; } = 1000.0;
+
+        public double FunctionDeltaOffset { get; set; } = 20000.0;
+        public double StartingTemperature { get; set; } = 1000000.0;
+        public double TemperatureMultiplier { get; set; } = 1.0;
         [JsonIgnore]
         public int NumberOfMoves { get; set; }
         [JsonIgnore]
@@ -39,7 +45,8 @@ namespace InstanceSolvers.Solvers
         private void ReinitializePrivates()
         {
             _previousBest = null;
-            _loopsSinceLastImprovemnt = 0;
+            _stepsSinceLastImprovement = 0;
+            _loopsSinceLastAction = 0;
             _timeToStop = false;
         }
 
@@ -49,7 +56,7 @@ namespace InstanceSolvers.Solvers
             InitializeMoveFactories();
             while (!TimeToEnd())
             {
-                _loopsSinceLastImprovemnt += 1;
+                _loopsSinceLastAction += 1;
                 List<IEnumerator<IMove>> moveQueues = new List<IEnumerator<IMove>>();
                 foreach (IMoveFactory factory in MoveFactories)
                 {
@@ -154,9 +161,14 @@ namespace InstanceSolvers.Solvers
                 if (DiagnosticMessages && outer) Console.WriteLine($"Timeout of {TimeLimit}.");
                 return true;
             }
-            if (NumberOfLoopsWithoutImprovementToStop != 0 && NumberOfLoopsWithoutImprovementToStop < _loopsSinceLastImprovemnt)
+            if (StepsAnalyzedWithoutImprovementToStop != 0 && StepsAnalyzedWithoutImprovementToStop < _stepsSinceLastImprovement)
             {
-                if (DiagnosticMessages && outer) Console.WriteLine($"Performed {_loopsSinceLastImprovemnt} actions with no improvement.");
+                if (DiagnosticMessages && outer) Console.WriteLine($"Analyzed {_stepsSinceLastImprovement} steps with no improvement.");
+                return true;
+            }
+            if (NumberOfLoopsWithoutActionsToStop != 0 && NumberOfLoopsWithoutActionsToStop < _loopsSinceLastAction)
+            {
+                if (DiagnosticMessages && outer) Console.WriteLine($"Performed {_loopsSinceLastAction} loops with no solution tranformation.");
                 return true;
             }
             if (_timeToStop)
@@ -173,20 +185,22 @@ namespace InstanceSolvers.Solvers
             move.Asses();
             if (move.OverallDifference.HasScoreImproved())
             {
-                _loopsSinceLastImprovemnt = 0;
+                _stepsSinceLastImprovement = 0;
             }
             else
             {
+                _stepsSinceLastImprovement += 1;
                 double transformationDelta;
                 if (move.OverallDifference.IntegrityLossScore > 0.0)
                 {
+                    if (!AllowIntegrityLoss) return false;
                     transformationDelta = move.OverallDifference.IntegrityLossScore * IntegrityLossMultiplier;
                 }
                 else
                 {
                     transformationDelta = move.OverallDifference.WeightedLoss;
                 }
-                transformationDelta += 1;
+                transformationDelta += FunctionDeltaOffset;
                 double currentTemperature = StartingTemperature / Math.Log(NumberOfSteps);
                 double p = Math.Exp(-transformationDelta/currentTemperature);
                 Console.WriteLine(p);
@@ -199,6 +213,7 @@ namespace InstanceSolvers.Solvers
                     _previousBest = Solution.TakeSnapshot();
                 }
             }
+            _loopsSinceLastAction = 0;
             NumberOfMoves += 1;
             move.Execute();
             Reporter.AddEntry(move.GenerateReportEntry());

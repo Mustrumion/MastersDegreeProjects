@@ -183,8 +183,10 @@ namespace InstanceGeneratorConsole
             {
                 DiagnosticMessages = true,
                 ScoringFunction = new Scorer(),
-                StartingTemperature = 10000.0,
-                NumberOfLoopsWithoutImprovementToStop = 200,
+                StartingTemperature = 100000.0,
+                FunctionDeltaOffset = 50000.0,
+                StepsAnalyzedWithoutImprovementToStop = 5000,
+                NumberOfLoopsWithoutActionsToStop = 1,
                 PropagateRandomSeed = true,
                 Seed = 100,
                 Description = "SimulatedAnnealing",
