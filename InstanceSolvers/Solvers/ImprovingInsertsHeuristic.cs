@@ -1,8 +1,8 @@
 ﻿using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
-using InstanceSolvers.MoveFactories;
-using InstanceSolvers.Moves;
+using InstanceSolvers.TransformationFactories;
+using InstanceSolvers.Transformations;
 using InstanceSolvers.Solvers.Base;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.Solvers
 {
-    public class GreedyHeuristic : BaseSolver, ISolver
+    public class ImprovingInsertsHeuristic : BaseSolver, ISolver
     {
         private bool _movePerformed;
         
@@ -22,12 +22,12 @@ namespace InstanceSolvers.Solvers
 
         private List<TvBreak> _breakInOrder { get; set; }
 
-        public GreedyHeuristic() : base()
+        public ImprovingInsertsHeuristic() : base()
         {
         }
         
 
-        private void ChooseMoveToPerform(List<IMove> moves)
+        private void ChooseMoveToPerform(List<ITransformation> moves)
         {
             foreach(var move in moves)
             {
@@ -52,7 +52,7 @@ namespace InstanceSolvers.Solvers
                 {
                     continue;
                 }
-                InsertMoveFactory factory = new InsertMoveFactory(Solution)
+                InsertFactory factory = new InsertFactory(Solution)
                 {
                     Breaks = new[] { tvBreak },
                     Tasks = new[] { order },
@@ -60,7 +60,7 @@ namespace InstanceSolvers.Solvers
                     PositionsCountLimit = PositionsPerBreakTakenIntoConsideration,
                     Random = Random,
                 };
-                List<IMove> moves = factory.GenerateMoves().ToList();
+                List<ITransformation> moves = factory.GenerateMoves().ToList();
                 ChooseMoveToPerform(moves);
                 if(TimeLimit < CurrentTime.Elapsed)
                 {

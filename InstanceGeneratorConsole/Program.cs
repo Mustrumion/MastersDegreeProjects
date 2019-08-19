@@ -5,7 +5,7 @@ using InstanceGenerator.InstanceModification;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers;
-using InstanceSolvers.MoveFactories;
+using InstanceSolvers.TransformationFactories;
 using InstanceSolvers.Solvers;
 using InstanceSolvers.Solvers.Base;
 using System;
@@ -135,9 +135,9 @@ namespace InstanceGeneratorConsole
                 TimeLimit = new TimeSpan(0, 5, 0),
                 Description = "local_search_new_stop_condition_15rs4",
             };
-            solver.MoveFactories = new List<IMoveFactory>
+            solver.MoveFactories = new List<ITransformationFactory>
             {
-                new InsertMoveFactory()
+                new InsertFactory()
                 {
                     MildlyRandomOrder = true,
                     PositionsCountLimit = 4,
@@ -181,7 +181,7 @@ namespace InstanceGeneratorConsole
             LocalSearch solver = new LocalSearch()
             {
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 5,
+                NumberOfNoGoodActionsToStop = 7,
                 BestFactoryAdjustmentParam = 0.1,
                 NeighberhoodAdjustmentParam = 0.1,
                 ImprovementOverNarrowNeighb = 1.5,
@@ -189,9 +189,9 @@ namespace InstanceGeneratorConsole
                 DiagnosticMessages = true,
                 ReportTimeouts = true,
             };
-            solver.MoveFactories = new List<IMoveFactory>
+            solver.MoveFactories = new List<ITransformationFactory>
             {
-                new InsertMoveFactory()
+                new InsertFactory()
                 {
                     MildlyRandomOrder = true,
                     PositionsCountLimit = 3,
@@ -214,7 +214,7 @@ namespace InstanceGeneratorConsole
                 },
                 new RandomSwapFactory()
                 {
-                    MovesReturned = 50,
+                    MovesReturned = 40,
                     RampUpSpeed = 4.0,
                 },
             };
@@ -238,9 +238,9 @@ namespace InstanceGeneratorConsole
                 TimeLimit = new TimeSpan(0, 2, 0),
                 ReportTimeouts = true,
             };
-            solver.MoveFactories = new List<IMoveFactory>
+            solver.MoveFactories = new List<ITransformationFactory>
             {
-                new InsertMoveFactory()
+                new InsertFactory()
                 {
                     MildlyRandomOrder = true,
                     PositionsCountLimit = 3,
@@ -315,7 +315,7 @@ namespace InstanceGeneratorConsole
 
         private static ISolver OldRandom()
         {
-            RandomSolver randomSolver = new RandomSolver()
+            RandomInsertsSolver randomSolver = new RandomInsertsSolver()
             {
                 ScoringFunction = new Scorer(),
                 TimeLimit = new TimeSpan(0, 0, 20),
@@ -341,7 +341,7 @@ namespace InstanceGeneratorConsole
 
         private static ISolver OldGreedy()
         {
-            GreedyHeuristic randomSolver = new GreedyHeuristic()
+            ImprovingInsertsHeuristic randomSolver = new ImprovingInsertsHeuristic()
             {
                 ScoringFunction = new Scorer(),
                 TimeLimit = new TimeSpan(0, 0, 200),

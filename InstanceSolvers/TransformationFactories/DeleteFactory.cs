@@ -2,7 +2,7 @@
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
-using InstanceSolvers.Moves;
+using InstanceSolvers.Transformations;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceSolvers.MoveFactories
+namespace InstanceSolvers.TransformationFactories
 {
-    public class DeleteMoveFactory : BaseMoveFactory, IMoveFactory
+    public class DeleteFactory : BaseTransformationFactory, ITransformationFactory
     {
         private static int _minPositionsCountLimit = 3;
         private static int _minMaxBreaksChecked = 1;
@@ -25,11 +25,11 @@ namespace InstanceSolvers.MoveFactories
         public bool AlwaysReturnStartsAndEnds { get; set; }
         public int MaxBreaksChecked { get; set; }
 
-        public DeleteMoveFactory()
+        public DeleteFactory()
         {
         }
 
-        public DeleteMoveFactory(Solution solution)
+        public DeleteFactory(Solution solution)
         {
             Solution = solution;
         }
@@ -75,7 +75,7 @@ namespace InstanceSolvers.MoveFactories
         }
 
 
-        public IEnumerable<IMove> GenerateMoves()
+        public IEnumerable<ITransformation> GenerateMoves()
         {
             return GenerateDeleteMoves();
         }

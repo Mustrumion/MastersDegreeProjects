@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceSolvers.Moves
+namespace InstanceSolvers.Transformations
 {
-    public class Delete : IMove
+    public class Insert : ITransformation
     {
-        public TvBreak TvBreak { get; set; }
-        public int Position { get; set; }
         public TaskCompletionDifference OverallDifference { get; set; }
         public Solution Solution { get; set; }
         public Instance Instance { get; set; }
+
+        public TvBreak TvBreak { get; set; }
+        public AdvertisementTask AdvertisementOrder { get; set; }
+        public int Position { get; set; }
         
         private Dictionary<int, TaskScore> _changedOrderStatsAfter;
         private BreakSchedule _oldSchedule;
@@ -24,10 +26,6 @@ namespace InstanceSolvers.Moves
         private Dictionary<int, TaskScore> _newBreakScores;
         public Dictionary<int, TaskCompletionDifference> CompletionDifferences { get; set; }
 
-        private void FirstExecute()
-        {
-
-        }
 
         private void Perform()
         {
@@ -45,7 +43,7 @@ namespace InstanceSolvers.Moves
         // perform the move faster using the data gotten from assesment
         private void FastPerform()
         {
-            Solution.RemoveAdFromBreak(TvBreak, Position);
+            Solution.AddAdToBreak(AdvertisementOrder, TvBreak, Position);
             Solution.AdvertisementsScheduledOnBreaks[TvBreak.ID].Scores = _newSchedule.Scores;
             foreach (var statsAfter in _changedOrderStatsAfter.Values)
             {
@@ -98,14 +96,14 @@ namespace InstanceSolvers.Moves
             }
             _oldBreakScores = _oldSchedule.Scores.ToDictionary(s => s.Key, s => s.Value);
             _newSchedule = _oldSchedule.DeepClone();
-            _newSchedule.RemoveAt(Position);
+            _newSchedule.Insert(Position, AdvertisementOrder);
             Solution.GradingFunction.AssesBreak(_newSchedule);
             _newBreakScores = _newSchedule.Scores.ToDictionary(s => s.Key, s => s.Value);
         }
 
         private void RemoveUnchangedAdScores()
         {
-            foreach(var newScore in _newSchedule.Scores.Values)
+            foreach (var newScore in _newSchedule.Scores.Values)
             {
                 if (!_oldSchedule.Scores.TryGetValue(newScore.ID, out var oldScore))
                 {
@@ -154,7 +152,7 @@ namespace InstanceSolvers.Moves
             return new ReportEntry()
             {
                 Time = DateTime.Now,
-                Action = "Delete",
+                Action = "Insert",
                 AttainedAcceptable = OverallDifference.IntegrityLossScore < 0 && Solution.CompletionScore >= 1,
                 IntegrityLoss = Solution.IntegrityLossScore,
                 WeightedLoss = Solution.WeightedLoss,

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceGenerator.Interfaces
+namespace InstanceSolvers.Transformations
 {
-    public interface IMove
+    public interface ITransformation
     {
         TaskCompletionDifference OverallDifference { get; set; }
         Solution Solution { get; set; }

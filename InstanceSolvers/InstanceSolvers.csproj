@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMove.cs" />
+    <Compile Include="Transformations\ITransformation.cs" />
     <Compile Include="IReporter.cs" />
-    <Compile Include="MoveFactories\RandomDeleteFactory.cs" />
-    <Compile Include="MoveFactories\RandomSwapFactory.cs" />
-    <Compile Include="MoveFactories\RandomInsertFactory.cs" />
+    <Compile Include="TransformationFactories\RandomDeleteFactory.cs" />
+    <Compile Include="TransformationFactories\RandomSwapFactory.cs" />
+    <Compile Include="TransformationFactories\RandomInsertFactory.cs" />
     <Compile Include="NullReporter.cs" />
     <Compile Include="ReportEntry.cs" />
     <Compile Include="ScoreReporter.cs" />
@@ -60,20 +60,21 @@
     <Compile Include="Solvers\BeginingsHeuristic.cs" />
     <Compile Include="Solvers\FreeSpaceHeuristic.cs" />
     <Compile Include="Solvers\Base\ISolver.cs" />
+    <Compile Include="Solvers\SimulatedAnnealing.cs" />
     <Compile Include="Solvers\ViewsHeuristic.cs" />
-    <Compile Include="MoveFactories\BaseMoveFactory.cs" />
-    <Compile Include="MoveFactories\IMoveFactory.cs" />
-    <Compile Include="MoveFactories\SwapMoveFactory.cs" />
-    <Compile Include="MoveFactories\InsertMoveFactory.cs" />
-    <Compile Include="MoveFactories\DeleteMoveFactory.cs" />
+    <Compile Include="TransformationFactories\BaseTransformationFactory.cs" />
+    <Compile Include="TransformationFactories\ITransformationFactory.cs" />
+    <Compile Include="TransformationFactories\SwapFactory.cs" />
+    <Compile Include="TransformationFactories\InsertFactory.cs" />
+    <Compile Include="TransformationFactories\DeleteFactory.cs" />
     <Compile Include="Solvers\LocalSearch.cs" />
-    <Compile Include="Moves\Delete.cs" />
-    <Compile Include="Moves\Swap.cs" />
-    <Compile Include="Moves\Insert.cs" />
+    <Compile Include="Transformations\Delete.cs" />
+    <Compile Include="Transformations\Swap.cs" />
+    <Compile Include="Transformations\Insert.cs" />
     <Compile Include="Solvers\RandomFastSolver.cs" />
-    <Compile Include="Solvers\RandomSolver.cs" />
+    <Compile Include="Solvers\RandomInsertsSolver.cs" />
     <Compile Include="Scorer.cs" />
-    <Compile Include="Solvers\GreedyHeuristic.cs" />
+    <Compile Include="Solvers\ImprovingInsertsHeuristic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

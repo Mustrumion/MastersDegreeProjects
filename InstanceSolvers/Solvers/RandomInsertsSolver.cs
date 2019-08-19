@@ -1,7 +1,7 @@
 ﻿using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
-using InstanceSolvers.Moves;
+using InstanceSolvers.Transformations;
 using InstanceSolvers.Solvers.Base;
 using System;
 using System.Collections.Generic;
@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.Solvers
 {
-    public class RandomSolver : BaseSolver, ISolver
+    public class RandomInsertsSolver : BaseSolver, ISolver
     {
-        public RandomSolver() : base()
+        public RandomInsertsSolver() : base()
         {
         }
         

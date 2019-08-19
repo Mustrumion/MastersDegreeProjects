@@ -14,14 +14,7 @@ using System.Threading.Tasks;
 
 namespace InstanceSolvers.Solvers
 {
-    public enum Action
-    {
-        Perform = 0,
-        Ignore = 1,
-        Stop = 2,
-    }
-
-    public class LocalSearch : BaseSolver, ISolver
+    public class SimulatedAnnealing : BaseSolver, ISolver
     {
         private Solution _previousBest;
         private ITransformationFactory _bestFactory;
@@ -31,7 +24,6 @@ namespace InstanceSolvers.Solvers
 
         public IEnumerable<ITransformationFactory> MoveFactories { get; set; }
         public bool StopWhenCompleted { get; set; }
-        public Action ActionWhenScoreWorsens { get; set; } = Action.Ignore;
         public int NumberOfNoGoodActionsToStop { get; set; }
         public double NeighberhoodAdjustmentParam { get; set; }
         public double BestFactoryAdjustmentParam { get; set; }
@@ -39,7 +31,7 @@ namespace InstanceSolvers.Solvers
         public int NumberOfMoves { get; set; }
         public double ImprovementOverNarrowNeighb { get; set; }
 
-        public LocalSearch() : base()
+        public SimulatedAnnealing() : base()
         {
         }
 
@@ -232,15 +224,6 @@ namespace InstanceSolvers.Solvers
                 {
                     _previousBest = Solution.TakeSnapshot();
                 }
-                if (ActionWhenScoreWorsens == Action.Stop)
-                {
-                    _timeToStop = true;
-                    return;
-                }
-                else if (ActionWhenScoreWorsens == Action.Ignore)
-                {
-                    return;
-                };
             }
             if (_bestMove == null) return;
             _bestMove.Execute();

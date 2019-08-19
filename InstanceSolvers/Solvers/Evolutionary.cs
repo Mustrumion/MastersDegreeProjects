@@ -1,7 +1,7 @@
 ﻿using InstanceGenerator;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
-using InstanceSolvers.MoveFactories;
+using InstanceSolvers.TransformationFactories;
 using InstanceSolvers.Solvers.Base;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace InstanceSolvers.Solvers
         public int Generations { get; private set; }
 
 
-        public Func<List<IMoveFactory>> MutationFactoriesGenerator { get; set; }
+        public Func<List<ITransformationFactory>> MutationFactoriesGenerator { get; set; }
 
         /// <summary>
         /// Those may be used in parallel, so a single one won't cut it.
@@ -69,7 +69,7 @@ namespace InstanceSolvers.Solvers
         {
             if (MutationFactoriesGenerator == null)
             {
-                MutationFactoriesGenerator = () => new List<IMoveFactory>
+                MutationFactoriesGenerator = () => new List<ITransformationFactory>
                 {
                     new RandomDeleteFactory()
                     {

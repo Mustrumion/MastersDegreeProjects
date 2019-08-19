@@ -5,7 +5,7 @@ using InstanceGenerator.InstanceModification;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
 using InstanceSolvers;
-using InstanceSolvers.MoveFactories;
+using InstanceSolvers.TransformationFactories;
 using InstanceSolvers.Solvers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -60,7 +60,7 @@ namespace SystemTestsProject
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
             };
             Instance instance = reader.DeserializeInstance();
-            RandomSolver solver = new RandomSolver()
+            RandomInsertsSolver solver = new RandomInsertsSolver()
             {
                 Instance = instance,
                 Seed = 10,
@@ -106,7 +106,7 @@ namespace SystemTestsProject
                 Reader = new StreamReader(new MemoryStream(file), Encoding.UTF8)
             };
             Instance instance = reader.DeserializeInstance();
-            GreedyHeuristic solver = new GreedyHeuristic()
+            ImprovingInsertsHeuristic solver = new ImprovingInsertsHeuristic()
             {
                 Instance = instance,
                 Seed = 10,

@@ -2,8 +2,8 @@
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
-using InstanceSolvers.MoveFactories;
-using InstanceSolvers.Moves;
+using InstanceSolvers.TransformationFactories;
+using InstanceSolvers.Transformations;
 using InstanceSolvers.Solvers.Base;
 using System;
 using System.Collections.Generic;

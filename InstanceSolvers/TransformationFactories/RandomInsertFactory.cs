@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InstanceGenerator.Interfaces;
-using InstanceSolvers.Moves;
+using InstanceSolvers.Transformations;
 
-namespace InstanceSolvers.MoveFactories
+namespace InstanceSolvers.TransformationFactories
 {
-    public class RandomInsertFactory : BaseMoveFactory, IMoveFactory
+    public class RandomInsertFactory : BaseTransformationFactory, ITransformationFactory
     {
         public int MovesReturned { get; set; } = 1;
         private int _minMovesReturned = 1;
 
-        public IEnumerable<IMove> GenerateMoves()
+        public IEnumerable<ITransformation> GenerateMoves()
         {
             int limit = Solution.AdvertisementsScheduledOnBreaks.Sum(b => b.Value.Count + 1) * Instance.AdOrders.Count / 4;
             limit = Math.Min(limit, MovesReturned);

@@ -2,7 +2,7 @@
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceGenerator.SolutionObjects;
-using InstanceSolvers.Moves;
+using InstanceSolvers.Transformations;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceSolvers.MoveFactories
+namespace InstanceSolvers.TransformationFactories
 {
-    public class InsertMoveFactory : BaseMoveFactory, IMoveFactory
+    public class SwapFactory : BaseTransformationFactory, ITransformationFactory
     {
         private static int _minPositionsCountLimit = 3;
         private static int _minMaxBreaksChecked = 1;
@@ -25,20 +25,21 @@ namespace InstanceSolvers.MoveFactories
         public IEnumerable<TvBreak> Breaks { get; set; }
         [JsonIgnore]
         public IEnumerable<AdvertisementTask> Tasks { get; set; }
-        public int IgnoreBreaksWhenUnitOverfillAbove { get; set; }
+
+        public int IgnoreWhenUnitOverfillAbove { get; set; }
         public bool IgnoreTasksWithCompletedViews { get; set; }
-        public bool IgnoreCompletedTasks { get; set; }
         public bool AlwaysReturnStartsAndEnds { get; set; }
-        
+
         public int PositionsCountLimit { get; set; }
+
         public int MaxBreaksChecked { get; set; }
         public int MaxTasksChecked { get; set; }
 
-        public InsertMoveFactory()
+        public SwapFactory()
         {
         }
-        
-        public InsertMoveFactory(Solution solution)
+
+        public SwapFactory(Solution solution)
         {
             Solution = solution;
         }
@@ -57,9 +58,9 @@ namespace InstanceSolvers.MoveFactories
             {
                 _breaks = Breaks;
             }
-            if (IgnoreBreaksWhenUnitOverfillAbove > 0)
+            if (IgnoreWhenUnitOverfillAbove > 0)
             {
-                _breaks = _breaks.Where(b => Solution.AdvertisementsScheduledOnBreaks[b.ID].UnitFill - IgnoreBreaksWhenUnitOverfillAbove < b.SpanUnits);
+                _breaks = _breaks.Where(b => Solution.AdvertisementsScheduledOnBreaks[b.ID].UnitFill - IgnoreWhenUnitOverfillAbove < b.SpanUnits);
             }
             if (Tasks == null)
             {
@@ -76,10 +77,6 @@ namespace InstanceSolvers.MoveFactories
                     var orderData = Solution.AdOrdersScores[t.ID];
                     return !orderData.ViewsSatisfied || !orderData.TimesAiredSatisfied;
                 });
-            }
-            if (IgnoreCompletedTasks)
-            {
-                _tasks = _tasks.Where(t => Solution.AdOrdersScores[t.ID].Completed);
             }
         }
 
@@ -114,50 +111,13 @@ namespace InstanceSolvers.MoveFactories
         }
 
 
-        public IEnumerable<IMove> GenerateMoves()
+        public IEnumerable<ITransformation> GenerateMoves()
         {
-            return GenerateInsertMoves();
+            return GenerateSwapMoves();
         }
 
 
-        private List<int> GeneratePossiblePositions(BreakSchedule schedule)
-        {
-            IEnumerable<int> positionList = null;
-            if (PositionsCountLimit == 0 || !AlwaysReturnStartsAndEnds)
-            {
-                positionList = Enumerable.Range(0, schedule.Count + 1);
-            }
-            else
-            {
-                positionList = Enumerable.Range(1, schedule.Count);
-            }
-            if (MildlyRandomOrder)
-            {
-                positionList = positionList.ToList();
-                (positionList as IList<int>).Shuffle(Random);
-            }
-            if (PositionsCountLimit != 0)
-            {
-                if (AlwaysReturnStartsAndEnds)
-                {
-                    if (positionList.Count() >= 2)
-                    {
-                        var newList = new List<int> { positionList.First(), positionList.Last() };
-
-                        newList.AddRange(positionList.Take(PositionsCountLimit - 2));
-                        positionList = newList;
-                    }
-                }
-                else
-                {
-                    positionList = positionList.Take(PositionsCountLimit);
-                }
-            }
-            return positionList.ToList();
-        }
-
-
-        public IEnumerable<Insert> GenerateInsertMoves()
+        public IEnumerable<Swap> GenerateSwapMoves()
         {
             int movesReturned = 0;
             PrepareStructures();
@@ -166,11 +126,33 @@ namespace InstanceSolvers.MoveFactories
                 BreakSchedule schedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.ID];
                 foreach (var task in _tasks)
                 {
-                    var positionList = GeneratePossiblePositions(schedule);
+                    IEnumerable<int> positionList = Enumerable.Range(0, schedule.Count);
+                    if (MildlyRandomOrder)
+                    {
+                        positionList = positionList.ToList();
+                        (positionList as IList<int>).Shuffle(Random);
+                    }
+                    
+                    if (PositionsCountLimit != 0)
+                    {
+                        if (AlwaysReturnStartsAndEnds)
+                        {
+                            if(positionList.Count() > 2)
+                            {
+                                var newList = new List<int> { positionList.First(), positionList.Last() };
+                                newList.AddRange(positionList.Take(PositionsCountLimit - 2));
+                                positionList = newList;
+                            }
+                        }
+                        else
+                        {
+                            positionList = positionList.Take(PositionsCountLimit);
+                        }
+                    }
                     foreach (int position in positionList)
                     {
                         movesReturned += 1;
-                        yield return new Insert()
+                        yield return new Swap()
                         {
                             Solution = Solution,
                             Instance = Instance,
@@ -183,10 +165,10 @@ namespace InstanceSolvers.MoveFactories
                 }
             }
         }
-
+        
         protected override void ChangeParametersBy(int step)
         {
-            switch (Random.Next() % 3)
+            switch(Random.Next()%3)
             {
                 case 0:
                     PositionsCountLimit = Math.Max(PositionsCountLimit + step, _minPositionsCountLimit);

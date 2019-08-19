@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstanceSolvers.MoveFactories
+namespace InstanceSolvers.TransformationFactories
 {
-    public abstract class BaseMoveFactory
+    public abstract class BaseTransformationFactory
     {
         protected int _seed;
         protected Solution _solution;
