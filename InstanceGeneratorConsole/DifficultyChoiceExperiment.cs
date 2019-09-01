@@ -22,7 +22,7 @@ namespace InstanceGeneratorConsole
                 ParallelExecution = false,
                 MaxThreads = 4,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
-                LengthFilter = new[] { "week.json", "month" },
+                LengthFilter = new[] { "week.json", "month.json" },
             };
             bulkSolver.SolveEverything(LocalSearchFinal);
         }
