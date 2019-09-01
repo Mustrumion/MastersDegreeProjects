@@ -63,9 +63,13 @@ namespace InstanceGeneratorConsole
 
         private void GenerateInstancesFromDirectory(DirectoryInfo directory, string difficultyLevel, RealInstanceToProblemConverter converter)
         {
-            StreamReader descFile = new StreamReader(Path.Combine(directory.FullName, "desc.txt"));
-            string desc = descFile.ReadToEnd();
-            converter.InstanceDescription = desc;
+            string descName = Path.Combine(directory.FullName, "desc.txt");
+            if (File.Exists(descName))
+            {
+                StreamReader descFile = new StreamReader(descName);
+                string desc = descFile.ReadToEnd();
+                converter.InstanceDescription = desc;
+            }
             foreach (var file in directory.GetFiles())
             {
                 if (file.Name == "desc.txt") continue;
