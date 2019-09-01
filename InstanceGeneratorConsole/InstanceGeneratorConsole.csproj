@@ -49,6 +49,7 @@
     <Compile Include="BulkInstanceGenerator.cs" />
     <Compile Include="BulkSolver.cs" />
     <Compile Include="BulkSolverStats.cs" />
+    <Compile Include="DifficultyChoiceExperiment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
