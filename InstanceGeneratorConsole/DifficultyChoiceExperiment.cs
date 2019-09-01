@@ -50,7 +50,7 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 5, 0),
-                Description = "local_search_new_stop_condition_15rs4",
+                Description = "local_search_final_difficulty_test",
             };
             solver.MoveFactories = new List<ITransformationFactory>
             {
