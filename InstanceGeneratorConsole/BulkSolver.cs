@@ -22,11 +22,13 @@ namespace InstanceGeneratorConsole
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
         private string SolutionsDirectory => Path.Combine(MainDirectory, "solutions");
         public bool ParallelExecution { get; set; } = false;
-        public int MaxThreads { get; set; } = 4;
+        public int MaxThreads { get; set; } = 15;
         public string[] DifficultyFilter { get; set; }
         public string[] KindFilter { get; set; }
         public string[] LengthFilter { get; set; }
         public string[] TotalStatsCategories { get; set; }
+        public int Times { get; set; }
+        public Random Random { get; set; } = new Random(42);
 
 
         private BulkSolverStats GenerateInitialStats()
@@ -111,11 +113,17 @@ namespace InstanceGeneratorConsole
 
         private List<Action> GenerateTasksFromDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
-            return directory.GetFiles().Where(d => LengthFilter == null || LengthFilter.Contains(d.Name)).Select(file =>
+            return directory.GetFiles().Where(d => LengthFilter == null || LengthFilter.Contains(d.Name)).SelectMany(file =>
             {
-                var solver = solverMaker();
-                string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, file.Name);
-                return GenerateSolveTask(file.FullName, solutionName, solver);
+                List<Action> tasks = new List<Action>();
+                for (int i = 0; i < Times; i++)
+                {
+                    var solver = solverMaker();
+                    solver.Seed = (int)(((long)solver.Seed + Random.Next()) % int.MaxValue);
+                    string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, $"{Times}file.Name");
+                    tasks.Add(GenerateSolveTask(file.FullName, solutionName, solver));
+                }
+                return tasks;
             }).ToList();
         }
         
