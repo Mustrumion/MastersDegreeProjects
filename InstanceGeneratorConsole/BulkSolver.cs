@@ -27,7 +27,7 @@ namespace InstanceGeneratorConsole
         public string[] KindFilter { get; set; }
         public string[] LengthFilter { get; set; }
         public string[] TotalStatsCategories { get; set; }
-        public int Times { get; set; }
+        public int Times { get; set; } = 1;
         public Random Random { get; set; } = new Random(42);
 
 
@@ -120,7 +120,7 @@ namespace InstanceGeneratorConsole
                 {
                     var solver = solverMaker();
                     solver.Seed = (int)(((long)solver.Seed + Random.Next()) % int.MaxValue);
-                    string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, $"{Times}file.Name");
+                    string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, $"{Times}{file.Name}");
                     tasks.Add(GenerateSolveTask(file.FullName, solutionName, solver));
                 }
                 return tasks;

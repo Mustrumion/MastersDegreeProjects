@@ -39,19 +39,22 @@ namespace InstanceGeneratorConsole
             //};
             //bulkInstanceGenerator.GenerateAllInstances();
 
-            BulkSolver bulkSolver = new BulkSolver()
-            {
-                MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = false,
-                MaxThreads = 4,
-                TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
-                DifficultyFilter = new[] { "medium" },
-                KindFilter = new[] { "4ch3n1a1" },
-                LengthFilter = new[] { "week.json" },
-            };
+            //BulkSolver bulkSolver = new BulkSolver()
+            //{
+            //    MainDirectory = MAIN_DIRECTORY,
+            //    ParallelExecution = false,
+            //    MaxThreads = 4,
+            //    TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
+            //    DifficultyFilter = new[] { "medium" },
+            //    KindFilter = new[] { "4ch3n1a1" },
+            //    LengthFilter = new[] { "week.json" },
+            //};
 
-            //bulkSolver.SolveEverything(LocalSearchNewStopConditions);
-            bulkSolver.SolveEverything(SimulatedAnnealingGenerator);
+            ////bulkSolver.SolveEverything(LocalSearchNewStopConditions);
+            //bulkSolver.SolveEverything(SimulatedAnnealingGenerator);
+
+            DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
+            experiment.Perform();
 
             Console.WriteLine("Press any key.");
             Console.ReadKey();

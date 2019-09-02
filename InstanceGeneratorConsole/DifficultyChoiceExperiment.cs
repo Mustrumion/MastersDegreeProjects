@@ -12,15 +12,15 @@ namespace InstanceGeneratorConsole
 {
     public class DifficultyChoiceExperiment
     {
-        private static string MAIN_DIRECTORY = @"C:\Users\bartl_000\dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\mustrum\dropbox\MDP";
 
         public void Perform()
         {
             BulkSolver bulkSolver = new BulkSolver()
             {
+                Times = 2,
                 MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = false,
-                MaxThreads = 4,
+                ParallelExecution = true,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
                 LengthFilter = new[] { "week.json", "month.json" },
             };
@@ -33,19 +33,17 @@ namespace InstanceGeneratorConsole
             GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
                 MaxOverfillUnits = 0,
-                DiagnosticMessages = true,
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
                 MaxLoops = 7,
-                DiagnosticMessages = true,
             };
             LocalSearch solver = new LocalSearch()
             {
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 15,
+                NumberOfNoGoodActionsToStop = 20,
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
