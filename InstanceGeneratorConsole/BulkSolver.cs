@@ -120,7 +120,7 @@ namespace InstanceGeneratorConsole
                 {
                     var solver = solverMaker();
                     solver.Seed = (int)(((long)solver.Seed + Random.Next()) % int.MaxValue);
-                    string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, $"{Times}{file.Name}");
+                    string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, $"{i}{file.Name}");
                     tasks.Add(GenerateSolveTask(file.FullName, solutionName, solver));
                 }
                 return tasks;

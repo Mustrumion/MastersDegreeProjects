@@ -21,6 +21,7 @@ namespace InstanceGeneratorConsole
                 Times = 2,
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
+                MaxThreads = 8,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
                 LengthFilter = new[] { "week.json", "month.json" },
             };
@@ -36,7 +37,7 @@ namespace InstanceGeneratorConsole
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
-                MaxLoops = 7,
+                MaxLoops = 5,
             };
             LocalSearch solver = new LocalSearch()
             {
@@ -47,7 +48,7 @@ namespace InstanceGeneratorConsole
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 5, 0),
+                TimeLimit = new TimeSpan(0, 4, 0),
                 Description = "local_search_final_difficulty_test",
             };
             solver.MoveFactories = new List<ITransformationFactory>
