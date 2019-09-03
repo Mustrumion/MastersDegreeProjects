@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,7 @@ namespace InstanceGeneratorConsole
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
         private string SolutionsDirectory => Path.Combine(MainDirectory, "solutions");
         public bool ParallelExecution { get; set; } = false;
+        public bool ReportProgrssToFile { get; set; } = false;
         public int MaxThreads { get; set; } = 15;
         public string[] DifficultyFilter { get; set; }
         public string[] KindFilter { get; set; }
@@ -143,38 +145,53 @@ namespace InstanceGeneratorConsole
         {
             return () =>
             {
-                string category = TotalStatsCategories.FirstOrDefault(c => pathOut.Contains(c));
-                BulkSolverStats categoryStats = null;
-                if (!string.IsNullOrEmpty(category))
+                try
                 {
-                    lock (_categorizedStats)
+                    string category = TotalStatsCategories.FirstOrDefault(c => pathOut.Contains(c));
+                    BulkSolverStats categoryStats = null;
+                    if (!string.IsNullOrEmpty(category))
                     {
-                        if (!_categorizedStats.TryGetValue(category, out categoryStats))
+                        lock (_categorizedStats)
                         {
-                            categoryStats = GenerateInitialStats();
-                            _categorizedStats[category] = categoryStats;
+                            if (!_categorizedStats.TryGetValue(category, out categoryStats))
+                            {
+                                categoryStats = GenerateInitialStats();
+                                _categorizedStats[category] = categoryStats;
+                            }
                         }
                     }
+                    var reader = new InstanceJsonSerializer
+                    {
+                        Path = pathIn,
+                    };
+                    Instance instance = reader.DeserializeInstance();
+                    solver.Instance = instance;
+                    IReporter reporter = new NullReporter();
+                    if (ReportProgrssToFile)
+                    {
+                        reporter = new ScoreReporter();
+                    }
+                    reporter.Start();
+                    solver.Reporter = reporter;
+                    solver.Solve();
+                    InstanceJsonSerializer serializer = new InstanceJsonSerializer()
+                    {
+                        Path = pathOut,
+                    };
+                    serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
+                    reporter.Save(Path.Combine(new FileInfo(pathOut).Directory.FullName, $"{Path.GetFileNameWithoutExtension(new FileInfo(pathOut).Name)}Report.csv"));
+                    Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
+                    AddSolutionToStats(_stats, solver);
+                    AddSolutionToStats(categoryStats, solver);
                 }
-                var reader = new InstanceJsonSerializer
-                {
-                    Path = pathIn,
-                };
-                Instance instance = reader.DeserializeInstance();
-                solver.Instance = instance;
-                IReporter reporter = new ScoreReporter();
-                reporter.Start();
-                solver.Reporter = reporter;
-                solver.Solve();
-                InstanceJsonSerializer serializer = new InstanceJsonSerializer()
-                {
-                    Path = pathOut,
-                };
-                serializer.SerializeSolution(solver.Solution, SolutionSerializationMode.DebugTaskData);
-                reporter.Save(Path.Combine(new FileInfo(pathOut).Directory.FullName, $"{Path.GetFileNameWithoutExtension(new FileInfo(pathOut).Name)}Report.csv"));
-                Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
-                AddSolutionToStats(_stats, solver);
-                AddSolutionToStats(categoryStats, solver);
+                catch(Exception e) {
+                    Console.WriteLine(e.Message);
+                }
+                GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             };
         }
     

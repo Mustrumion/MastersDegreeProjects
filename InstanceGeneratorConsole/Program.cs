@@ -26,7 +26,7 @@ namespace InstanceGeneratorConsole
         private const uint ENABLE_EXTENDED_FLAGS = 0x0080;
 
 
-        private static string MAIN_DIRECTORY = @"C:\Users\bartl\dropbox\MDP";
+        private static string MAIN_DIRECTORY = @"C:\Users\mustrum\dropbox\MDP";
 
 
         static void Main(string[] args)
@@ -43,6 +43,7 @@ namespace InstanceGeneratorConsole
             //{
             //    MainDirectory = MAIN_DIRECTORY,
             //    ParallelExecution = false,
+            //    Times = 2,
             //    MaxThreads = 4,
             //    TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
             //    DifficultyFilter = new[] { "medium" },
@@ -50,7 +51,7 @@ namespace InstanceGeneratorConsole
             //    LengthFilter = new[] { "week.json" },
             //};
 
-            ////bulkSolver.SolveEverything(LocalSearchNewStopConditions);
+            //bulkSolver.SolveEverything(LocalSearchNewStopConditions);
             //bulkSolver.SolveEverything(SimulatedAnnealingGenerator);
 
             DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
@@ -322,12 +323,12 @@ namespace InstanceGeneratorConsole
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 15,
-                TimeLimit = new TimeSpan(0, 15, 0),
+                NumberOfNoGoodActionsToStop = 10,
+                TimeLimit = new TimeSpan(0, 1, 0),
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                Description = "local_search_new_stop_condition_15",
+                Description = "local_search_new_stop_condition_1",
             };
             solver.InitialSolvers.Add(randomSolver);
             solver.InitialSolvers.Add(compundSolver);

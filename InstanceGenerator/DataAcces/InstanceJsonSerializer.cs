@@ -119,10 +119,15 @@ namespace InstanceGenerator.DataAccess
             {
                 Reader = WaitForFile(Path);
             }
-            Instance instance = JsonConvert.DeserializeObject<Instance>(Reader.ReadToEnd());
-            instance.RestoreStructuresAfterDeserialization();
+            Instance instance;
+            var serializer = new JsonSerializer();
+            using (var jsonTextReader = new JsonTextReader(Reader))
+            {
+                instance = serializer.Deserialize<Instance>(jsonTextReader);
+            }
             Reader.Close();
             Reader = null;
+            instance.RestoreStructuresAfterDeserialization();
             return instance;
         }
 
@@ -154,14 +159,20 @@ namespace InstanceGenerator.DataAccess
             {
                 Reader = WaitForFile(Path);
             }
-            Solution solution = JsonConvert.DeserializeObject<Solution>(Reader.ReadToEnd());
+            Solution solution;
+            var serializer = new JsonSerializer();
+            using (var jsonTextReader = new JsonTextReader(Reader))
+            {
+                solution = serializer.Deserialize<Solution>(jsonTextReader);
+            }
+            Reader.Close();
+            Reader = null;
+            
             if(instance != null)
             {
                 solution.Instance = instance;
                 solution.RestoreStructures();
             }
-            Reader.Close();
-            Reader = null;
             return solution;
         }
     }

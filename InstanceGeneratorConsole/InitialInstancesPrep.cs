@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InstanceGeneratorConsole
 {
-    public class DifficultyChoiceExperiment
+    public class InitialInstancesPrep
     {
         private static string MAIN_DIRECTORY = @"C:\Users\mustrum\dropbox\MDP";
 
@@ -18,10 +18,10 @@ namespace InstanceGeneratorConsole
         {
             BulkSolver bulkSolver = new BulkSolver()
             {
-                Times = 2,
+                Times = 70,
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
-                MaxThreads = 15,
+                MaxThreads = 8,
                 TotalStatsCategories = new[] { "trivial", "very_easy", "easy", "medium", "hard", "extreme" },
                 LengthFilter = new[] { "week.json", "month.json" },
             };
@@ -44,12 +44,12 @@ namespace InstanceGeneratorConsole
                 ScoringFunction = new Scorer(),
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
-                NumberOfNoGoodActionsToStop = 20,
+                NumberOfNoGoodActionsToStop = 15,
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
-                TimeLimit = new TimeSpan(0, 4, 0),
-                Description = "local_search_final_difficulty_test",
+                TimeLimit = new TimeSpan(0, 6, 0),
+                Description = "locaal_search_compatible_base",
             };
             solver.MoveFactories = new List<ITransformationFactory>
             {
