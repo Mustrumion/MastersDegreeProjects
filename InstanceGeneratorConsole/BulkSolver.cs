@@ -1,4 +1,5 @@
-﻿using InstanceGenerator.DataAccess;
+﻿using InstanceGenerator;
+using InstanceGenerator.DataAccess;
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
 using InstanceSolvers;
@@ -28,8 +29,9 @@ namespace InstanceGeneratorConsole
         public string[] DifficultyFilter { get; set; }
         public string[] KindFilter { get; set; }
         public string[] LengthFilter { get; set; }
-        public string[] TotalStatsCategories { get; set; }
+        public string[] TotalStatsCategories { get; set; } = new string[] { };
         public int Times { get; set; } = 1;
+        public int FirstNumber { get; set; } = 0;
         public Random Random { get; set; } = new Random(42);
 
 
@@ -46,6 +48,7 @@ namespace InstanceGeneratorConsole
             _stats = GenerateInitialStats();
             _categorizedStats = new Dictionary<string, BulkSolverStats>();
             var solveTasks = GenerateAllTasks(solverMaker);
+            solveTasks.Shuffle(Random);
             if (ParallelExecution)
             {
                 Parallel.ForEach(
@@ -118,7 +121,7 @@ namespace InstanceGeneratorConsole
             return directory.GetFiles().Where(d => LengthFilter == null || LengthFilter.Contains(d.Name)).SelectMany(file =>
             {
                 List<Action> tasks = new List<Action>();
-                for (int i = 0; i < Times; i++)
+                for (int i = FirstNumber; i < FirstNumber + Times; i++)
                 {
                     var solver = solverMaker();
                     solver.Seed = (int)(((long)solver.Seed + Random.Next()) % int.MaxValue);

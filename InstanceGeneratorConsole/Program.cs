@@ -21,9 +21,19 @@ namespace InstanceGeneratorConsole
 {
     class Program
     {
+        const uint ENABLE_QUICK_EDIT = 0x0040;
+
+        // STD_INPUT_HANDLE (DWORD): -10 is the standard input device.
+        const int STD_INPUT_HANDLE = -10;
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern IntPtr GetStdHandle(int nStdHandle);
+
         [DllImport("kernel32.dll")]
-        public static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint dwMode);
-        private const uint ENABLE_EXTENDED_FLAGS = 0x0080;
+        static extern bool GetConsoleMode(IntPtr hConsoleHandle, out uint lpMode);
+
+        [DllImport("kernel32.dll")]
+        static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint dwMode);
 
 
         private static string MAIN_DIRECTORY = @"C:\Users\mustrum\dropbox\MDP";
@@ -31,8 +41,18 @@ namespace InstanceGeneratorConsole
 
         static void Main(string[] args)
         {
-            IntPtr handle = Process.GetCurrentProcess().MainWindowHandle;
-            SetConsoleMode(handle, ENABLE_EXTENDED_FLAGS);
+            IntPtr consoleHandle = GetStdHandle(STD_INPUT_HANDLE);
+            uint consoleMode;
+            if (!GetConsoleMode(consoleHandle, out consoleMode))
+            {
+                Console.WriteLine("Can't get console handle. Weird.");
+                return;
+            }
+            consoleMode &= ~ENABLE_QUICK_EDIT;
+            if (!SetConsoleMode(consoleHandle, consoleMode))
+            {
+                Console.WriteLine("Can't set console mode. Weird.");
+            }
             //BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
             //{
             //    MainDirectory = MAIN_DIRECTORY,
@@ -54,7 +74,10 @@ namespace InstanceGeneratorConsole
             //bulkSolver.SolveEverything(LocalSearchNewStopConditions);
             //bulkSolver.SolveEverything(SimulatedAnnealingGenerator);
 
-            DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
+            //DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
+            //experiment.Perform();
+
+            InitialInstancesPrep experiment = new InitialInstancesPrep();
             experiment.Perform();
 
             Console.WriteLine("Press any key.");
