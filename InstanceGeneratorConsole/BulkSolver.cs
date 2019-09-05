@@ -124,9 +124,9 @@ namespace InstanceGeneratorConsole
                 for (int i = FirstNumber; i < FirstNumber + Times; i++)
                 {
                     var solver = solverMaker();
-                    solver.Seed = (int)(((long)solver.Seed + Random.Next()) % int.MaxValue);
+                    int seed = (int)(((long)solver.Seed + Random.Next()) % int.MaxValue);
                     string solutionName = Path.Combine(SolutionsDirectory, solver.Description, solverDir, $"{i}{file.Name}");
-                    tasks.Add(GenerateSolveTask(file.FullName, solutionName, solver));
+                    tasks.Add(GenerateSolveTask(file.FullName, solutionName, solverMaker, seed));
                 }
                 return tasks;
             }).ToList();
@@ -144,7 +144,7 @@ namespace InstanceGeneratorConsole
             }
         }
         
-        private Action GenerateSolveTask(string pathIn, string pathOut, ISolver solver)
+        private Action GenerateSolveTask(string pathIn, string pathOut, Func<ISolver> solverMaker, int seed)
         {
             return () =>
             {
@@ -168,6 +168,8 @@ namespace InstanceGeneratorConsole
                         Path = pathIn,
                     };
                     Instance instance = reader.DeserializeInstance();
+                    var solver = solverMaker();
+                    solver.Seed = seed;
                     solver.Instance = instance;
                     IReporter reporter = new NullReporter();
                     if (ReportProgrssToFile)
@@ -190,7 +192,7 @@ namespace InstanceGeneratorConsole
                 catch(Exception e) {
                     Console.WriteLine(e.Message);
                 }
-                GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
+                //GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 GC.Collect();

@@ -13,9 +13,9 @@ namespace InstanceSolvers
 {
     public class Scorer : IScoringFunction
     {
-        public double OverdueTasksLossWeight { get; set; } = 1;
+        public double OverdueTasksLossWeight { get; set; } = 0.0001;
         public double BreakExtensionLossWeight { get; set; } = 1;
-        public double MildIncompatibilityLossWeight { get; set; } = 1;
+        public double MildIncompatibilityLossWeight { get; set; } = 0.000001;
 
         private Solution _solution;
         [JsonIgnore]

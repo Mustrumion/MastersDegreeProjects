@@ -19,6 +19,7 @@ namespace InstanceGeneratorConsole
             BulkSolver bulkSolver = new BulkSolver()
             {
                 Times = 25,
+                FirstNumber = 75,
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
                 MaxThreads = 15,
@@ -49,7 +50,7 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 6, 0),
-                Description = "base_popualtion _ls_compatible",
+                Description = "base_popualtion _ls_compatible2",
             };
             solver.MoveFactories = new List<ITransformationFactory>
             {
