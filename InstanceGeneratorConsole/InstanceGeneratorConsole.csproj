@@ -69,10 +69,13 @@
     <Compile Include="BulkInstanceGenerator.cs" />
     <Compile Include="BulkSolver.cs" />
     <Compile Include="BulkSolverStats.cs" />
+    <Compile Include="InitialAlgorithmsExperiment.cs" />
+    <Compile Include="RandomAlgorithmsExperiment.cs" />
     <Compile Include="InitialInstancesPrep.cs" />
     <Compile Include="DifficultyChoiceExperiment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulatedAnnealingTuning.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

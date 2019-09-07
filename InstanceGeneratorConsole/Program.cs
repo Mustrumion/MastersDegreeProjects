@@ -77,7 +77,7 @@ namespace InstanceGeneratorConsole
             //DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
             //experiment.Perform();
 
-            InitialInstancesPrep experiment = new InitialInstancesPrep();
+            SimulatedAnnealingTuning experiment = new SimulatedAnnealingTuning();
             experiment.Perform();
 
             Console.WriteLine("Press any key.");
@@ -210,9 +210,7 @@ namespace InstanceGeneratorConsole
             {
                 DiagnosticMessages = true,
                 ScoringFunction = new Scorer(),
-                StartingTemperature = 100000.0,
-                FunctionDeltaOffset = 50000.0,
-                StepsAnalyzedWithoutImprovementToStop = 5000,
+                StepsAnalyzedWithoutImprovementToStop = 200,
                 NumberOfLoopsWithoutActionsToStop = 1,
                 PropagateRandomSeed = true,
                 Seed = 100,

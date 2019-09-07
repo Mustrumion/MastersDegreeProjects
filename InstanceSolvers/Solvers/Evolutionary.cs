@@ -15,15 +15,26 @@ namespace InstanceSolvers.Solvers
     {
         public int PopulationCount { get; set; } = 30;
         public double NumberOfMutationsToBreakCount { get; set; } = 0.01;
-        public double ProportionOfBreaksCrossed { get; set; } = 0.01;
+        public double ProportionOfBreaksCrossed { get; set; } = 0.02;
         public int NumberOfMutants { get; set; } = 20;
+        public double MutationRate
+        {
+            get => (double)NumberOfMutants / PopulationCount;
+            set => NumberOfMutants = (int)(PopulationCount * value) + 1;
+        }
         public int NumberOfCrossbreeds { get; set; } = 20;
+        public double CrossoverRate
+        {
+            get => (double)NumberOfCrossbreeds / PopulationCount;
+            set => NumberOfCrossbreeds = (int)(PopulationCount * value) + 1;
+        }
         public int CandidatesForParent { get; set; } = 2;
         public bool ParallelAllowed { get; set; } = true;
         public int BreakAfterLoopsWithoutImprovement { get; set; } = 1;
 
         public int GenerationsWithoutImprovement { get; private set; }
         public int Generations { get; private set; }
+        public List<Solution> Population { get; set; } = new List<Solution>();
 
 
         public Func<List<ITransformationFactory>> MutationFactoriesGenerator { get; set; }
@@ -38,13 +49,12 @@ namespace InstanceSolvers.Solvers
         /// </summary>
         public Func<ISolver> GenerationImproverGenerator { get; set; }
 
-        private List<Solution> _generation = new List<Solution>();
         private Solution _bestSolution;
 
         private void FillPopulation()
         {
             List<int> seeds = new List<int>();
-            for(int i = 0; i < PopulationCount - _generation.Count; i++)
+            for(int i = 0; i < PopulationCount - Population.Count; i++)
             {
                 seeds.Add(Random.Next());
             }
@@ -103,9 +113,9 @@ namespace InstanceSolvers.Solvers
             generationCreator.ScoringFunction = ScoringFunction.GetAnotherOne();
             generationCreator.Solve();
             generationCreator.Solution.Description = $"Seed:{seed}";
-            lock (_generation)
+            lock (Population)
             {
-                _generation.Add(generationCreator.Solution);
+                Population.Add(generationCreator.Solution);
             }
         }
 
@@ -114,14 +124,14 @@ namespace InstanceSolvers.Solvers
             if (GenerationImproverGenerator == null) return;
             if (ParallelAllowed)
             {
-                Parallel.ForEach(_generation, solution =>
+                Parallel.ForEach(Population, solution =>
                 {
                     ImproveSolution(solution);
                 });
             }
             else
             {
-                foreach (Solution solution in _generation)
+                foreach (Solution solution in Population)
                 {
                     ImproveSolution(solution);
                 }
@@ -152,7 +162,10 @@ namespace InstanceSolvers.Solvers
         protected override void InternalSolve()
         {
             InitializeMoveFactories();
-            FillPopulation();
+            if(Population == null || Population.Count == 0)
+            {
+                FillPopulation();
+            }
             while(!TimeToEnd())
             {
                 CreateCrossbreeds();
@@ -161,6 +174,7 @@ namespace InstanceSolvers.Solvers
                 if (DiagnosticMessages) OutputGenScore();
                 CullPopulation();
                 SaveTheBest();
+                CreateGenReport();
                 Generations += 1;
                 if (DiagnosticMessages) Console.WriteLine($"Generation {Generations} finished. Completion {_bestSolution.CompletionScore}. Weighted loss {_bestSolution.WeightedLoss}.");
             }
@@ -172,12 +186,25 @@ namespace InstanceSolvers.Solvers
 
         private void OutputGenScore()
         {
-            _generation = _generation.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).ToList();
-            for(int i = 0; i < _generation.Count; i ++)
+            Population = Population.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).ToList();
+            for (int i = 0; i < Population.Count; i++)
             {
-                Console.WriteLine($"No. {i}. Comp {_generation[i].CompletionScore}. Weighted {_generation[i].WeightedLoss}. Desc {_generation[i].Description}.");
+                Console.WriteLine($"No. {i}. Comp {Population[i].CompletionScore}. Weighted {Population[i].WeightedLoss}. Desc {Population[i].Description}.");
             }
         }
+
+        private void CreateGenReport()
+        {
+            Reporter.AddEntry(new ReportEntry()
+            {
+                Time = DateTime.Now,
+                Action = "Generation",
+                AttainedAcceptable = false,
+                IntegrityLoss = _bestSolution.IntegrityLossScore,
+                WeightedLoss = _bestSolution.WeightedLoss,
+            });
+        }
+        
 
         private bool TimeToEnd(bool outer = true)
         {
@@ -196,8 +223,8 @@ namespace InstanceSolvers.Solvers
 
         private void CreateMutants()
         {
-            _generation.Shuffle(Random);
-            var bases = _generation.Take(NumberOfMutants).ToList();
+            Population.Shuffle(Random);
+            var bases = Population.Take(NumberOfMutants).ToList();
             if (ParallelAllowed)
             {
                 Parallel.ForEach(bases, solution =>
@@ -238,9 +265,9 @@ namespace InstanceSolvers.Solvers
                 }
             }
             mutant.Description += $", m{Generations}";
-            lock (_generation)
+            lock (Population)
             {
-                _generation.Add(mutant);
+                Population.Add(mutant);
             }
         }
         
@@ -260,9 +287,9 @@ namespace InstanceSolvers.Solvers
             }
             kiddo.GradingFunction.AssesSolution(kiddo);
             kiddo.Description += $", c{Generations}";
-            lock (_generation)
+            lock (Population)
             {
-                _generation.Add(kiddo);
+                Population.Add(kiddo);
             }
         }
 
@@ -272,9 +299,9 @@ namespace InstanceSolvers.Solvers
             int numberLeft = NumberOfCrossbreeds * 2 * CandidatesForParent;
             while(numberLeft > 0)
             {
-                _generation.Shuffle(Random);
-                pairList.AddRange(_generation);
-                numberLeft -= _generation.Count;
+                Population.Shuffle(Random);
+                pairList.AddRange(Population);
+                numberLeft -= Population.Count;
             }
 
             if (ParallelAllowed)
@@ -299,7 +326,7 @@ namespace InstanceSolvers.Solvers
 
         private void SaveTheBest()
         {
-            var populationBest = _generation.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).First();
+            var populationBest = Population.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).First();
             if (populationBest.IsBetterThan(_bestSolution))
             {
                 _bestSolution = populationBest.TakeSnapshot();
@@ -313,7 +340,7 @@ namespace InstanceSolvers.Solvers
 
         private void CullPopulation()
         {
-            _generation = _generation.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).Take(PopulationCount).ToList();
+            Population = Population.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).Take(PopulationCount).ToList();
         }
     }
 }

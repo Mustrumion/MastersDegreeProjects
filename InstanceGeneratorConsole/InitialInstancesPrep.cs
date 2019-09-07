@@ -19,7 +19,7 @@ namespace InstanceGeneratorConsole
             BulkSolver bulkSolver = new BulkSolver()
             {
                 Times = 25,
-                FirstNumber = 75,
+                FirstNumber = 125,
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
                 MaxThreads = 15,
@@ -32,9 +32,8 @@ namespace InstanceGeneratorConsole
 
         private ISolver LocalSearchFinal()
         {
-            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
+            RandomFastSolver randomSolver = new RandomFastSolver()
             {
-                MaxOverfillUnits = 0,
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
@@ -50,7 +49,7 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 6, 0),
-                Description = "base_popualtion _ls_compatible2",
+                Description = "base_popualtion _ls_random2",
             };
             solver.MoveFactories = new List<ITransformationFactory>
             {

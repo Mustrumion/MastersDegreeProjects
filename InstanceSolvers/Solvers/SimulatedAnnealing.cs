@@ -20,6 +20,12 @@ namespace InstanceSolvers.Solvers
         private int _stepsSinceLastImprovement;
         private int _loopsSinceLastAction;
         private bool _timeToStop;
+        private double _temperature = 22.35;
+        private double _startingTemperature = 22.35;
+
+        //private static double _deltasSum;
+        //private static int _deltasCount;
+        //private static string _deltas;
 
         public IEnumerable<ITransformationFactory> MoveFactories { get; set; }
         public bool StopWhenCompleted { get; set; } = false;
@@ -27,11 +33,21 @@ namespace InstanceSolvers.Solvers
         public int NumberOfLoopsWithoutActionsToStop { get; set; } = 1;
 
         public bool AllowIntegrityLoss { get; set; } = false;
+        public bool WriteProbabilitiesToConsole { get; set; }
         public double IntegrityLossMultiplier { get; set; } = 1000.0;
+        
+        public double TemperatureMultiplier { get; set; } = 0.99999;
+        public double TemperatureAddition { get; set; } = 0.00000001;
+        public double StartingTemperature
+        {
+            get => _startingTemperature;
+            set
+            {
+                _temperature = value;
+                _startingTemperature = value;
+            }
+        }
 
-        public double FunctionDeltaOffset { get; set; } = 20000.0;
-        public double StartingTemperature { get; set; } = 1000000.0;
-        public double TemperatureMultiplier { get; set; } = 1.0;
         [JsonIgnore]
         public int NumberOfMoves { get; set; }
         [JsonIgnore]
@@ -63,7 +79,7 @@ namespace InstanceSolvers.Solvers
                 }
                 while (!TimeToEnd())
                 {
-                    if(moveQueues.Count == 0)
+                    if (moveQueues.Count == 0)
                     {
                         break;
                     }
@@ -147,11 +163,11 @@ namespace InstanceSolvers.Solvers
 
         private bool TimeToEnd(bool outer = true)
         {
-            if(Solution.CompletionScore >= 1)
+            if (Solution.CompletionScore >= 1)
             {
-                if(StopWhenCompleted || Solution.WeightedLoss == 0)
+                if (StopWhenCompleted || Solution.WeightedLoss == 0)
                 {
-                    if (DiagnosticMessages  && outer) Console.WriteLine($"TaskCompleted.");
+                    if (DiagnosticMessages && outer) Console.WriteLine($"TaskCompleted.");
                     return true;
                 }
             }
@@ -181,6 +197,7 @@ namespace InstanceSolvers.Solvers
         private bool ChooseToPerform(ITransformation move)
         {
             NumberOfSteps += 1;
+            _temperature = _temperature * TemperatureMultiplier + TemperatureAddition;
             move.Asses();
             if (move.OverallDifference.HasScoreImproved())
             {
@@ -199,13 +216,17 @@ namespace InstanceSolvers.Solvers
                 {
                     transformationDelta = move.OverallDifference.WeightedLoss;
                 }
-                transformationDelta += FunctionDeltaOffset;
-                double currentTemperature = StartingTemperature / Math.Log(NumberOfSteps);
-                double p = Math.Exp(-transformationDelta/currentTemperature);
-                Console.WriteLine(p);
-                if(Random.NextDouble() > p) return false;
+                if(transformationDelta > 0 && WriteProbabilitiesToConsole)
+                {
+                    //_deltas += $"{transformationDelta}\n";
+                    //_deltasCount++;
+                    //_deltasSum += transformationDelta;
+                    Console.WriteLine(Math.Exp(-transformationDelta / _temperature));
+                }
+                double p = Math.Exp(-transformationDelta / _temperature);
+                if (Random.NextDouble() > p) return false;
             }
-            if(move.OverallDifference.HasScoreWorsened())
+            if (move.OverallDifference.HasScoreWorsened())
             {
                 if (Solution.IsBetterThan(_previousBest))
                 {

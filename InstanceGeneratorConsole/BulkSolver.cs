@@ -2,6 +2,7 @@
 using InstanceGenerator.DataAccess;
 using InstanceGenerator.InstanceData;
 using InstanceGenerator.Interfaces;
+using InstanceGenerator.SolutionObjects;
 using InstanceSolvers;
 using InstanceSolvers.Solvers.Base;
 using Newtonsoft.Json;
@@ -21,8 +22,21 @@ namespace InstanceGeneratorConsole
         private volatile Dictionary<string, BulkSolverStats> _categorizedStats = new Dictionary<string, BulkSolverStats>();
 
         public string MainDirectory { get; set; }
+        public string SavedSubpath { get; set; }
+        public string StartingSolutionsDirectory { get; set; }
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
-        private string SolutionsDirectory => Path.Combine(MainDirectory, "solutions");
+        private string SolutionsDirectory
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(SavedSubpath))
+                {
+                    return Path.Combine(MainDirectory, "solutions");
+                }
+                return Path.Combine(MainDirectory, SavedSubpath, "solutions");
+            }
+        }
+
         public bool ParallelExecution { get; set; } = false;
         public bool ReportProgrssToFile { get; set; } = false;
         public int MaxThreads { get; set; } = 15;
@@ -32,7 +46,7 @@ namespace InstanceGeneratorConsole
         public string[] TotalStatsCategories { get; set; } = new string[] { };
         public int Times { get; set; } = 1;
         public int FirstNumber { get; set; } = 0;
-        public Random Random { get; set; } = new Random(42);
+        public Random Random { get; set; } = new Random();
 
 
         private BulkSolverStats GenerateInitialStats()
@@ -143,13 +157,37 @@ namespace InstanceGeneratorConsole
                 stats.TasksStats.AddTasksStats(solver.Solution.TotalStats);
             }
         }
+
+        private List<Solution> LoadStartingSolutions(string solutionsDirectory, string currentInstance, Instance instance, int amount, ISolver solver)
+        {
+            string instancePath = currentInstance.Replace(InstanceDirectory + Path.DirectorySeparatorChar, "");
+            string nameToSearch = Path.GetFileNameWithoutExtension(instancePath);
+            string relativePathToSearch = instancePath.Replace(Path.GetFileName(instancePath), "");
+            string dirToSearch = Path.Combine(StartingSolutionsDirectory, relativePathToSearch);
+            string[] filePaths = Directory.GetFiles(dirToSearch, $"*{nameToSearch}*.json");
+
+            var solutionList = new List<Solution>();
+            solutionList.Shuffle(Random);
+            for (int i = 0; i < Math.Min(amount, filePaths.Count()); ++i)
+            {
+                var deserializer = new InstanceJsonSerializer
+                {
+                    Reader = new StreamReader(filePaths[i]),
+                };
+                Solution solution = deserializer.DeserializeSolution(instance);
+                solution.GradingFunction = solver.ScoringFunction.GetAnotherOne();
+                solution.GradingFunction.AssesSolution(solution);
+                solutionList.Add(solution);
+            }
+            return solutionList;
+        }
         
         private Action GenerateSolveTask(string pathIn, string pathOut, Func<ISolver> solverMaker, int seed)
         {
             return () =>
             {
-                try
-                {
+                //try
+                //{
                     string category = TotalStatsCategories.FirstOrDefault(c => pathOut.Contains(c));
                     BulkSolverStats categoryStats = null;
                     if (!string.IsNullOrEmpty(category))
@@ -171,6 +209,17 @@ namespace InstanceGeneratorConsole
                     var solver = solverMaker();
                     solver.Seed = seed;
                     solver.Instance = instance;
+                    if (StartingSolutionsDirectory != null)
+                    {
+                        if(solver is InstanceSolvers.Solvers.Evolutionary evo)
+                        {
+                            evo.Population = LoadStartingSolutions(SolutionsDirectory, pathIn, instance, evo.PopulationCount, solver);
+                        }
+                        else
+                        {
+                            solver.Solution = LoadStartingSolutions(SolutionsDirectory, pathIn, instance, 1, solver)[0];
+                        }
+                    }
                     IReporter reporter = new NullReporter();
                     if (ReportProgrssToFile)
                     {
@@ -188,10 +237,10 @@ namespace InstanceGeneratorConsole
                     Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
                     AddSolutionToStats(_stats, solver);
                     AddSolutionToStats(categoryStats, solver);
-                }
-                catch(Exception e) {
-                    Console.WriteLine(e.Message);
-                }
+                //}
+                //catch(Exception e) {
+                //    Console.WriteLine(e.Message);
+                //}
                 //GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
