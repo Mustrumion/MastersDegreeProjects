@@ -25,17 +25,6 @@ namespace InstanceGeneratorConsole
         public string SavedSubpath { get; set; }
         public string StartingSolutionsDirectory { get; set; }
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
-        private string SolutionsDirectory
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(SavedSubpath))
-                {
-                    return Path.Combine(MainDirectory, "solutions");
-                }
-                return Path.Combine(MainDirectory, SavedSubpath, "solutions");
-            }
-        }
 
         public bool ParallelExecution { get; set; } = false;
         public bool ReportProgrssToFile { get; set; } = false;
@@ -49,7 +38,20 @@ namespace InstanceGeneratorConsole
         public Random Random { get; set; } = new Random();
 
 
-        private BulkSolverStats GenerateInitialStats()
+        private string SolutionsDirectory
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(SavedSubpath))
+                {
+                    return Path.Combine(MainDirectory, "solutions");
+                }
+                return Path.Combine(MainDirectory, SavedSubpath, "solutions");
+            }
+        }
+
+
+        private BulkSolverStats InitializeStats()
         {
             BulkSolverStats stats = new BulkSolverStats();
             stats.RepositoryVersionHash = ShellExec("git describe --always --dirty");
@@ -59,7 +61,7 @@ namespace InstanceGeneratorConsole
 
         public void SolveEverything(Func<ISolver> solverMaker)
         {
-            _stats = GenerateInitialStats();
+            _stats = InitializeStats();
             _categorizedStats = new Dictionary<string, BulkSolverStats>();
             var solveTasks = GenerateAllTasks(solverMaker);
             solveTasks.Shuffle(Random);
@@ -122,6 +124,7 @@ namespace InstanceGeneratorConsole
             }).ToList();
         }
 
+
         private List<Action> GenerateTasksParentDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
             return directory.GetDirectories().Where(d => KindFilter == null || KindFilter.Contains(d.Name)).SelectMany(childDir =>
@@ -129,6 +132,7 @@ namespace InstanceGeneratorConsole
                 return GenerateTasksFromDirectory(childDir, Path.Combine(solverDir, childDir.Name), solverMaker);
             }).ToList();
         }
+
 
         private List<Action> GenerateTasksFromDirectory(DirectoryInfo directory, string solverDir, Func<ISolver> solverMaker)
         {
@@ -146,6 +150,7 @@ namespace InstanceGeneratorConsole
             }).ToList();
         }
         
+
         private void AddSolutionToStats(BulkSolverStats stats, ISolver solver)
         {
             if (stats == null) return;
@@ -158,6 +163,7 @@ namespace InstanceGeneratorConsole
             }
         }
 
+
         private List<Solution> LoadStartingSolutions(string solutionsDirectory, string currentInstance, Instance instance, int amount, ISolver solver)
         {
             string instancePath = currentInstance.Replace(InstanceDirectory + Path.DirectorySeparatorChar, "");
@@ -168,6 +174,7 @@ namespace InstanceGeneratorConsole
 
             var solutionList = new List<Solution>();
             solutionList.Shuffle(Random);
+
             for (int i = 0; i < Math.Min(amount, filePaths.Count()); ++i)
             {
                 var deserializer = new InstanceJsonSerializer
@@ -175,6 +182,7 @@ namespace InstanceGeneratorConsole
                     Reader = new StreamReader(filePaths[i]),
                 };
                 Solution solution = deserializer.DeserializeSolution(instance);
+                solution.Description = Path.GetFileNameWithoutExtension(filePaths[i]);
                 solution.GradingFunction = solver.ScoringFunction.GetAnotherOne();
                 solution.GradingFunction.AssesSolution(solution);
                 solutionList.Add(solution);
@@ -182,12 +190,13 @@ namespace InstanceGeneratorConsole
             return solutionList;
         }
         
+
         private Action GenerateSolveTask(string pathIn, string pathOut, Func<ISolver> solverMaker, int seed)
         {
             return () =>
             {
-                //try
-                //{
+                try
+                {
                     string category = TotalStatsCategories.FirstOrDefault(c => pathOut.Contains(c));
                     BulkSolverStats categoryStats = null;
                     if (!string.IsNullOrEmpty(category))
@@ -196,7 +205,7 @@ namespace InstanceGeneratorConsole
                         {
                             if (!_categorizedStats.TryGetValue(category, out categoryStats))
                             {
-                                categoryStats = GenerateInitialStats();
+                                categoryStats = InitializeStats();
                                 _categorizedStats[category] = categoryStats;
                             }
                         }
@@ -214,6 +223,7 @@ namespace InstanceGeneratorConsole
                         if(solver is InstanceSolvers.Solvers.Evolutionary evo)
                         {
                             evo.Population = LoadStartingSolutions(SolutionsDirectory, pathIn, instance, evo.PopulationCount, solver);
+                            evo.PopulationCount = evo.Population.Count;
                         }
                         else
                         {
@@ -237,10 +247,12 @@ namespace InstanceGeneratorConsole
                     Console.WriteLine($"Solution {pathOut} was generated, completion {solver.Solution.CompletionScore}, loss {solver.Solution.WeightedLoss}, time {solver.Solution.TimeElapsed.ToString(@"hh\:mm\:ss")}.");
                     AddSolutionToStats(_stats, solver);
                     AddSolutionToStats(categoryStats, solver);
-                //}
-                //catch(Exception e) {
-                //    Console.WriteLine(e.Message);
-                //}
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.StackTrace);
+                }
                 //GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
                 GC.Collect();
                 GC.WaitForPendingFinalizers();

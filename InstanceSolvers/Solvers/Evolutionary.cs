@@ -30,6 +30,7 @@ namespace InstanceSolvers.Solvers
         }
         public int CandidatesForParent { get; set; } = 2;
         public bool ParallelAllowed { get; set; } = true;
+        public ParallelOptions ParallelOptions { get; set; } = new ParallelOptions();
         public int BreakAfterLoopsWithoutImprovement { get; set; } = 1;
 
         public int GenerationsWithoutImprovement { get; private set; }
@@ -60,7 +61,7 @@ namespace InstanceSolvers.Solvers
             }
             if (ParallelAllowed)
             {
-                Parallel.ForEach(seeds, seed =>
+                Parallel.ForEach(seeds, ParallelOptions, seed =>
                 {
                     AddSolutionToGeneration(seed);
                 });
@@ -124,7 +125,7 @@ namespace InstanceSolvers.Solvers
             if (GenerationImproverGenerator == null) return;
             if (ParallelAllowed)
             {
-                Parallel.ForEach(Population, solution =>
+                Parallel.ForEach(Population, ParallelOptions, solution =>
                 {
                     ImproveSolution(solution);
                 });
@@ -227,7 +228,7 @@ namespace InstanceSolvers.Solvers
             var bases = Population.Take(NumberOfMutants).ToList();
             if (ParallelAllowed)
             {
-                Parallel.ForEach(bases, solution =>
+                Parallel.ForEach(bases, ParallelOptions, solution =>
                 {
                     GenerateMutantBasedOn(solution);
                 });

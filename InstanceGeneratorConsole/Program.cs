@@ -77,7 +77,7 @@ namespace InstanceGeneratorConsole
             //DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
             //experiment.Perform();
 
-            SimulatedAnnealingTuning experiment = new SimulatedAnnealingTuning();
+            EvolutionaryTuning experiment = new EvolutionaryTuning();
             experiment.Perform();
 
             Console.WriteLine("Press any key.");
