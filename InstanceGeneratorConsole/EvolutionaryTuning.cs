@@ -23,7 +23,7 @@ namespace InstanceGeneratorConsole
                 ParallelExecution = false,
                 ReportProgrssToFile = true,
                 LengthFilter = new[] { "week.json" },
-                KindFilter = new[] { "1_ch_n", "2_ch_n", "2_ch_v", "3_ch_n", "3edu1", "3edu2", "4ch3n1a1", "4ch3n1a2" },
+                //KindFilter = new[] { "1_ch_n", "2_ch_n", "2_ch_v", "3_ch_n", "3edu1", "3edu2", "4ch3n1a1", "4ch3n1a2" },
                 DifficultyFilter = new[] { "medium" },
                 StartingSolutionsDirectory = Path.Combine(MAIN_DIRECTORY, "solutions", "base_solutions_all"),
                 SavedSubpath = "evolutionary_optimization"

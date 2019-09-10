@@ -75,6 +75,7 @@
     <Compile Include="DifficultyChoiceExperiment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulatedAnnealingTuning2.cs" />
     <Compile Include="SimulatedAnnealingTuning.cs" />
     <Compile Include="EvolutionaryTuning.cs" />
   </ItemGroup>
