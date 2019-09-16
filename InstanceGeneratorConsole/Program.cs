@@ -77,7 +77,7 @@ namespace InstanceGeneratorConsole
             //DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
             //experiment.Perform();
 
-            CompareCompoundBasisExperiment experiment = new CompareCompoundBasisExperiment();
+            MetaCombinationExperiment experiment = new MetaCombinationExperiment();
             experiment.Perform();
 
             Console.WriteLine("Press any key.");

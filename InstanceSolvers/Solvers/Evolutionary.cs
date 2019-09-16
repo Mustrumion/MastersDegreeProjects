@@ -167,7 +167,9 @@ namespace InstanceSolvers.Solvers
             {
                 FillPopulation();
             }
-            while(!TimeToEnd())
+            SaveTheBest();
+            CreateGenReport();
+            while (!TimeToEnd())
             {
                 CreateCrossbreeds();
                 CreateMutants();
@@ -180,8 +182,8 @@ namespace InstanceSolvers.Solvers
                 if (DiagnosticMessages) Console.WriteLine($"Generation {Generations} finished. Completion {_bestSolution.CompletionScore}. Weighted loss {_bestSolution.WeightedLoss}.");
             }
             Solution = _bestSolution;
-            Solution.RestoreStructures();
-            _scoringFunction.AssesSolution(Solution);
+            //Solution.RestoreStructures();
+            //_scoringFunction.AssesSolution(Solution);
         }
 
 
@@ -330,7 +332,7 @@ namespace InstanceSolvers.Solvers
             var populationBest = Population.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).First();
             if (populationBest.IsBetterThan(_bestSolution))
             {
-                _bestSolution = populationBest.TakeSnapshot();
+                _bestSolution = populationBest;
                 GenerationsWithoutImprovement = 0;
             }
             else

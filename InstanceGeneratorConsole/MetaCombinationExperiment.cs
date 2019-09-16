@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace InstanceGeneratorConsole
 {
-    public class MetaComparisionExperiment
+    public class MetaCombinationExperiment
     {
         private static string MAIN_DIRECTORY = @"C:\Users\mustrum\dropbox\MDP";
 
@@ -22,39 +22,11 @@ namespace InstanceGeneratorConsole
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = false,
                 ReportProgrssToFile = true,
-                LengthFilter = new[] { "week.json", "month.json" },
+                LengthFilter = new[] { "week.json" },
                 DifficultyFilter = new[] { "medium" },
-                StartingSolutionsDirectory = Path.Combine(MAIN_DIRECTORY, "solutions", "base_solutions_all"),
+                StartingSolutionsDirectory = Path.Combine(MAIN_DIRECTORY, "annealing_optimization3", "solutions") + @"\*\",
             };
             bulkSolver.SolveEverything(EvolutionaryBest);
-            BulkSolver bulkSolver2 = new BulkSolver()
-            {
-                MainDirectory = MAIN_DIRECTORY,
-                ParallelExecution = true,
-                MaxThreads = 15,
-                ReportProgrssToFile = true,
-                LengthFilter = new[] { "week.json", "month.json" },
-                DifficultyFilter = new[] { "medium" },
-                StartingSolutionsDirectory = Path.Combine(MAIN_DIRECTORY, "solutions", "base_solutions_all"),
-            };
-            bulkSolver2.SolveEverything(SimulatedAnnealingBest);
-        }
-
-        
-        private ISolver SimulatedAnnealingBest()
-        {
-            SimulatedAnnealing solver = new SimulatedAnnealing()
-            {
-                ScoringFunction = new Scorer(),
-                DiagnosticMessages = true,
-                PropagateRandomSeed = true,
-                TimeLimit = new TimeSpan(1, 30, 0),
-                TemperatureMultiplier = 0.999973432905173,
-                TemperatureAddition = 3.51023731470062E-06,
-                StepsAnalyzedWithoutImprovementToStop = 600,
-                Description = "annealing_best",
-            };
-            return solver;
         }
 
 
@@ -76,7 +48,7 @@ namespace InstanceGeneratorConsole
                 NumberOfMutationsToBreakCount = 0.000790520968624,
                 ProportionOfBreaksCrossed = 0.083086983070447,
                 GenerationImproverGenerator = LocalSearchForEvolutionaryImprovement,
-                Description = "evolutionary_best_2",
+                Description = "evolutionary_based_on_annealing",
             };
             return solver;
         }

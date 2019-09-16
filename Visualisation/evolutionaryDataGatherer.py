@@ -22,7 +22,7 @@ directory = 'C:/Users/Mustrum/Dropbox/MDP/evolutionary_optimization/'
 fileMask = '**/*Stats.json'
 files = [f for f in glob.glob(directory + fileMask, recursive=True)]
 
-df = pd.DataFrame(index=np.arange(0, len(files)), columns=('loss', 'time[min]', 'populationCount', 'parentCandidates', 'mutationRate', 'mutationProbability', 'crossoverRate', 'crossoverProbability') )
+df = pd.DataFrame(index=np.arange(0, len(files)), columns=('loss', 'time[min]', 'population count', 'parent candidates', 'mutation rate', 'mutation probability', 'crossover rate', 'crossover probability') )
 
 for i, f in enumerate(files):
     with open(f) as json_file:
@@ -44,28 +44,28 @@ df.sort_values('loss', inplace=True)
 df.to_csv (directory + 'lossSorted.csv', index = None, header=True)
 df.sort_values('time[min]', inplace=True)
 df.to_csv (directory + 'timeSorted.csv', index = None, header=True)
-df = df.round({'loss': 1, 'time[min]': 2, 'tpopulationCount': 0, 'parentCandidates': 0, 'mutationRate': 3, 'mutationProbability': 5, 'crossoverRate': 3, 'crossoverProbability': 5})
-df.head(10).to_csv (directory + 'bestTime.csv', index = None, header=True)
-df.tail(10).to_csv (directory + 'worstTime.csv', index = None, header=True)
+df = df.round({'loss': 1, 'time[min]': 2, 'population count': 0, 'parent candidates': 0, 'mutation rate': 3, 'mutation probability': 5, 'crossover rate': 3, 'crossover probability': 5})
+df.head(5).to_csv (directory + 'bestTime.csv', index = None, header=True)
+df.tail(5).to_csv (directory + 'worstTime.csv', index = None, header=True)
 df.sort_values('loss', inplace=True)
-df.head(10).to_csv (directory + 'bestLoss.csv', index = None, header=True)
-df.tail(10).to_csv (directory + 'worstLoss.csv', index = None, header=True)
+df.head(5).to_csv (directory + 'bestLoss.csv', index = None, header=True)
+df.tail(5).to_csv (directory + 'worstLoss.csv', index = None, header=True)
 
-df['mutationProbability [log10]'] = df['mutationProbability'].apply(math.log10)
-df['crossoverProbability [log10]'] = df['crossoverProbability'].apply(math.log10)
+df['mutation probability [log10]'] = df['mutation probability'].apply(math.log10)
+df['crossover probability [log10]'] = df['crossover probability'].apply(math.log10)
 
 #fig, axes = plt.subplots(ncols=2)
 #fig.set_size_inches(10, 5)
 # sns.lmplot(x="parentCandidates", y="value", data=df, x_estimator=np.mean)
 # sns.lmplot(x="parentCandidates", y="time[min]", data=df, x_estimator=np.mean)
 
-g = sns.pairplot(df, kind="reg", x_vars=['populationCount', 'mutationRate', 'crossoverRate'], y_vars=['loss', 'time[min]'], 
+g = sns.pairplot(df, kind="reg", x_vars=['population count', 'mutation rate', 'crossover rate'], y_vars=['loss', 'time[min]'], 
         plot_kws=dict(line_kws=dict(lw=1), scatter_kws=dict(s=2), order=2))
 axes = g.axes
 for row in axes:
     for ax in row:
         ax.set_ylim(0,)
-g = sns.pairplot(df, kind="reg", x_vars=['parentCandidates', 'mutationProbability [log10]', 'crossoverProbability [log10]'], y_vars=['loss', 'time[min]'], 
+g = sns.pairplot(df, kind="reg", x_vars=['parent candidates', 'mutation probability [log10]', 'crossover probability [log10]'], y_vars=['loss', 'time[min]'], 
         plot_kws=dict(line_kws=dict(lw=1), scatter_kws=dict(s=2), order=2))
 axes = g.axes
 for row in axes:

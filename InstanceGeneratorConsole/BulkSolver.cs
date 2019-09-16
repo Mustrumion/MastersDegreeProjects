@@ -24,6 +24,7 @@ namespace InstanceGeneratorConsole
         public string MainDirectory { get; set; }
         public string SavedSubpath { get; set; }
         public string StartingSolutionsDirectory { get; set; }
+        public bool PickOnlyBestStartingSolutions { get; set; } 
         private string InstanceDirectory => Path.Combine(MainDirectory, "instances");
 
         public bool ParallelExecution { get; set; } = false;
@@ -164,18 +165,51 @@ namespace InstanceGeneratorConsole
         }
 
 
+        private string[] FindFilesUsingWildcardPath(string path)
+        {
+            var segments = path.Split('\\');
+            List<string> folders = new List<string>();
+            folders.Add(segments[0]);
+            for (int i = 1; i < segments.Count() - 1; i++)
+            {
+                var oldFolder = folders;
+                folders = new List<string>();
+                foreach(var folder in oldFolder)
+                {
+                    folders.AddRange(Directory.GetDirectories(folder + '\\', segments[i]));
+                }
+            }
+            List<string> found = new List<string>();
+            foreach (var folder in folders)
+            {
+                found.AddRange(Directory.GetFiles(folder, segments.Last()));
+            }
+            return found.ToArray();
+        }
+
+
         private List<Solution> LoadStartingSolutions(string solutionsDirectory, string currentInstance, Instance instance, int amount, ISolver solver)
         {
             string instancePath = currentInstance.Replace(InstanceDirectory + Path.DirectorySeparatorChar, "");
             string nameToSearch = Path.GetFileNameWithoutExtension(instancePath);
             string relativePathToSearch = instancePath.Replace(Path.GetFileName(instancePath), "");
             string dirToSearch = Path.Combine(StartingSolutionsDirectory, relativePathToSearch);
-            string[] filePaths = Directory.GetFiles(dirToSearch, $"*{nameToSearch}*.json");
+            string[] filePaths = FindFilesUsingWildcardPath(Path.Combine(dirToSearch, $"*{nameToSearch}*.json"));
 
             var solutionList = new List<Solution>();
-            solutionList.Shuffle(Random);
 
-            for (int i = 0; i < Math.Min(amount, filePaths.Count()); ++i)
+            int amountToRead;
+            if (PickOnlyBestStartingSolutions)
+            {
+                amountToRead = filePaths.Count();
+            }
+            else
+            {
+                solutionList.Shuffle(Random);
+                amountToRead = Math.Min(amount, filePaths.Count());
+            }
+
+            for (int i = 0; i < amountToRead; ++i)
             {
                 var deserializer = new InstanceJsonSerializer
                 {
@@ -186,6 +220,10 @@ namespace InstanceGeneratorConsole
                 solution.GradingFunction = solver.ScoringFunction.GetAnotherOne();
                 solution.GradingFunction.AssesSolution(solution);
                 solutionList.Add(solution);
+            }
+            if (PickOnlyBestStartingSolutions)
+            {
+                solutionList = solutionList.OrderBy(s => s.WeightedLoss).OrderBy(s => s.IntegrityLossScore).Take(amount).ToList();
             }
             return solutionList;
         }
@@ -248,7 +286,7 @@ namespace InstanceGeneratorConsole
                     AddSolutionToStats(_stats, solver);
                     AddSolutionToStats(categoryStats, solver);
                 }
-                catch (Exception e)
+                catch (FileLoadException e)
                 {
                     Console.WriteLine(e.Message);
                     Console.WriteLine(e.StackTrace);
