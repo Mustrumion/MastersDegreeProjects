@@ -18,26 +18,26 @@ namespace InstanceGeneratorConsole
         {
             BulkSolver bulkSolver = new BulkSolver()
             {
-                Times = 25,
-                FirstNumber = 125,
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
+                ReportProgrssToFile = true,
                 MaxThreads = 15,
                 LengthFilter = new[] { "week.json", "month.json" },
-                DifficultyFilter = new[] { "medium" },
             };
             bulkSolver.SolveEverything(LocalSearchFinal);
+            bulkSolver.SolveEverything(LocalSearchFinal2);
         }
 
 
         private ISolver LocalSearchFinal()
         {
-            RandomFastSolver randomSolver = new RandomFastSolver()
+            GreedyFastHeuristic randomSolver = new GreedyFastHeuristic()
             {
             };
             CompoundSolver compundSolver = new CompoundSolver()
             {
                 MaxLoops = 5,
+                TimeLimit = new TimeSpan(0, 3, 0),
             };
             LocalSearch solver = new LocalSearch()
             {
@@ -49,7 +49,61 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 6, 0),
-                Description = "base_popualtion _ls_random2",
+                Description = "base_popualtion_ls_compat_oneforall",
+            };
+            solver.MoveFactories = new List<ITransformationFactory>
+            {
+                new InsertFactory()
+                {
+                    MildlyRandomOrder = true,
+                    PositionsCountLimit = 4,
+                    MaxTasksChecked = 3,
+                    MaxBreaksChecked = 3,
+                    IgnoreBreaksWhenUnitOverfillAbove = 60,
+                    IgnoreCompletedTasks = true,
+                    IgnoreTasksWithCompletedViews = false,
+                    AlwaysReturnStartsAndEnds = true,
+                },
+                new RandomDeleteFactory()
+                {
+                    MovesReturned = 20,
+                },
+                new RandomInsertFactory()
+                {
+                    MovesReturned = 30,
+                },
+                new RandomSwapFactory()
+                {
+                    MovesReturned = 30,
+                },
+            };
+            solver.InitialSolvers.Add(randomSolver);
+            solver.InitialSolvers.Add(compundSolver);
+            return solver;
+        }
+
+
+        private ISolver LocalSearchFinal2()
+        {
+            RandomFastSolver randomSolver = new RandomFastSolver()
+            {
+            };
+            CompoundSolver compundSolver = new CompoundSolver()
+            {
+                MaxLoops = 5,
+                TimeLimit = new TimeSpan(0, 3, 0),
+            };
+            LocalSearch solver = new LocalSearch()
+            {
+                ScoringFunction = new Scorer(),
+                DiagnosticMessages = true,
+                PropagateRandomSeed = true,
+                NumberOfNoGoodActionsToStop = 20,
+                BestFactoryAdjustmentParam = 0.2,
+                NeighberhoodAdjustmentParam = 0.2,
+                ImprovementOverNarrowNeighb = 2,
+                TimeLimit = new TimeSpan(0, 6, 0),
+                Description = "base_popualtion_ls_random_oneforall",
             };
             solver.MoveFactories = new List<ITransformationFactory>
             {

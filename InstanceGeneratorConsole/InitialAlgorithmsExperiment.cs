@@ -23,7 +23,6 @@ namespace InstanceGeneratorConsole
                 MaxThreads = 15,
                 ReportProgrssToFile = true,
                 LengthFilter = new[] { "week.json", "month.json" },
-                DifficultyFilter = new[] { "medium" },
             };
             bulkSolver.SolveEverything(InitialBad);
             bulkSolver.SolveEverything(InitialGood);
@@ -38,7 +37,7 @@ namespace InstanceGeneratorConsole
                 DiagnosticMessages = true,
                 ScoringFunction = new Scorer(),
                 MaxBreakExtensionUnits = 10,
-                TimeLimit = new TimeSpan(0, 4, 0),
+                TimeLimit = new TimeSpan(0, 5, 0),
             };
             return improvingInserts;
         }
@@ -55,7 +54,7 @@ namespace InstanceGeneratorConsole
                 Description = "experiment_initial_new",
                 DiagnosticMessages = true,
                 ScoringFunction = new Scorer(),
-                TimeLimit = new TimeSpan(0, 4, 0),
+                TimeLimit = new TimeSpan(0, 5, 0),
             };
             compundSolver.InitialSolvers.Add(randomSolver);
             

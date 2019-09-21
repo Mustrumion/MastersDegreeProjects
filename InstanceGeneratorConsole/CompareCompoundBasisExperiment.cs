@@ -24,7 +24,6 @@ namespace InstanceGeneratorConsole
                 MaxThreads = 15,
                 ReportProgrssToFile = true,
                 LengthFilter = new[] { "week.json", "month.json" },
-                DifficultyFilter = new[] { "medium" },
             };
             bulkSolver.SolveEverything(CompoundRand);
             bulkSolver.SolveEverything(CompundNoIncom);

@@ -69,6 +69,7 @@
     <Compile Include="BulkInstanceGenerator.cs" />
     <Compile Include="BulkSolver.cs" />
     <Compile Include="BulkSolverStats.cs" />
+    <Compile Include="CompoundVsSeriesExperiment.cs" />
     <Compile Include="CompareCompoundBasisExperiment.cs" />
     <Compile Include="MetaCombinationExperiment.cs" />
     <Compile Include="MetaComparisionExperiment.cs" />

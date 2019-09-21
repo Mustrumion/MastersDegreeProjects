@@ -77,7 +77,7 @@ namespace InstanceGeneratorConsole
             //DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
             //experiment.Perform();
 
-            MetaCombinationExperiment experiment = new MetaCombinationExperiment();
+            EvolutionaryTuning experiment = new EvolutionaryTuning();
             experiment.Perform();
 
             Console.WriteLine("Press any key.");

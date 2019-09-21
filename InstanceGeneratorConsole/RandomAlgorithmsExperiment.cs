@@ -22,7 +22,6 @@ namespace InstanceGeneratorConsole
                 ParallelExecution = true,
                 MaxThreads = 15,
                 LengthFilter = new[] { "week.json", "month.json" },
-                DifficultyFilter = new[] { "medium" },
             };
             bulkSolver.SolveEverything(RandomSlow);
             bulkSolver.SolveEverything(RandomFast);
@@ -36,6 +35,7 @@ namespace InstanceGeneratorConsole
                 Description = "experiment_random_slow",
                 DiagnosticMessages = true,
                 ScoringFunction = new Scorer(),
+                TimeLimit = new TimeSpan(0, 20, 0),
             };
             return randomSolver;
         }
