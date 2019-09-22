@@ -32,7 +32,7 @@ namespace InstanceSolvers.Transformations
             Solution.AdvertisementsScheduledOnBreaks[_newSchedule.ID] = _newSchedule;
             foreach (var taskData in _oldBreakScores.Values)
             {
-                Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData);
+                Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData, _newSchedule);
             }
             foreach (var taskData in _newBreakScores.Values)
             {
@@ -57,7 +57,7 @@ namespace InstanceSolvers.Transformations
             Solution.AdvertisementsScheduledOnBreaks[_oldSchedule.ID] = _oldSchedule;
             foreach (var taskData in _newBreakScores.Values)
             {
-                Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData);
+                Solution.AdOrdersScores[taskData.ID].RemoveOtherDataFromThis(taskData, _oldSchedule);
             }
             foreach (var taskData in _oldBreakScores.Values)
             {

@@ -44,13 +44,10 @@ namespace InstanceSolvers.Solvers
 
         private bool CheckForNoSelfConflicts(TaskScore taskScore, BreakSchedule breakSchedule)
         {
-            if (!taskScore.BreaksPositions.TryGetValue(breakSchedule.ID, out var breakPositions))
-            {
-                breakPositions = new SortedSet<int>();
-            }
-            if (breakPositions.Count >= taskScore.AdConstraints.MaxPerBlock) return false;
+            SortedSet<int> positions = new SortedSet<int>(breakSchedule.Order.Where(t => t.ID == taskScore.ID).Select(t => t.ID));
+            if (positions.Count >= taskScore.AdConstraints.MaxPerBlock) return false;
             if (breakSchedule.UnitFill + taskScore.AdConstraints.AdSpanUnits > breakSchedule.BreakData.SpanUnits + MaxBreakExtensionUnits) return false;
-            int nextPos = breakPositions.Count > 0 ? breakPositions.First() : 999999999;
+            int nextPos = positions.Count > 0 ? positions.First() : 999999999;
             if (taskScore.AdConstraints.MinJobsBetweenSame > nextPos) return false;
             return true;
         }

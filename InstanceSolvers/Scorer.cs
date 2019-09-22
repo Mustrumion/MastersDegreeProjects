@@ -158,17 +158,35 @@ MildIncompatibilityLossWeight = {MildIncompatibilityLossWeight}";
                 + taskData.BreakTypeConflictsProportion;
         }
 
-        public void RecalculateLastAdTime(TaskScore taskData)
+        public void RecalculateLastAdTime(TaskScore taskData, BreakSchedule tvBreak)
         {
             DateTime currentMax = DateTime.MinValue;
-            foreach (var tvBreak in taskData.BreaksPositions)
+
+            if(tvBreak == null)
             {
-                int position = tvBreak.Value.Max();
-                BreakSchedule breakSchedule = Solution.AdvertisementsScheduledOnBreaks[tvBreak.Key];
-                DateTime time = breakSchedule.BreakData.StartTime.AddSeconds(breakSchedule.GetPositionEndUnits(position) * Instance.UnitSizeInSeconds);
-                if(time > currentMax)
+                foreach (TaskScore breakData in Solution.AdvertisementsScheduledOnBreaks.Select(b =>
                 {
-                    currentMax = time;
+                    TaskScore taskScore = null;
+                    b.Value.Scores.TryGetValue(taskData.ID, out taskScore);
+                    return taskScore;
+                }))
+                {
+                    if (breakData == null)
+                    {
+                        continue;
+                    }
+                    currentMax = currentMax >= breakData.LastAdTime ? currentMax : breakData.LastAdTime;
+                }
+            }
+            else
+            {
+                int i = 0;
+                foreach (var breakData in tvBreak.Order)
+                {
+                    int endTime = tvBreak.EndTimes[i];
+                    var time = tvBreak.BreakData.StartTime.AddSeconds(endTime * Instance.UnitSizeInSeconds);
+                    currentMax = currentMax >= time ? currentMax : time;
+                    i += 1;
                 }
             }
             taskData.LastAdTime = currentMax;

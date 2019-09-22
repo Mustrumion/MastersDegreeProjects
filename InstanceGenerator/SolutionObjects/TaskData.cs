@@ -58,10 +58,6 @@ namespace InstanceGenerator.SolutionObjects
         [JsonIgnore]
         public AdvertisementTask AdConstraints { get; set; }
 
-        [JsonProperty(Order = 1)]
-        public Dictionary<int, SortedSet<int>> BreaksPositions { get; set; } = new Dictionary<int, SortedSet<int>>();
-
-
         #region CalculatedProperties
 
         public double StartsProportion
@@ -186,7 +182,7 @@ namespace InstanceGenerator.SolutionObjects
             }
         }
 
-        public void MergeOtherDataIntoThis(TaskScore taskData, bool mergeStatsOnly = false)
+        public void MergeOtherDataIntoThis(TaskScore taskData)
         {
             Viewership += taskData.Viewership;
             TimesAired += taskData.TimesAired;
@@ -204,26 +200,12 @@ namespace InstanceGenerator.SolutionObjects
             BreakTypeConflicts += taskData.BreakTypeConflicts;
             SelfSpacingConflicts += taskData.SelfSpacingConflicts;
             SelfIncompatibilityConflicts += taskData.SelfIncompatibilityConflicts;
-
-            if (!mergeStatsOnly)
-            {
-                foreach (var tvBreak in taskData.BreaksPositions)
-                {
-                    if (BreaksPositions.TryGetValue(tvBreak.Key, out var positionsSet))
-                    {
-                        positionsSet.UnionWith(tvBreak.Value);
-                    }
-                    else
-                    {
-                        BreaksPositions.Add(tvBreak.Key, new SortedSet<int>(tvBreak.Value));
-                    }
-                }
-            }
+            
             RecalculateLoss();
         }
 
 
-        public void RemoveOtherDataFromThis(TaskScore taskData)
+        public void RemoveOtherDataFromThis(TaskScore taskData, BreakSchedule tvBreak)
         {
             Viewership -= taskData.Viewership;
             TimesAired -= taskData.TimesAired;
@@ -237,38 +219,23 @@ namespace InstanceGenerator.SolutionObjects
             BreakTypeConflicts -= taskData.BreakTypeConflicts;
             SelfSpacingConflicts -= taskData.SelfSpacingConflicts;
             SelfIncompatibilityConflicts -= taskData.SelfIncompatibilityConflicts;
-
-            foreach (var tvBreak in taskData.BreaksPositions)
-            {
-                if (BreaksPositions.TryGetValue(tvBreak.Key, out var list))
-                {
-                    list.ExceptWith(tvBreak.Value);
-                    if(list.Count == 0)
-                    {
-                        BreaksPositions.Remove(tvBreak.Key);
-                    }
-                }
-                else
-                {
-                    throw new Exception("Something went wrong. This data was not a part of this task.");
-                }
-            }
+            
             if (taskData.LastAdTime == LastAdTime)
             {
-                RecalculateLastAdTime();
+                RecalculateLastAdTime(tvBreak);
             }
             RecalculateLoss();
         }
 
 
-        private void RecalculateLastAdTime()
+        private void RecalculateLastAdTime(BreakSchedule tvBreak)
         {
-            if (BreaksPositions.Count == 0)
+            LastAdTime = default(DateTime);
+            if (TimesAired == 0)
             {
-                LastAdTime = default(DateTime);
                 return;
             }
-            ScoringFunction.RecalculateLastAdTime(this);
+            ScoringFunction.RecalculateLastAdTime(this, tvBreak);
         }
 
 
@@ -340,10 +307,6 @@ namespace InstanceGenerator.SolutionObjects
                 AdConstraints = AdConstraints,
                 ScoringFunction = ScoringFunction,
             };
-            if (!copyStatsOnly)
-            {
-                clone.BreaksPositions = BreaksPositions.ToDictionary(b => b.Key, b => new SortedSet<int>(b.Value));
-            }
             return clone;
         }
 

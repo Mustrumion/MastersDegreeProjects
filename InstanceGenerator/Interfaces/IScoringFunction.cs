@@ -29,7 +29,7 @@ namespace InstanceGenerator.Interfaces
         void RecalculateExtendedBreakLoss(TaskScore taskData);
         void RecalculateWeightedLoss(TaskScore taskData);
         void RecalculateIntegrityLoss(TaskScore taskData);
-        void RecalculateLastAdTime(TaskScore taskData);
+        void RecalculateLastAdTime(TaskScore taskData, BreakSchedule breakId);
 
         /// <summary>
         /// Since IScoringFunction by is associated with a solution it's assessing bad things may happen if it's executed in parallel on different solutions.

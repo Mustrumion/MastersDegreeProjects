@@ -112,10 +112,8 @@ namespace InstanceSolvers
                     AdConstraints = _currentAd,
                     ScoringFunction = ScoringFunction,
                 };
-                assesedTask.BreaksPositions.Add(_breakData.ID, new SortedSet<int>());
                 _taksAssessments.Add(order.ID, assesedTask);
             }
-            assesedTask.BreaksPositions[_breakData.ID].Add(position);
             _currentlyAssessed = assesedTask;
             Instance.BrandIncompatibilityCost.TryGetValue(_currentAd.Brand.ID, out var currentAdWeights);
             _currentAdIncompatibilityCosts = currentAdWeights;

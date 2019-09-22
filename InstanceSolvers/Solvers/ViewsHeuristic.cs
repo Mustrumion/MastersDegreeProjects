@@ -55,23 +55,20 @@ namespace InstanceSolvers.Solvers
         private List<int> GetPossibleInserts(TaskScore taskScore, BreakSchedule breakSchedule)
         {
             List<int> added = new List<int>();
-            if(!taskScore.BreaksPositions.TryGetValue(breakSchedule.ID, out var breakPositions))
-            {
-                breakPositions = new SortedSet<int>();
-            }
+            SortedSet<int> positions = new SortedSet<int>(breakSchedule.Order.Where(t => t.ID == taskScore.ID).Select(t => t.ID));
             //make it a list copy
-            var positionsList = breakPositions.ToList();
+            var positionsList = positions.ToList();
             int arrIndex = 0;
             for(int possiblePos = 0; possiblePos < breakSchedule.Order.Count + 1; )
             {
                 if (added.Count >= MaxInsertedPerBreak) break;
-                if (breakPositions.Count >= taskScore.AdConstraints.MaxPerBlock) break;
+                if (positionsList.Count >= taskScore.AdConstraints.MaxPerBlock) break;
                 if (breakSchedule.UnitFill + (added.Count + 1) * taskScore.AdConstraints.AdSpanUnits > breakSchedule.BreakData.SpanUnits + MaxBreakExtensionUnits) break;
-                int nextPos = breakPositions.Count > arrIndex ? positionsList[arrIndex] : 999999999;
+                int nextPos = positionsList.Count > arrIndex ? positionsList[arrIndex] : 999999999;
                 if (possiblePos + taskScore.AdConstraints.MinJobsBetweenSame <= nextPos)
                 {
                     added.Add(possiblePos);
-                    for(int j = arrIndex; j < breakPositions.Count; j++)
+                    for(int j = arrIndex; j < positionsList.Count; j++)
                     {
                         positionsList[j] += 1;
                     }

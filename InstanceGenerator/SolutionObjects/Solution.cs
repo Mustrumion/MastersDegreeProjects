@@ -201,51 +201,8 @@ namespace InstanceGenerator.SolutionObjects
             {
                 AdOrdersScores.Add(task.ID, new TaskScore() { AdConstraints = task, ScoringFunction = GradingFunction});
             }
-            foreach (var tvBreak in _advertisementsScheduledOnBreaks.Values)
-            {
-                var listOfAds = tvBreak.Order;
-                for (int i = 0; i < listOfAds.Count; i++)
-                {
-                    AddAdToTaskDataDictionry(listOfAds[i].ID, tvBreak.BreakData.ID, i);
-                }
-            }
         }
-
-
-        /// <summary>
-        /// Adds an advertisement instance to the break in the task data helper structure.
-        /// </summary>
-        /// <param name="orderId"></param>
-        /// <param name="breakId"></param>
-        /// <param name="position"></param>
-        private void AddAdToTaskDataDictionry(int orderId, int breakId, int position)
-        {
-            var taskData = AdOrdersScores[orderId];
-            if (!taskData.BreaksPositions.TryGetValue(breakId, out var breakPositions))
-            {
-                breakPositions = new SortedSet<int>();
-                taskData.BreaksPositions.Add(breakId, breakPositions);
-            }
-            breakPositions.Add(position);
-        }
-
-
-        /// <summary>
-        /// Removes an advertisement instance from the break in the task data helper structure.
-        /// </summary>
-        /// <param name="orderId"></param>
-        /// <param name="breakId"></param>
-        /// <param name="position"></param>
-        private void RemoveAdFromTaskDataDictionary(int orderId, int breakId, int position)
-        {
-            var taskData = AdOrdersScores[orderId];
-            var breakPositions = taskData.BreaksPositions[breakId];
-            breakPositions.Remove(position);
-            if (breakPositions.Count == 0)
-            {
-                taskData.BreaksPositions.Remove(breakId);
-            }
-        }
+        
 
 
         /// <summary>
@@ -262,20 +219,6 @@ namespace InstanceGenerator.SolutionObjects
                 breakSchedule = new BreakSchedule(tvBreak);
             }
             var adsInBreak = breakSchedule.Order;
-            //Move positions by one in helper structure for ads after this one.
-            for (int i = position; i < adsInBreak.Count; i++)
-            {
-                int adId = adsInBreak[i].ID;
-                var positionsSet = AdOrdersScores[adId].BreaksPositions[tvBreak.ID];
-                positionsSet.Remove(i);
-            }
-            for (int i = position; i < adsInBreak.Count; i++)
-            {
-                int adId = adsInBreak[i].ID;
-                var positionsSet = AdOrdersScores[adId].BreaksPositions[tvBreak.ID];
-                positionsSet.Add(i + 1);
-            }
-            AddAdToTaskDataDictionry(ad.ID, tvBreak.ID, position);
             breakSchedule.Insert(position, ad);
             breakSchedule.Scores = null;
         }
@@ -291,20 +234,6 @@ namespace InstanceGenerator.SolutionObjects
             var schedule = _advertisementsScheduledOnBreaks[tvBreak.ID];
             var adsInBreak = schedule.Order;
             //Move positions by one in helper structure for ads after this one.
-            AdvertisementTask order = schedule.Order[position];
-            RemoveAdFromTaskDataDictionary(order.ID, tvBreak.ID, position);
-            for (int i = position + 1; i < adsInBreak.Count; i++)
-            {
-                int adId = adsInBreak[i].ID;
-                var positionsSet = AdOrdersScores[adId].BreaksPositions[tvBreak.ID];
-                positionsSet.Remove(i);
-            }
-            for (int i = position + 1; i < adsInBreak.Count; i++)
-            {
-                int adId = adsInBreak[i].ID;
-                var positionsSet = AdOrdersScores[adId].BreaksPositions[tvBreak.ID];
-                positionsSet.Add(i - 1);
-            }
             schedule.RemoveAt(position);
         }
 
@@ -372,7 +301,7 @@ namespace InstanceGenerator.SolutionObjects
             foreach (var taskData in removedScores.Values)
             {
                 TaskScore currentStatsForTask = AdOrdersScores[taskData.ID];
-                currentStatsForTask.RemoveOtherDataFromThis(taskData);
+                currentStatsForTask.RemoveOtherDataFromThis(taskData, null);
             }
         }
     }
