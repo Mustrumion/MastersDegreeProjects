@@ -155,7 +155,8 @@ namespace InstanceSolvers.Solvers.Base
             InternalSolve();
             CurrentTime.Stop();
             Solution.TimeElapsed = CurrentTime.Elapsed + _previousSolutionTime;
-            if(ReportEnds) AddEndReport();
+            Solution.LastTimeElapsed = CurrentTime.Elapsed;
+            if (ReportEnds) AddEndReport();
             if (ReportTimeouts && CurrentTime.Elapsed > TimeLimit) Console.WriteLine($"{GetType().Name} ended because of a timeout.");
             if (DiagnosticMessages) Console.WriteLine($"{GetType().Name} ended. Time elapsed {CurrentTime.Elapsed}.");
         }

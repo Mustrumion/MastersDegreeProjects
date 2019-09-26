@@ -18,14 +18,15 @@ namespace InstanceGeneratorConsole
         {
             BulkSolver bulkSolver = new BulkSolver()
             {
+                Times = 38,
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
                 ReportProgrssToFile = true,
                 MaxThreads = 15,
+                DifficultyFilter = new[] { "trivial", "easy", "very_easy", "hard", "extreme" },
                 LengthFilter = new[] { "week.json", "month.json" },
             };
             bulkSolver.SolveEverything(LocalSearchFinal);
-            bulkSolver.SolveEverything(LocalSearchFinal2);
         }
 
 
@@ -49,7 +50,7 @@ namespace InstanceGeneratorConsole
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 2,
                 TimeLimit = new TimeSpan(0, 6, 0),
-                Description = "base_popualtion_ls_compat_oneforall",
+                Description = "base_pop_38",
             };
             solver.MoveFactories = new List<ITransformationFactory>
             {

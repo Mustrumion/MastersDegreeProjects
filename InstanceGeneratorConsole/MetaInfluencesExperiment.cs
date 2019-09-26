@@ -11,23 +11,50 @@ using System.Threading.Tasks;
 
 namespace InstanceGeneratorConsole
 {
-    public class MetaCombinationExperiment
+    public class MetaInfluencesExperiment
     {
         private static string MAIN_DIRECTORY = @"C:\Users\mustrum\dropbox\MDP";
 
         public void Perform()
         {
+            BulkSolver bulkSolver2 = new BulkSolver()
+            {
+                MainDirectory = MAIN_DIRECTORY,
+                ParallelExecution = true,
+                MaxThreads = 15,
+                ReportProgrssToFile = true,
+                PickOnlyBestStartingSolutions = true,
+                LengthFilter = new[] { "week.json", "month.json" },
+                StartingSolutionsDirectory = Path.Combine(MAIN_DIRECTORY, "solutions", "base_solutions_all"),
+            };
+            bulkSolver2.SolveEverything(SimulatedAnnealingBest);
             BulkSolver bulkSolver = new BulkSolver()
             {
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = false,
                 ReportProgrssToFile = true,
                 PickOnlyBestStartingSolutions = true,
-                LengthFilter = new[] { "week.json" },
-                DifficultyFilter = new[] { "medium" },
-                StartingSolutionsDirectory = Path.Combine(MAIN_DIRECTORY, "annealing_optimization3", "solutions") + @"\*\",
+                LengthFilter = new[] { "week.json", "month.json" },
+                StartingSolutionsDirectory = Path.Combine(MAIN_DIRECTORY, "solutions", "base_solutions_all"),
             };
             bulkSolver.SolveEverything(EvolutionaryBest);
+        }
+
+        
+        private ISolver SimulatedAnnealingBest()
+        {
+            SimulatedAnnealing solver = new SimulatedAnnealing()
+            {
+                ScoringFunction = new Scorer(),
+                DiagnosticMessages = true,
+                PropagateRandomSeed = true,
+                TimeLimit = new TimeSpan(1, 0, 0),
+                TemperatureMultiplier = 0.999973432905173,
+                TemperatureAddition = 3.51023731470062E-06,
+                StepsAnalyzedWithoutImprovementToStop = 300,
+                Description = "annealing_best_tests_all",
+            };
+            return solver;
         }
 
 
@@ -41,7 +68,7 @@ namespace InstanceGeneratorConsole
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
                 BreakAfterLoopsWithoutImprovement = 2,
-                TimeLimit = new TimeSpan(1, 30, 0),
+                TimeLimit = new TimeSpan(1, 0, 0),
                 PopulationCount = 38,
                 CandidatesForParent = 4,
                 MutationRate = 0.394736842105263,
@@ -49,7 +76,7 @@ namespace InstanceGeneratorConsole
                 NumberOfMutationsToBreakCount = 0.000790520968624,
                 ProportionOfBreaksCrossed = 0.083086983070447,
                 GenerationImproverGenerator = LocalSearchForEvolutionaryImprovement,
-                Description = "evolutionary_based_on_annealing",
+                Description = "evolutionary_best_tests_all",
             };
             return solver;
         }
@@ -60,7 +87,7 @@ namespace InstanceGeneratorConsole
             CompoundSolver compundSolver = new CompoundSolver()
             {
                 MaxLoops = 1,
-                TimeLimit = new TimeSpan(0, 1, 0),
+                TimeLimit = new TimeSpan(0, 0, 15),
             };
             LocalSearch localSearch = new LocalSearch()
             {
@@ -68,7 +95,7 @@ namespace InstanceGeneratorConsole
                 BestFactoryAdjustmentParam = 0.2,
                 NeighberhoodAdjustmentParam = 0.2,
                 ImprovementOverNarrowNeighb = 1.5,
-                TimeLimit = new TimeSpan(0, 1, 0),
+                TimeLimit = new TimeSpan(0, 0, 15),
             };
             localSearch.MoveFactories = new List<ITransformationFactory>
             {

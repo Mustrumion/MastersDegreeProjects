@@ -65,6 +65,12 @@ namespace InstanceGenerator.SolutionObjects
         public TimeSpan TimeElapsed { get; set; }
 
         /// <summary>
+        /// Time spent by the last used algorithm.
+        /// </summary>
+        [Description("Time spent by the last used algorithm.")]
+        public TimeSpan LastTimeElapsed { get; set; }
+
+        /// <summary>
         /// Overall solution score.
         /// </summary>
         [Description("Overall solution score.")]

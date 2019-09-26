@@ -72,6 +72,7 @@
     <Compile Include="CompoundVsSeriesExperiment.cs" />
     <Compile Include="CompareCompoundBasisExperiment.cs" />
     <Compile Include="MetaCombinationExperiment.cs" />
+    <Compile Include="MetaInfluencesExperiment.cs" />
     <Compile Include="MetaComparisionExperiment.cs" />
     <Compile Include="InitialAlgorithmsExperiment.cs" />
     <Compile Include="RandomAlgorithmsExperiment.cs" />
