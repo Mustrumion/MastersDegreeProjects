@@ -219,6 +219,8 @@ namespace InstanceGeneratorConsole
                 solution.Description = Path.GetFileNameWithoutExtension(filePaths[i]);
                 solution.GradingFunction = solver.ScoringFunction.GetAnotherOne();
                 solution.GradingFunction.AssesSolution(solution);
+                solution.WeightedLossBefore = solution.WeightedLoss;
+                solution.IntegrityLossScoreBefore = solution.IntegrityLossScore;
                 solutionList.Add(solution);
             }
             if (PickOnlyBestStartingSolutions)

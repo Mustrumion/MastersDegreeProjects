@@ -22,12 +22,11 @@ namespace InstanceGeneratorConsole
                 MainDirectory = MAIN_DIRECTORY,
                 ParallelExecution = true,
                 MaxThreads = 15,
-                ReportProgrssToFile = true,
                 PickOnlyBestStartingSolutions = true,
                 LengthFilter = new[] { "week.json", "month.json" },
                 StartingSolutionsDirectory = Path.Combine(MAIN_DIRECTORY, "solutions", "base_solutions_all"),
             };
-            bulkSolver2.SolveEverything(SimulatedAnnealingBest);
+            //bulkSolver2.SolveEverything(SimulatedAnnealingBest);
             BulkSolver bulkSolver = new BulkSolver()
             {
                 MainDirectory = MAIN_DIRECTORY,
@@ -51,8 +50,8 @@ namespace InstanceGeneratorConsole
                 TimeLimit = new TimeSpan(1, 0, 0),
                 TemperatureMultiplier = 0.999973432905173,
                 TemperatureAddition = 3.51023731470062E-06,
-                StepsAnalyzedWithoutImprovementToStop = 300,
-                Description = "annealing_best_tests_all",
+                StepsAnalyzedWithoutImprovementToStop = 500,
+                Description = "annealing_best_tests_all2",
             };
             return solver;
         }
@@ -76,7 +75,7 @@ namespace InstanceGeneratorConsole
                 NumberOfMutationsToBreakCount = 0.000790520968624,
                 ProportionOfBreaksCrossed = 0.083086983070447,
                 GenerationImproverGenerator = LocalSearchForEvolutionaryImprovement,
-                Description = "evolutionary_best_tests_all",
+                Description = "evolutionary_best_tests_all2",
             };
             return solver;
         }

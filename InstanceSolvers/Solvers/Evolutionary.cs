@@ -182,6 +182,7 @@ namespace InstanceSolvers.Solvers
                 if (DiagnosticMessages) Console.WriteLine($"Generation {Generations} finished. Completion {_bestSolution.CompletionScore}. Weighted loss {_bestSolution.WeightedLoss}.");
             }
             Solution = _bestSolution;
+            Solution.NumberOfIterations = Generations;
             //Solution.RestoreStructures();
             //_scoringFunction.AssesSolution(Solution);
         }

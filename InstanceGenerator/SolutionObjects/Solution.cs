@@ -59,7 +59,7 @@ namespace InstanceGenerator.SolutionObjects
         public string Description { get; set; }
 
         /// <summary>
-        /// Time spent generating the solution.
+        /// Total real time spent working on the solution.
         /// </summary>
         [Description("Time spent generating the solution.")]
         public TimeSpan TimeElapsed { get; set; }
@@ -71,10 +71,17 @@ namespace InstanceGenerator.SolutionObjects
         public TimeSpan LastTimeElapsed { get; set; }
 
         /// <summary>
+        /// Number of iterations.
+        /// </summary>
+        [Description("Number of iterations by the last used algorithm (interpretation depends on the algorithm used).")]
+        public int NumberOfIterations { get; set; }
+        
+        /// <summary>
         /// Overall solution score.
         /// </summary>
         [Description("Overall solution score.")]
         public double WeightedLoss { get; set; }
+        public double WeightedLossBefore { get; set; }
 
         /// <summary>
         /// Loss from late ad contract completion.
@@ -99,6 +106,7 @@ namespace InstanceGenerator.SolutionObjects
         /// </summary>
         [Description("Detailed integrity score.")]
         public double IntegrityLossScore { get; set; }
+        public double IntegrityLossScoreBefore { get; set; }
 
         /// <summary>
         /// Number of advertisement orders (tasks) with hard constraints met.
@@ -330,6 +338,9 @@ namespace InstanceGenerator.SolutionObjects
                 OverdueAdsLoss = OverdueAdsLoss,
                 WeightedLoss = WeightedLoss,
                 GradingFunction = GradingFunction.GetAnotherOne(),
+                WeightedLossBefore = WeightedLossBefore,
+                IntegrityLossScoreBefore = IntegrityLossScoreBefore,
+                NumberOfIterations = NumberOfIterations,
             };
             return solution;
         }
@@ -361,6 +372,9 @@ namespace InstanceGenerator.SolutionObjects
                 WeightedLoss = WeightedLoss,
                 TotalStats = TotalStats,
                 GradingFunction = GradingFunction.GetAnotherOne(),
+                WeightedLossBefore = WeightedLossBefore,
+                IntegrityLossScoreBefore = IntegrityLossScoreBefore,
+                NumberOfIterations = NumberOfIterations,
             };
         }
 

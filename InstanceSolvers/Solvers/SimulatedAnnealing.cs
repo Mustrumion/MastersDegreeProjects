@@ -103,6 +103,7 @@ namespace InstanceSolvers.Solvers
                 _previousBest.RestoreStructures();
                 _scoringFunction.AssesSolution(Solution);
             }
+            Solution.NumberOfIterations = NumberOfSteps;
             if (DiagnosticMessages) Console.WriteLine($"Number of transformations performed {NumberOfMoves}.");
         }
 

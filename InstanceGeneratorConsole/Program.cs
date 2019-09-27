@@ -41,9 +41,10 @@ namespace InstanceGeneratorConsole
 
         static void Main(string[] args)
         {
+            // Disable the ridiculous edit mode of the console. Which could cause the program to halt if you click on the console in the wrong way. 
+            // (RIP two days of experiments)
             IntPtr consoleHandle = GetStdHandle(STD_INPUT_HANDLE);
-            uint consoleMode;
-            if (!GetConsoleMode(consoleHandle, out consoleMode))
+            if (!GetConsoleMode(consoleHandle, out uint consoleMode))
             {
                 Console.WriteLine("Can't get console handle. Weird.");
                 return;
@@ -53,6 +54,7 @@ namespace InstanceGeneratorConsole
             {
                 Console.WriteLine("Can't set console mode. Weird.");
             }
+
             //BulkInstanceGenerator bulkInstanceGenerator = new BulkInstanceGenerator()
             //{
             //    MainDirectory = MAIN_DIRECTORY,
@@ -77,7 +79,7 @@ namespace InstanceGeneratorConsole
             //DifficultyChoiceExperiment experiment = new DifficultyChoiceExperiment();
             //experiment.Perform();
 
-            InitialInstancesPrep experiment = new InitialInstancesPrep();
+            MetaInfluencesExperiment experiment = new MetaInfluencesExperiment();
             experiment.Perform();
 
             Console.WriteLine("Press any key.");

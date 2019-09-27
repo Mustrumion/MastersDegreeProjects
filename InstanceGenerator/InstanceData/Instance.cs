@@ -34,6 +34,13 @@ namespace InstanceGenerator.InstanceData
         [JsonIgnore]
         public int AdsAmountChecksum { get; set; }
 
+        public int NumberOfCampaigns { get => AdOrders.Count; }
+        public int NumberOfChannels { get => Channels.Count; }
+        public int NumberOfAdsToSchedule { get => AdOrders.Values.Sum(t => t.MinTimesAired); }
+        public int NumberOfBreaks { get => Breaks.Count; }
+        public double AverageBreakLengthMinutes { get => Breaks.Values.Average(b => b.Span.TotalMinutes); }
+        public string HorizonType { get => Span.TotalDays < 10.0 ? "week" : "month"; }
+
         /// <summary>
         /// Dictionary declaring types of ads present in the instance.
         /// </summary>
