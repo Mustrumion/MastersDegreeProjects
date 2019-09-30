@@ -97,7 +97,7 @@ outliers[['loss [x1000]', 'loss % improvement', 'iterations [x100 000]']]= outli
 outliers.to_csv (directory + 'outliersSolutionsData.csv', index = None, header=True)
 print(df)
 g = sns.PairGrid(df, x_vars=columns[1:4], y_vars=columns[4:])
-g = g.map(sns.barplot, ci = 75)
+g = g.map(sns.barplot)
 plt.subplots_adjust(top=0.95, bottom=0.05)
 g.fig.suptitle("Simulated annealing results categorized by the instances")
 # plt.tight_layout()

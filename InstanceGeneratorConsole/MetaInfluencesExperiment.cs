@@ -67,7 +67,7 @@ namespace InstanceGeneratorConsole
                 DiagnosticMessages = true,
                 PropagateRandomSeed = true,
                 BreakAfterLoopsWithoutImprovement = 2,
-                TimeLimit = new TimeSpan(1, 0, 0),
+                TimeLimit = new TimeSpan(3, 0, 0),
                 PopulationCount = 38,
                 CandidatesForParent = 4,
                 MutationRate = 0.394736842105263,
@@ -75,7 +75,7 @@ namespace InstanceGeneratorConsole
                 NumberOfMutationsToBreakCount = 0.000790520968624,
                 ProportionOfBreaksCrossed = 0.083086983070447,
                 GenerationImproverGenerator = LocalSearchForEvolutionaryImprovement,
-                Description = "evolutionary_best_tests_all2",
+                Description = "evolutionary_best_tests_all3",
             };
             return solver;
         }

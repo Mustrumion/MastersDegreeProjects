@@ -48,7 +48,7 @@ def get_channels_from_path(path: str):
     return int(char) 
 
 
-directory = 'C:/Users/Mustrum/Dropbox/MDP/solutions/evolutionary_best_tests_all2/'
+directory = 'C:/Users/Mustrum/Dropbox/MDP/solutions/evolutionary_best_tests_all/'
 fileMask = '**/0*.json'
 files = [f for f in glob.glob(directory + fileMask, recursive=True)]
 
@@ -67,9 +67,10 @@ for i, f in enumerate(files):
             accetabilityPercent = (data['IntegrityLossScoreBefore'] - data['IntegrityLossScore']) / data['IntegrityLossScoreBefore'] * 100
         accetabilePercent = (data['IntegrityLossScore'] == 0) * 100.0
         time = get_minutes(data['LastTimeElapsed'])
-        if time > 69.99:
-            print(f)
         iterations = data['NumberOfIterations']
+        
+        if time >= 59.99:
+            print(time, f)
 
         difficulty = get_difficulty_from_path(f)
         horizon = get_length_from_path(f)
@@ -83,7 +84,7 @@ df.sort_values(by=['horizon'], inplace=True, ascending=False)
 df.to_csv (directory + 'gatheredSolutionsData.csv', index = None, header=True)
 print(df)
 g = sns.PairGrid(df, x_vars=columns[0:3], y_vars=columns[3:])
-g = g.map(sns.barplot, ci = 75)
+g = g.map(sns.barplot)
 plt.subplots_adjust(top=0.95, bottom=0.05)
 g.fig.suptitle("Evolutionary algorithm results categorized by the instances")
 # plt.tight_layout()
