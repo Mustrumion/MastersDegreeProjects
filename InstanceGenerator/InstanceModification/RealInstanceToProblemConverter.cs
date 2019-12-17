@@ -422,23 +422,24 @@ $@"Parameters used in conversion from real data:
         /// </summary>
         public void CombineAdTypes()
         {
+            Dictionary<int, TypeOfAd> newDict = new Dictionary<int, TypeOfAd>();
             var typesGroups = Instance.TypesOfAds.Values.ToLookup(t => t.ID.ToString().PadLeft(6, '0').Substring(0, 4)).ToList();
             foreach(var group in typesGroups)
             {
-                CombineAdGroup(group);
+                CombineAdGroup(group, newDict);
             }
+            Instance.TypesOfAds = newDict;
         }
 
-        private void CombineAdGroup(IGrouping<string,  TypeOfAd> group)
+        private void CombineAdGroup(IGrouping<string, TypeOfAd> group, Dictionary<int, TypeOfAd> newDict)
         {
-            TypeOfAd firstType = group.First();
-            Instance.TypesOfAds.Remove(firstType.ID);
+            var groupList = group.ToList();
+            TypeOfAd firstType = groupList.First();
             firstType.ID = Convert.ToInt32(group.Key);
-            Instance.TypesOfAds[firstType.ID] = firstType;
-            foreach (var adType in group.Skip(1))
+            newDict[firstType.ID] = firstType;
+            foreach (var adType in groupList.Skip(1))
             {
                 firstType.JoinType(adType);
-                Instance.TypesOfAds.Remove(adType.ID);
             }
         }
 
@@ -455,6 +456,47 @@ $@"Parameters used in conversion from real data:
                 }
             }
             Instance.TypeToBreakIncompatibilityMatrix.Clear();
+        }
+
+        
+
+        void VerifyTypesIntegrity()
+        {
+            foreach (AdvertisementTask task in Instance.AdOrders.Values)
+            {
+                if (task.Type != null)
+                {
+                    if (!Instance.TypesOfAds.ContainsKey(task.Type.ID))
+                    {
+                        throw new Exception("Types integrity breached.");
+                    }
+                }
+                else
+                {
+                    foreach (var taskInstance in task.AdvertisementInstances)
+                    {
+                        if (!Instance.TypesOfAds.ContainsKey(taskInstance.Type.ID))
+                        {
+                            throw new Exception("Types integrity breached.");
+                        }
+                        if (!Instance.TypesOfAds[taskInstance.TypeID].Ads.Contains(taskInstance))
+                        {
+                            throw new Exception("Types integrity breached.");
+                        }
+                    }
+                }
+            }
+            foreach (AdvertisementInstance instance in Instance.Channels.SelectMany(c => c.Value.Advertisements))
+            {
+                if (!Instance.TypesOfAds.ContainsKey(instance.Type.ID))
+                {
+                    throw new Exception("Types integrity breached.");
+                }
+                if (!Instance.TypesOfAds[instance.TypeID].Ads.Contains(instance))
+                {
+                    throw new Exception("Types integrity breached.");
+                }
+            }
         }
     }
 }

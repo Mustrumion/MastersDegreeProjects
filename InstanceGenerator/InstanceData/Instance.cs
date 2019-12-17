@@ -130,18 +130,18 @@ namespace InstanceGenerator.InstanceData
             return TypesOfAds.Values;
         }
 
-        public TypeOfAd GetOrAddTypeOfAds(int blockId)
+        public TypeOfAd GetOrAddTypeOfAds(int typeId)
         {
-            if (TypesOfAds.ContainsKey(blockId))
+            if (TypesOfAds.ContainsKey(typeId))
             {
-                return TypesOfAds[blockId];
+                return TypesOfAds[typeId];
             }
-            TypeOfAd block = new TypeOfAd()
+            TypeOfAd type = new TypeOfAd()
             {
-                ID = blockId,
+                ID = typeId,
             };
-            TypesOfAds[blockId] = block;
-            return block;
+            TypesOfAds[typeId] = type;
+            return type;
         }
 
         public IEnumerable<Brand> GetBrandsList()
